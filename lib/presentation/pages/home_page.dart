@@ -1,4 +1,5 @@
 import 'package:blogify_flutter_main/presentation/common/widgets/circled_button.dart';
+import 'package:blogify_flutter_main/presentation/common/widgets/search_bar_selector.dart';
 import 'package:blogify_flutter_main/presentation/theme/app_colors.dart';
 import 'package:flutter/material.dart';
 
@@ -78,11 +79,14 @@ class _HomePageState extends State<HomePage> {
 
               //search bar
               SearchBar(
-                padding: WidgetStatePropertyAll(EdgeInsets.symmetric(horizontal: 16.0),),
+                padding: WidgetStatePropertyAll(EdgeInsets.only(left: 16.0, right: 8.0),),
                 leading: Icon(
                   Icons.search,
                   color: AppColors.accentColor,
                 ),
+                trailing: [
+                  SearchBarSelector(),
+                ],
                 hintText: 'Search here',
                 hintStyle: WidgetStatePropertyAll(TextStyle(
                   color: AppColors.accentColor,
