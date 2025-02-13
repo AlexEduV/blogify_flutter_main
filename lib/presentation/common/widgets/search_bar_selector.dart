@@ -11,7 +11,7 @@ class SearchBarSelector extends StatelessWidget {
       padding: EdgeInsets.symmetric(vertical: 8.0, horizontal: 16.0),
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(24.0),
-        color: AppColors.secondaryColor,
+        color: AppColors.primaryColor,
       ),
       child: Row(
         spacing: 4.0,
