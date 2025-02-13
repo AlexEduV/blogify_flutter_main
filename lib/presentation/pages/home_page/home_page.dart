@@ -106,11 +106,47 @@ class _HomePageState extends State<HomePage> {
               SizedBox(height: 24.0),
 
               //card stack
-              PostCard(
-                title: 'Where Web 3\nis Going to?',
-                author: 'Josh Brian',
-                publishedWhen: '2 days ago',
-                readTimeEstimated: '5 min',
+              Expanded(
+                child: Stack(
+                  children: [
+
+                    Positioned(
+                      top: 30,
+                      left: 50,
+                      right: 50,
+                      child: PostCard(
+                        title: 'Where Web 3\nis Going to?',
+                        author: 'Josh Brian',
+                        publishedWhen: '2 days ago',
+                        readTimeEstimated: '5 min',
+                      ),
+                    ),
+
+                    Positioned(
+                      top: 15,
+                      left: 25,
+                      right: 25,
+                      child: PostCard(
+                        title: 'Where Web 3\nis Going to?',
+                        author: 'Josh Brian',
+                        publishedWhen: '2 days ago',
+                        readTimeEstimated: '5 min',
+                      ),
+                    ),
+
+                    Positioned(
+                      top: 0,
+                      left: 0,
+                      right: 0,
+                      child: PostCard(
+                        title: 'Where Web 3\nis Going to?',
+                        author: 'Josh Brian',
+                        publishedWhen: '2 days ago',
+                        readTimeEstimated: '5 min',
+                      ),
+                    ),
+                  ],
+                ),
               ),
 
               // topic selector & edit button

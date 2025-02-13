@@ -22,9 +22,17 @@ class PostCard extends StatelessWidget {
       decoration: BoxDecoration(
         color: AppColors.primaryColor,
         borderRadius: BorderRadius.circular(24),
-        border: Border.all(width: 8.0, color: Colors.white,),
+        border: Border.all(width: 4.0, color: Colors.white,),
+        boxShadow: [
+          BoxShadow(
+            color: Colors.black.withOpacity(0.2),
+            blurRadius: 20,
+            spreadRadius: 2,
+            offset: Offset(0, 5),
+          ),
+        ],
       ),
-      padding: EdgeInsets.all(8.0),
+      padding: EdgeInsets.all(4.0),
       child: Column(
         children: [
 
@@ -35,7 +43,7 @@ class PostCard extends StatelessWidget {
               borderRadius: BorderRadius.circular(16),
             ),
             height: 270,
-            padding: EdgeInsets.all(8.0),
+            padding: EdgeInsets.all(4.0),
           ),
 
           SizedBox(height: 16.0,),
