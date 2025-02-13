@@ -145,8 +145,9 @@ class _HomePageState extends State<HomePage> {
                         direction: DismissDirection.vertical,
                         onDismissed: (direction) {
                           setState(() {
-                            //todo: maybe not the best solution, since we want to go back some time?
+                            final PostEntity post = posts[index];
                             posts.removeAt(index);
+                            posts.add(post);
                           });
                         },
                         child: Transform.scale(
