@@ -1,3 +1,4 @@
+import 'package:blogify_flutter_main/presentation/common/widgets/circled_button.dart';
 import 'package:flutter/material.dart';
 
 class HomePage extends StatefulWidget {
@@ -55,17 +56,29 @@ class _HomePageState extends State<HomePage> {
 
                       Text(
                         'I have some news for you',
-                        style: TextStyle(color: Colors.grey[700]),
+                        style: TextStyle(
+                          color: Colors.grey[700],
+                          fontSize: 12.0,
+                        ),
                       ),
                     ],
                   ),
 
-                  //Person button
-                  Icon(Icons.person),
-
+                  //Settings button
+                  CircledButton(
+                    icon: Icons.person,
+                    onTap: () {},
+                  ),
 
                 ],
               ),
+
+              //search bar
+
+              //card stack
+
+              // topic selector & edit button
+
             ],
           ),
         ),
