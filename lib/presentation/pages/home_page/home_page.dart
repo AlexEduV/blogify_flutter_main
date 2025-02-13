@@ -1,5 +1,6 @@
 import 'package:blogify_flutter_main/presentation/common/widgets/circled_button.dart';
-import 'package:blogify_flutter_main/presentation/common/widgets/search_bar_selector.dart';
+import 'package:blogify_flutter_main/presentation/pages/home_page/widgets/post_card.dart';
+import 'package:blogify_flutter_main/presentation/pages/home_page/widgets/search_bar_selector.dart';
 import 'package:blogify_flutter_main/presentation/theme/app_colors.dart';
 import 'package:flutter/material.dart';
 
@@ -105,83 +106,11 @@ class _HomePageState extends State<HomePage> {
               SizedBox(height: 24.0),
 
               //card stack
-              Container(
-                decoration: BoxDecoration(
-                  color: AppColors.primaryColor,
-                  borderRadius: BorderRadius.circular(24),
-                  border: Border.all(width: 8.0, color: Colors.white,),
-                ),
-                padding: EdgeInsets.all(8.0),
-                child: Column(
-                  children: [
-
-                    Container(
-                      decoration: BoxDecoration(
-                        color: Colors.white,
-                        borderRadius: BorderRadius.circular(16),
-                      ),
-                      height: 270,
-                      padding: EdgeInsets.all(8.0),
-                    ),
-
-                    SizedBox(height: 16.0,),
-
-                    Text(
-                      'Josh Brian',
-                      style: TextStyle(
-                        fontWeight: FontWeight.w500,
-                        fontSize: 16.0,
-                      ),
-                    ),
-
-                    SizedBox(height: 4.0),
-
-                    Text(
-                      '2 days ago',
-                      style: TextStyle(
-                        fontWeight: FontWeight.w500,
-                        fontSize: 12.0,
-                        color: AppColors.accentColor,
-                      ),
-                    ),
-
-                    SizedBox(height: 28.0,),
-
-                    Text(
-                      'Where Web 3\nis Going to?',
-                      style: TextStyle(
-                        fontWeight: FontWeight.w500,
-                        fontSize: 28.0,
-                      ),
-                      textAlign: TextAlign.center,
-                    ),
-
-                    SizedBox(height: 28.0,),
-
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        Text(
-                          'Read Time: ',
-                          style: TextStyle(
-                            color: AppColors.accentColor,
-                            fontWeight: FontWeight.w500,
-                          ),
-                        ),
-
-                        Text(
-                          '5 min',
-                          style: TextStyle(
-                            fontWeight: FontWeight.w500,
-                          ),
-                        ),
-                      ],
-                    ),
-
-                    SizedBox(height: 12.0,),
-
-                  ],
-                ),
+              PostCard(
+                title: 'Where Web 3\nis Going to?',
+                author: 'Josh Brian',
+                publishedWhen: '2 days ago',
+                readTimeEstimated: '5 min',
               ),
 
               // topic selector & edit button
