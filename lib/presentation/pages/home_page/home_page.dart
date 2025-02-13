@@ -1,3 +1,4 @@
+import 'package:animated_segmented_tab_control/animated_segmented_tab_control.dart';
 import 'package:blogify_flutter_main/domain/entities/post_entity.dart';
 import 'package:blogify_flutter_main/presentation/common/widgets/circled_button.dart';
 import 'package:blogify_flutter_main/presentation/pages/home_page/widgets/post_card.dart';
@@ -152,8 +153,7 @@ class _HomePageState extends State<HomePage> {
                           child: PostCard(
                             title: posts[index].title,
                             author: posts[index].author,
-                            //todo: day vs. days differentiation
-                            publishedWhen: '${posts[index].daysAgoPublished} days ago',
+                            publishedWhen: '${posts[index].daysAgoPublished} ${posts[index].daysAgoPublished == 1 ? "day" : "days"} ago',
                             readTimeEstimated: '${posts[index].minToRead} min',
                           ),
                         ),
@@ -164,15 +164,19 @@ class _HomePageState extends State<HomePage> {
               ),
 
               // topic selector & edit button
+              Row(
+                children: [
+
+                  //topic selector
+
+                  //edit button
+
+                ],
+              )
 
             ],
           ),
         ),
-      ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: () {},
-        tooltip: 'Increment',
-        child: const Icon(Icons.add),
       ),
     );
   }
