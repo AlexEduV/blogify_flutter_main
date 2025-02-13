@@ -15,6 +15,7 @@ class HomePage extends StatefulWidget {
 
 class _HomePageState extends State<HomePage> {
 
+  //todo: move to domain / data layer
   List<PostEntity> posts = [
     PostEntity(
       title: 'Where Web 3\nis Going to?',
@@ -23,16 +24,16 @@ class _HomePageState extends State<HomePage> {
       minToRead: 5,
     ),
     PostEntity(
-      title: 'Where Web 3\nis Going to?',
-      author: 'Josh Brian',
+      title: 'Good Listeners Urgently Required',
+      author: 'Jay Fitzgerald',
       daysAgoPublished: 2,
-      minToRead: 5,
+      minToRead: 15,
     ),
     PostEntity(
-      title: 'Where Web 3\nis Going to?',
-      author: 'Josh Brian',
-      daysAgoPublished: 3,
-      minToRead: 5,
+      title: 'Being a Better Creative Director',
+      author: 'Britton Stipetic',
+      daysAgoPublished: 6,
+      minToRead: 10,
     ),
   ];
 
