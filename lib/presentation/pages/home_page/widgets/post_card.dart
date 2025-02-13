@@ -56,8 +56,6 @@ class PostCard extends StatelessWidget {
             ),
           ),
 
-          SizedBox(height: 4.0),
-
           Text(
             publishedWhen,
             style: TextStyle(
@@ -67,18 +65,18 @@ class PostCard extends StatelessWidget {
             ),
           ),
 
-          SizedBox(height: 32.0,),
+          SizedBox(height: 30.0,),
 
           Text(
             title,
             style: TextStyle(
               fontWeight: FontWeight.w500,
-              fontSize: 28.0,
+              fontSize: 24.0,
             ),
             textAlign: TextAlign.center,
           ),
 
-          SizedBox(height: 32.0,),
+          SizedBox(height: 30.0,),
 
           Row(
             mainAxisAlignment: MainAxisAlignment.center,
