@@ -3,7 +3,6 @@ import 'package:blogify_flutter_main/presentation/pages/home_page/widgets/post_c
 import 'package:blogify_flutter_main/presentation/pages/home_page/widgets/search_bar_selector.dart';
 import 'package:blogify_flutter_main/presentation/theme/app_colors.dart';
 import 'package:flutter/material.dart';
-import 'package:stacked_card_carousel/stacked_card_carousel.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key,});
@@ -14,7 +13,28 @@ class HomePage extends StatefulWidget {
 
 class _HomePageState extends State<HomePage> {
 
-  final PageController _pageController = PageController(viewportFraction: 0.8);
+  //todo: change to entities
+  List<PostCard> cardWidgets = [
+    PostCard(
+      title: 'Where Web 3\nis Going to?',
+      author: 'Josh Brian',
+      publishedWhen: '1 days ago',
+      readTimeEstimated: '5 min',
+    ),
+    PostCard(
+      title: 'Where Web 3\nis Going to?',
+      author: 'Josh Brian',
+      publishedWhen: '2 days ago',
+      readTimeEstimated: '5 min',
+    ),
+    PostCard(
+      title: 'Where Web 3\nis Going to?',
+      author: 'Josh Brian',
+      publishedWhen: '3 days ago',
+      readTimeEstimated: '5 min',
+    ),
+  ];
+
 
   @override
   Widget build(BuildContext context) {
@@ -110,66 +130,32 @@ class _HomePageState extends State<HomePage> {
 
               //card stack
               Expanded(
-                child: PageView.builder(
-                  controller: _pageController,
-                  itemCount: 3, // Number of cards
-                  scrollDirection: Axis.vertical, // Vertical scrolling
-                  itemBuilder: (context, index) {
+                child: Stack(
+                  alignment: Alignment.center,
+                  children: List.generate(cardWidgets.length, (index) {
 
-                    return AnimatedBuilder(
-                      animation: _pageController,
-                      builder: (context, child) {
-                        double pageOffset = 0;
-                        if (_pageController.position.haveDimensions) {
-                          pageOffset = _pageController.page! - index;
-                        }
-
-                        return Transform.scale(
-                          scale: 1 - (pageOffset.abs() * 0.1), // Lower cards get smaller
-                          child: Transform.translate(
-                            offset: Offset(0, pageOffset * 30), // Move lower cards down
-                            child: Opacity(
-                              opacity: (1 - (pageOffset.abs() * 0.3)).clamp(0.0, 1.0), // Fade effect
-                              child: PostCard(
-                                title: 'Where Web 3\nis Going to?',
-                                author: 'Josh Brian',
-                                publishedWhen: '1 days ago',
-                                readTimeEstimated: '5 min',
-                              ), // Replace with your PostCard widget
-                            ),
-                          ),
-                        );
-                      },
+                    return Positioned(
+                      top: index * 25,
+                      left: 0,
+                      right: 0,
+                      child: Dismissible(
+                        key: Key(cardWidgets[index].hashCode.toString()),
+                        direction: DismissDirection.vertical,
+                        onDismissed: (direction) {
+                          setState(() {
+                            //todo: maybe not the best solution
+                            cardWidgets.removeAt(index);
+                          });
+                        },
+                        child: Transform.scale(
+                          scale: 1 - (index * 0.05),
+                          child: cardWidgets[index],
+                        ),
+                      ),
                     );
-                  },
-                )
+                  }).reversed.toList(),
+                ),
               ),
-                // child: StackedCardCarousel(
-                //   spaceBetweenItems: 400,
-                //   items: [
-                //     PostCard(
-                //       title: 'Where Web 3\nis Going to?',
-                //       author: 'Josh Brian',
-                //       publishedWhen: '1 days ago',
-                //       readTimeEstimated: '5 min',
-                //     ),
-                //
-                //     PostCard(
-                //       title: 'Where Web 3\nis Going to?',
-                //       author: 'Josh Brian',
-                //       publishedWhen: '2 days ago',
-                //       readTimeEstimated: '5 min',
-                //     ),
-                //
-                //     PostCard(
-                //       title: 'Where Web 3\nis Going to?',
-                //       author: 'Josh Brian',
-                //       publishedWhen: '3 days ago',
-                //       readTimeEstimated: '5 min',
-                //     ),
-                //   ],
-                // ),
-                //),
 
               // topic selector & edit button
 
