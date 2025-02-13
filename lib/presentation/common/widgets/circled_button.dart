@@ -1,3 +1,4 @@
+import 'package:blogify_flutter_main/presentation/theme/app_colors.dart';
 import 'package:flutter/material.dart';
 
 class CircledButton extends StatelessWidget {
@@ -24,7 +25,7 @@ class CircledButton extends StatelessWidget {
         ),
         child: Icon(
           Icons.person,
-          color: Colors.grey[700],
+          color: Colors.black54,
           size: 24,
         ),
       ),

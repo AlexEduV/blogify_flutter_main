@@ -1,4 +1,5 @@
 import 'package:blogify_flutter_main/presentation/common/widgets/circled_button.dart';
+import 'package:blogify_flutter_main/presentation/theme/app_colors.dart';
 import 'package:flutter/material.dart';
 
 class HomePage extends StatefulWidget {
@@ -57,7 +58,7 @@ class _HomePageState extends State<HomePage> {
                       Text(
                         'I have some news for you',
                         style: TextStyle(
-                          color: Colors.grey[700],
+                          color: AppColors.accentColor,
                           fontSize: 12.0,
                         ),
                       ),
@@ -73,7 +74,29 @@ class _HomePageState extends State<HomePage> {
                 ],
               ),
 
+              SizedBox(height: 24.0),
+
               //search bar
+              SearchBar(
+                padding: WidgetStatePropertyAll(EdgeInsets.symmetric(horizontal: 16.0),),
+                leading: Icon(
+                  Icons.search,
+                  color: AppColors.accentColor,
+                ),
+                hintText: 'Search here',
+                hintStyle: WidgetStatePropertyAll(TextStyle(
+                  color: AppColors.accentColor,
+                  fontSize: 14.0,
+                )),
+                elevation: WidgetStatePropertyAll(0.0),
+                backgroundColor: WidgetStatePropertyAll(Colors.white),
+                shape: WidgetStatePropertyAll(
+                  RoundedRectangleBorder(
+                    side: BorderSide(color: Colors.grey[300]!, width: 1),
+                    borderRadius: BorderRadius.circular(32.0),
+                  ),
+                ),
+              ),
 
               //card stack
 
