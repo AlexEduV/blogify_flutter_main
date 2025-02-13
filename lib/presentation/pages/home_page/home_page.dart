@@ -1,3 +1,4 @@
+import 'package:blogify_flutter_main/domain/entities/post_entity.dart';
 import 'package:blogify_flutter_main/presentation/common/widgets/circled_button.dart';
 import 'package:blogify_flutter_main/presentation/pages/home_page/widgets/post_card.dart';
 import 'package:blogify_flutter_main/presentation/pages/home_page/widgets/search_bar_selector.dart';
@@ -13,25 +14,24 @@ class HomePage extends StatefulWidget {
 
 class _HomePageState extends State<HomePage> {
 
-  //todo: change to entities
-  List<PostCard> cardWidgets = [
-    PostCard(
+  List<PostEntity> posts = [
+    PostEntity(
       title: 'Where Web 3\nis Going to?',
       author: 'Josh Brian',
-      publishedWhen: '1 days ago',
-      readTimeEstimated: '5 min',
+      daysAgoPublished: 1,
+      minToRead: 5,
     ),
-    PostCard(
+    PostEntity(
       title: 'Where Web 3\nis Going to?',
       author: 'Josh Brian',
-      publishedWhen: '2 days ago',
-      readTimeEstimated: '5 min',
+      daysAgoPublished: 2,
+      minToRead: 5,
     ),
-    PostCard(
+    PostEntity(
       title: 'Where Web 3\nis Going to?',
       author: 'Josh Brian',
-      publishedWhen: '3 days ago',
-      readTimeEstimated: '5 min',
+      daysAgoPublished: 3,
+      minToRead: 5,
     ),
   ];
 
@@ -132,24 +132,30 @@ class _HomePageState extends State<HomePage> {
               Expanded(
                 child: Stack(
                   alignment: Alignment.center,
-                  children: List.generate(cardWidgets.length, (index) {
+                  children: List.generate(posts.length, (index) {
 
                     return Positioned(
                       top: index * 25,
                       left: 0,
                       right: 0,
                       child: Dismissible(
-                        key: Key(cardWidgets[index].hashCode.toString()),
+                        key: Key(posts[index].hashCode.toString()),
                         direction: DismissDirection.vertical,
                         onDismissed: (direction) {
                           setState(() {
-                            //todo: maybe not the best solution
-                            cardWidgets.removeAt(index);
+                            //todo: maybe not the best solution, since we want to go back some time?
+                            posts.removeAt(index);
                           });
                         },
                         child: Transform.scale(
                           scale: 1 - (index * 0.05),
-                          child: cardWidgets[index],
+                          child: PostCard(
+                            title: posts[index].title,
+                            author: posts[index].author,
+                            //todo: day vs. days differentiation
+                            publishedWhen: '${posts[index].daysAgoPublished} days ago',
+                            readTimeEstimated: '${posts[index].minToRead} min',
+                          ),
                         ),
                       ),
                     );
