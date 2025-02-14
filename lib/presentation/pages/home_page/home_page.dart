@@ -138,10 +138,12 @@ class _HomePageState extends State<HomePage> {
                 child: Consumer<GlobalMockStorageProvider>(
                   builder: (context, notifier, child) {
 
+                    final posts = notifier.posts;
+
                     return Stack(
                       clipBehavior: Clip.none,
                       alignment: Alignment.center,
-                      children: List.generate(notifier.posts.length, (index) {
+                      children: List.generate(posts.length, (index) {
 
                         return AnimatedPositioned(
                           duration: const Duration(milliseconds: 400),
@@ -150,12 +152,10 @@ class _HomePageState extends State<HomePage> {
                           left: 0,
                           right: 0,
                           child: Dismissible(
-                            key: ValueKey(notifier.posts[index].id),
+                            key: ValueKey(posts[index].id),
                             direction: DismissDirection.vertical,
                             onDismissed: (direction) {
-                              //todo: when the stack shakes all cards,
-                              // there's something off.
-                              final PostEntity post = notifier.posts[index];
+                              final PostEntity post = posts[index];
 
                               setState(() {
                                 notifier.posts.removeAt(index);
@@ -163,7 +163,14 @@ class _HomePageState extends State<HomePage> {
 
                               Future.delayed(const Duration(milliseconds: 400), () {
                                 setState(() {
-                                  notifier.posts.add(post);
+
+                                  //todo: somehow, if the index is last, we should animate it,
+                                  // - leave all other items as they are;
+
+                                  //if the insertion index == length (one before last),
+                                  // the animation is good, but we're cycling only 2 items, not all
+
+                                  posts.insert(posts.length, post);
                                 });
                               });
                             },
@@ -172,14 +179,12 @@ class _HomePageState extends State<HomePage> {
                               curve: Curves.easeInOut,
                               scale: 1 - (index * 0.2),
                               child: InkWell(
-                                onTap: () {
-                                  openArticlePage(notifier.posts[index].id);
-                                },
+                                onTap: () => openArticlePage(posts[index].id),
                                 child: PostCard(
-                                  title: notifier.posts[index].title,
-                                  author: notifier.posts[index].author,
-                                  publishedWhen: '${notifier.posts[index].daysAgoPublished} ${notifier.posts[index].daysAgoPublished == 1 ? "day" : "days"} ago',
-                                  readTimeEstimated: '${notifier.posts[index].minToRead} min',
+                                  title: posts[index].title,
+                                  author: posts[index].author,
+                                  publishedWhen: '${posts[index].daysAgoPublished} ${posts[index].daysAgoPublished == 1 ? "day" : "days"} ago',
+                                  readTimeEstimated: '${posts[index].minToRead} min',
                                 ),
                               ),
                             ),
