@@ -146,14 +146,17 @@ class _HomePageState extends State<HomePage> {
                         key: Key(posts[index].hashCode.toString()),
                         direction: DismissDirection.vertical,
                         onDismissed: (direction) {
-                          setState(() {
-                            final PostEntity post = posts[index];
-                            posts.removeAt(index);
+                          //todo: when the stack shakes all cards,
+                          // there's something off.
+                          final PostEntity post = posts[index];
 
-                            Future.delayed(const Duration(milliseconds: 400), () {
-                              setState(() {
-                                posts.add(post);
-                              });
+                          setState(() {
+                            posts.removeAt(index);
+                          });
+
+                          Future.delayed(const Duration(milliseconds: 400), () {
+                            setState(() {
+                              posts.add(post);
                             });
                           });
                         },
