@@ -149,7 +149,7 @@ class _HomePageState extends State<HomePage> {
                     return AnimatedPositioned(
                       duration: const Duration(milliseconds: 400),
                       curve: Curves.easeInOut,
-                      top: index * 25,
+                      top: index * 60,
                       left: 0,
                       right: 0,
                       child: Dismissible(
@@ -173,7 +173,7 @@ class _HomePageState extends State<HomePage> {
                         child: AnimatedScale(
                           duration: const Duration(milliseconds: 400),
                           curve: Curves.easeInOut,
-                          scale: 1 - (index * 0.05),
+                          scale: 1 - (index * 0.2),
                           child: PostCard(
                             title: posts[index].title,
                             author: posts[index].author,
