@@ -103,6 +103,9 @@ class _HomePageState extends State<HomePage> {
               const SizedBox(height: 24.0),
 
               //search bar
+              //todo: if I search for something, and then open another page, the keyboard,
+              // which was on, returns, when I come back, but after navigating back and forth
+              // it seems not normal
               SearchBar(
                 padding: const WidgetStatePropertyAll(EdgeInsets.only(left: 16.0, right: 8.0),),
                 leading: FaIcon(
