@@ -228,6 +228,7 @@ class _HomePageState extends State<HomePage> {
     showModalBottomSheet(
         context: context,
         showDragHandle: true,
+        isScrollControlled: true,
         builder: (BuildContext context) {
 
           return const UserPage();
