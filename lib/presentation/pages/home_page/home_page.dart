@@ -145,7 +145,7 @@ class _HomePageState extends State<HomePage> {
                       left: 0,
                       right: 0,
                       child: Dismissible(
-                        key: Key(posts[index].hashCode.toString()),
+                        key: ValueKey(posts[index].id),
                         direction: DismissDirection.vertical,
                         onDismissed: (direction) {
                           //todo: when the stack shakes all cards,
