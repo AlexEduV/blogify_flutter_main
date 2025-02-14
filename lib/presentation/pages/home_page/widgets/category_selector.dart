@@ -28,7 +28,7 @@ class _CategorySelectorState extends State<CategorySelector> {
         color: Colors.white,
         borderRadius: BorderRadius.circular(24.0),
       ),
-      padding: EdgeInsets.all(8.0),
+      padding: const EdgeInsets.all(8.0),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: List.generate(widget.items.length, (index) {

@@ -63,7 +63,7 @@ class _ArticlePageState extends State<ArticlePage> {
                                   },
                                 ),
 
-                                Text(
+                                const Text(
                                   'Back',
                                   style: TextStyle(
                                     fontWeight: FontWeight.w400,
@@ -101,7 +101,7 @@ class _ArticlePageState extends State<ArticlePage> {
 
                         Text(
                           post.title,
-                          style: TextStyle(
+                          style: const TextStyle(
                             fontWeight: FontWeight.w500,
                             fontSize: 24.0,
                           ),
@@ -113,7 +113,7 @@ class _ArticlePageState extends State<ArticlePage> {
                         Text(
                           //todo: day / days differentiation
                           '${post.author}  |  ${post.daysAgoPublished} days ago  |  Read time: ${post.minToRead} min',
-                          style: TextStyle(
+                          style: const TextStyle(
                             fontWeight: FontWeight.w400,
                             fontSize: 13.0,
                             color: Colors.black54,
@@ -133,7 +133,7 @@ class _ArticlePageState extends State<ArticlePage> {
                         //post content
                         Text(
                           post.content,
-                          style: TextStyle(
+                          style: const TextStyle(
                             fontSize: 13.0,
                             height: 1.7,
                           ),
@@ -160,7 +160,7 @@ class _ArticlePageState extends State<ArticlePage> {
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
                         Container(
-                          padding: EdgeInsets.all(8.0),
+                          padding: const EdgeInsets.all(8.0),
                           decoration: BoxDecoration(
                             color: Colors.black, // Keep original button color
                             borderRadius: BorderRadius.circular(24.0),
@@ -169,11 +169,11 @@ class _ArticlePageState extends State<ArticlePage> {
                                 color: Colors.black.withOpacity(0.4), // Shadow for button
                                 blurRadius: 10,
                                 spreadRadius: 2,
-                                offset: Offset(0, 4),
+                                offset: const Offset(0, 4),
                               ),
                             ],
                           ),
-                          child: RoundedButton(
+                          child: const RoundedButton(
                             text: 'Share',
                             isSelected: true,
                             horizontalPadding: 32.0,

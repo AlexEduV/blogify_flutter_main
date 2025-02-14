@@ -16,10 +16,10 @@ class CircledButton extends StatelessWidget {
   Widget build(BuildContext context) {
 
     return GestureDetector(
-      onTap: () {},
+      onTap: onTap,
       child: Container(
-        padding: EdgeInsets.all(12.0),
-        decoration: BoxDecoration(
+        padding: const EdgeInsets.all(12.0),
+        decoration: const BoxDecoration(
           color: Colors.white,
           shape: BoxShape.circle,
         ),

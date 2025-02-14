@@ -6,6 +6,7 @@ import 'package:blogify_flutter_main/presentation/pages/home_page/widgets/catego
 import 'package:blogify_flutter_main/presentation/pages/home_page/widgets/circled_button.dart';
 import 'package:blogify_flutter_main/presentation/pages/home_page/widgets/post_card.dart';
 import 'package:blogify_flutter_main/presentation/pages/home_page/widgets/rounded_button.dart';
+import 'package:blogify_flutter_main/presentation/pages/user_page/user_page.dart';
 import 'package:blogify_flutter_main/presentation/theme/app_colors.dart';
 import 'package:blogify_flutter_main/router/router.gr.dart';
 import 'package:flutter/material.dart';
@@ -54,10 +55,10 @@ class _HomePageState extends State<HomePage> {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
 
-                      Row(
+                      const Row(
                         children: [
 
-                          const Text(
+                          Text(
                             'Hello, ',
                             style: TextStyle(
                               fontWeight: FontWeight.w400,
@@ -90,23 +91,23 @@ class _HomePageState extends State<HomePage> {
                   //Settings button
                   CircledButtonOutlined(
                     icon: FontAwesomeIcons.user,
-                    onTap: () {},
+                    onTap: () => onUserButtonPressed(),
                   ),
 
                 ],
               ),
 
-              SizedBox(height: 24.0),
+              const SizedBox(height: 24.0),
 
               //search bar
               SearchBar(
-                padding: WidgetStatePropertyAll(EdgeInsets.only(left: 16.0, right: 8.0),),
+                padding: const WidgetStatePropertyAll(EdgeInsets.only(left: 16.0, right: 8.0),),
                 leading: FaIcon(
                   FontAwesomeIcons.magnifyingGlass,
                   color: AppColors.accentColor,
                   size: 20,
                 ),
-                trailing: [
+                trailing: const [
                   RoundedButton(
                     text: 'Author',
                     trailingIcon: Icons.keyboard_arrow_down_outlined,
@@ -120,8 +121,8 @@ class _HomePageState extends State<HomePage> {
                     fontSize: 14.0,
                   ),
                 ),
-                elevation: WidgetStatePropertyAll(0.0),
-                backgroundColor: WidgetStatePropertyAll(Colors.white),
+                elevation: const WidgetStatePropertyAll(0.0),
+                backgroundColor: const WidgetStatePropertyAll(Colors.white),
                 shape: WidgetStatePropertyAll(
                   RoundedRectangleBorder(
                     side: BorderSide(color: Colors.grey[200]!, width: 1),
@@ -130,7 +131,7 @@ class _HomePageState extends State<HomePage> {
                 ),
               ),
 
-              SizedBox(height: 24.0),
+              const SizedBox(height: 24.0),
 
               //card stack
               Expanded(
@@ -190,7 +191,7 @@ class _HomePageState extends State<HomePage> {
                 ),
               ),
 
-              SizedBox(height: 24.0,),
+              const SizedBox(height: 24.0,),
 
               // topic selector & edit button
               Row(
@@ -200,7 +201,7 @@ class _HomePageState extends State<HomePage> {
                   Expanded(
                     child: CategorySelector(
                       selectedIndex: categoryIndex,
-                      items: [
+                      items: const [
                         'Trending',
                         'Design',
                         'Tech',
@@ -214,12 +215,23 @@ class _HomePageState extends State<HomePage> {
                 ],
               ),
 
-              SizedBox(height: 16.0,),
+              const SizedBox(height: 16.0,),
 
             ],
           ),
         ),
       ),
+    );
+  }
+
+  void onUserButtonPressed() {
+    showModalBottomSheet(
+        context: context,
+        showDragHandle: true,
+        builder: (BuildContext context) {
+
+          return const UserPage();
+        }
     );
   }
 

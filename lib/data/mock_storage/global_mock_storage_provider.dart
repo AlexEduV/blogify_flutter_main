@@ -9,7 +9,7 @@ class GlobalMockStorageProvider extends ChangeNotifier {
   void load() {
 
     _posts = [
-      PostEntity(
+      const PostEntity(
         id: 1,
         title: 'Where Web 3\nis Going to?',
         author: 'Josh Brian',
@@ -25,14 +25,14 @@ class GlobalMockStorageProvider extends ChangeNotifier {
         
         '''
       ),
-      PostEntity(
+      const PostEntity(
         id: 2,
         title: 'Good Listeners Urgently Required',
         author: 'Jay Fitzgerald',
         daysAgoPublished: 2,
         minToRead: 15,
       ),
-      PostEntity(
+      const PostEntity(
         id: 3,
         title: 'Being a Better Creative Director',
         author: 'Britton Stipetic',

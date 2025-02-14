@@ -29,22 +29,22 @@ class PostCard extends StatelessWidget {
             color: Colors.black.withOpacity(0.17),
             blurRadius: 30,
             spreadRadius: 1,
-            offset: Offset(0, 5),
+            offset: const Offset(0, 5),
           ),
         ],
       ),
-      padding: EdgeInsets.all(4.0),
+      padding: const EdgeInsets.all(4.0),
       child: Column(
         children: [
 
           //todo: image here
-          PhotoPlaceHolder(),
+          const PhotoPlaceHolder(),
 
-          SizedBox(height: 16.0,),
+          const SizedBox(height: 16.0,),
 
           Text(
             author,
-            style: TextStyle(
+            style: const TextStyle(
               fontWeight: FontWeight.w500,
               fontSize: 15.0,
             ),
@@ -59,18 +59,18 @@ class PostCard extends StatelessWidget {
             ),
           ),
 
-          SizedBox(height: 24.0,),
+          const SizedBox(height: 24.0,),
 
           Text(
             title,
-            style: TextStyle(
+            style: const TextStyle(
               fontWeight: FontWeight.w500,
               fontSize: 24.0,
             ),
             textAlign: TextAlign.center,
           ),
 
-          SizedBox(height: 24.0,),
+          const SizedBox(height: 24.0,),
 
           Row(
             mainAxisAlignment: MainAxisAlignment.center,
@@ -85,7 +85,7 @@ class PostCard extends StatelessWidget {
 
               Text(
                 readTimeEstimated,
-                style: TextStyle(
+                style: const TextStyle(
                   fontSize: 14.0,
                   fontWeight: FontWeight.w500,
                 ),
@@ -93,7 +93,7 @@ class PostCard extends StatelessWidget {
             ],
           ),
 
-          SizedBox(height: 12.0,),
+          const SizedBox(height: 12.0,),
 
         ],
       ),

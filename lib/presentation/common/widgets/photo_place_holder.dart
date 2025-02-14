@@ -20,7 +20,7 @@ class PhotoPlaceHolder extends StatelessWidget {
         borderRadius: BorderRadius.circular(16),
       ),
       height: height,
-      padding: EdgeInsets.all(4.0),
+      padding: const EdgeInsets.all(4.0),
     );
   }
 }
