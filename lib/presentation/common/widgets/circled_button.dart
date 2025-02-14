@@ -1,4 +1,3 @@
-import 'package:blogify_flutter_main/presentation/theme/app_colors.dart';
 import 'package:flutter/material.dart';
 
 class CircledButton extends StatelessWidget {

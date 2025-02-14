@@ -42,7 +42,7 @@ class PostCard extends StatelessWidget {
               color: Colors.white,
               borderRadius: BorderRadius.circular(16),
             ),
-            height: 270,
+            height: 250,
             padding: EdgeInsets.all(4.0),
           ),
 
@@ -52,7 +52,7 @@ class PostCard extends StatelessWidget {
             author,
             style: TextStyle(
               fontWeight: FontWeight.w500,
-              fontSize: 16.0,
+              fontSize: 15.0,
             ),
           ),
 
@@ -65,7 +65,7 @@ class PostCard extends StatelessWidget {
             ),
           ),
 
-          SizedBox(height: 30.0,),
+          SizedBox(height: 24.0,),
 
           Text(
             title,
@@ -76,7 +76,7 @@ class PostCard extends StatelessWidget {
             textAlign: TextAlign.center,
           ),
 
-          SizedBox(height: 30.0,),
+          SizedBox(height: 24.0,),
 
           Row(
             mainAxisAlignment: MainAxisAlignment.center,
@@ -92,6 +92,7 @@ class PostCard extends StatelessWidget {
               Text(
                 readTimeEstimated,
                 style: TextStyle(
+                  fontSize: 14.0,
                   fontWeight: FontWeight.w500,
                 ),
               ),

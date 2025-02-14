@@ -186,6 +186,8 @@ class _HomePageState extends State<HomePage> {
                 ),
               ),
 
+              SizedBox(height: 24.0,),
+
               // topic selector & edit button
               Container(
                 decoration: BoxDecoration(
@@ -210,7 +212,7 @@ class _HomePageState extends State<HomePage> {
                 ),
               ),
 
-              SizedBox(height: 16.0,),
+              SizedBox(height: 24.0,),
 
             ],
           ),
