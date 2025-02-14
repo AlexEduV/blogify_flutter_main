@@ -14,21 +14,43 @@ import 'package:blogify_flutter_main/presentation/pages/article_page/article_pag
     as _i1;
 import 'package:blogify_flutter_main/presentation/pages/home_page/home_page.dart'
     as _i2;
+import 'package:flutter/material.dart' as _i4;
 
 /// generated route for
 /// [_i1.ArticlePage]
-class ArticleRoute extends _i3.PageRouteInfo<void> {
-  const ArticleRoute({List<_i3.PageRouteInfo>? children})
-    : super(ArticleRoute.name, initialChildren: children);
+class ArticleRoute extends _i3.PageRouteInfo<ArticleRouteArgs> {
+  ArticleRoute({
+    required int index,
+    _i4.Key? key,
+    List<_i3.PageRouteInfo>? children,
+  }) : super(
+         ArticleRoute.name,
+         args: ArticleRouteArgs(index: index, key: key),
+         initialChildren: children,
+       );
 
   static const String name = 'ArticleRoute';
 
   static _i3.PageInfo page = _i3.PageInfo(
     name,
     builder: (data) {
-      return const _i1.ArticlePage();
+      final args = data.argsAs<ArticleRouteArgs>();
+      return _i1.ArticlePage(index: args.index, key: args.key);
     },
   );
+}
+
+class ArticleRouteArgs {
+  const ArticleRouteArgs({required this.index, this.key});
+
+  final int index;
+
+  final _i4.Key? key;
+
+  @override
+  String toString() {
+    return 'ArticleRouteArgs{index: $index, key: $key}';
+  }
 }
 
 /// generated route for

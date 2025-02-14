@@ -1,12 +1,15 @@
 import 'package:auto_route/annotations.dart';
+import 'package:auto_route/auto_route.dart';
 import 'package:blogify_flutter_main/data/mock_storage/global_mock_storage_provider.dart';
 import 'package:blogify_flutter_main/domain/entities/post_entity.dart';
 import 'package:blogify_flutter_main/presentation/common/widgets/circled_button_outlined.dart';
+import 'package:blogify_flutter_main/presentation/pages/article_page/article_page.dart';
 import 'package:blogify_flutter_main/presentation/pages/home_page/widgets/category_selector.dart';
 import 'package:blogify_flutter_main/presentation/pages/home_page/widgets/circled_button.dart';
 import 'package:blogify_flutter_main/presentation/pages/home_page/widgets/post_card.dart';
 import 'package:blogify_flutter_main/presentation/pages/home_page/widgets/rounded_button.dart';
 import 'package:blogify_flutter_main/presentation/theme/app_colors.dart';
+import 'package:blogify_flutter_main/router/router.gr.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:provider/provider.dart';
@@ -168,8 +171,9 @@ class _HomePageState extends State<HomePage> {
                               curve: Curves.easeInOut,
                               scale: 1 - (index * 0.2),
                               child: InkWell(
-                                //todo: open article page
-                                onTap: () {},
+                                onTap: () {
+                                  openArticlePage(notifier.posts[index].id);
+                                },
                                 child: PostCard(
                                   title: notifier.posts[index].title,
                                   author: notifier.posts[index].author,
@@ -223,5 +227,9 @@ class _HomePageState extends State<HomePage> {
     setState(() {
       categoryIndex = index;
     });
+  }
+
+  void openArticlePage(int id) {
+    context.router.push(ArticleRoute(index: id,));
   }
 }

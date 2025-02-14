@@ -3,7 +3,13 @@ import 'package:flutter/material.dart';
 
 @RoutePage()
 class ArticlePage extends StatefulWidget {
-  const ArticlePage({super.key});
+
+  final int index;
+
+  const ArticlePage({
+    required this.index,
+    super.key,
+  });
 
   @override
   State<ArticlePage> createState() => _ArticlePageState();
@@ -12,6 +18,6 @@ class ArticlePage extends StatefulWidget {
 class _ArticlePageState extends State<ArticlePage> {
   @override
   Widget build(BuildContext context) {
-    return const Placeholder();
+    return const Scaffold();
   }
 }
