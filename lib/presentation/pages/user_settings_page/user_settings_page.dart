@@ -105,6 +105,7 @@ class UserSettingsPage extends StatelessWidget {
           return Column(
             children: [
               ListItem(
+                onTap: () {},
                 icon: item['icon'],
                 title: item['title'],
               ),
