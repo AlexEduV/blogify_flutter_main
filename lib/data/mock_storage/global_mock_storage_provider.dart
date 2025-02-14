@@ -3,12 +3,12 @@ import 'package:flutter/material.dart';
 
 class GlobalMockStorageProvider extends ChangeNotifier {
 
-  List<PostEntity> _postList = [];
-  List<PostEntity> get posts => _postList;
+  List<PostEntity> _posts = [];
+  List<PostEntity> get posts => _posts;
 
   void load() {
 
-    _postList = [
+    _posts = [
       PostEntity(
         id: 1,
         title: 'Where Web 3\nis Going to?',

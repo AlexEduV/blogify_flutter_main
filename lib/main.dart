@@ -1,3 +1,4 @@
+import 'package:auto_route/auto_route.dart';
 import 'package:blogify_flutter_main/data/mock_storage/global_mock_storage_provider.dart';
 import 'package:blogify_flutter_main/presentation/theme/app_colors.dart';
 import 'package:blogify_flutter_main/router/router.dart';
