@@ -111,7 +111,7 @@ class UserSettingsPage extends StatelessWidget {
               const SizedBox(height: 16.0),
             ],
           );
-        }).toList(),
+        }),
       ],
     );
   }
