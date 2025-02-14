@@ -1,7 +1,7 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:blogify_flutter_main/data/mock_storage/global_mock_storage_provider.dart';
 import 'package:blogify_flutter_main/presentation/common/widgets/circled_button_outlined.dart';
-import 'package:blogify_flutter_main/presentation/theme/app_colors.dart';
+import 'package:blogify_flutter_main/presentation/common/widgets/photo_place_holder.dart';
 import 'package:blogify_flutter_main/router/router.gr.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
@@ -104,10 +104,11 @@ class _ArticlePageState extends State<ArticlePage> {
 
                   //post info row
                   Text(
+                    //todo: day / days differentiation
                     '${post.author}  |  ${post.daysAgoPublished} days ago  |  Read time: ${post.minToRead} min',
                     style: TextStyle(
                       fontWeight: FontWeight.w400,
-                      fontSize: 12.0,
+                      fontSize: 13.0,
                       color: Colors.black54,
                     ),
                   ),
@@ -115,8 +116,14 @@ class _ArticlePageState extends State<ArticlePage> {
                   const SizedBox(height: 24,),
 
                   //photo cover
+                  PhotoPlaceHolder(
+                    placeholderColor: Colors.grey[300]!,
+                  ),
+
+                  const SizedBox(height: 24,),
 
                   //post content
+
 
                 ],
               );

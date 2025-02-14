@@ -1,3 +1,4 @@
+import 'package:blogify_flutter_main/presentation/common/widgets/photo_place_holder.dart';
 import 'package:blogify_flutter_main/presentation/theme/app_colors.dart';
 import 'package:flutter/material.dart';
 
@@ -37,14 +38,7 @@ class PostCard extends StatelessWidget {
         children: [
 
           //todo: image here
-          Container(
-            decoration: BoxDecoration(
-              color: Colors.white,
-              borderRadius: BorderRadius.circular(16),
-            ),
-            height: 250,
-            padding: EdgeInsets.all(4.0),
-          ),
+          PhotoPlaceHolder(),
 
           SizedBox(height: 16.0,),
 
