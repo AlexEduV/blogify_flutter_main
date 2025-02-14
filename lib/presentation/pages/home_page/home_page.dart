@@ -1,5 +1,6 @@
 import 'package:blogify_flutter_main/domain/entities/post_entity.dart';
-import 'package:blogify_flutter_main/presentation/common/widgets/circled_button.dart';
+import 'package:blogify_flutter_main/presentation/common/widgets/circled_button_outlined.dart';
+import 'package:blogify_flutter_main/presentation/pages/home_page/widgets/circled_button.dart';
 import 'package:blogify_flutter_main/presentation/pages/home_page/widgets/post_card.dart';
 import 'package:blogify_flutter_main/presentation/pages/home_page/widgets/rounded_button.dart';
 import 'package:blogify_flutter_main/presentation/theme/app_colors.dart';
@@ -95,7 +96,7 @@ class _HomePageState extends State<HomePage> {
                   ),
 
                   //Settings button
-                  CircledButton(
+                  CircledButtonOutlined(
                     icon: Icons.person,
                     onTap: () {},
                   ),
@@ -189,30 +190,38 @@ class _HomePageState extends State<HomePage> {
               SizedBox(height: 24.0,),
 
               // topic selector & edit button
-              Container(
-                decoration: BoxDecoration(
-                  color: Colors.white,
-                  borderRadius: BorderRadius.circular(24.0),
-                ),
-                padding: EdgeInsets.all(8.0),
-                child: Row(
-                  spacing: 8,
-                  children: [
+              Row(
+                spacing: 12,
+                children: [
 
-                    //topic selector
-                    RoundedButton(text: 'Trending', isSelected: true,),
+                  Expanded(
+                    child: Container(
+                      decoration: BoxDecoration(
+                        color: Colors.white,
+                        borderRadius: BorderRadius.circular(24.0),
+                      ),
+                      padding: EdgeInsets.all(8.0),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
 
-                    RoundedButton(text: 'Design'),
+                          //topic selector
+                          RoundedButton(text: 'Trending', isSelected: true,),
 
-                    RoundedButton(text: 'Tech'),
+                          RoundedButton(text: 'Design'),
 
-                    //edit button
+                          RoundedButton(text: 'Tech'),
 
-                  ],
-                ),
+                        ],
+                      ),
+                    ),
+                  ),
+
+                  CircledButton(icon: Icons.edit, onTap: () {}),
+                ],
               ),
 
-              SizedBox(height: 24.0,),
+              SizedBox(height: 16.0,),
 
             ],
           ),

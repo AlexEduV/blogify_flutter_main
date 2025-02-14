@@ -19,11 +19,11 @@ class CircledButton extends StatelessWidget {
       child: Container(
         padding: EdgeInsets.all(12.0),
         decoration: BoxDecoration(
+          color: Colors.white,
           shape: BoxShape.circle,
-          border: Border.all(color: Colors.grey[200]!, width: 1),
         ),
         child: Icon(
-          Icons.person,
+          icon,
           color: Colors.black54,
           size: 24,
         ),
