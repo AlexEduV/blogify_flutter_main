@@ -28,106 +28,115 @@ class _ArticlePageState extends State<ArticlePage> {
 
     return Scaffold(
       body: SafeArea(
-        child: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 24.0),
-          child: Consumer<GlobalMockStorageProvider>(
-            builder: (context, notifier, child) {
+        child: SingleChildScrollView(
+          child: Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 24.0),
+            child: Consumer<GlobalMockStorageProvider>(
+              builder: (context, notifier, child) {
 
-              final post = notifier.posts.where((post) => post.id == widget.id).first;
+                final post = notifier.posts.where((post) => post.id == widget.id).first;
 
-              return Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
+                return Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
 
-                  const SizedBox(height: 24.0,),
+                    const SizedBox(height: 24.0,),
 
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
 
-                      Row(
-                        spacing: 16.0,
-                        children: [
+                        Row(
+                          spacing: 16.0,
+                          children: [
 
-                          CircledButtonOutlined(
-                            icon: FontAwesomeIcons.chevronLeft,
-                            onTap: () {
-                              context.router.popUntilRouteWithName(HomeRoute.name);
-                            },
-                          ),
-
-                          Text(
-                            'Back',
-                            style: TextStyle(
-                              fontWeight: FontWeight.w400,
-                              fontSize: 16.0,
+                            CircledButtonOutlined(
+                              icon: FontAwesomeIcons.chevronLeft,
+                              onTap: () {
+                                context.router.popUntilRouteWithName(HomeRoute.name);
+                              },
                             ),
-                          ),
 
-                        ],
-                      ),
+                            Text(
+                              'Back',
+                              style: TextStyle(
+                                fontWeight: FontWeight.w400,
+                                fontSize: 16.0,
+                              ),
+                            ),
 
-                      Row(
-                        spacing: 16.0,
-                        children: [
+                          ],
+                        ),
 
-                          CircledButtonOutlined(
-                            icon: FontAwesomeIcons.comment,
-                            onTap: () {},
-                          ),
+                        Row(
+                          spacing: 16.0,
+                          children: [
 
-                          CircledButtonOutlined(
-                            icon: post.isLiked
-                                ? FontAwesomeIcons.solidThumbsUp : FontAwesomeIcons.thumbsUp,
-                            onTap: () {
-                              notifier.likePost(widget.id);
-                            },
-                          ),
+                            CircledButtonOutlined(
+                              icon: FontAwesomeIcons.comment,
+                              onTap: () {},
+                            ),
 
-                        ],
-                      ),
+                            CircledButtonOutlined(
+                              icon: post.isLiked
+                                  ? FontAwesomeIcons.solidThumbsUp : FontAwesomeIcons.thumbsUp,
+                              onTap: () {
+                                notifier.likePost(widget.id);
+                              },
+                            ),
 
-                    ],
-                  ),
+                          ],
+                        ),
 
-                  const SizedBox(height: 24,),
-
-                  Text(
-                    post.title,
-                    style: TextStyle(
-                      fontWeight: FontWeight.w500,
-                      fontSize: 24.0,
+                      ],
                     ),
-                  ),
 
-                  const SizedBox(height: 24,),
+                    const SizedBox(height: 24,),
 
-                  //post info row
-                  Text(
-                    //todo: day / days differentiation
-                    '${post.author}  |  ${post.daysAgoPublished} days ago  |  Read time: ${post.minToRead} min',
-                    style: TextStyle(
-                      fontWeight: FontWeight.w400,
-                      fontSize: 13.0,
-                      color: Colors.black54,
+                    Text(
+                      post.title,
+                      style: TextStyle(
+                        fontWeight: FontWeight.w500,
+                        fontSize: 24.0,
+                      ),
                     ),
-                  ),
 
-                  const SizedBox(height: 24,),
+                    const SizedBox(height: 24,),
 
-                  //photo cover
-                  PhotoPlaceHolder(
-                    placeholderColor: Colors.grey[300]!,
-                  ),
+                    //post info row
+                    Text(
+                      //todo: day / days differentiation
+                      '${post.author}  |  ${post.daysAgoPublished} days ago  |  Read time: ${post.minToRead} min',
+                      style: TextStyle(
+                        fontWeight: FontWeight.w400,
+                        fontSize: 13.0,
+                        color: Colors.black54,
+                      ),
+                    ),
 
-                  const SizedBox(height: 24,),
+                    const SizedBox(height: 24,),
 
-                  //post content
+                    //photo cover
+                    PhotoPlaceHolder(
+                      placeholderColor: Colors.grey[300]!,
+                      height: 220,
+                    ),
 
+                    const SizedBox(height: 24,),
 
-                ],
-              );
-            }
+                    //post content
+                    Text(
+                      post.content,
+                      style: TextStyle(
+                        fontSize: 13.0,
+                        height: 1.7,
+                      ),
+                    ),
+
+                  ],
+                );
+              }
+            ),
           ),
         ),
       ),

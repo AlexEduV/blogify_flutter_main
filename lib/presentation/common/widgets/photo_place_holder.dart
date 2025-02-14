@@ -3,9 +3,11 @@ import 'package:flutter/material.dart';
 class PhotoPlaceHolder extends StatelessWidget {
 
   final Color placeholderColor;
+  final double height;
 
   const PhotoPlaceHolder({
     this.placeholderColor = Colors.white,
+    this.height = 250,
     super.key,
   });
 
@@ -17,7 +19,7 @@ class PhotoPlaceHolder extends StatelessWidget {
         color: placeholderColor,
         borderRadius: BorderRadius.circular(16),
       ),
-      height: 250,
+      height: height,
       padding: EdgeInsets.all(4.0),
     );
   }
