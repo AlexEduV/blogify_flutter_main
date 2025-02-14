@@ -15,13 +15,13 @@ void main() {
   );
 }
 
+final appRouter = AppRouter();
+
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
 
   @override
   Widget build(BuildContext context) {
-
-    final appRouter = AppRouter();
 
     return MaterialApp.router(
       routerConfig: appRouter.config(),
