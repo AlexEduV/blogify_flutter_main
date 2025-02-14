@@ -28,7 +28,9 @@ class _HomePageState extends State<HomePage> {
   void initState() {
     super.initState();
 
-    context.read<GlobalMockStorageProvider>().load();
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      context.read<GlobalMockStorageProvider>().load();
+    });
   }
 
   @override
