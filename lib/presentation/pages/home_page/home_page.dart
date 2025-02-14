@@ -136,7 +136,9 @@ class _HomePageState extends State<HomePage> {
                   alignment: Alignment.center,
                   children: List.generate(posts.length, (index) {
 
-                    return Positioned(
+                    return AnimatedPositioned(
+                      duration: const Duration(milliseconds: 400),
+                      curve: Curves.easeInOut,
                       top: index * 25,
                       left: 0,
                       right: 0,
@@ -147,10 +149,17 @@ class _HomePageState extends State<HomePage> {
                           setState(() {
                             final PostEntity post = posts[index];
                             posts.removeAt(index);
-                            posts.add(post);
+
+                            Future.delayed(const Duration(milliseconds: 400), () {
+                              setState(() {
+                                posts.add(post);
+                              });
+                            });
                           });
                         },
-                        child: Transform.scale(
+                        child: AnimatedScale(
+                          duration: const Duration(milliseconds: 400),
+                          curve: Curves.easeInOut,
                           scale: 1 - (index * 0.05),
                           child: PostCard(
                             title: posts[index].title,
