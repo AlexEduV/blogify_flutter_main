@@ -5,6 +5,7 @@ import 'package:blogify_flutter_main/presentation/pages/home_page/widgets/post_c
 import 'package:blogify_flutter_main/presentation/pages/home_page/widgets/rounded_button.dart';
 import 'package:blogify_flutter_main/presentation/theme/app_colors.dart';
 import 'package:flutter/material.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key,});
@@ -97,7 +98,7 @@ class _HomePageState extends State<HomePage> {
 
                   //Settings button
                   CircledButtonOutlined(
-                    icon: Icons.person,
+                    icon: FontAwesomeIcons.user,
                     onTap: () {},
                   ),
 
@@ -109,9 +110,10 @@ class _HomePageState extends State<HomePage> {
               //search bar
               SearchBar(
                 padding: WidgetStatePropertyAll(EdgeInsets.only(left: 16.0, right: 8.0),),
-                leading: Icon(
-                  Icons.search,
+                leading: FaIcon(
+                  FontAwesomeIcons.search,
                   color: AppColors.accentColor,
+                  size: 20,
                 ),
                 trailing: [
                   RoundedButton(
@@ -217,7 +219,7 @@ class _HomePageState extends State<HomePage> {
                     ),
                   ),
 
-                  CircledButton(icon: Icons.edit, onTap: () {}),
+                  CircledButton(icon: FontAwesomeIcons.edit, onTap: () {}),
                 ],
               ),
 

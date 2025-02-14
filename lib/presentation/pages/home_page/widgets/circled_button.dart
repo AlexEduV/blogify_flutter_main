@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 class CircledButton extends StatelessWidget {
 
@@ -22,10 +23,10 @@ class CircledButton extends StatelessWidget {
           color: Colors.white,
           shape: BoxShape.circle,
         ),
-        child: Icon(
+        child: FaIcon(
           icon,
           color: Colors.black54,
-          size: 24,
+          size: 20,
         ),
       ),
     );
