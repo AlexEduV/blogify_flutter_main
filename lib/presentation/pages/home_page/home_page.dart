@@ -99,7 +99,7 @@ class _HomePageState extends State<HomePage> {
               SearchBar(
                 padding: WidgetStatePropertyAll(EdgeInsets.only(left: 16.0, right: 8.0),),
                 leading: FaIcon(
-                  FontAwesomeIcons.search,
+                  FontAwesomeIcons.magnifyingGlass,
                   color: AppColors.accentColor,
                   size: 20,
                 ),
@@ -206,7 +206,7 @@ class _HomePageState extends State<HomePage> {
                   ),
 
                   //todo: new publication screen
-                  CircledButton(icon: FontAwesomeIcons.edit, onTap: () {}),
+                  CircledButton(icon: FontAwesomeIcons.penToSquare, onTap: () {}),
                 ],
               ),
 
