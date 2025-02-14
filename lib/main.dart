@@ -1,5 +1,6 @@
 import 'package:blogify_flutter_main/presentation/pages/home_page/home_page.dart';
 import 'package:blogify_flutter_main/presentation/theme/app_colors.dart';
+import 'package:blogify_flutter_main/router/router.dart';
 import 'package:flutter/material.dart';
 
 void main() {
@@ -12,7 +13,10 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
 
-    return MaterialApp(
+    final appRouter = AppRouter();
+
+    return MaterialApp.router(
+      routerConfig: appRouter.config(),
       title: 'Blogify',
       theme: ThemeData(
         scaffoldBackgroundColor: AppColors.scaffoldBackgroundColor,
@@ -20,7 +24,6 @@ class MyApp extends StatelessWidget {
         useMaterial3: true,
       ),
       debugShowCheckedModeBanner: false,
-      home: const HomePage(),
     );
 
   }

@@ -1,3 +1,4 @@
+import 'package:auto_route/annotations.dart';
 import 'package:blogify_flutter_main/domain/entities/post_entity.dart';
 import 'package:blogify_flutter_main/presentation/common/widgets/circled_button_outlined.dart';
 import 'package:blogify_flutter_main/presentation/pages/home_page/widgets/category_selector.dart';
@@ -8,6 +9,7 @@ import 'package:blogify_flutter_main/presentation/theme/app_colors.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
+@RoutePage()
 class HomePage extends StatefulWidget {
   const HomePage({super.key,});
 
@@ -179,11 +181,15 @@ class _HomePageState extends State<HomePage> {
                           duration: const Duration(milliseconds: 400),
                           curve: Curves.easeInOut,
                           scale: 1 - (index * 0.2),
-                          child: PostCard(
-                            title: posts[index].title,
-                            author: posts[index].author,
-                            publishedWhen: '${posts[index].daysAgoPublished} ${posts[index].daysAgoPublished == 1 ? "day" : "days"} ago',
-                            readTimeEstimated: '${posts[index].minToRead} min',
+                          child: InkWell(
+                            //todo: open article page
+                            onTap: () {},
+                            child: PostCard(
+                              title: posts[index].title,
+                              author: posts[index].author,
+                              publishedWhen: '${posts[index].daysAgoPublished} ${posts[index].daysAgoPublished == 1 ? "day" : "days"} ago',
+                              readTimeEstimated: '${posts[index].minToRead} min',
+                            ),
                           ),
                         ),
                       ),
@@ -211,6 +217,7 @@ class _HomePageState extends State<HomePage> {
                     ),
                   ),
 
+                  //todo: new publication screen
                   CircledButton(icon: FontAwesomeIcons.edit, onTap: () {}),
                 ],
               ),
