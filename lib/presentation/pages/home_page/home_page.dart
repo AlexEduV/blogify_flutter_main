@@ -1,5 +1,5 @@
 import 'package:auto_route/auto_route.dart';
-import 'package:blogify_flutter_main/core/utils/day_plural_formatter.dart';
+import 'package:blogify_flutter_main/core/utils/intl_formatter.dart';
 import 'package:blogify_flutter_main/data/mock_storage/global_mock_storage_provider.dart';
 import 'package:blogify_flutter_main/domain/entities/post_entity.dart';
 import 'package:blogify_flutter_main/presentation/common/widgets/circled_button_outlined.dart';
@@ -199,7 +199,7 @@ class _HomePageState extends State<HomePage> {
                                 child: PostCard(
                                   title: posts[index].title,
                                   author: posts[index].author,
-                                  publishedWhen: '${posts[index].daysAgoPublished} ${DayEndingFormatter.getFormattedDays(posts[index].daysAgoPublished)} ago',
+                                  publishedWhen: IntlFormatter.getFormattedDays(posts[index].daysAgoPublished),
                                   readTimeEstimated: '${posts[index].minToRead} min',
                                 ),
                               ),
