@@ -1,4 +1,3 @@
-import 'package:animated_segmented_tab_control/animated_segmented_tab_control.dart';
 import 'package:blogify_flutter_main/domain/entities/post_entity.dart';
 import 'package:blogify_flutter_main/presentation/common/widgets/circled_button.dart';
 import 'package:blogify_flutter_main/presentation/pages/home_page/widgets/post_card.dart';
@@ -18,18 +17,21 @@ class _HomePageState extends State<HomePage> {
   //todo: move to domain / data layer
   List<PostEntity> posts = [
     PostEntity(
+      id: 1,
       title: 'Where Web 3\nis Going to?',
       author: 'Josh Brian',
       daysAgoPublished: 1,
       minToRead: 5,
     ),
     PostEntity(
+      id: 2,
       title: 'Good Listeners Urgently Required',
       author: 'Jay Fitzgerald',
       daysAgoPublished: 2,
       minToRead: 15,
     ),
     PostEntity(
+      id: 3,
       title: 'Being a Better Creative Director',
       author: 'Britton Stipetic',
       daysAgoPublished: 6,
