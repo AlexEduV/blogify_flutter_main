@@ -4,13 +4,15 @@ import 'package:flutter/material.dart';
 class RoundedButton extends StatelessWidget {
 
   final bool isSelected;
-  final IconData? icon;
+  final IconData? trailingIcon;
+  final IconData? leadingIcon;
   final String text;
   final Function()? onTap;
 
   const RoundedButton({
     required this.text,
-    this.icon,
+    this.leadingIcon,
+    this.trailingIcon,
     this.isSelected = false,
     this.onTap,
     super.key,
@@ -31,6 +33,13 @@ class RoundedButton extends StatelessWidget {
           spacing: 4.0,
           children: [
 
+            if (leadingIcon != null)
+              Icon(
+                leadingIcon,
+                color: Colors.black87,
+                size: 24,
+              ),
+
             Text(
               text,
               style: TextStyle(
@@ -39,9 +48,9 @@ class RoundedButton extends StatelessWidget {
               ),
             ),
 
-            if (icon != null)
+            if (trailingIcon != null)
               Icon(
-                icon,
+                trailingIcon,
                 color: Colors.black87,
                 size: 24,
               ),

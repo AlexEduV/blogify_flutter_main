@@ -2,6 +2,7 @@ import 'package:auto_route/auto_route.dart';
 import 'package:blogify_flutter_main/data/mock_storage/global_mock_storage_provider.dart';
 import 'package:blogify_flutter_main/presentation/common/widgets/circled_button_outlined.dart';
 import 'package:blogify_flutter_main/presentation/common/widgets/photo_place_holder.dart';
+import 'package:blogify_flutter_main/presentation/pages/home_page/widgets/rounded_button.dart';
 import 'package:blogify_flutter_main/router/router.gr.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
@@ -28,116 +29,146 @@ class _ArticlePageState extends State<ArticlePage> {
 
     return Scaffold(
       body: SafeArea(
-        child: SingleChildScrollView(
-          child: Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 24.0),
-            child: Consumer<GlobalMockStorageProvider>(
-              builder: (context, notifier, child) {
+        child: Stack(
+          children: [
 
-                final post = notifier.posts.where((post) => post.id == widget.id).first;
+            SingleChildScrollView(
+              child: Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 24.0),
+                child: Consumer<GlobalMockStorageProvider>(
+                  builder: (context, notifier, child) {
 
-                return Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
+                    final post = notifier.posts.where((post) => post.id == widget.id).first;
 
-                    const SizedBox(height: 24.0,),
-
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    return Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
 
+                        const SizedBox(height: 24.0,),
+
                         Row(
-                          spacing: 16.0,
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
 
-                            CircledButtonOutlined(
-                              icon: FontAwesomeIcons.chevronLeft,
-                              onTap: () {
-                                context.router.popUntilRouteWithName(HomeRoute.name);
-                              },
+                            Row(
+                              spacing: 16.0,
+                              children: [
+
+                                CircledButtonOutlined(
+                                  icon: FontAwesomeIcons.chevronLeft,
+                                  onTap: () {
+                                    context.router.popUntilRouteWithName(HomeRoute.name);
+                                  },
+                                ),
+
+                                Text(
+                                  'Back',
+                                  style: TextStyle(
+                                    fontWeight: FontWeight.w400,
+                                    fontSize: 16.0,
+                                  ),
+                                ),
+
+                              ],
                             ),
 
-                            Text(
-                              'Back',
-                              style: TextStyle(
-                                fontWeight: FontWeight.w400,
-                                fontSize: 16.0,
-                              ),
+                            Row(
+                              spacing: 16.0,
+                              children: [
+
+                                CircledButtonOutlined(
+                                  icon: FontAwesomeIcons.comment,
+                                  onTap: () {},
+                                ),
+
+                                CircledButtonOutlined(
+                                  icon: post.isLiked
+                                      ? FontAwesomeIcons.solidThumbsUp : FontAwesomeIcons.thumbsUp,
+                                  onTap: () {
+                                    notifier.likePost(widget.id);
+                                  },
+                                ),
+
+                              ],
                             ),
 
                           ],
                         ),
 
-                        Row(
-                          spacing: 16.0,
-                          children: [
+                        const SizedBox(height: 24,),
 
-                            CircledButtonOutlined(
-                              icon: FontAwesomeIcons.comment,
-                              onTap: () {},
-                            ),
+                        Text(
+                          post.title,
+                          style: TextStyle(
+                            fontWeight: FontWeight.w500,
+                            fontSize: 24.0,
+                          ),
+                        ),
 
-                            CircledButtonOutlined(
-                              icon: post.isLiked
-                                  ? FontAwesomeIcons.solidThumbsUp : FontAwesomeIcons.thumbsUp,
-                              onTap: () {
-                                notifier.likePost(widget.id);
-                              },
-                            ),
+                        const SizedBox(height: 24,),
 
-                          ],
+                        //post info row
+                        Text(
+                          //todo: day / days differentiation
+                          '${post.author}  |  ${post.daysAgoPublished} days ago  |  Read time: ${post.minToRead} min',
+                          style: TextStyle(
+                            fontWeight: FontWeight.w400,
+                            fontSize: 13.0,
+                            color: Colors.black54,
+                          ),
+                        ),
+
+                        const SizedBox(height: 24,),
+
+                        //photo cover
+                        PhotoPlaceHolder(
+                          placeholderColor: Colors.grey[300]!,
+                          height: 220,
+                        ),
+
+                        const SizedBox(height: 24,),
+
+                        //post content
+                        Text(
+                          post.content,
+                          style: TextStyle(
+                            fontSize: 13.0,
+                            height: 1.7,
+                          ),
                         ),
 
                       ],
-                    ),
-
-                    const SizedBox(height: 24,),
-
-                    Text(
-                      post.title,
-                      style: TextStyle(
-                        fontWeight: FontWeight.w500,
-                        fontSize: 24.0,
-                      ),
-                    ),
-
-                    const SizedBox(height: 24,),
-
-                    //post info row
-                    Text(
-                      //todo: day / days differentiation
-                      '${post.author}  |  ${post.daysAgoPublished} days ago  |  Read time: ${post.minToRead} min',
-                      style: TextStyle(
-                        fontWeight: FontWeight.w400,
-                        fontSize: 13.0,
-                        color: Colors.black54,
-                      ),
-                    ),
-
-                    const SizedBox(height: 24,),
-
-                    //photo cover
-                    PhotoPlaceHolder(
-                      placeholderColor: Colors.grey[300]!,
-                      height: 220,
-                    ),
-
-                    const SizedBox(height: 24,),
-
-                    //post content
-                    Text(
-                      post.content,
-                      style: TextStyle(
-                        fontSize: 13.0,
-                        height: 1.7,
-                      ),
-                    ),
-
-                  ],
-                );
-              }
+                    );
+                  }
+                ),
+              ),
             ),
-          ),
+
+            Positioned(
+              bottom: 16,
+              left: 0,
+              right: 0,
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+
+                  Container(
+                    decoration: BoxDecoration(
+                      color: Colors.black,
+                      borderRadius: BorderRadius.circular(24.0),
+                    ),
+                    padding: EdgeInsets.all(8.0),
+                    child: RoundedButton(
+                      text: 'Share',
+                      isSelected: true,
+                      leadingIcon: FontAwesomeIcons.arrowUpFromBracket,
+                    ),
+                  ),
+                ],
+              ),
+            ),
+
+          ],
         ),
       ),
     );

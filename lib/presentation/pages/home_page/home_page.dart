@@ -107,7 +107,7 @@ class _HomePageState extends State<HomePage> {
                 trailing: [
                   RoundedButton(
                     text: 'Author',
-                    icon: Icons.keyboard_arrow_down_outlined,
+                    trailingIcon: Icons.keyboard_arrow_down_outlined,
                     isSelected: true,
                   ),
                 ],
