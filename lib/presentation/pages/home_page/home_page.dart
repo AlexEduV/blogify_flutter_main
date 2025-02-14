@@ -25,6 +25,8 @@ class _HomePageState extends State<HomePage> {
 
   int categoryIndex = 0;
 
+  int insertedIndex = -1;
+
   @override
   void initState() {
     super.initState();
@@ -146,7 +148,9 @@ class _HomePageState extends State<HomePage> {
                       children: List.generate(posts.length, (index) {
 
                         return AnimatedPositioned(
-                          duration: const Duration(milliseconds: 400),
+                          duration: (index == insertedIndex)
+                              ? const Duration(milliseconds: 400)
+                              : const Duration(milliseconds: 0),
                           curve: Curves.easeInOut,
                           top: index * 60,
                           left: 0,
@@ -163,14 +167,14 @@ class _HomePageState extends State<HomePage> {
 
                               Future.delayed(const Duration(milliseconds: 400), () {
                                 setState(() {
-
-                                  //todo: somehow, if the index is last, we should animate it,
-                                  // - leave all other items as they are;
-
-                                  //if the insertion index == length (one before last),
-                                  // the animation is good, but we're cycling only 2 items, not all
-
                                   posts.insert(posts.length, post);
+                                  insertedIndex = posts.length - 1;
+                                });
+
+                                Future.delayed(const Duration(milliseconds: 400), () {
+                                  setState(() {
+                                    insertedIndex = -1; // Reset after animation
+                                  });
                                 });
                               });
                             },
