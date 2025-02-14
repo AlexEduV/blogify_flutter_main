@@ -148,9 +148,7 @@ class _HomePageState extends State<HomePage> {
                       children: List.generate(posts.length, (index) {
 
                         return AnimatedPositioned(
-                          duration: (index == insertedIndex)
-                              ? const Duration(milliseconds: 400)
-                              : const Duration(milliseconds: 0),
+                          duration: const Duration(milliseconds: 400),
                           curve: Curves.easeInOut,
                           top: index * 60,
                           left: 0,
@@ -167,14 +165,14 @@ class _HomePageState extends State<HomePage> {
 
                               Future.delayed(const Duration(milliseconds: 400), () {
                                 setState(() {
-                                  posts.insert(posts.length, post);
-                                  insertedIndex = posts.length - 1;
-                                });
 
-                                Future.delayed(const Duration(milliseconds: 400), () {
-                                  setState(() {
-                                    insertedIndex = -1; // Reset after animation
-                                  });
+                                  //todo: somehow, if the index is last, we should animate it,
+                                  // - leave all other items as they are;
+
+                                  //if the insertion index == length (one before last),
+                                  // the animation is good, but we're cycling only 2 items, not all
+
+                                  posts.insert(posts.length, post);
                                 });
                               });
                             },
