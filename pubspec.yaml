@@ -32,7 +32,6 @@ dependencies:
     sdk: flutter
 
   cupertino_icons: ^1.0.8
-  animated_segmented_tab_control: ^2.0.0
 
 dev_dependencies:
   flutter_test:
