@@ -1,5 +1,6 @@
 import 'package:blogify_flutter_main/domain/entities/post_entity.dart';
 import 'package:blogify_flutter_main/presentation/common/widgets/circled_button_outlined.dart';
+import 'package:blogify_flutter_main/presentation/pages/home_page/widgets/category_selector.dart';
 import 'package:blogify_flutter_main/presentation/pages/home_page/widgets/circled_button.dart';
 import 'package:blogify_flutter_main/presentation/pages/home_page/widgets/post_card.dart';
 import 'package:blogify_flutter_main/presentation/pages/home_page/widgets/rounded_button.dart';
@@ -15,6 +16,8 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
+
+  int categoryIndex = 0;
 
   //todo: move to domain / data layer
   List<PostEntity> posts = [
@@ -197,25 +200,14 @@ class _HomePageState extends State<HomePage> {
                 children: [
 
                   Expanded(
-                    child: Container(
-                      decoration: BoxDecoration(
-                        color: Colors.white,
-                        borderRadius: BorderRadius.circular(24.0),
-                      ),
-                      padding: EdgeInsets.all(8.0),
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-
-                          //topic selector
-                          RoundedButton(text: 'Trending', isSelected: true,),
-
-                          RoundedButton(text: 'Design'),
-
-                          RoundedButton(text: 'Tech'),
-
-                        ],
-                      ),
+                    child: CategorySelector(
+                      selectedIndex: categoryIndex,
+                      items: [
+                        'Trending',
+                        'Design',
+                        'Tech',
+                      ],
+                      onItemTapped: onCategoryItemTapped,
                     ),
                   ),
 
@@ -230,5 +222,11 @@ class _HomePageState extends State<HomePage> {
         ),
       ),
     );
+  }
+
+  void onCategoryItemTapped(int index) {
+    setState(() {
+      categoryIndex = index;
+    });
   }
 }

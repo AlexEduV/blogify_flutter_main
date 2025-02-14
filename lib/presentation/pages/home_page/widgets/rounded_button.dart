@@ -6,43 +6,48 @@ class RoundedButton extends StatelessWidget {
   final bool isSelected;
   final IconData? icon;
   final String text;
+  final Function()? onTap;
 
   const RoundedButton({
     required this.text,
     this.icon,
     this.isSelected = false,
+    this.onTap,
     super.key,
   });
 
   @override
   Widget build(BuildContext context) {
 
-    return Container(
-      padding: EdgeInsets.symmetric(vertical: 8.0, horizontal: 16.0),
-      decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(24.0),
-        color: isSelected ? AppColors.primaryColor : null,
-      ),
-      child: Row(
-        spacing: 4.0,
-        children: [
+    return InkWell(
+      onTap: onTap,
+      child: Container(
+        padding: EdgeInsets.symmetric(vertical: 8.0, horizontal: 16.0),
+        decoration: BoxDecoration(
+          borderRadius: BorderRadius.circular(24.0),
+          color: isSelected ? AppColors.primaryColor : null,
+        ),
+        child: Row(
+          spacing: 4.0,
+          children: [
 
-          Text(
-            text,
-            style: TextStyle(
-              color: isSelected ? Colors.black87 : AppColors.accentColor,
-              fontWeight: FontWeight.w400,
-            ),
-          ),
-
-          if (icon != null)
-            Icon(
-              icon,
-              color: Colors.black87,
-              size: 24,
+            Text(
+              text,
+              style: TextStyle(
+                color: isSelected ? Colors.black87 : AppColors.accentColor,
+                fontWeight: FontWeight.w400,
+              ),
             ),
 
-        ],
+            if (icon != null)
+              Icon(
+                icon,
+                color: Colors.black87,
+                size: 24,
+              ),
+
+          ],
+        ),
       ),
     );
   }
