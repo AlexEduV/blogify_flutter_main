@@ -3,7 +3,6 @@ import 'package:auto_route/auto_route.dart';
 import 'package:blogify_flutter_main/data/mock_storage/global_mock_storage_provider.dart';
 import 'package:blogify_flutter_main/domain/entities/post_entity.dart';
 import 'package:blogify_flutter_main/presentation/common/widgets/circled_button_outlined.dart';
-import 'package:blogify_flutter_main/presentation/pages/article_page/article_page.dart';
 import 'package:blogify_flutter_main/presentation/pages/home_page/widgets/category_selector.dart';
 import 'package:blogify_flutter_main/presentation/pages/home_page/widgets/circled_button.dart';
 import 'package:blogify_flutter_main/presentation/pages/home_page/widgets/post_card.dart';
@@ -230,6 +229,6 @@ class _HomePageState extends State<HomePage> {
   }
 
   void openArticlePage(int id) {
-    context.router.push(ArticleRoute(index: id,));
+    context.router.push(ArticleRoute(id: id,));
   }
 }

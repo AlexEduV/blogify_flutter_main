@@ -16,12 +16,12 @@ class CircledButtonOutlined extends StatelessWidget {
   Widget build(BuildContext context) {
 
     return GestureDetector(
-      onTap: () {},
+      onTap: onTap,
       child: Container(
-        padding: EdgeInsets.all(12.0),
+        padding: EdgeInsets.all(16.0),
         decoration: BoxDecoration(
           shape: BoxShape.circle,
-          border: Border.all(color: Colors.grey[200]!, width: 1),
+          border: Border.all(color: Colors.grey[300]!, width: 1),
         ),
         child: FaIcon(
           icon,

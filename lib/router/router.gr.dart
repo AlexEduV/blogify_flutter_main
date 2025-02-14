@@ -20,12 +20,12 @@ import 'package:flutter/material.dart' as _i4;
 /// [_i1.ArticlePage]
 class ArticleRoute extends _i3.PageRouteInfo<ArticleRouteArgs> {
   ArticleRoute({
-    required int index,
+    required int id,
     _i4.Key? key,
     List<_i3.PageRouteInfo>? children,
   }) : super(
          ArticleRoute.name,
-         args: ArticleRouteArgs(index: index, key: key),
+         args: ArticleRouteArgs(id: id, key: key),
          initialChildren: children,
        );
 
@@ -35,21 +35,21 @@ class ArticleRoute extends _i3.PageRouteInfo<ArticleRouteArgs> {
     name,
     builder: (data) {
       final args = data.argsAs<ArticleRouteArgs>();
-      return _i1.ArticlePage(index: args.index, key: args.key);
+      return _i1.ArticlePage(id: args.id, key: args.key);
     },
   );
 }
 
 class ArticleRouteArgs {
-  const ArticleRouteArgs({required this.index, this.key});
+  const ArticleRouteArgs({required this.id, this.key});
 
-  final int index;
+  final int id;
 
   final _i4.Key? key;
 
   @override
   String toString() {
-    return 'ArticleRouteArgs{index: $index, key: $key}';
+    return 'ArticleRouteArgs{id: $id, key: $key}';
   }
 }
 

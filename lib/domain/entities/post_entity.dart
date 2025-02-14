@@ -7,7 +7,7 @@ class PostEntity {
   final int daysAgoPublished;
   final int minToRead;
 
-  final bool isDismissed;
+  final bool isLiked;
 
   final String content;
 
@@ -17,8 +17,8 @@ class PostEntity {
     required this.author,
     required this.daysAgoPublished,
     required this.minToRead,
+    this.isLiked = false,
     this.imageSrc = '',
-    this.isDismissed = false,
     this.content = '',
   });
 
@@ -28,8 +28,8 @@ class PostEntity {
     String? author,
     String? imageSrc,
     int? daysAgoPublished,
+    bool? isLiked,
     int? minToRead,
-    bool? isDismissed,
     String? content,
   }) {
     return PostEntity(
@@ -38,7 +38,7 @@ class PostEntity {
       author: author ?? this.author,
       daysAgoPublished: daysAgoPublished ?? this.daysAgoPublished,
       minToRead: minToRead ?? this.minToRead,
-      isDismissed: isDismissed ?? this.isDismissed,
+      isLiked: isLiked ?? this.isLiked,
       content: content ?? this.content,
       imageSrc: imageSrc ?? this.imageSrc,
     );

@@ -35,4 +35,22 @@ class GlobalMockStorageProvider extends ChangeNotifier {
     notifyListeners();
   }
 
+  void likePost(int id) {
+    // Find the post that matches the id
+    final postIndex = _posts.indexWhere((post) => post.id == id);
+
+    // If the post exists, update it
+    if (postIndex != -1) {
+      // Create a new PostEntity with the updated 'isLiked' status
+      final updatedPost = _posts[postIndex].copyWith(isLiked: !_posts[postIndex].isLiked);
+
+      // Replace the old post with the updated one in the list
+      _posts[postIndex] = updatedPost;
+
+      // Notify listeners so that UI can be updated
+      notifyListeners();
+    }
+
+  }
+
 }
