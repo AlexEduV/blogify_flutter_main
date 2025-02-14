@@ -1,3 +1,5 @@
+import 'dart:ui';
+
 import 'package:auto_route/auto_route.dart';
 import 'package:blogify_flutter_main/data/mock_storage/global_mock_storage_provider.dart';
 import 'package:blogify_flutter_main/presentation/common/widgets/circled_button_outlined.dart';
@@ -144,28 +146,44 @@ class _ArticlePageState extends State<ArticlePage> {
               ),
             ),
 
+            //todo: maybe hide the button, when the user is reading (changes the scroll position)
             Positioned(
-              bottom: 16,
+              bottom: 0,
               left: 0,
               right: 0,
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-
-                  Container(
-                    decoration: BoxDecoration(
-                      color: Colors.black,
-                      borderRadius: BorderRadius.circular(24.0),
-                    ),
-                    padding: EdgeInsets.all(8.0),
-                    child: RoundedButton(
-                      text: 'Share',
-                      isSelected: true,
-                      horizontalPadding: 32.0,
-                      leadingIcon: FontAwesomeIcons.arrowUpFromBracket,
+              child: ClipRRect(
+                child: BackdropFilter(
+                  filter: ImageFilter.blur(sigmaX: 0.7, sigmaY: 0.7), // Blur entire row
+                  child: Padding(
+                    padding: const EdgeInsets.only(bottom: 16.0, top: 16.0),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Container(
+                          padding: EdgeInsets.all(8.0),
+                          decoration: BoxDecoration(
+                            color: Colors.black, // Keep original button color
+                            borderRadius: BorderRadius.circular(24.0),
+                            boxShadow: [
+                              BoxShadow(
+                                color: Colors.black.withOpacity(0.4), // Shadow for button
+                                blurRadius: 10,
+                                spreadRadius: 2,
+                                offset: Offset(0, 4),
+                              ),
+                            ],
+                          ),
+                          child: RoundedButton(
+                            text: 'Share',
+                            isSelected: true,
+                            horizontalPadding: 32.0,
+                            leadingIcon: FontAwesomeIcons.arrowUpFromBracket,
+                          ),
+                        ),
+                      ],
                     ),
                   ),
-                ],
+                ),
               ),
             ),
 
