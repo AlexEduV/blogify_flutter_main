@@ -1,4 +1,5 @@
 import 'package:blogify_flutter_main/presentation/pages/user_settings_page/widgets/section_title.dart';
+import 'package:blogify_flutter_main/presentation/theme/app_colors.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
@@ -21,7 +22,7 @@ class ListItem extends StatelessWidget {
   Widget build(BuildContext context) {
 
     return Material(
-      color: Colors.grey[200],
+      color: AppColors.settingsItemColor,
       borderRadius: BorderRadius.circular(borderRadius),
       child: InkWell(
         borderRadius: BorderRadius.circular(borderRadius),

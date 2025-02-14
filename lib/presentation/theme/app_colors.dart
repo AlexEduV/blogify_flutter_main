@@ -8,6 +8,6 @@ class AppColors {
   static final Color primaryColor = const Color(0xfff5f5f5);
 
   static final Color secondaryColor = const Color(0xffffffff);
-  
+  static final Color settingsItemColor = const Color(0xfff8f8f8);
 
 }

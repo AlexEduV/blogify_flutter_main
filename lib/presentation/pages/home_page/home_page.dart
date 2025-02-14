@@ -227,6 +227,7 @@ class _HomePageState extends State<HomePage> {
   void onUserButtonPressed() {
     showModalBottomSheet(
         context: context,
+        backgroundColor: Colors.white,
         showDragHandle: true,
         isScrollControlled: true,
         builder: (BuildContext context) {

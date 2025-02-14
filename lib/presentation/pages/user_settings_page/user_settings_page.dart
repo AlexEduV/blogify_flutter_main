@@ -1,6 +1,7 @@
 import 'package:blogify_flutter_main/core/utils/app_display_version.dart';
 import 'package:blogify_flutter_main/presentation/pages/user_settings_page/widgets/list_item.dart';
 import 'package:blogify_flutter_main/presentation/pages/user_settings_page/widgets/section_title.dart';
+import 'package:blogify_flutter_main/presentation/theme/app_colors.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
@@ -105,6 +106,7 @@ class UserSettingsPage extends StatelessWidget {
           return Column(
             children: [
               ListItem(
+                //todo: onTap has to lead somewhere
                 onTap: () {},
                 icon: item['icon'],
                 title: item['title'],
