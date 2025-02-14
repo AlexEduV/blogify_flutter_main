@@ -45,15 +45,15 @@ class _HomePageState extends State<HomePage> {
 
     return Scaffold(
       body: SafeArea(
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: <Widget>[
+        child: Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 24.0),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: <Widget>[
 
-            const SizedBox(height: 24.0,),
+              const SizedBox(height: 24.0,),
 
-            Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 24.0),
-              child: Row(
+              Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
 
@@ -102,14 +102,11 @@ class _HomePageState extends State<HomePage> {
 
                 ],
               ),
-            ),
 
-            SizedBox(height: 24.0),
+              SizedBox(height: 24.0),
 
-            //search bar
-            Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 24.0),
-              child: SearchBar(
+              //search bar
+              SearchBar(
                 padding: WidgetStatePropertyAll(EdgeInsets.only(left: 16.0, right: 8.0),),
                 leading: Icon(
                   Icons.search,
@@ -138,14 +135,11 @@ class _HomePageState extends State<HomePage> {
                   ),
                 ),
               ),
-            ),
 
-            SizedBox(height: 24.0),
+              SizedBox(height: 24.0),
 
-            //card stack
-            Expanded(
-              child: Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 24.0),
+              //card stack
+              Expanded(
                 child: Stack(
                   clipBehavior: Clip.none,
                   alignment: Alignment.center,
@@ -191,12 +185,9 @@ class _HomePageState extends State<HomePage> {
                   }).reversed.toList(),
                 ),
               ),
-            ),
 
-            // topic selector & edit button
-            Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 24.0),
-              child: Container(
+              // topic selector & edit button
+              Container(
                 decoration: BoxDecoration(
                   color: Colors.white,
                   borderRadius: BorderRadius.circular(24.0),
@@ -218,11 +209,11 @@ class _HomePageState extends State<HomePage> {
                   ],
                 ),
               ),
-            ),
 
-            SizedBox(height: 16.0,),
+              SizedBox(height: 16.0,),
 
-          ],
+            ],
+          ),
         ),
       ),
     );
