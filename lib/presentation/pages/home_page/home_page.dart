@@ -25,7 +25,7 @@ class _HomePageState extends State<HomePage> {
 
   int categoryIndex = 0;
 
-  int insertedIndex = -1;
+  bool isInsertAnimationStarted = false;
 
   @override
   void initState() {
@@ -150,7 +150,7 @@ class _HomePageState extends State<HomePage> {
                         return AnimatedPositioned(
                           duration: const Duration(milliseconds: 400),
                           curve: Curves.easeInOut,
-                          top: (insertedIndex != 0) ? index * 60 : 0,
+                          top: isInsertAnimationStarted ? 0 : index * 60,
                           left: 0,
                           right: 0,
                           child: Dismissible(
@@ -161,7 +161,7 @@ class _HomePageState extends State<HomePage> {
 
                               setState(() {
                                 notifier.posts.removeAt(index);
-                                insertedIndex = 0;
+                                isInsertAnimationStarted = true;
                               });
 
                               Future.delayed(const Duration(milliseconds: 400), () {
@@ -176,8 +176,16 @@ class _HomePageState extends State<HomePage> {
                                   //insertion is not really good in this case, since the calculations are based
                                   //on index
 
+                                  // the current workaround makes stack folded and than spread out again
+                                  // it's production-ready, but not what I intended. I wanted a queue effect.
+                                  // the item gets deleted. The others slide to the user (get bigger), then
+                                  // the tip of the last item is seen after 400 ms when it's inserted.
+
+                                  // maybe if I store the position somewhere, so that I can more easily track
+                                  // and customise it, not resetting in on state change.
+
                                   posts.add(post);
-                                  insertedIndex = -1;
+                                  isInsertAnimationStarted = false;
                                 });
                               });
                             },
