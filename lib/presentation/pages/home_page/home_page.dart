@@ -45,15 +45,15 @@ class _HomePageState extends State<HomePage> {
 
     return Scaffold(
       body: SafeArea(
-        child: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 24.0),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: <Widget>[
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: <Widget>[
 
-              const SizedBox(height: 24.0,),
+            const SizedBox(height: 24.0,),
 
-              Row(
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 24.0),
+              child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
 
@@ -102,11 +102,14 @@ class _HomePageState extends State<HomePage> {
 
                 ],
               ),
+            ),
 
-              SizedBox(height: 24.0),
+            SizedBox(height: 24.0),
 
-              //search bar
-              SearchBar(
+            //search bar
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 24.0),
+              child: SearchBar(
                 padding: WidgetStatePropertyAll(EdgeInsets.only(left: 16.0, right: 8.0),),
                 leading: Icon(
                   Icons.search,
@@ -135,12 +138,16 @@ class _HomePageState extends State<HomePage> {
                   ),
                 ),
               ),
+            ),
 
-              SizedBox(height: 24.0),
+            SizedBox(height: 24.0),
 
-              //card stack
-              Expanded(
+            //card stack
+            Expanded(
+              child: Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 24.0),
                 child: Stack(
+                  clipBehavior: Clip.none,
                   alignment: Alignment.center,
                   children: List.generate(posts.length, (index) {
 
@@ -184,11 +191,12 @@ class _HomePageState extends State<HomePage> {
                   }).reversed.toList(),
                 ),
               ),
+            ),
 
-              SizedBox(height: 24.0,),
-
-              // topic selector & edit button
-              Container(
+            // topic selector & edit button
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 24.0),
+              child: Container(
                 decoration: BoxDecoration(
                   color: Colors.white,
                   borderRadius: BorderRadius.circular(24.0),
@@ -209,10 +217,12 @@ class _HomePageState extends State<HomePage> {
 
                   ],
                 ),
-              )
+              ),
+            ),
 
-            ],
-          ),
+            SizedBox(height: 16.0,),
+
+          ],
         ),
       ),
     );
