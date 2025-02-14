@@ -1,6 +1,7 @@
 import 'dart:ui';
 
 import 'package:auto_route/auto_route.dart';
+import 'package:blogify_flutter_main/core/utils/day_plural_formatter.dart';
 import 'package:blogify_flutter_main/data/mock_storage/global_mock_storage_provider.dart';
 import 'package:blogify_flutter_main/presentation/common/widgets/circled_button_outlined.dart';
 import 'package:blogify_flutter_main/presentation/common/widgets/photo_place_holder.dart';
@@ -111,8 +112,7 @@ class _ArticlePageState extends State<ArticlePage> {
 
                         //post info row
                         Text(
-                          //todo: day / days differentiation
-                          '${post.author}  |  ${post.daysAgoPublished} days ago  |  Read time: ${post.minToRead} min',
+                          '${post.author}  | ${post.daysAgoPublished} ${DayEndingFormatter.getFormattedDays(post.daysAgoPublished)} ago,  |  Read time: ${post.minToRead} min',
                           style: const TextStyle(
                             fontWeight: FontWeight.w400,
                             fontSize: 13.0,
