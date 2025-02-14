@@ -161,6 +161,7 @@ class _ArticlePageState extends State<ArticlePage> {
                     child: RoundedButton(
                       text: 'Share',
                       isSelected: true,
+                      horizontalPadding: 32.0,
                       leadingIcon: FontAwesomeIcons.arrowUpFromBracket,
                     ),
                   ),

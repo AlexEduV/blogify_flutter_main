@@ -6,6 +6,7 @@ class RoundedButton extends StatelessWidget {
   final bool isSelected;
   final IconData? trailingIcon;
   final IconData? leadingIcon;
+  final double horizontalPadding;
   final String text;
   final Function()? onTap;
 
@@ -14,6 +15,7 @@ class RoundedButton extends StatelessWidget {
     this.leadingIcon,
     this.trailingIcon,
     this.isSelected = false,
+    this.horizontalPadding = 16.0,
     this.onTap,
     super.key,
   });
@@ -24,7 +26,7 @@ class RoundedButton extends StatelessWidget {
     return InkWell(
       onTap: onTap,
       child: Container(
-        padding: EdgeInsets.symmetric(vertical: 8.0, horizontal: 16.0),
+        padding: EdgeInsets.symmetric(vertical: 8.0, horizontal: horizontalPadding),
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(24.0),
           color: isSelected ? AppColors.primaryColor : null,
