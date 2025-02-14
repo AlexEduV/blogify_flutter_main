@@ -6,7 +6,7 @@ import 'package:blogify_flutter_main/presentation/pages/home_page/widgets/catego
 import 'package:blogify_flutter_main/presentation/pages/home_page/widgets/circled_button.dart';
 import 'package:blogify_flutter_main/presentation/pages/home_page/widgets/post_card.dart';
 import 'package:blogify_flutter_main/presentation/pages/home_page/widgets/rounded_button.dart';
-import 'package:blogify_flutter_main/presentation/pages/user_page/user_page.dart';
+import 'package:blogify_flutter_main/presentation/pages/user_settings_page/user_settings_page.dart';
 import 'package:blogify_flutter_main/presentation/theme/app_colors.dart';
 import 'package:blogify_flutter_main/router/router.gr.dart';
 import 'package:flutter/material.dart';
@@ -231,7 +231,7 @@ class _HomePageState extends State<HomePage> {
         isScrollControlled: true,
         builder: (BuildContext context) {
 
-          return const UserPage();
+          return const UserSettingsPage();
         }
     );
   }

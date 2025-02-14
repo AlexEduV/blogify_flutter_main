@@ -1,15 +1,25 @@
 import 'package:blogify_flutter_main/core/utils/app_display_version.dart';
-import 'package:blogify_flutter_main/presentation/pages/user_page/widgets/list_item.dart';
-import 'package:blogify_flutter_main/presentation/pages/user_page/widgets/section_title.dart';
-import 'package:blogify_flutter_main/presentation/theme/app_colors.dart';
+import 'package:blogify_flutter_main/presentation/pages/user_settings_page/widgets/list_item.dart';
+import 'package:blogify_flutter_main/presentation/pages/user_settings_page/widgets/section_title.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
-class UserPage extends StatelessWidget {
-  const UserPage({super.key});
+class UserSettingsPage extends StatelessWidget {
+  const UserSettingsPage({super.key});
 
   @override
   Widget build(BuildContext context) {
+
+    final activityItems = [
+      {'icon': FontAwesomeIcons.fileLines, 'title': 'Published Articles'},
+      {'icon': FontAwesomeIcons.thumbsUp, 'title': 'Liked Articles'},
+    ];
+
+    final generalItems = [
+      {'icon': FontAwesomeIcons.user, 'title': 'Personal Data'},
+      {'icon': FontAwesomeIcons.bell, 'title': 'Push Notifications'},
+      {'icon': FontAwesomeIcons.gear, 'title': 'Settings'},
+    ];
 
     return SizedBox(
       width: double.infinity,
@@ -61,51 +71,10 @@ class UserPage extends StatelessWidget {
                 ),
               ),
 
-              //Settings list
               const SizedBox(height: 32.0,),
 
-              const SectionTitle(title: 'Your Activity'),
-
-              const SizedBox(height: 16.0,),
-
-              const ListItem(
-                icon: FontAwesomeIcons.fileLines,
-                title: 'Published Articles',
-              ),
-
-              const SizedBox(height: 16.0,),
-
-              const ListItem(
-                icon: FontAwesomeIcons.thumbsUp,
-                title: 'Liked Articles',
-              ),
-
-              const SizedBox(height: 32.0,),
-
-              const SectionTitle(title: 'General'),
-
-              const SizedBox(height: 16.0,),
-
-              const ListItem(
-                icon: FontAwesomeIcons.user,
-                title: 'Personal Data',
-              ),
-
-              const SizedBox(height: 16.0,),
-
-              const ListItem(
-                icon: FontAwesomeIcons.bell,
-                title: 'Push Notifications',
-              ),
-
-              const SizedBox(height: 16.0,),
-
-              const ListItem(
-                icon: FontAwesomeIcons.gear,
-                title: 'Settings',
-              ),
-
-              const SizedBox(height: 16.0,),
+              buildSection('Your Activity', activityItems),
+              buildSection('General', generalItems),
 
               //app version footer
               Text('Blogify, ${AppDisplayVersion.appVersion}',
@@ -122,6 +91,28 @@ class UserPage extends StatelessWidget {
           ),
         ),
       ),
+    );
+  }
+
+  // Helper method to build sections
+  Widget buildSection(String title, List<Map<String, dynamic>> items) {
+    return Column(
+      children: [
+        const SizedBox(height: 32.0),
+        SectionTitle(title: title),
+        const SizedBox(height: 16.0),
+        ...items.map((item) {
+          return Column(
+            children: [
+              ListItem(
+                icon: item['icon'],
+                title: item['title'],
+              ),
+              const SizedBox(height: 16.0),
+            ],
+          );
+        }).toList(),
+      ],
     );
   }
 }
