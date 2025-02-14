@@ -1,4 +1,5 @@
 import 'package:auto_route/annotations.dart';
+import 'package:blogify_flutter_main/data/mock_storage/global_mock_storage_provider.dart';
 import 'package:blogify_flutter_main/domain/entities/post_entity.dart';
 import 'package:blogify_flutter_main/presentation/common/widgets/circled_button_outlined.dart';
 import 'package:blogify_flutter_main/presentation/pages/home_page/widgets/category_selector.dart';
@@ -8,6 +9,7 @@ import 'package:blogify_flutter_main/presentation/pages/home_page/widgets/rounde
 import 'package:blogify_flutter_main/presentation/theme/app_colors.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:provider/provider.dart';
 
 @RoutePage()
 class HomePage extends StatefulWidget {
@@ -21,31 +23,12 @@ class _HomePageState extends State<HomePage> {
 
   int categoryIndex = 0;
 
-  //todo: move to domain / data layer
-  List<PostEntity> posts = [
-    PostEntity(
-      id: 1,
-      title: 'Where Web 3\nis Going to?',
-      author: 'Josh Brian',
-      daysAgoPublished: 1,
-      minToRead: 5,
-    ),
-    PostEntity(
-      id: 2,
-      title: 'Good Listeners Urgently Required',
-      author: 'Jay Fitzgerald',
-      daysAgoPublished: 2,
-      minToRead: 15,
-    ),
-    PostEntity(
-      id: 3,
-      title: 'Being a Better Creative Director',
-      author: 'Britton Stipetic',
-      daysAgoPublished: 6,
-      minToRead: 10,
-    ),
-  ];
+  @override
+  void initState() {
+    super.initState();
 
+    context.read<GlobalMockStorageProvider>().load();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -148,53 +131,58 @@ class _HomePageState extends State<HomePage> {
 
               //card stack
               Expanded(
-                child: Stack(
-                  clipBehavior: Clip.none,
-                  alignment: Alignment.center,
-                  children: List.generate(posts.length, (index) {
+                child: Consumer<GlobalMockStorageProvider>(
+                  builder: (context, notifier, child) {
 
-                    return AnimatedPositioned(
-                      duration: const Duration(milliseconds: 400),
-                      curve: Curves.easeInOut,
-                      top: index * 60,
-                      left: 0,
-                      right: 0,
-                      child: Dismissible(
-                        key: ValueKey(posts[index].id),
-                        direction: DismissDirection.vertical,
-                        onDismissed: (direction) {
-                          //todo: when the stack shakes all cards,
-                          // there's something off.
-                          final PostEntity post = posts[index];
+                    return Stack(
+                      clipBehavior: Clip.none,
+                      alignment: Alignment.center,
+                      children: List.generate(notifier.posts.length, (index) {
 
-                          setState(() {
-                            posts.removeAt(index);
-                          });
-
-                          Future.delayed(const Duration(milliseconds: 400), () {
-                            setState(() {
-                              posts.add(post);
-                            });
-                          });
-                        },
-                        child: AnimatedScale(
+                        return AnimatedPositioned(
                           duration: const Duration(milliseconds: 400),
                           curve: Curves.easeInOut,
-                          scale: 1 - (index * 0.2),
-                          child: InkWell(
-                            //todo: open article page
-                            onTap: () {},
-                            child: PostCard(
-                              title: posts[index].title,
-                              author: posts[index].author,
-                              publishedWhen: '${posts[index].daysAgoPublished} ${posts[index].daysAgoPublished == 1 ? "day" : "days"} ago',
-                              readTimeEstimated: '${posts[index].minToRead} min',
+                          top: index * 60,
+                          left: 0,
+                          right: 0,
+                          child: Dismissible(
+                            key: ValueKey(notifier.posts[index].id),
+                            direction: DismissDirection.vertical,
+                            onDismissed: (direction) {
+                              //todo: when the stack shakes all cards,
+                              // there's something off.
+                              final PostEntity post = notifier.posts[index];
+
+                              setState(() {
+                                notifier.posts.removeAt(index);
+                              });
+
+                              Future.delayed(const Duration(milliseconds: 400), () {
+                                setState(() {
+                                  notifier.posts.add(post);
+                                });
+                              });
+                            },
+                            child: AnimatedScale(
+                              duration: const Duration(milliseconds: 400),
+                              curve: Curves.easeInOut,
+                              scale: 1 - (index * 0.2),
+                              child: InkWell(
+                                //todo: open article page
+                                onTap: () {},
+                                child: PostCard(
+                                  title: notifier.posts[index].title,
+                                  author: notifier.posts[index].author,
+                                  publishedWhen: '${notifier.posts[index].daysAgoPublished} ${notifier.posts[index].daysAgoPublished == 1 ? "day" : "days"} ago',
+                                  readTimeEstimated: '${notifier.posts[index].minToRead} min',
+                                ),
+                              ),
                             ),
                           ),
-                        ),
-                      ),
+                        );
+                      }).reversed.toList(),
                     );
-                  }).reversed.toList(),
+                  }
                 ),
               ),
 
