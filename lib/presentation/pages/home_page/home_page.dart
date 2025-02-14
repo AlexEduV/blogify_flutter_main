@@ -211,7 +211,7 @@ class _HomePageState extends State<HomePage> {
                   ),
 
                   //todo: new publication screen
-                  CircledButton(icon: FontAwesomeIcons.penToSquare, onTap: () {}),
+                  CircledButton(icon: FontAwesomeIcons.pen, onTap: () {}),
                 ],
               ),
 
