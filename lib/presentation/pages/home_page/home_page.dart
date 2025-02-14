@@ -150,7 +150,7 @@ class _HomePageState extends State<HomePage> {
                         return AnimatedPositioned(
                           duration: const Duration(milliseconds: 400),
                           curve: Curves.easeInOut,
-                          top: index * 60,
+                          top: (insertedIndex != 0) ? index * 60 : 0,
                           left: 0,
                           right: 0,
                           child: Dismissible(
@@ -161,6 +161,7 @@ class _HomePageState extends State<HomePage> {
 
                               setState(() {
                                 notifier.posts.removeAt(index);
+                                insertedIndex = 0;
                               });
 
                               Future.delayed(const Duration(milliseconds: 400), () {
@@ -172,7 +173,11 @@ class _HomePageState extends State<HomePage> {
                                   //if the insertion index == length (one before last),
                                   // the animation is good, but we're cycling only 2 items, not all
 
-                                  posts.insert(posts.length, post);
+                                  //insertion is not really good in this case, since the calculations are based
+                                  //on index
+
+                                  posts.add(post);
+                                  insertedIndex = -1;
                                 });
                               });
                             },
