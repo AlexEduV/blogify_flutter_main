@@ -1,7 +1,7 @@
 import 'package:blogify_flutter_main/domain/entities/post_entity.dart';
 import 'package:blogify_flutter_main/presentation/common/widgets/circled_button.dart';
 import 'package:blogify_flutter_main/presentation/pages/home_page/widgets/post_card.dart';
-import 'package:blogify_flutter_main/presentation/pages/home_page/widgets/search_bar_selector.dart';
+import 'package:blogify_flutter_main/presentation/pages/home_page/widgets/rounded_button.dart';
 import 'package:blogify_flutter_main/presentation/theme/app_colors.dart';
 import 'package:flutter/material.dart';
 
@@ -113,13 +113,19 @@ class _HomePageState extends State<HomePage> {
                   color: AppColors.accentColor,
                 ),
                 trailing: [
-                  SearchBarSelector(),
+                  RoundedButton(
+                    text: 'Author',
+                    icon: Icons.keyboard_arrow_down_outlined,
+                    isSelected: true,
+                  ),
                 ],
                 hintText: 'Search here',
-                hintStyle: WidgetStatePropertyAll(TextStyle(
-                  color: AppColors.accentColor,
-                  fontSize: 14.0,
-                )),
+                hintStyle: WidgetStatePropertyAll(
+                    TextStyle(
+                    color: AppColors.accentColor,
+                    fontSize: 14.0,
+                  ),
+                ),
                 elevation: WidgetStatePropertyAll(0.0),
                 backgroundColor: WidgetStatePropertyAll(Colors.white),
                 shape: WidgetStatePropertyAll(
@@ -179,15 +185,30 @@ class _HomePageState extends State<HomePage> {
                 ),
               ),
 
+              SizedBox(height: 24.0,),
+
               // topic selector & edit button
-              Row(
-                children: [
+              Container(
+                decoration: BoxDecoration(
+                  color: Colors.white,
+                  borderRadius: BorderRadius.circular(24.0),
+                ),
+                padding: EdgeInsets.all(8.0),
+                child: Row(
+                  spacing: 8,
+                  children: [
 
-                  //topic selector
+                    //topic selector
+                    RoundedButton(text: 'Trending', isSelected: true,),
 
-                  //edit button
+                    RoundedButton(text: 'Design'),
 
-                ],
+                    RoundedButton(text: 'Tech'),
+
+                    //edit button
+
+                  ],
+                ),
               )
 
             ],
