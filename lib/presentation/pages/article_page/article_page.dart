@@ -5,6 +5,7 @@ import 'package:blogify_flutter_main/core/utils/intl_formatter.dart';
 import 'package:blogify_flutter_main/data/mock_storage/global_mock_storage_provider.dart';
 import 'package:blogify_flutter_main/presentation/common/widgets/circled_button_outlined.dart';
 import 'package:blogify_flutter_main/presentation/common/widgets/post_cover_photo.dart';
+import 'package:blogify_flutter_main/presentation/pages/article_page/widgets/share_floating_bar.dart';
 import 'package:blogify_flutter_main/presentation/pages/home_page/widgets/rounded_button.dart';
 import 'package:blogify_flutter_main/router/router.gr.dart';
 import 'package:flutter/material.dart';
@@ -41,7 +42,7 @@ class _ArticlePageState extends State<ArticlePage> {
                 child: Consumer<GlobalMockStorageProvider>(
                   builder: (context, notifier, child) {
 
-                    final post = notifier.allPosts.where((post) => post.id == widget.id).first;
+                    final post = notifier.allPosts.firstWhere((post) => post.id == widget.id);
 
                     return Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
@@ -148,44 +149,11 @@ class _ArticlePageState extends State<ArticlePage> {
             ),
 
             //todo: maybe hide the button, when the user is reading (changes the scroll position)
-            Positioned(
+            const Positioned(
               bottom: 0,
               left: 0,
               right: 0,
-              child: ClipRRect(
-                child: BackdropFilter(
-                  filter: ImageFilter.blur(sigmaX: 0.7, sigmaY: 0.7), // Blur entire row
-                  child: Padding(
-                    padding: const EdgeInsets.only(bottom: 16.0, top: 16.0),
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        Container(
-                          padding: const EdgeInsets.all(8.0),
-                          decoration: BoxDecoration(
-                            color: Colors.black, // Keep original button color
-                            borderRadius: BorderRadius.circular(24.0),
-                            boxShadow: [
-                              BoxShadow(
-                                color: Colors.black.withOpacity(0.4), // Shadow for button
-                                blurRadius: 10,
-                                spreadRadius: 2,
-                                offset: const Offset(0, 4),
-                              ),
-                            ],
-                          ),
-                          child: const RoundedButton(
-                            text: 'Share',
-                            isSelected: true,
-                            horizontalPadding: 32.0,
-                            leadingIcon: FontAwesomeIcons.arrowUpFromBracket,
-                          ),
-                        ),
-                      ],
-                    ),
-                  ),
-                ),
-              ),
+              child: ShareFloatingBar(),
             ),
 
           ],
