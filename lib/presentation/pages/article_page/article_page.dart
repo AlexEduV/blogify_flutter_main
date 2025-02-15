@@ -4,7 +4,7 @@ import 'package:auto_route/auto_route.dart';
 import 'package:blogify_flutter_main/core/utils/intl_formatter.dart';
 import 'package:blogify_flutter_main/data/mock_storage/global_mock_storage_provider.dart';
 import 'package:blogify_flutter_main/presentation/common/widgets/circled_button_outlined.dart';
-import 'package:blogify_flutter_main/presentation/common/widgets/photo_place_holder.dart';
+import 'package:blogify_flutter_main/presentation/common/widgets/post_cover_photo.dart';
 import 'package:blogify_flutter_main/presentation/pages/home_page/widgets/rounded_button.dart';
 import 'package:blogify_flutter_main/router/router.gr.dart';
 import 'package:flutter/material.dart';
@@ -123,7 +123,7 @@ class _ArticlePageState extends State<ArticlePage> {
                         const SizedBox(height: 24,),
 
                         //photo cover
-                        PhotoPlaceHolder(
+                        PostCoverPhoto(
                           imageSrc: post.imageSrc,
                           placeholderColor: Colors.grey[300]!,
                           height: 220,
