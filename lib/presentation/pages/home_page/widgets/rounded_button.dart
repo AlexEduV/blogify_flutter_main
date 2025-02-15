@@ -34,29 +34,29 @@ class RoundedButton extends StatelessWidget {
         child: Container(
           padding: EdgeInsets.symmetric(vertical: 8.0, horizontal: horizontalPadding),
           child: Row(
-            spacing: 4.0,
+            spacing: 8.0,
             children: [
 
               if (leadingIcon != null)
                 Icon(
                   leadingIcon,
-                  color: Colors.black87,
-                  size: 24,
+                  color: Colors.black,
+                  size: 20,
                 ),
 
               Text(
                 text,
                 style: TextStyle(
-                  color: isSelected ? Colors.black87 : AppColors.accentColor,
-                  fontWeight: FontWeight.w400,
+                  color: isSelected ? Colors.black : AppColors.accentColor,
+                  fontWeight: FontWeight.w500,
                 ),
               ),
 
               if (trailingIcon != null)
                 Icon(
                   trailingIcon,
-                  color: Colors.black87,
-                  size: 24,
+                  color: Colors.black,
+                  size: 20,
                 ),
 
             ],
