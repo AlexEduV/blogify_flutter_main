@@ -25,7 +25,7 @@ class HomePage extends StatefulWidget {
 
 class _HomePageState extends State<HomePage> {
 
-  //todo: search / search selector
+  //todo: search selector
 
   @override
   void initState() {
@@ -35,7 +35,7 @@ class _HomePageState extends State<HomePage> {
 
     WidgetsBinding.instance.addPostFrameCallback((_) {
       storageNotifier.initStorage();
-      storageNotifier.loadFiltered(Category.trending);
+      storageNotifier.loadAllInCategory(Category.trending);
     });
   }
 
@@ -43,6 +43,7 @@ class _HomePageState extends State<HomePage> {
   Widget build(BuildContext context) {
 
     return Scaffold(
+      resizeToAvoidBottomInset: false,
       body: SafeArea(
         child: Padding(
           padding: const EdgeInsets.symmetric(horizontal: 24.0),
@@ -137,6 +138,10 @@ class _HomePageState extends State<HomePage> {
                     borderRadius: BorderRadius.circular(32.0),
                   ),
                 ),
+                onChanged: (String filter) {
+                  final storageNotifier = context.read<GlobalMockStorageProvider>();
+                  storageNotifier.filter(filter);
+                },
               ),
 
               const SizedBox(height: 24.0),
@@ -258,7 +263,7 @@ class _HomePageState extends State<HomePage> {
     final category = CategoryHelper.getCategoryByIndex(index);
 
     final storageNotifier = context.read<GlobalMockStorageProvider>();
-    storageNotifier.loadFiltered(category);
+    storageNotifier.loadAllInCategory(category);
 
   }
 

@@ -4,15 +4,18 @@ import 'package:flutter/material.dart';
 
 class GlobalMockStorageProvider extends ChangeNotifier {
 
-  List<PostEntity> _posts = [];
-  List<PostEntity> get posts => _posts;
+  List<PostEntity> _allPosts = [];
+  List<PostEntity> get allPosts => _allPosts;
+
+  List<PostEntity> _postsInCategory = [];
+  List<PostEntity> get postsInCategory => _postsInCategory;
 
   List<PostEntity> _postsFiltered = [];
   List<PostEntity> get postsFiltered => _postsFiltered;
 
   void initStorage() {
 
-    _posts = [
+    _allPosts = [
       const PostEntity(
         id: 1,
         title: 'Where Web 3\nis Going to?',
@@ -51,24 +54,41 @@ class GlobalMockStorageProvider extends ChangeNotifier {
       ),
     ];
 
-    _postsFiltered = _posts;
+    _postsInCategory = _allPosts;
+    _postsFiltered = _allPosts;
+    notifyListeners();
+  }
+
+  void filter(String filter) {
+
+    if (filter.isNotEmpty) {
+
+      _postsFiltered = _postsInCategory
+          .where((post) => post.author.toLowerCase().contains(filter.toLowerCase()))
+          .toList();
+    }
+    else {
+      _postsFiltered = _postsInCategory;
+    }
 
     notifyListeners();
   }
 
-  void loadFiltered(Category category) {
-    _postsFiltered = _posts.where((post) => post.category == category).toList();
+  void loadAllInCategory(Category category) {
+
+    _postsInCategory = _allPosts.where((post) => post.category == category).toList();
+    _postsFiltered = _postsInCategory;
     notifyListeners();
   }
 
   void likePost(int id) {
     // Find the post that matches the id
-    final postIndex = _posts.indexWhere((post) => post.id == id);
+    final postIndex = _allPosts.indexWhere((post) => post.id == id);
 
     if (postIndex != -1) {
 
-      final updatedPost = _posts[postIndex].copyWith(isLiked: !_posts[postIndex].isLiked);
-      _posts[postIndex] = updatedPost;
+      final updatedPost = _allPosts[postIndex].copyWith(isLiked: !_allPosts[postIndex].isLiked);
+      _allPosts[postIndex] = updatedPost;
       notifyListeners();
     }
 

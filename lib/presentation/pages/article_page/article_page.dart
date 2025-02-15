@@ -41,7 +41,7 @@ class _ArticlePageState extends State<ArticlePage> {
                 child: Consumer<GlobalMockStorageProvider>(
                   builder: (context, notifier, child) {
 
-                    final post = notifier.posts.where((post) => post.id == widget.id).first;
+                    final post = notifier.allPosts.where((post) => post.id == widget.id).first;
 
                     return Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
