@@ -26,6 +26,7 @@ class HomePage extends StatefulWidget {
 class _HomePageState extends State<HomePage> {
 
   //todo: search selector
+  //todo: change app font to Inter of San Francisco
 
   @override
   void initState() {
@@ -116,19 +117,21 @@ class _HomePageState extends State<HomePage> {
                   color: AppColors.accentColor,
                   size: 20,
                 ),
-                trailing: const [
+                trailing: [
                   RoundedButton(
                     text: 'Author',
                     trailingIcon: Icons.keyboard_arrow_down_outlined,
                     isSelected: true,
+                    //todo: show filter selector with Author, title filter
+                    onTap: () {},
                   ),
                 ],
                 hintText: 'Search here',
                 hintStyle: WidgetStatePropertyAll(
-                    TextStyle(
-                    color: AppColors.accentColor,
-                    fontSize: 14.0,
-                  ),
+                  TextStyle(
+                  color: AppColors.accentColor,
+                  fontSize: 14.0,
+                ),
                 ),
                 elevation: const WidgetStatePropertyAll(0.0),
                 backgroundColor: const WidgetStatePropertyAll(Colors.white),
@@ -187,11 +190,9 @@ class _HomePageState extends State<HomePage> {
                                 duration: const Duration(milliseconds: 400),
                                 curve: Curves.easeInOut,
                                 scale: 1 - (index * 0.2),
-                                child: InkWell(
-                                  onTap: () => openArticlePage(posts[index].id),
-                                  child: PostCard(
-                                    post: posts[index],
-                                  ),
+                                child: PostCard(
+                                  post: posts[index],
+                                  onTap: openArticlePage,
                                 ),
                               ),
                             ),
