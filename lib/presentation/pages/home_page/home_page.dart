@@ -25,11 +25,7 @@ class HomePage extends StatefulWidget {
 
 class _HomePageState extends State<HomePage> {
 
-  //todo: animation is off, when there's only one element, and I am trying to remove it
-  // and if I am switching categories
-  
-  //todo: move this to provider
-  bool isInsertAnimationStarted = false;
+  //todo: search / search selector
 
   @override
   void initState() {
