@@ -27,6 +27,7 @@ class _HomePageState extends State<HomePage> {
 
   //todo: search selector
   //todo: change app font to Inter of San Francisco
+  //todo: dig into animations to create what you want
 
   @override
   void initState() {
