@@ -162,7 +162,7 @@ class _HomePageState extends State<HomePage> {
                             key: ValueKey(posts[index].id),
                             duration: const Duration(milliseconds: 400),
                             curve: Curves.easeInOut,
-                            top: isInsertAnimationStarted ? 0 : index * 60,
+                            top: index * 60,
                             left: 0,
                             right: 0,
                             child: Dismissible(
@@ -174,13 +174,11 @@ class _HomePageState extends State<HomePage> {
 
                                 setState(() {
                                   notifier.postsFiltered.removeAt(index);
-                                  isInsertAnimationStarted = true;
                                 });
 
                                 Future.delayed(const Duration(milliseconds: 400), () {
                                   setState(() {
                                     posts.add(post);
-                                    isInsertAnimationStarted = false;
                                   });
                                 });
                               },
