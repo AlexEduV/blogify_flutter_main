@@ -15,18 +15,36 @@ class CircledButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
 
-    return GestureDetector(
-      onTap: onTap,
-      child: Container(
-        padding: const EdgeInsets.all(12.0),
-        decoration: const BoxDecoration(
-          color: Colors.white,
-          shape: BoxShape.circle,
-        ),
-        child: FaIcon(
-          icon,
-          color: Colors.black54,
-          size: 20,
+    return Material(
+      borderRadius: BorderRadius.circular(50.0),
+      child: InkWell(
+        onTap: onTap,
+        borderRadius: BorderRadius.circular(50.0),
+        child: Container(
+          padding: const EdgeInsets.all(16.0),
+          decoration: BoxDecoration(
+            color: Colors.white,
+            shape: BoxShape.circle,
+            border: Border(
+              bottom: BorderSide(
+                color: Colors.grey[300]!,
+                width: 0.5,
+              ),
+            ),
+            boxShadow: [
+              BoxShadow(
+                color: Colors.grey[200]!,
+                offset: const Offset(0, 2),
+                blurRadius: 5.0,
+                spreadRadius: 2.0,
+              ),
+            ],
+          ),
+          child: FaIcon(
+            icon,
+            color: Colors.black54,
+            size: 20,
+          ),
         ),
       ),
     );

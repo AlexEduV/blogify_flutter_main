@@ -27,6 +27,20 @@ class _CategorySelectorState extends State<CategorySelector> {
       decoration: BoxDecoration(
         color: Colors.white,
         borderRadius: BorderRadius.circular(24.0),
+        border: Border(
+          bottom: BorderSide(
+            color: Colors.grey[300]!,
+            width: 0.5,
+          ),
+        ),
+        boxShadow: [
+          BoxShadow(
+            color: Colors.grey[200]!,
+            offset: const Offset(0, 2),
+            blurRadius: 5.0,
+            spreadRadius: 2.0,
+          ),
+        ],
       ),
       padding: const EdgeInsets.all(8.0),
       child: Row(
