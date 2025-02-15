@@ -1,4 +1,4 @@
-import 'package:blogify_flutter_main/domain/entities/category.dart';
+import 'package:blogify_flutter_main/domain/helpers/category_helper.dart';
 import 'package:blogify_flutter_main/domain/entities/post_entity.dart';
 import 'package:flutter/material.dart';
 
