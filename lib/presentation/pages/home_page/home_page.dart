@@ -3,6 +3,7 @@ import 'package:blogify_flutter_main/data/mock_storage/global_mock_storage_provi
 import 'package:blogify_flutter_main/domain/entities/category.dart';
 import 'package:blogify_flutter_main/domain/entities/post_entity.dart';
 import 'package:blogify_flutter_main/presentation/common/widgets/circled_button_outlined.dart';
+import 'package:blogify_flutter_main/presentation/pages/home_page/notifiers/category_index_notifier.dart';
 import 'package:blogify_flutter_main/presentation/pages/home_page/widgets/category_selector.dart';
 import 'package:blogify_flutter_main/presentation/pages/home_page/widgets/circled_button.dart';
 import 'package:blogify_flutter_main/presentation/pages/home_page/widgets/post_card.dart';
@@ -28,7 +29,6 @@ class _HomePageState extends State<HomePage> {
   // and if I am switching categories
   
   //todo: move this to provider
-  int categoryIndex = 0;
   bool isInsertAnimationStarted = false;
 
   @override
@@ -221,25 +221,30 @@ class _HomePageState extends State<HomePage> {
               const SizedBox(height: 24.0,),
 
               // topic selector & edit button
-              Row(
-                spacing: 12,
-                children: [
+              Consumer<CategoryIndexNotifier>(
+                builder: (context, notifier, child) {
 
-                  Expanded(
-                    child: CategorySelector(
-                      selectedIndex: categoryIndex,
-                      items: const [
-                        'Trending',
-                        'Design',
-                        'Tech',
-                      ],
-                      onItemTapped: onCategoryItemTapped,
-                    ),
-                  ),
+                  return Row(
+                    spacing: 12,
+                    children: [
 
-                  //todo: new publication screen
-                  CircledButton(icon: FontAwesomeIcons.pen, onTap: () {}),
-                ],
+                      Expanded(
+                        child: CategorySelector(
+                          selectedIndex: notifier.categoryIndex,
+                          items: const [
+                            'Trending',
+                            'Design',
+                            'Tech',
+                          ],
+                          onItemTapped: onCategoryItemTapped,
+                        ),
+                      ),
+
+                      //todo: new publication screen
+                      CircledButton(icon: FontAwesomeIcons.pen, onTap: () {}),
+                    ],
+                  );
+                }
               ),
 
               const SizedBox(height: 16.0,),
@@ -265,13 +270,13 @@ class _HomePageState extends State<HomePage> {
   }
 
   void onCategoryItemTapped(int index) {
-    setState(() {
-      categoryIndex = index;
-    });
+    //update index;
+    context.read<CategoryIndexNotifier>().update(index);
+
+    //filter storage
+    final category = CategoryHelper.getCategoryByIndex(index);
 
     final storageNotifier = context.read<GlobalMockStorageProvider>();
-
-    final category = CategoryHelper.getCategoryByIndex(index);
     storageNotifier.loadFiltered(category);
 
   }
