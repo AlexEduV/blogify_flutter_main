@@ -152,67 +152,53 @@ class _HomePageState extends State<HomePage> {
 
                     final posts = notifier.postsFiltered;
 
-                    return Stack(
-                      clipBehavior: Clip.none,
-                      alignment: Alignment.center,
-                      children: List.generate(posts.length, (index) {
+                    return SizedBox(
+                      child: Stack(
+                        clipBehavior: Clip.none,
+                        alignment: Alignment.topCenter,
+                        children: List.generate(posts.length, (index) {
 
-                        return AnimatedPositioned(
-                          duration: const Duration(milliseconds: 400),
-                          curve: Curves.easeInOut,
-                          top: isInsertAnimationStarted ? 0 : index * 60,
-                          left: 0,
-                          right: 0,
-                          child: Dismissible(
+                          return AnimatedPositioned(
                             key: ValueKey(posts[index].id),
-                            direction: DismissDirection.vertical,
-                            onDismissed: (direction) {
-                              final PostEntity post = posts[index];
+                            duration: const Duration(milliseconds: 400),
+                            curve: Curves.easeInOut,
+                            top: isInsertAnimationStarted ? 0 : index * 60,
+                            left: 0,
+                            right: 0,
+                            child: Dismissible(
+                              key: ValueKey(posts[index].id),
+                              direction: DismissDirection.vertical,
+                              onDismissed: (direction) {
 
-                              setState(() {
-                                notifier.postsFiltered.removeAt(index);
-                                isInsertAnimationStarted = true;
-                              });
+                                final PostEntity post = posts[index];
 
-                              Future.delayed(const Duration(milliseconds: 400), () {
                                 setState(() {
-
-                                  //todo: somehow, if the index is last, we should animate it,
-                                  // - leave all other items as they are;
-
-                                  //if the insertion index == length (one before last),
-                                  // the animation is good, but we're cycling only 2 items, not all
-
-                                  //insertion is not really good in this case, since the calculations are based
-                                  //on index
-
-                                  // the current workaround makes stack folded and than spread out again
-                                  // it's production-ready, but not what I intended. I wanted a queue effect.
-                                  // the item gets deleted. The others slide to the user (get bigger), then
-                                  // the tip of the last item is seen after 400 ms when it's inserted.
-
-                                  // maybe if I store the position somewhere, so that I can more easily track
-                                  // and customise it, not resetting in on state change.
-
-                                  posts.add(post);
-                                  isInsertAnimationStarted = false;
+                                  notifier.postsFiltered.removeAt(index);
+                                  isInsertAnimationStarted = true;
                                 });
-                              });
-                            },
-                            child: AnimatedScale(
-                              duration: const Duration(milliseconds: 400),
-                              curve: Curves.easeInOut,
-                              scale: 1 - (index * 0.2),
-                              child: InkWell(
-                                onTap: () => openArticlePage(posts[index].id),
-                                child: PostCard(
-                                  post: posts[index],
+
+                                Future.delayed(const Duration(milliseconds: 400), () {
+                                  setState(() {
+                                    posts.add(post);
+                                    isInsertAnimationStarted = false;
+                                  });
+                                });
+                              },
+                              child: AnimatedScale(
+                                duration: const Duration(milliseconds: 400),
+                                curve: Curves.easeInOut,
+                                scale: 1 - (index * 0.2),
+                                child: InkWell(
+                                  onTap: () => openArticlePage(posts[index].id),
+                                  child: PostCard(
+                                    post: posts[index],
+                                  ),
                                 ),
                               ),
                             ),
-                          ),
-                        );
-                      }).reversed.toList(),
+                          );
+                        }).reversed.toList(),
+                      ),
                     );
                   }
                 ),
