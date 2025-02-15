@@ -15,6 +15,7 @@ class GlobalMockStorageProvider extends ChangeNotifier {
         author: 'Josh Brian',
         daysAgoPublished: 1,
         minToRead: 5,
+        imageSrc: 'assets/images/design-2.jpg',
         content: '''
         
         The evolution of the internet has been marked by transformative shifts, from the static pages of Web 1.0 to the interactive and social-driven Web 2.0. Now, Web 3.0 promises a decentralized future where users regain control over their data, digital assets, and online identities. Built on blockchain technology, Web 3 introduces concepts like smart contracts, decentralized finance (DeFi), and tokenized economies, fundamentally changing how we interact with online platforms. Instead of relying on centralized corporations, users in a Web 3 ecosystem engage with peer-to-peer networks, reducing dependency on intermediaries and enabling a more transparent digital space.
@@ -30,6 +31,7 @@ class GlobalMockStorageProvider extends ChangeNotifier {
         title: 'Good Listeners Urgently Required',
         author: 'Jay Fitzgerald',
         daysAgoPublished: 2,
+        imageSrc: 'assets/images/leadership-2.jpg',
         minToRead: 15,
       ),
       const PostEntity(
@@ -38,6 +40,7 @@ class GlobalMockStorageProvider extends ChangeNotifier {
         author: 'Britton Stipetic',
         daysAgoPublished: 6,
         minToRead: 10,
+        imageSrc: 'assets/images/design-3.jpg',
       ),
     ];
 

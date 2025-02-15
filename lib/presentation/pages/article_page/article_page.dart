@@ -124,6 +124,7 @@ class _ArticlePageState extends State<ArticlePage> {
 
                         //photo cover
                         PhotoPlaceHolder(
+                          imageSrc: post.imageSrc,
                           placeholderColor: Colors.grey[300]!,
                           height: 220,
                         ),

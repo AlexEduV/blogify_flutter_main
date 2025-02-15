@@ -1,18 +1,14 @@
+import 'package:blogify_flutter_main/core/utils/intl_formatter.dart';
+import 'package:blogify_flutter_main/domain/entities/post_entity.dart';
 import 'package:blogify_flutter_main/presentation/common/widgets/photo_place_holder.dart';
 import 'package:blogify_flutter_main/presentation/theme/app_colors.dart';
 import 'package:flutter/material.dart';
 
 class PostCard extends StatelessWidget {
-  final String author;
-  final String title;
-  final String publishedWhen;
-  final String readTimeEstimated;
+  final PostEntity post;
 
   const PostCard({
-    required this.title,
-    required this.author,
-    required this.publishedWhen,
-    required this.readTimeEstimated,
+    required this.post,
     super.key,
   });
 
@@ -37,13 +33,14 @@ class PostCard extends StatelessWidget {
       child: Column(
         children: [
 
-          //todo: image here
-          const PhotoPlaceHolder(),
+          PhotoPlaceHolder(
+            imageSrc: post.imageSrc,
+          ),
 
           const SizedBox(height: 16.0,),
 
           Text(
-            author,
+            post.author,
             style: const TextStyle(
               fontWeight: FontWeight.w500,
               fontSize: 15.0,
@@ -51,7 +48,7 @@ class PostCard extends StatelessWidget {
           ),
 
           Text(
-            publishedWhen,
+            IntlFormatter.getFormattedDays(post.daysAgoPublished),
             style: TextStyle(
               fontWeight: FontWeight.w500,
               fontSize: 12.0,
@@ -62,7 +59,7 @@ class PostCard extends StatelessWidget {
           const SizedBox(height: 24.0,),
 
           Text(
-            title,
+            post.title,
             style: const TextStyle(
               fontWeight: FontWeight.w500,
               fontSize: 24.0,
@@ -84,7 +81,7 @@ class PostCard extends StatelessWidget {
               ),
 
               Text(
-                readTimeEstimated,
+                '${post.minToRead} min',
                 style: const TextStyle(
                   fontSize: 14.0,
                   fontWeight: FontWeight.w500,
