@@ -270,7 +270,7 @@ class _HomePageState extends State<HomePage> {
   }
 
   void onCategoryItemTapped(int index) {
-    //update index;
+    //update index
     context.read<CategoryIndexNotifier>().update(index);
 
     //filter storage

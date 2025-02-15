@@ -8,6 +8,7 @@ class RoundedButton extends StatelessWidget {
   final IconData? leadingIcon;
   final double horizontalPadding;
   final String text;
+  final double borderRadius;
   final Function()? onTap;
 
   const RoundedButton({
@@ -16,6 +17,7 @@ class RoundedButton extends StatelessWidget {
     this.trailingIcon,
     this.isSelected = false,
     this.horizontalPadding = 16.0,
+    this.borderRadius = 24.0,
     this.onTap,
     super.key,
   });
@@ -23,41 +25,42 @@ class RoundedButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
 
-    return InkWell(
-      onTap: onTap,
-      child: Container(
-        padding: EdgeInsets.symmetric(vertical: 8.0, horizontal: horizontalPadding),
-        decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(24.0),
-          color: isSelected ? AppColors.primaryColor : null,
-        ),
-        child: Row(
-          spacing: 4.0,
-          children: [
+    return Material(
+      color: isSelected ? AppColors.primaryColor : Colors.transparent,
+      borderRadius: BorderRadius.circular(borderRadius),
+      child: InkWell(
+        onTap: onTap,
+        borderRadius: BorderRadius.circular(borderRadius),
+        child: Container(
+          padding: EdgeInsets.symmetric(vertical: 8.0, horizontal: horizontalPadding),
+          child: Row(
+            spacing: 4.0,
+            children: [
 
-            if (leadingIcon != null)
-              Icon(
-                leadingIcon,
-                color: Colors.black87,
-                size: 24,
+              if (leadingIcon != null)
+                Icon(
+                  leadingIcon,
+                  color: Colors.black87,
+                  size: 24,
+                ),
+
+              Text(
+                text,
+                style: TextStyle(
+                  color: isSelected ? Colors.black87 : AppColors.accentColor,
+                  fontWeight: FontWeight.w400,
+                ),
               ),
 
-            Text(
-              text,
-              style: TextStyle(
-                color: isSelected ? Colors.black87 : AppColors.accentColor,
-                fontWeight: FontWeight.w400,
-              ),
-            ),
+              if (trailingIcon != null)
+                Icon(
+                  trailingIcon,
+                  color: Colors.black87,
+                  size: 24,
+                ),
 
-            if (trailingIcon != null)
-              Icon(
-                trailingIcon,
-                color: Colors.black87,
-                size: 24,
-              ),
-
-          ],
+            ],
+          ),
         ),
       ),
     );
