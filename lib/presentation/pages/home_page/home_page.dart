@@ -96,7 +96,7 @@ class _HomePageState extends State<HomePage> {
                   //Settings button
                   CircledButtonOutlined(
                     icon: FontAwesomeIcons.user,
-                    onTap: () => onUserButtonPressed(),
+                    onTap: () => onUserSettingsButtonPressed(),
                   ),
 
                 ],
@@ -236,7 +236,8 @@ class _HomePageState extends State<HomePage> {
     );
   }
 
-  void onUserButtonPressed() {
+  void onUserSettingsButtonPressed() {
+
     showModalBottomSheet(
         context: context,
         backgroundColor: Colors.white,
