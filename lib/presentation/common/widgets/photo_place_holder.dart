@@ -19,7 +19,10 @@ class PhotoPlaceHolder extends StatelessWidget {
     return Container(
       decoration: BoxDecoration(
         //color: placeholderColor,
-        image: DecorationImage(image: AssetImage(imageSrc)),
+        image: DecorationImage(
+          image: AssetImage(imageSrc,),
+          fit: BoxFit.cover,
+        ),
         borderRadius: BorderRadius.circular(16),
       ),
       height: height,
