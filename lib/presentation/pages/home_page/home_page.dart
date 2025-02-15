@@ -22,9 +22,9 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
-
+  
+  //todo: move this to provider
   int categoryIndex = 0;
-
   bool isInsertAnimationStarted = false;
 
   @override
@@ -32,7 +32,7 @@ class _HomePageState extends State<HomePage> {
     super.initState();
 
     WidgetsBinding.instance.addPostFrameCallback((_) {
-      context.read<GlobalMockStorageProvider>().load();
+      context.read<GlobalMockStorageProvider>().loadAll();
     });
   }
 

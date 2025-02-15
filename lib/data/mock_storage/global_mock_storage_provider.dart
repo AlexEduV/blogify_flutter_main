@@ -6,7 +6,7 @@ class GlobalMockStorageProvider extends ChangeNotifier {
   List<PostEntity> _posts = [];
   List<PostEntity> get posts => _posts;
 
-  void load() {
+  void loadAll() {
 
     _posts = [
       const PostEntity(
