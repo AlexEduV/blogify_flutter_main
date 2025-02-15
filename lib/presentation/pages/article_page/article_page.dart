@@ -25,6 +25,10 @@ class ArticlePage extends StatefulWidget {
 
 class _ArticlePageState extends State<ArticlePage> {
 
+  //todo: if the content of the post is small (like 1 paragraph), the text
+  // does not fill the height of the screen, so the share bar is not positioned at the bottom,
+  // but rather in the middle of screen.
+
   @override
   Widget build(BuildContext context) {
 
