@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 
-class PhotoPlaceHolder extends StatelessWidget {
+class PostCoverPhoto extends StatelessWidget {
 
   final String imageSrc;
   final Color placeholderColor;
   final double height;
 
-  const PhotoPlaceHolder({
+  const PostCoverPhoto({
     this.placeholderColor = Colors.white,
     this.imageSrc = '',
     this.height = 250,
@@ -18,11 +18,11 @@ class PhotoPlaceHolder extends StatelessWidget {
 
     return Container(
       decoration: BoxDecoration(
-        //color: placeholderColor,
-        image: DecorationImage(
+        color: imageSrc.isEmpty ? placeholderColor : null,
+        image: (imageSrc.isNotEmpty) ? DecorationImage(
           image: AssetImage(imageSrc,),
           fit: BoxFit.cover,
-        ),
+        ) : null,
         borderRadius: BorderRadius.circular(16),
       ),
       height: height,

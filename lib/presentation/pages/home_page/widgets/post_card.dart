@@ -1,6 +1,6 @@
 import 'package:blogify_flutter_main/core/utils/intl_formatter.dart';
 import 'package:blogify_flutter_main/domain/entities/post_entity.dart';
-import 'package:blogify_flutter_main/presentation/common/widgets/photo_place_holder.dart';
+import 'package:blogify_flutter_main/presentation/common/widgets/post_cover_photo.dart';
 import 'package:blogify_flutter_main/presentation/theme/app_colors.dart';
 import 'package:flutter/material.dart';
 
@@ -33,7 +33,7 @@ class PostCard extends StatelessWidget {
       child: Column(
         children: [
 
-          PhotoPlaceHolder(
+          PostCoverPhoto(
             imageSrc: post.imageSrc,
           ),
 
