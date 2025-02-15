@@ -1,5 +1,6 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:blogify_flutter_main/data/mock_storage/global_mock_storage_provider.dart';
+import 'package:blogify_flutter_main/domain/entities/category.dart';
 import 'package:blogify_flutter_main/domain/entities/post_entity.dart';
 import 'package:blogify_flutter_main/presentation/common/widgets/circled_button_outlined.dart';
 import 'package:blogify_flutter_main/presentation/pages/home_page/widgets/category_selector.dart';
@@ -31,8 +32,11 @@ class _HomePageState extends State<HomePage> {
   void initState() {
     super.initState();
 
+    final storageNotifier = context.read<GlobalMockStorageProvider>();
+
     WidgetsBinding.instance.addPostFrameCallback((_) {
-      context.read<GlobalMockStorageProvider>().loadAll();
+      storageNotifier.initStorage();
+      storageNotifier.loadFiltered(Category.trending);
     });
   }
 
@@ -143,7 +147,7 @@ class _HomePageState extends State<HomePage> {
                 child: Consumer<GlobalMockStorageProvider>(
                   builder: (context, notifier, child) {
 
-                    final posts = notifier.posts;
+                    final posts = notifier.postsFiltered;
 
                     return Stack(
                       clipBehavior: Clip.none,
@@ -163,7 +167,7 @@ class _HomePageState extends State<HomePage> {
                               final PostEntity post = posts[index];
 
                               setState(() {
-                                notifier.posts.removeAt(index);
+                                notifier.postsFiltered.removeAt(index);
                                 isInsertAnimationStarted = true;
                               });
 
@@ -261,6 +265,12 @@ class _HomePageState extends State<HomePage> {
     setState(() {
       categoryIndex = index;
     });
+
+    final storageNotifier = context.read<GlobalMockStorageProvider>();
+
+    final category = CategoryHelper.getCategoryByIndex(index);
+    storageNotifier.loadFiltered(category);
+
   }
 
   void openArticlePage(int id) {
