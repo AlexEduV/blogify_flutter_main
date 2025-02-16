@@ -18,13 +18,7 @@ class CircledButton extends StatelessWidget {
     return Container(
       decoration: BoxDecoration(
         color: Colors.white,
-        borderRadius: BorderRadius.circular(50.0),
-        border: Border(
-          bottom: BorderSide(
-            color: Colors.grey[300]!,
-            width: 0.5,
-          ),
-        ),
+        shape: BoxShape.circle,
         boxShadow: [
           BoxShadow(
             color: Colors.grey[200]!,
@@ -36,9 +30,8 @@ class CircledButton extends StatelessWidget {
       ),
 
       child: Material(
-        color: Colors.white,
+        color: Colors.transparent,
         borderRadius: BorderRadius.circular(50.0),
-        shadowColor: Colors.grey[200],
         child: InkWell(
           onTap: onTap,
           borderRadius: BorderRadius.circular(50.0),
