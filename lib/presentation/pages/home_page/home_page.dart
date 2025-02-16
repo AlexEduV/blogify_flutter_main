@@ -166,6 +166,22 @@ class _HomePageState extends State<HomePage> {
 
                     final posts = notifier.postsFiltered;
 
+                    if (posts.isEmpty) {
+
+                      //placeholder
+                      return const Column(
+                        children: [
+                          Text(
+                            'Sorry, no Posts found',
+                            style: TextStyle(
+                              fontSize: 16.0,
+                              fontWeight: FontWeight.w500,
+                            ),
+                          ),
+                        ],
+                      );
+                    }
+
                     return Stack(
                       clipBehavior: Clip.none,
                       alignment: Alignment.topCenter,
