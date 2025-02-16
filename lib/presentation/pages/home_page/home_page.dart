@@ -258,7 +258,7 @@ class _HomePageState extends State<HomePage> {
                       ),
 
                       CircledButton(
-                        icon: FontAwesomeIcons.edit,
+                        icon: FontAwesomeIcons.penToSquare,
                         onTap: () {
                           //todo: new publication screen
                         },
