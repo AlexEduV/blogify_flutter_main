@@ -4,6 +4,7 @@ import 'package:blogify_flutter_main/data/mock_storage/global_mock_user_provider
 import 'package:blogify_flutter_main/domain/helpers/category_helper.dart';
 import 'package:blogify_flutter_main/domain/entities/post_entity.dart';
 import 'package:blogify_flutter_main/presentation/common/widgets/circled_button_outlined.dart';
+import 'package:blogify_flutter_main/presentation/common/widgets/user_photo.dart';
 import 'package:blogify_flutter_main/presentation/pages/home_page/notifiers/category_index_notifier.dart';
 import 'package:blogify_flutter_main/presentation/pages/home_page/notifiers/search_column_notifier.dart';
 import 'package:blogify_flutter_main/presentation/pages/home_page/widgets/category_selector.dart';
@@ -105,12 +106,23 @@ class _HomePageState extends State<HomePage> {
                     ],
                   ),
 
-                  //Settings button
-                  CircledButtonOutlined(
-                    icon: FontAwesomeIcons.user,
-                    onTap: () => onUserSettingsButtonPressed(),
-                  ),
+                  //User Settings button
+                  Material(
+                    color: Colors.transparent,
+                    child: InkWell(
+                      borderRadius: BorderRadius.circular(50.0),
+                      onTap: () => onUserSettingsButtonPressed(),
+                      child: Consumer<GlobalMockUserProvider>(
+                        builder: (context, notifier, child) {
 
+                          return UserPhoto(
+                            imageSrc: notifier.currentUser.imageSrc,
+                            size: 55,
+                          );
+                        }
+                      ),
+                    ),
+                  ),
                 ],
               ),
 

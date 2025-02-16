@@ -45,7 +45,7 @@ class UserSettingsPage extends StatelessWidget {
 
                   const SizedBox(height: 16.0,),
 
-                  //todo: replace with actual photo / or enable replacement (tier + 1)
+                  //todo: enable replacement (tier + 1)
                   UserPhoto(
                     imageSrc: userNotifier.currentUser.imageSrc,
                   ),
