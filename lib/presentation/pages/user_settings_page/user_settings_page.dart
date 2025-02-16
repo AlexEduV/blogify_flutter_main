@@ -44,9 +44,12 @@ class UserSettingsPage extends StatelessWidget {
               Container(
                 height: 80,
                 width: 80,
-                decoration: BoxDecoration(
+                decoration: const BoxDecoration(
                   shape: BoxShape.circle,
-                  color: Colors.grey[300],
+                  image: DecorationImage(
+                    image: AssetImage('assets/images/profile-image.jpg'),
+                    fit: BoxFit.cover,
+                  ),
                 ),
               ),
 
