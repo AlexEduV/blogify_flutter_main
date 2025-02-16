@@ -124,15 +124,17 @@ class _HomePageState extends State<HomePage> {
                     trailingIcon: Icons.keyboard_arrow_down_outlined,
                     isSelected: true,
                     //todo: show filter selector with Author, title filter
-                    onTap: () {},
+                    onTap: () {
+
+                    },
                   ),
                 ],
                 hintText: 'Search here',
                 hintStyle: WidgetStatePropertyAll(
-                  TextStyle(
-                  color: AppColors.accentColor,
-                  fontSize: 14.0,
-                ),
+                    TextStyle(
+                    color: AppColors.accentColor,
+                    fontSize: 14.0,
+                  ),
                 ),
                 elevation: const WidgetStatePropertyAll(0.0),
                 backgroundColor: const WidgetStatePropertyAll(Colors.white),

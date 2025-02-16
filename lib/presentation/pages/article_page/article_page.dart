@@ -25,9 +25,8 @@ class ArticlePage extends StatefulWidget {
 
 class _ArticlePageState extends State<ArticlePage> {
 
-  //todo: if the content of the post is small (like 1 paragraph), the text
-  // does not fill the height of the screen, so the share bar is not positioned at the bottom,
-  // but rather in the middle of screen.
+  //todo: maybe hide the share button, when the user is reading (changes the scroll position)
+  // -> sliver app bar and button
 
   @override
   Widget build(BuildContext context) {
@@ -148,18 +147,11 @@ class _ArticlePageState extends State<ArticlePage> {
                 ),
               ),
             ),
-
-            //todo: maybe hide the button, when the user is reading (changes the scroll position)
-            const Positioned(
-              bottom: 0,
-              left: 0,
-              right: 0,
-              child: ShareFloatingBar(),
-            ),
-
           ],
         ),
       ),
+      floatingActionButton: const ShareFloatingBar(),
+      floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
     );
   }
 }
