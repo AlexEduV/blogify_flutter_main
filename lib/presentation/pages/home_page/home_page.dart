@@ -186,19 +186,16 @@ class _HomePageState extends State<HomePage> {
                     if (posts.isEmpty) {
 
                       //placeholder
-                      return const Column(
-                        children: [
-                          Text(
-                            'Sorry, no Posts found',
-                            style: TextStyle(
-                              fontSize: 16.0,
-                              fontWeight: FontWeight.w500,
-                            ),
-                          ),
-                        ],
+                      return const Text(
+                        'No posts available at the moment.',
+                        style: TextStyle(
+                          fontSize: 16.0,
+                          fontWeight: FontWeight.w500,
+                        ),
                       );
                     }
 
+                    //post stack
                     return Stack(
                       clipBehavior: Clip.none,
                       alignment: Alignment.topCenter,
