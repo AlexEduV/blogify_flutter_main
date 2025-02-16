@@ -15,38 +15,49 @@ class CircledButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
 
-    //todo: the material effect seems like it's not there
-    return Material(
-      color: Colors.transparent,
-      borderRadius: BorderRadius.circular(50.0),
-      child: InkWell(
-        onTap: onTap,
-        splashColor: Colors.grey,
+    return Container(
+      decoration: BoxDecoration(
+        color: Colors.white,
         borderRadius: BorderRadius.circular(50.0),
-        child: Container(
-          padding: const EdgeInsets.all(16.0),
-          decoration: BoxDecoration(
-            color: Colors.white,
-            shape: BoxShape.circle,
-            border: Border(
-              bottom: BorderSide(
-                color: Colors.grey[300]!,
-                width: 0.5,
+        border: Border(
+          bottom: BorderSide(
+            color: Colors.grey[300]!,
+            width: 0.5,
+          ),
+        ),
+        boxShadow: [
+          BoxShadow(
+            color: Colors.grey[200]!,
+            offset: const Offset(0, 2),
+            blurRadius: 5.0,
+            spreadRadius: 2.0,
+          ),
+        ],
+      ),
+
+      child: Material(
+        color: Colors.white,
+        borderRadius: BorderRadius.circular(50.0),
+        shadowColor: Colors.grey[200],
+        child: InkWell(
+          onTap: onTap,
+          borderRadius: BorderRadius.circular(50.0),
+          child: Container(
+            padding: const EdgeInsets.all(16.0),
+            decoration: BoxDecoration(
+              shape: BoxShape.circle,
+              border: Border(
+                bottom: BorderSide(
+                  color: Colors.grey[300]!,
+                  width: 0.5,
+                ),
               ),
             ),
-            boxShadow: [
-              BoxShadow(
-                color: Colors.grey[200]!,
-                offset: const Offset(0, 2),
-                blurRadius: 5.0,
-                spreadRadius: 2.0,
-              ),
-            ],
-          ),
-          child: FaIcon(
-            icon,
-            color: Colors.black54,
-            size: 20,
+            child: FaIcon(
+              icon,
+              color: Colors.black54,
+              size: 20,
+            ),
           ),
         ),
       ),
