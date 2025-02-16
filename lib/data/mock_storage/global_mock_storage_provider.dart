@@ -59,13 +59,23 @@ class GlobalMockStorageProvider extends ChangeNotifier {
     notifyListeners();
   }
 
-  void filter(String filter) {
+  void filter(String filter, String column) {
 
     if (filter.isNotEmpty) {
 
-      _postsFiltered = _postsInCategory
-          .where((post) => post.author.toLowerCase().contains(filter.toLowerCase()))
-          .toList();
+      if (column == 'Title') {
+        _postsFiltered = _postsInCategory
+            .where((post) => post.title.toLowerCase().contains(filter.toLowerCase()))
+            .toList();
+      }
+      else if (column == 'Author') {
+        _postsFiltered = _postsInCategory
+            .where((post) => post.author.toLowerCase().contains(filter.toLowerCase()))
+            .toList();
+      }
+      else {
+        throw Exception('Unexpected column');
+      }
     }
     else {
       _postsFiltered = _postsInCategory;

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-class ColumnSelectorNotifier extends ChangeNotifier {
+class SearchColumnNotifier extends ChangeNotifier {
 
   String _value = 'Author';
   String get value => _value;

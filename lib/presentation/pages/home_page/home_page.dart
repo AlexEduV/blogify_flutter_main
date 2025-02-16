@@ -4,7 +4,7 @@ import 'package:blogify_flutter_main/domain/helpers/category_helper.dart';
 import 'package:blogify_flutter_main/domain/entities/post_entity.dart';
 import 'package:blogify_flutter_main/presentation/common/widgets/circled_button_outlined.dart';
 import 'package:blogify_flutter_main/presentation/pages/home_page/notifiers/category_index_notifier.dart';
-import 'package:blogify_flutter_main/presentation/pages/home_page/notifiers/column_selector_notifier.dart';
+import 'package:blogify_flutter_main/presentation/pages/home_page/notifiers/search_column_notifier.dart';
 import 'package:blogify_flutter_main/presentation/pages/home_page/widgets/category_selector.dart';
 import 'package:blogify_flutter_main/presentation/pages/home_page/widgets/circled_button.dart';
 import 'package:blogify_flutter_main/presentation/pages/home_page/widgets/post_card.dart';
@@ -121,7 +121,7 @@ class _HomePageState extends State<HomePage> {
                   size: 20,
                 ),
                 trailing: [
-                  Consumer<ColumnSelectorNotifier>(
+                  Consumer<SearchColumnNotifier>(
                     builder: (context, notifier, child) {
 
                       return RoundedButton(
@@ -151,7 +151,8 @@ class _HomePageState extends State<HomePage> {
                 ),
                 onChanged: (String filter) {
                   final storageNotifier = context.read<GlobalMockStorageProvider>();
-                  storageNotifier.filter(filter);
+                  final searchColumnNotifier = context.read<SearchColumnNotifier>();
+                  storageNotifier.filter(filter, searchColumnNotifier.value);
                 },
               ),
 
@@ -285,7 +286,7 @@ class _HomePageState extends State<HomePage> {
     final Offset offset = renderBox.localToGlobal(Offset.zero); // Button's global position
     final Size size = renderBox.size; // Button's size
 
-    final selectorNotifier = context.read<ColumnSelectorNotifier>();
+    final selectorNotifier = context.read<SearchColumnNotifier>();
 
     showMenu(
       context: context,
