@@ -25,6 +25,9 @@ class HomePage extends StatefulWidget {
 
 class _HomePageState extends State<HomePage> {
 
+  String selectedFilterColumn = 'Author';
+  GlobalKey _buttonKey = GlobalKey(); // Key to get button position
+
   //todo: search selector
   //todo: change app font to Inter of San Francisco
   //todo: dig into animations to create what you want
@@ -120,13 +123,11 @@ class _HomePageState extends State<HomePage> {
                 ),
                 trailing: [
                   RoundedButton(
-                    text: 'Author',
+                    key: _buttonKey,
+                    text: selectedFilterColumn,
                     trailingIcon: Icons.keyboard_arrow_down_outlined,
                     isSelected: true,
-                    //todo: show filter selector with Author, title filter
-                    onTap: () {
-
-                    },
+                    onTap: showSearchColumnSelector,
                   ),
                 ],
                 hintText: 'Search here',
@@ -273,5 +274,37 @@ class _HomePageState extends State<HomePage> {
 
   void openArticlePage(int id) {
     context.router.push(ArticleRoute(id: id,));
+  }
+
+  void showSearchColumnSelector() {
+    final RenderBox renderBox = _buttonKey.currentContext!.findRenderObject() as RenderBox;
+    final Offset offset = renderBox.localToGlobal(Offset.zero); // Button's global position
+    final Size size = renderBox.size; // Button's size
+
+    showMenu(
+      context: context,
+      position: RelativeRect.fromLTRB(
+        offset.dx, // X Position (left)
+        offset.dy + size.height, // Y Position (below the button)
+        offset.dx + size.width, // Right boundary
+        offset.dy + size.height + 200, // Bottom boundary (just enough space)
+      ),
+      items: [
+        PopupMenuItem<String>(
+          value: 'Author',
+          child: const Text('Author'),
+          onTap: () => setState(() {
+            selectedFilterColumn = 'Author';
+          }),
+        ),
+        PopupMenuItem<String>(
+          value: 'Title',
+          child: const Text('Title'),
+          onTap: () => setState(() {
+            selectedFilterColumn = 'Title';
+          }),
+        ),
+      ],
+    );
   }
 }
