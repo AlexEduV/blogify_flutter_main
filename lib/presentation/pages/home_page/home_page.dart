@@ -166,49 +166,48 @@ class _HomePageState extends State<HomePage> {
 
                     final posts = notifier.postsFiltered;
 
-                    return SizedBox(
-                      child: Stack(
-                        clipBehavior: Clip.none,
-                        alignment: Alignment.topCenter,
-                        children: List.generate(posts.length, (index) {
+                    return Stack(
+                      clipBehavior: Clip.none,
+                      alignment: Alignment.topCenter,
+                      children: List.generate(posts.length, (index) {
 
-                          return AnimatedPositioned(
+                        return AnimatedPositioned(
+                          //this key blocks animation, but it was not working properly
+                          key: ValueKey(posts[index].id),
+                          duration: const Duration(milliseconds: 400),
+                          curve: Curves.easeInOut,
+                          top: index * 65,
+                          left: 0,
+                          right: 0,
+                          child: Dismissible(
                             key: ValueKey(posts[index].id),
-                            duration: const Duration(milliseconds: 400),
-                            curve: Curves.easeInOut,
-                            top: index * 65,
-                            left: 0,
-                            right: 0,
-                            child: Dismissible(
-                              key: ValueKey(posts[index].id),
-                              direction: DismissDirection.vertical,
-                              onDismissed: (direction) {
+                            direction: DismissDirection.vertical,
+                            onDismissed: (direction) {
 
-                                final PostEntity post = posts[index];
+                              final PostEntity post = posts[index];
 
+                              setState(() {
+                                notifier.postsFiltered.removeAt(index);
+                              });
+
+                              Future.delayed(const Duration(milliseconds: 400), () {
                                 setState(() {
-                                  notifier.postsFiltered.removeAt(index);
+                                  posts.add(post);
                                 });
-
-                                Future.delayed(const Duration(milliseconds: 400), () {
-                                  setState(() {
-                                    posts.add(post);
-                                  });
-                                });
-                              },
-                              child: AnimatedScale(
-                                duration: const Duration(milliseconds: 400),
-                                curve: Curves.easeInOut,
-                                scale: 1 - (index * 0.2),
-                                child: PostCard(
-                                  post: posts[index],
-                                  onTap: openArticlePage,
-                                ),
+                              });
+                            },
+                            child: AnimatedScale(
+                              duration: const Duration(milliseconds: 400),
+                              curve: Curves.easeInOut,
+                              scale: 1 - (index * 0.2),
+                              child: PostCard(
+                                post: posts[index],
+                                onTap: openArticlePage,
                               ),
                             ),
-                          );
-                        }).reversed.toList(),
-                      ),
+                          ),
+                        );
+                      }).reversed.toList(),
                     );
                   }
                 ),
