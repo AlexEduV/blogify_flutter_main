@@ -1,5 +1,6 @@
 import 'package:blogify_flutter_main/core/utils/app_display_version.dart';
 import 'package:blogify_flutter_main/data/mock_storage/global_mock_user_provider.dart';
+import 'package:blogify_flutter_main/presentation/common/widgets/user_photo.dart';
 import 'package:blogify_flutter_main/presentation/pages/user_settings_page/widgets/list_item.dart';
 import 'package:blogify_flutter_main/presentation/pages/user_settings_page/widgets/section_title.dart';
 import 'package:flutter/material.dart';
@@ -44,18 +45,9 @@ class UserSettingsPage extends StatelessWidget {
 
                   const SizedBox(height: 16.0,),
 
-                  //user photo
                   //todo: replace with actual photo / or enable replacement (tier + 1)
-                  Container(
-                    height: 80,
-                    width: 80,
-                    decoration: BoxDecoration(
-                      shape: BoxShape.circle,
-                      image: DecorationImage(
-                        image: AssetImage(userNotifier.currentUser.imageSrc),
-                        fit: BoxFit.cover,
-                      ),
-                    ),
+                  UserPhoto(
+                    imageSrc: userNotifier.currentUser.imageSrc,
                   ),
               
                   const SizedBox(height: 16.0,),
