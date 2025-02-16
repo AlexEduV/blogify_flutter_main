@@ -34,6 +34,7 @@ class MyApp extends StatelessWidget {
         scaffoldBackgroundColor: AppColors.scaffoldBackgroundColor,
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.white),
         useMaterial3: true,
+        fontFamily: 'SFPro'
       ),
       debugShowCheckedModeBanner: false,
     );
