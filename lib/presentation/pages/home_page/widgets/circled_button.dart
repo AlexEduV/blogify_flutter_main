@@ -15,10 +15,13 @@ class CircledButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
 
+    //todo: the material effect seems like it's not there
     return Material(
+      color: Colors.transparent,
       borderRadius: BorderRadius.circular(50.0),
       child: InkWell(
         onTap: onTap,
+        splashColor: Colors.grey,
         borderRadius: BorderRadius.circular(50.0),
         child: Container(
           padding: const EdgeInsets.all(16.0),

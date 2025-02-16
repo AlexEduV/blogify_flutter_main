@@ -107,11 +107,11 @@ class _HomePageState extends State<HomePage> {
                   ),
 
                   //User Settings button
+                  //todo: no material effect is visible
                   Material(
-                    color: Colors.transparent,
                     child: InkWell(
                       borderRadius: BorderRadius.circular(50.0),
-                      onTap: () => onUserSettingsButtonPressed(),
+                      onTap: onUserSettingsButtonPressed,
                       child: Consumer<GlobalMockUserProvider>(
                         builder: (context, notifier, child) {
 
@@ -123,6 +123,7 @@ class _HomePageState extends State<HomePage> {
                       ),
                     ),
                   ),
+
                 ],
               ),
 
