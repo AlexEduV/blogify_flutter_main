@@ -28,7 +28,6 @@ class _HomePageState extends State<HomePage> {
 
   final GlobalKey _searchSelectorButtonKey = GlobalKey();
 
-  //todo: change app font to Inter of San Francisco
   //todo: dig into animations to create what you want
 
   @override
@@ -288,6 +287,8 @@ class _HomePageState extends State<HomePage> {
 
     final selectorNotifier = context.read<SearchColumnNotifier>();
 
+    final List<String> items = ['Author', 'Title'];
+
     showMenu(
       context: context,
       position: RelativeRect.fromLTRB(
@@ -298,14 +299,14 @@ class _HomePageState extends State<HomePage> {
       ),
       items: [
         PopupMenuItem<String>(
-          value: 'Author',
-          child: const Text('Author'),
-          onTap: () => selectorNotifier.update('Author'),
+          value: items[0],
+          child: Text(items[0]),
+          onTap: () => selectorNotifier.update(items[0]),
         ),
         PopupMenuItem<String>(
-          value: 'Title',
-          child: const Text('Title'),
-          onTap: () => selectorNotifier.update('Title'),
+          value: items[1],
+          child: Text(items[1]),
+          onTap: () => selectorNotifier.update(items[1]),
         ),
       ],
     );
