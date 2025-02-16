@@ -1,5 +1,6 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:blogify_flutter_main/data/mock_storage/global_mock_storage_provider.dart';
+import 'package:blogify_flutter_main/data/mock_storage/global_mock_user_provider.dart';
 import 'package:blogify_flutter_main/domain/helpers/category_helper.dart';
 import 'package:blogify_flutter_main/domain/entities/post_entity.dart';
 import 'package:blogify_flutter_main/presentation/common/widgets/circled_button_outlined.dart';
@@ -66,10 +67,10 @@ class _HomePageState extends State<HomePage> {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
 
-                      const Row(
+                      Row(
                         children: [
 
-                          Text(
+                          const Text(
                             'Hello, ',
                             style: TextStyle(
                               fontWeight: FontWeight.w500,
@@ -78,13 +79,18 @@ class _HomePageState extends State<HomePage> {
                             ),
                           ),
 
-                          Text(
-                            'Jason',
-                            style: TextStyle(
-                              fontWeight: FontWeight.w600,
-                              fontSize: 24.0,
-                              height: 1.4,
-                            ),
+                          Consumer<GlobalMockUserProvider>(
+                            builder: (context, notifier, child) {
+
+                              return Text(
+                                notifier.currentUser.firstName,
+                                style: const TextStyle(
+                                  fontWeight: FontWeight.w600,
+                                  fontSize: 24.0,
+                                  height: 1.4,
+                                ),
+                              );
+                            }
                           )
                         ],
                       ),
