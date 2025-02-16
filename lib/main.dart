@@ -1,5 +1,6 @@
 import 'package:blogify_flutter_main/data/mock_storage/global_mock_storage_provider.dart';
 import 'package:blogify_flutter_main/presentation/pages/home_page/notifiers/category_index_notifier.dart';
+import 'package:blogify_flutter_main/presentation/pages/home_page/notifiers/column_selector_notifier.dart';
 import 'package:blogify_flutter_main/presentation/theme/app_colors.dart';
 import 'package:blogify_flutter_main/router/router.dart';
 import 'package:flutter/material.dart';
@@ -11,6 +12,7 @@ void main() {
       providers: [
         ChangeNotifierProvider(create: (_) => GlobalMockStorageProvider()),
         ChangeNotifierProvider(create: (_) => CategoryIndexNotifier()),
+        ChangeNotifierProvider(create: (_) => ColumnSelectorNotifier()),
       ],
       child: const MyApp(),
     )

@@ -4,6 +4,7 @@ import 'package:blogify_flutter_main/domain/helpers/category_helper.dart';
 import 'package:blogify_flutter_main/domain/entities/post_entity.dart';
 import 'package:blogify_flutter_main/presentation/common/widgets/circled_button_outlined.dart';
 import 'package:blogify_flutter_main/presentation/pages/home_page/notifiers/category_index_notifier.dart';
+import 'package:blogify_flutter_main/presentation/pages/home_page/notifiers/column_selector_notifier.dart';
 import 'package:blogify_flutter_main/presentation/pages/home_page/widgets/category_selector.dart';
 import 'package:blogify_flutter_main/presentation/pages/home_page/widgets/circled_button.dart';
 import 'package:blogify_flutter_main/presentation/pages/home_page/widgets/post_card.dart';
@@ -25,10 +26,8 @@ class HomePage extends StatefulWidget {
 
 class _HomePageState extends State<HomePage> {
 
-  String selectedFilterColumn = 'Author';
-  GlobalKey _buttonKey = GlobalKey(); // Key to get button position
+  final GlobalKey _searchSelectorButtonKey = GlobalKey();
 
-  //todo: search selector
   //todo: change app font to Inter of San Francisco
   //todo: dig into animations to create what you want
 
@@ -122,12 +121,17 @@ class _HomePageState extends State<HomePage> {
                   size: 20,
                 ),
                 trailing: [
-                  RoundedButton(
-                    key: _buttonKey,
-                    text: selectedFilterColumn,
-                    trailingIcon: Icons.keyboard_arrow_down_outlined,
-                    isSelected: true,
-                    onTap: showSearchColumnSelector,
+                  Consumer<ColumnSelectorNotifier>(
+                    builder: (context, notifier, child) {
+
+                      return RoundedButton(
+                        key: _searchSelectorButtonKey,
+                        text: notifier.value,
+                        trailingIcon: Icons.keyboard_arrow_down_outlined,
+                        isSelected: true,
+                        onTap: showSearchColumnSelector,
+                      );
+                    }
                   ),
                 ],
                 hintText: 'Search here',
@@ -277,9 +281,11 @@ class _HomePageState extends State<HomePage> {
   }
 
   void showSearchColumnSelector() {
-    final RenderBox renderBox = _buttonKey.currentContext!.findRenderObject() as RenderBox;
+    final RenderBox renderBox = _searchSelectorButtonKey.currentContext!.findRenderObject() as RenderBox;
     final Offset offset = renderBox.localToGlobal(Offset.zero); // Button's global position
     final Size size = renderBox.size; // Button's size
+
+    final selectorNotifier = context.read<ColumnSelectorNotifier>();
 
     showMenu(
       context: context,
@@ -293,16 +299,12 @@ class _HomePageState extends State<HomePage> {
         PopupMenuItem<String>(
           value: 'Author',
           child: const Text('Author'),
-          onTap: () => setState(() {
-            selectedFilterColumn = 'Author';
-          }),
+          onTap: () => selectorNotifier.update('Author'),
         ),
         PopupMenuItem<String>(
           value: 'Title',
           child: const Text('Title'),
-          onTap: () => setState(() {
-            selectedFilterColumn = 'Title';
-          }),
+          onTap: () => selectorNotifier.update('Title'),
         ),
       ],
     );
