@@ -30,6 +30,8 @@ class _HomePageState extends State<HomePage> {
 
   //todo: dig into animations to create what you want
 
+  //todo: firebase authentication (Google, Apple)
+
   @override
   void initState() {
     super.initState();
