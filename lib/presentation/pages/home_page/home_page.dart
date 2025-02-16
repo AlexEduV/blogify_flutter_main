@@ -32,6 +32,9 @@ class _HomePageState extends State<HomePage> {
   //todo: dig into animations to create what you want
   //todo: firebase authentication (Google, Apple)
 
+  //todo: on the emulator (Pixel 4), the paddings of the card stack are not right,
+  // the bottom cards are not visible
+
   @override
   void initState() {
     super.initState();
