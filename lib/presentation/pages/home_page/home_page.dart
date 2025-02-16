@@ -71,7 +71,7 @@ class _HomePageState extends State<HomePage> {
                           Text(
                             'Hello, ',
                             style: TextStyle(
-                              fontWeight: FontWeight.w400,
+                              fontWeight: FontWeight.w500,
                               fontSize: 24.0,
                               height: 1.4,
                             ),
@@ -80,7 +80,7 @@ class _HomePageState extends State<HomePage> {
                           Text(
                             'Jason',
                             style: TextStyle(
-                              fontWeight: FontWeight.w500,
+                              fontWeight: FontWeight.w600,
                               fontSize: 24.0,
                               height: 1.4,
                             ),

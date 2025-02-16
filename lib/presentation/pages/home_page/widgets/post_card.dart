@@ -47,7 +47,7 @@ class PostCard extends StatelessWidget {
             Text(
               post.author,
               style: const TextStyle(
-                fontWeight: FontWeight.w500,
+                fontWeight: FontWeight.w600,
                 fontSize: 15.0,
               ),
             ),
@@ -55,7 +55,7 @@ class PostCard extends StatelessWidget {
             Text(
               IntlFormatter.getFormattedDays(post.daysAgoPublished),
               style: TextStyle(
-                fontWeight: FontWeight.w500,
+                fontWeight: FontWeight.w600,
                 fontSize: 12.0,
                 color: AppColors.accentColor,
               ),
@@ -66,7 +66,7 @@ class PostCard extends StatelessWidget {
             Text(
               post.title,
               style: const TextStyle(
-                fontWeight: FontWeight.w500,
+                fontWeight: FontWeight.w600,
                 fontSize: 24.0,
               ),
               textAlign: TextAlign.center,
@@ -81,7 +81,7 @@ class PostCard extends StatelessWidget {
                   'Read Time: ',
                   style: TextStyle(
                     color: AppColors.accentColor,
-                    fontWeight: FontWeight.w500,
+                    fontWeight: FontWeight.w600,
                   ),
                 ),
 
@@ -89,7 +89,7 @@ class PostCard extends StatelessWidget {
                   '${post.minToRead} min',
                   style: const TextStyle(
                     fontSize: 14.0,
-                    fontWeight: FontWeight.w500,
+                    fontWeight: FontWeight.w600,
                   ),
                 ),
               ],

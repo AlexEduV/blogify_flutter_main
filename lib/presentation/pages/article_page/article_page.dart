@@ -68,7 +68,7 @@ class _ArticlePageState extends State<ArticlePage> {
                                 const Text(
                                   'Back',
                                   style: TextStyle(
-                                    fontWeight: FontWeight.w400,
+                                    fontWeight: FontWeight.w500,
                                     fontSize: 16.0,
                                   ),
                                 ),
@@ -104,7 +104,7 @@ class _ArticlePageState extends State<ArticlePage> {
                         Text(
                           post.title,
                           style: const TextStyle(
-                            fontWeight: FontWeight.w500,
+                            fontWeight: FontWeight.w600,
                             fontSize: 24.0,
                           ),
                         ),
@@ -115,7 +115,7 @@ class _ArticlePageState extends State<ArticlePage> {
                         Text(
                           '${post.author}  |  ${IntlFormatter.getFormattedDays(post.daysAgoPublished)}  |  Read time: ${post.minToRead} min',
                           style: const TextStyle(
-                            fontWeight: FontWeight.w400,
+                            fontWeight: FontWeight.w500,
                             fontSize: 13.0,
                             color: Colors.black54,
                           ),

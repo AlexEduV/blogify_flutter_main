@@ -32,7 +32,7 @@ class UserSettingsPage extends StatelessWidget {
               const Text(
                 'Settings',
                 style: TextStyle(
-                  fontWeight: FontWeight.w400,
+                  fontWeight: FontWeight.w500,
                   fontSize: 16.0,
                 ),
               ),
@@ -55,7 +55,7 @@ class UserSettingsPage extends StatelessWidget {
               const Text(
                 'Jason Todd',
                 style: TextStyle(
-                  fontWeight: FontWeight.w400,
+                  fontWeight: FontWeight.w500,
                   fontSize: 20.0,
                   height: 1.4,
                 ),
