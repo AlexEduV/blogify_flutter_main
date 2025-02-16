@@ -257,8 +257,12 @@ class _HomePageState extends State<HomePage> {
                         ),
                       ),
 
-                      //todo: new publication screen
-                      CircledButton(icon: FontAwesomeIcons.pen, onTap: () {}),
+                      CircledButton(
+                        icon: FontAwesomeIcons.edit,
+                        onTap: () {
+                          //todo: new publication screen
+                        },
+                      ),
                     ],
                   );
                 }
