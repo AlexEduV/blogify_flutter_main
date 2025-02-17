@@ -152,6 +152,7 @@ class _ArticlePageState extends State<ArticlePage> {
           ],
         ),
       ),
+      //todo: share screen is not ready yet
       floatingActionButton: const ShareFloatingBar(),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
     );
