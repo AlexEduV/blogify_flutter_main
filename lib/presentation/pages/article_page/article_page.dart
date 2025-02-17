@@ -82,7 +82,9 @@ class _ArticlePageState extends State<ArticlePage> {
 
                                 CircledButtonOutlined(
                                   icon: FontAwesomeIcons.comment,
-                                  onTap: () {},
+                                  onTap: () {
+                                    context.router.push(CommentsRoute(id: widget.id));
+                                  },
                                 ),
 
                                 CircledButtonOutlined(
