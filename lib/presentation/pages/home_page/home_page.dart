@@ -199,48 +199,54 @@ class _HomePageState extends State<HomePage> {
                     }
 
                     //post stack
-                    return Stack(
-                      clipBehavior: Clip.none,
-                      alignment: Alignment.topCenter,
-                      children: List.generate(posts.length, (index) {
+                    return Consumer<CategoryIndexNotifier>(
+                      builder: (context, categoryIndexNotifier, child) {
 
-                        return AnimatedPositioned(
-                          //this key blocks animation, but it was not working properly
-                          //key: ValueKey(posts[index].id),
+                        return AnimatedSwitcher(
                           duration: const Duration(milliseconds: 400),
-                          curve: Curves.easeInOut,
-                          top: index * 60,
-                          left: 0,
-                          right: 0,
-                          child: Dismissible(
-                            key: ValueKey(posts[index].id),
-                            direction: DismissDirection.vertical,
-                            onDismissed: (direction) {
+                          child: Stack(
+                            key: ValueKey(categoryIndexNotifier.categoryIndex),
+                            clipBehavior: Clip.none,
+                            children: List.generate(posts.length, (index) {
 
-                              final PostEntity post = posts[index];
+                              return AnimatedPositioned(
+                                duration: const Duration(milliseconds: 400),
+                                curve: Curves.easeInOut,
+                                top: index * 65,
+                                left: 0,
+                                right: 0,
+                                child: Dismissible(
+                                  key: ValueKey(posts[index].id),
+                                  direction: DismissDirection.vertical,
+                                  onDismissed: (direction) {
 
-                              setState(() {
-                                notifier.postsFiltered.removeAt(index);
-                              });
+                                    final PostEntity post = posts[index];
 
-                              Future.delayed(const Duration(milliseconds: 400), () {
-                                setState(() {
-                                  posts.add(post);
-                                });
-                              });
-                            },
-                            child: AnimatedScale(
-                              duration: const Duration(milliseconds: 400),
-                              curve: Curves.easeInOut,
-                              scale: 1 - (index * 0.2),
-                              child: PostCard(
-                                post: posts[index],
-                                onTap: openArticlePage,
-                              ),
-                            ),
+                                    setState(() {
+                                      notifier.postsFiltered.removeAt(index);
+                                    });
+
+                                    Future.delayed(const Duration(milliseconds: 400), () {
+                                      setState(() {
+                                        posts.add(post);
+                                      });
+                                    });
+                                  },
+                                  child: AnimatedScale(
+                                    duration: const Duration(milliseconds: 400),
+                                    curve: Curves.easeInOut,
+                                    scale: 1 - (index * 0.2),
+                                    child: PostCard(
+                                      post: posts[index],
+                                      onTap: openArticlePage,
+                                    ),
+                                  ),
+                                ),
+                              );
+                            }).reversed.toList(),
                           ),
                         );
-                      }).reversed.toList(),
+                      }
                     );
                   }
                 ),
