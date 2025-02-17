@@ -145,6 +145,7 @@ class _HomePageState extends State<HomePage> {
                   Consumer<SearchColumnNotifier>(
                     builder: (context, notifier, child) {
 
+                      //todo: find a way to animate between two state icons
                       return RoundedButton(
                         key: _searchSelectorButtonKey,
                         text: notifier.value,
