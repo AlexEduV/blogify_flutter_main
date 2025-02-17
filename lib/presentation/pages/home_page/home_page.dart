@@ -145,40 +145,15 @@ class _HomePageState extends State<HomePage> {
                   Consumer<SearchColumnNotifier>(
                     builder: (context, notifier, child) {
 
-                      return Container(
-                        decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(24.0),
-                          color: AppColors.primaryColor,
-                        ),
-                        margin: const EdgeInsets.symmetric(vertical: 8.0),
-                        child: DropdownMenu(
-                          initialSelection: notifier.value,
-                          onSelected: (value) => notifier.update(value ?? ''),
-                          dropdownMenuEntries: const [
-                            DropdownMenuEntry(value: 'Author', label: 'Author'),
-                            DropdownMenuEntry(value: 'Title', label: 'Title'),
-                          ],
-                          inputDecorationTheme: const InputDecorationTheme(
-                            border: InputBorder.none,
-                            contentPadding: EdgeInsets.symmetric(
-                              horizontal: 8,
-                              vertical: 4,
-                            ),
-                          ),
-                          menuStyle: MenuStyle(
-                            padding: WidgetStateProperty.all(EdgeInsets.zero),
-                          ),
-
-                        ),
+                      return RoundedButton(
+                        key: _searchSelectorButtonKey,
+                        text: notifier.value,
+                        trailingIcon: notifier.isSelectionOpen
+                            ? Icons.keyboard_arrow_up_outlined
+                            : Icons.keyboard_arrow_down_outlined,
+                        isSelected: true,
+                        onTap: showSearchColumnSelector,
                       );
-
-                      // return RoundedButton(
-                      //   key: _searchSelectorButtonKey,
-                      //   text: notifier.value,
-                      //   trailingIcon: Icons.keyboard_arrow_down_outlined,
-                      //   isSelected: true,
-                      //   onTap: showSearchColumnSelector,
-                      // );
                     }
                   ),
                 ],
@@ -361,16 +336,17 @@ class _HomePageState extends State<HomePage> {
     context.router.push(ArticleRoute(id: id,));
   }
 
-  void showSearchColumnSelector() {
+  void showSearchColumnSelector() async {
     final RenderBox renderBox = _searchSelectorButtonKey.currentContext!.findRenderObject() as RenderBox;
     final Offset offset = renderBox.localToGlobal(Offset.zero); // Button's global position
     final Size size = renderBox.size; // Button's size
 
     final selectorNotifier = context.read<SearchColumnNotifier>();
+    selectorNotifier.updateSelectionOpenedState(true);
 
     final List<String> items = ['Author', 'Title'];
 
-    showMenu(
+    await showMenu(
       context: context,
       position: RelativeRect.fromLTRB(
         offset.dx, // X Position (left)
@@ -382,14 +358,16 @@ class _HomePageState extends State<HomePage> {
         PopupMenuItem<String>(
           value: items[0],
           child: Text(items[0]),
-          onTap: () => selectorNotifier.update(items[0]),
+          onTap: () => selectorNotifier.updateColumn(items[0]),
         ),
         PopupMenuItem<String>(
           value: items[1],
           child: Text(items[1]),
-          onTap: () => selectorNotifier.update(items[1]),
+          onTap: () => selectorNotifier.updateColumn(items[1]),
         ),
       ],
     );
+
+    selectorNotifier.updateSelectionOpenedState(false);
   }
 }

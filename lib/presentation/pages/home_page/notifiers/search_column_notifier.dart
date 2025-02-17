@@ -4,9 +4,17 @@ class SearchColumnNotifier extends ChangeNotifier {
 
   String _value = 'Author';
   String get value => _value;
+  
+  bool _isSelectionOpen = false;
+  bool get isSelectionOpen => _isSelectionOpen;
 
-  void update(String newValue) {
+  void updateColumn(String newValue) {
     _value = newValue;
+    notifyListeners();
+  }
+  
+  void updateSelectionOpenedState(bool newState) {
+    _isSelectionOpen = newState;
     notifyListeners();
   }
 
