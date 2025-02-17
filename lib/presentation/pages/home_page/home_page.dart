@@ -145,13 +145,40 @@ class _HomePageState extends State<HomePage> {
                   Consumer<SearchColumnNotifier>(
                     builder: (context, notifier, child) {
 
-                      return RoundedButton(
-                        key: _searchSelectorButtonKey,
-                        text: notifier.value,
-                        trailingIcon: Icons.keyboard_arrow_down_outlined,
-                        isSelected: true,
-                        onTap: showSearchColumnSelector,
+                      return Container(
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(24.0),
+                          color: AppColors.primaryColor,
+                        ),
+                        margin: const EdgeInsets.symmetric(vertical: 8.0),
+                        child: DropdownMenu(
+                          initialSelection: notifier.value,
+                          onSelected: (value) => notifier.update(value ?? ''),
+                          dropdownMenuEntries: const [
+                            DropdownMenuEntry(value: 'Author', label: 'Author'),
+                            DropdownMenuEntry(value: 'Title', label: 'Title'),
+                          ],
+                          inputDecorationTheme: const InputDecorationTheme(
+                            border: InputBorder.none,
+                            contentPadding: EdgeInsets.symmetric(
+                              horizontal: 8,
+                              vertical: 4,
+                            ),
+                          ),
+                          menuStyle: MenuStyle(
+                            padding: WidgetStateProperty.all(EdgeInsets.zero),
+                          ),
+
+                        ),
                       );
+
+                      // return RoundedButton(
+                      //   key: _searchSelectorButtonKey,
+                      //   text: notifier.value,
+                      //   trailingIcon: Icons.keyboard_arrow_down_outlined,
+                      //   isSelected: true,
+                      //   onTap: showSearchColumnSelector,
+                      // );
                     }
                   ),
                 ],
