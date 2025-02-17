@@ -206,10 +206,10 @@ class _HomePageState extends State<HomePage> {
 
                         return AnimatedPositioned(
                           //this key blocks animation, but it was not working properly
-                          key: ValueKey(posts[index].id),
+                          //key: ValueKey(posts[index].id),
                           duration: const Duration(milliseconds: 400),
                           curve: Curves.easeInOut,
-                          top: index * 65,
+                          top: index * 60,
                           left: 0,
                           right: 0,
                           child: Dismissible(
