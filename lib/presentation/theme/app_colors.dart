@@ -10,4 +10,6 @@ class AppColors {
   static final Color secondaryColor = const Color(0xffffffff);
   static final Color settingsItemColor = const Color(0xfff8f8f8);
 
+  static final Color emeraldGreen = const Color(0xff2e7d32);
+
 }

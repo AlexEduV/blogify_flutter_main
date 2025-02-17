@@ -164,11 +164,21 @@ class _HomePageState extends State<HomePage> {
                 ),
                 elevation: const WidgetStatePropertyAll(0.0),
                 backgroundColor: const WidgetStatePropertyAll(Colors.white),
-                shape: WidgetStatePropertyAll(
-                  RoundedRectangleBorder(
-                    side: BorderSide(color: Colors.grey[200]!, width: 1),
-                    borderRadius: BorderRadius.circular(32.0),
-                  ),
+                shape: WidgetStateProperty.resolveWith<RoundedRectangleBorder>(
+                    (Set<WidgetState> states) {
+                      if (states.contains(WidgetState.focused)) {
+                        return RoundedRectangleBorder(
+                          side: BorderSide(color: AppColors.emeraldGreen, width: 2), // Highlighted border
+                          borderRadius: BorderRadius.circular(32.0),
+                        );
+                      }
+
+                      //default value
+                      return  RoundedRectangleBorder(
+                        side: BorderSide(color: Colors.grey[200]!, width: 1),
+                        borderRadius: BorderRadius.circular(32.0),
+                      );
+                    }
                 ),
                 onChanged: (String filter) {
                   final storageNotifier = context.read<GlobalMockStorageProvider>();
