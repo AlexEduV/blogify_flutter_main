@@ -3,7 +3,7 @@ import 'package:flutter/cupertino.dart';
 
 class GlobalMockCommentProvider extends ChangeNotifier {
 
-  List<CommentEntity> _allComments = [
+  final List<CommentEntity> _allComments = [
     const CommentEntity(postId: 1, content: 'Hey there', date: '02/16/25', userId: 1),
   ];
   List<CommentEntity> get allComments => _allComments;
@@ -20,5 +20,5 @@ class GlobalMockCommentProvider extends ChangeNotifier {
     _allComments.add(comment);
     fetchCommentsByPostId(comment.postId);
   }
-  
+
 }
