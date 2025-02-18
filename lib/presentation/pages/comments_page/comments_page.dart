@@ -1,7 +1,9 @@
 import 'package:auto_route/annotations.dart';
+import 'package:blogify_flutter_main/data/mock_storage/global_mock_comment_provider.dart';
 import 'package:blogify_flutter_main/presentation/pages/home_page/widgets/rounded_button.dart';
 import 'package:blogify_flutter_main/presentation/theme/app_colors.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 @RoutePage()
 class CommentsPage extends StatefulWidget {
@@ -20,6 +22,18 @@ class CommentsPage extends StatefulWidget {
 class _CommentsPageState extends State<CommentsPage> {
 
   @override
+  void initState() {
+    super.initState();
+
+    final notifier = context.read<GlobalMockCommentProvider>();
+
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      notifier.fetchCommentsByPostId(widget.id);
+    });
+
+  }
+
+  @override
   Widget build(BuildContext context) {
 
     return Scaffold(
@@ -27,6 +41,7 @@ class _CommentsPageState extends State<CommentsPage> {
         child: Padding(
           padding: const EdgeInsets.symmetric(horizontal: 24.0),
           child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
             children: [
 
               const SizedBox(height: 24,),
@@ -67,7 +82,46 @@ class _CommentsPageState extends State<CommentsPage> {
                 ),
               ),
 
+              const SizedBox(height: 24.0),
+
               //comments or a placeholder
+              Expanded(
+                child: Consumer<GlobalMockCommentProvider>(
+                  builder: (context, notifier, child) {
+
+                    final comments = notifier.filteredComments;
+
+                    //placeholder
+                    if (comments.isEmpty) {
+
+                      return const Padding(
+                        padding: EdgeInsets.symmetric(horizontal: 8.0),
+                        child: Text(
+                          'No comments yet',
+                          style: TextStyle(
+                            fontSize: 16.0,
+                            fontWeight: FontWeight.w500,
+                          ),
+                        ),
+                      );
+                    }
+
+                    return ListView.builder(
+                      itemCount: comments.length,
+                      itemBuilder: (context, index) {
+
+                        return Row(
+                          children: [
+                            Text(comments[index].content),
+                          ],
+                        );
+
+                      }
+                    );
+
+                  },
+                ),
+              ),
 
             ],
           ),
