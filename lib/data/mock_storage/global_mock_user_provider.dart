@@ -4,6 +4,7 @@ import 'package:flutter/cupertino.dart';
 class GlobalMockUserProvider extends ChangeNotifier {
 
   final UserEntity _currentUser = const UserEntity(
+      id: 1,
       firstName: 'Jason',
       lastName: 'Todd',
       email: 'therealjason@gmail.com',

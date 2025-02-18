@@ -18,7 +18,18 @@ class CommentsPage extends StatefulWidget {
 class _CommentsPageState extends State<CommentsPage> {
   @override
   Widget build(BuildContext context) {
-    return const Scaffold();
+    return const Scaffold(
+      body: Column(
+        children: [
+
+          //comment field
+
+          //comments or a placeholder
+
+        ],
+      ),
+
+    );
   }
 }
 
