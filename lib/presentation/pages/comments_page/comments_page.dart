@@ -23,34 +23,55 @@ class _CommentsPageState extends State<CommentsPage> {
   Widget build(BuildContext context) {
 
     return Scaffold(
-      body: Column(
-        children: [
+      body: SafeArea(
+        child: Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 24.0),
+          child: Column(
+            children: [
 
-          //comment field
-          Container(
-            child: Row(
-              children: [
+              const SizedBox(height: 24,),
 
-                TextField(
-                  decoration: InputDecoration(
-                    hintText: 'What are your thoughts?',
-                    hintStyle: TextStyle(
-                      color: AppColors.accentColor,
-                      fontSize: 14.0,
-                    ),
-                  ),
-
+              //comment field
+              Container(
+                decoration: BoxDecoration(
+                  color: Colors.white,
+                  borderRadius: BorderRadius.circular(24.0),
                 ),
+                padding: const EdgeInsets.all(8.0),
+                child: Row(
+                  children: [
 
-                const RoundedButton(text: 'Respond',),
+                    Expanded(
+                      child: Padding(
+                        padding: const EdgeInsets.symmetric(horizontal: 8.0),
+                        child: TextField(
+                          decoration: InputDecoration(
+                            hintText: 'What are your thoughts?',
+                            hintStyle: TextStyle(
+                              color: AppColors.accentColor,
+                              fontSize: 14.0,
+                            ),
+                            isDense: true,
+                          ),
 
-              ],
-            ),
+                        ),
+                      ),
+                    ),
+
+                    const RoundedButton(
+                      text: 'Respond',
+                      isOpaque: true,
+                    ),
+
+                  ],
+                ),
+              ),
+
+              //comments or a placeholder
+
+            ],
           ),
-
-          //comments or a placeholder
-
-        ],
+        ),
       ),
 
     );
