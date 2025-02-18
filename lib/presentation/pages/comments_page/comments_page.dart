@@ -5,6 +5,7 @@ import 'package:blogify_flutter_main/data/mock_storage/global_mock_user_provider
 import 'package:blogify_flutter_main/domain/entities/comment_entity.dart';
 import 'package:blogify_flutter_main/domain/entities/post_entity.dart';
 import 'package:blogify_flutter_main/presentation/common/widgets/circled_button_outlined.dart';
+import 'package:blogify_flutter_main/presentation/pages/comments_page/widgets/comment_field.dart';
 import 'package:blogify_flutter_main/presentation/pages/comments_page/widgets/comments_list_tile.dart';
 import 'package:blogify_flutter_main/presentation/pages/home_page/widgets/rounded_button.dart';
 import 'package:blogify_flutter_main/presentation/theme/app_colors.dart';
@@ -90,29 +91,9 @@ class _CommentsPageState extends State<CommentsPage> {
 
               const SizedBox(height: 24,),
 
-              //comment field
-              Container(
-                decoration: BoxDecoration(
-                  color: Colors.white,
-                  borderRadius: BorderRadius.circular(24.0),
-                ),
-                padding: const EdgeInsets.all(8.0),
-                child: Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 8.0),
-                  child: TextField(
-                    focusNode: commentFieldFocusNode,
-                    controller: commentTextController,
-                    decoration: const InputDecoration(
-                      hintText: 'What are your thoughts?',
-                      hintStyle: TextStyle(
-                        color: AppColors.accentColor,
-                        fontSize: 14.0,
-                      ),
-                      isDense: true,
-                    ),
-
-                  ),
-                ),
+              CommentField(
+                focusNode: commentFieldFocusNode,
+                textController: commentTextController,
               ),
 
               const SizedBox(height: 12.0,),
