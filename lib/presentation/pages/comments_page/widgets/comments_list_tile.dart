@@ -46,7 +46,7 @@ class CommentsListTile extends StatelessWidget {
                   Text(
                     comment.date,
                     style: TextStyle(
-                      color: Colors.grey[500],
+                      color: Colors.grey[600],
                       fontSize: 12.0,
                     ),
                   ),
