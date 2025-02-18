@@ -23,7 +23,7 @@ class UserPhoto extends StatelessWidget {
           image: AssetImage(imageSrc),
           fit: BoxFit.cover,
         ) : null,
-        color: imageSrc.isNotEmpty ? null : Colors.grey,
+        color: imageSrc.isNotEmpty ? null : Colors.grey[400],
       ),
     );
   }

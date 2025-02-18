@@ -1,8 +1,10 @@
 import 'package:auto_route/annotations.dart';
 import 'package:auto_route/auto_route.dart';
 import 'package:blogify_flutter_main/data/mock_storage/global_mock_comment_provider.dart';
+import 'package:blogify_flutter_main/data/mock_storage/global_mock_storage_provider.dart';
 import 'package:blogify_flutter_main/data/mock_storage/global_mock_user_provider.dart';
 import 'package:blogify_flutter_main/domain/entities/comment_entity.dart';
+import 'package:blogify_flutter_main/domain/entities/post_entity.dart';
 import 'package:blogify_flutter_main/presentation/common/widgets/circled_button_outlined.dart';
 import 'package:blogify_flutter_main/presentation/pages/comments_page/widgets/comments_list_tile.dart';
 import 'package:blogify_flutter_main/presentation/pages/home_page/widgets/rounded_button.dart';
@@ -31,14 +33,18 @@ class _CommentsPageState extends State<CommentsPage> {
   final commentTextController = TextEditingController();
   final commentFieldFocusNode = FocusNode();
 
+  late PostEntity currentPost;
+
   @override
   void initState() {
     super.initState();
 
-    final notifier = context.read<GlobalMockCommentProvider>();
+    final commentNotifier = context.read<GlobalMockCommentProvider>();
+    final storageNotifier = context.read<GlobalMockStorageProvider>();
 
     WidgetsBinding.instance.addPostFrameCallback((_) {
-      notifier.fetchCommentsByPostId(widget.id);
+      currentPost = storageNotifier.getPostById(widget.id);
+      commentNotifier.fetchCommentsByPostId(widget.id);
     });
 
   }
@@ -62,14 +68,12 @@ class _CommentsPageState extends State<CommentsPage> {
 
                   CircledButtonOutlined(
                     icon: FontAwesomeIcons.chevronLeft,
-                    onTap: () {
-                      context.router.popForced();
-                    },
+                    onTap: () => context.router.popForced(),
                   ),
 
-                  const Text(
-                    'Back',
-                    style: TextStyle(
+                  Text(
+                    currentPost.title,
+                    style: const TextStyle(
                       fontWeight: FontWeight.w500,
                       fontSize: 16.0,
                     ),
