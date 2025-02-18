@@ -41,9 +41,9 @@ class _CommentsPageState extends State<CommentsPage> {
 
     final commentNotifier = context.read<GlobalMockCommentProvider>();
     final storageNotifier = context.read<GlobalMockStorageProvider>();
+    currentPost = storageNotifier.getPostById(widget.id);
 
     WidgetsBinding.instance.addPostFrameCallback((_) {
-      currentPost = storageNotifier.getPostById(widget.id);
       commentNotifier.fetchCommentsByPostId(widget.id);
     });
 
