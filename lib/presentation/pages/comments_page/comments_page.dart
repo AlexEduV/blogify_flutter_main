@@ -1,10 +1,13 @@
 import 'package:auto_route/annotations.dart';
+import 'package:auto_route/auto_route.dart';
 import 'package:blogify_flutter_main/data/mock_storage/global_mock_comment_provider.dart';
 import 'package:blogify_flutter_main/data/mock_storage/global_mock_user_provider.dart';
+import 'package:blogify_flutter_main/presentation/common/widgets/circled_button_outlined.dart';
 import 'package:blogify_flutter_main/presentation/pages/comments_page/widgets/comments_list_tile.dart';
 import 'package:blogify_flutter_main/presentation/pages/home_page/widgets/rounded_button.dart';
 import 'package:blogify_flutter_main/presentation/theme/app_colors.dart';
 import 'package:flutter/material.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:provider/provider.dart';
 
 @RoutePage()
@@ -45,6 +48,30 @@ class _CommentsPageState extends State<CommentsPage> {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
+
+              const SizedBox(height: 24,),
+
+              Row(
+                spacing: 16.0,
+                children: [
+
+                  CircledButtonOutlined(
+                    icon: FontAwesomeIcons.chevronLeft,
+                    onTap: () {
+                      context.router.popForced();
+                    },
+                  ),
+
+                  const Text(
+                    'Back',
+                    style: TextStyle(
+                      fontWeight: FontWeight.w500,
+                      fontSize: 16.0,
+                    ),
+                  ),
+
+                ],
+              ),
 
               const SizedBox(height: 24,),
 
