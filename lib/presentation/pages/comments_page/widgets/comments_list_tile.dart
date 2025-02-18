@@ -1,5 +1,6 @@
 import 'package:blogify_flutter_main/domain/entities/comment_entity.dart';
 import 'package:blogify_flutter_main/domain/entities/user_entity.dart';
+import 'package:blogify_flutter_main/domain/helpers/relative_date_helper.dart';
 import 'package:blogify_flutter_main/presentation/common/widgets/user_photo.dart';
 import 'package:flutter/material.dart';
 
@@ -44,7 +45,7 @@ class CommentsListTile extends StatelessWidget {
                   ),
 
                   Text(
-                    comment.date,
+                    RelativeDateHelper.getRelativeDate(comment.date),
                     style: TextStyle(
                       color: Colors.grey[600],
                       fontSize: 12.0,

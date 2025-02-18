@@ -54,8 +54,6 @@ class _CommentsPageState extends State<CommentsPage> {
 
     //todo: when I scroll, I should be able to hide the keyboard. - Declined. It's pretty good enough
 
-    //todo: date format in the comments should be like '5 days ago', or 'today', not just date
-
     return Scaffold(
       body: SafeArea(
         child: Padding(
