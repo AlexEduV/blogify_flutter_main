@@ -19,6 +19,7 @@ class CommentField extends StatelessWidget {
       child: TextField(
         focusNode: focusNode,
         controller: textController,
+        maxLines: null,
         decoration: InputDecoration(
           hintText: 'What are your thoughts?',
           hintStyle: const TextStyle(
