@@ -54,7 +54,7 @@ class PostCard extends StatelessWidget {
 
             Text(
               IntlFormatter.getFormattedDays(post.daysAgoPublished),
-              style: TextStyle(
+              style: const TextStyle(
                 fontWeight: FontWeight.w600,
                 fontSize: 12.0,
                 color: AppColors.accentColor,
@@ -77,7 +77,7 @@ class PostCard extends StatelessWidget {
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                Text(
+                const Text(
                   'Read Time: ',
                   style: TextStyle(
                     color: AppColors.accentColor,

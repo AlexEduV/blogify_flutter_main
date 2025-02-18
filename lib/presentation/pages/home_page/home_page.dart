@@ -97,7 +97,7 @@ class _HomePageState extends State<HomePage> {
                         ],
                       ),
 
-                      Text(
+                      const Text(
                         'I have some news for you',
                         style: TextStyle(
                           color: AppColors.accentColor,
@@ -136,7 +136,7 @@ class _HomePageState extends State<HomePage> {
               // it seems not normal
               SearchBar(
                 padding: const WidgetStatePropertyAll(EdgeInsets.only(left: 16.0, right: 8.0),),
-                leading: FaIcon(
+                leading: const FaIcon(
                   FontAwesomeIcons.magnifyingGlass,
                   color: AppColors.accentColor,
                   size: 20,
@@ -159,7 +159,7 @@ class _HomePageState extends State<HomePage> {
                   ),
                 ],
                 hintText: 'Search here',
-                hintStyle: WidgetStatePropertyAll(
+                hintStyle: const WidgetStatePropertyAll(
                     TextStyle(
                     color: AppColors.accentColor,
                     fontSize: 14.0,
@@ -171,7 +171,7 @@ class _HomePageState extends State<HomePage> {
                     (Set<WidgetState> states) {
                       if (states.contains(WidgetState.focused)) {
                         return RoundedRectangleBorder(
-                          side: BorderSide(color: AppColors.emeraldGreen, width: 2), // Highlighted border
+                          side: const BorderSide(color: AppColors.emeraldGreen, width: 2), // Highlighted border
                           borderRadius: BorderRadius.circular(32.0),
                         );
                       }
