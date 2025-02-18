@@ -22,8 +22,8 @@ class CommentsListTile extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
 
-        const UserPhoto(
-          imageSrc: '',
+        UserPhoto(
+          imageSrc: user.imageSrc,
           size: 40,
         ),
 
