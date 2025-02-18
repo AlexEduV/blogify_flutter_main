@@ -10,6 +10,8 @@ class RoundedButton extends StatelessWidget {
   final String text;
   final double borderRadius;
   final Function()? onTap;
+  final Color backgroundColor;
+  final Color tintColor;
 
   const RoundedButton({
     required this.text,
@@ -18,6 +20,8 @@ class RoundedButton extends StatelessWidget {
     this.isOpaque = false,
     this.horizontalPadding = 16.0,
     this.borderRadius = 24.0,
+    this.backgroundColor = AppColors.primaryColor,
+    this.tintColor = Colors.black,
     this.onTap,
     super.key,
   });
@@ -26,7 +30,7 @@ class RoundedButton extends StatelessWidget {
   Widget build(BuildContext context) {
 
     return Material(
-      color: isOpaque ? AppColors.primaryColor : Colors.transparent,
+      color: isOpaque ? backgroundColor : Colors.transparent,
       borderRadius: BorderRadius.circular(borderRadius),
       child: InkWell(
         onTap: onTap,
@@ -40,14 +44,14 @@ class RoundedButton extends StatelessWidget {
               if (leadingIcon != null)
                 Icon(
                   leadingIcon,
-                  color: Colors.black,
+                  color: tintColor,
                   size: 20,
                 ),
 
               Text(
                 text,
                 style: TextStyle(
-                  color: isOpaque ? Colors.black : AppColors.accentColor,
+                  color: isOpaque ? tintColor : AppColors.accentColor,
                   fontWeight: FontWeight.w500,
                 ),
               ),
@@ -55,7 +59,7 @@ class RoundedButton extends StatelessWidget {
               if (trailingIcon != null)
                 Icon(
                   trailingIcon,
-                  color: Colors.black,
+                  color: tintColor,
                   size: 20,
                 ),
 

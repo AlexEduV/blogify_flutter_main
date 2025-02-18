@@ -106,7 +106,7 @@ class _CommentsPageState extends State<CommentsPage> {
                         child: TextField(
                           focusNode: commentFieldFocusNode,
                           controller: commentTextController,
-                          decoration: InputDecoration(
+                          decoration: const InputDecoration(
                             hintText: 'What are your thoughts?',
                             hintStyle: TextStyle(
                               color: AppColors.accentColor,
@@ -119,14 +119,25 @@ class _CommentsPageState extends State<CommentsPage> {
                       ),
                     ),
 
-                    RoundedButton(
-                      text: 'Respond',
-                      isOpaque: true,
-                      onTap: () => validateCommentInput(commentTextController.text),
-                    ),
-
                   ],
                 ),
+              ),
+
+              const SizedBox(height: 12.0,),
+
+              Row(
+                children: [
+
+                  const Spacer(),
+
+                  RoundedButton(
+                    text: 'Respond',
+                    isOpaque: true,
+                    onTap: () => validateCommentInput(commentTextController.text),
+                    backgroundColor: AppColors.emeraldGreen,
+                    tintColor: Colors.white,
+                  ),
+                ],
               ),
 
               const SizedBox(height: 24.0),
