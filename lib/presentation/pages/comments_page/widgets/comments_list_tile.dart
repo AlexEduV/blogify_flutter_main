@@ -27,33 +27,39 @@ class CommentsListTile extends StatelessWidget {
           size: 40,
         ),
 
-        Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
+        Expanded(
+          child: Column(
+            spacing: 4.0,
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
 
-            Row(
-              spacing: 8.0,
-              children: [
-                Text(
-                  '${user.firstName} ${user.lastName}',
-                  style: const TextStyle(
-                    fontWeight: FontWeight.w600,
+              Row(
+                spacing: 8.0,
+                children: [
+                  Text(
+                    '${user.firstName} ${user.lastName}',
+                    style: const TextStyle(
+                      fontWeight: FontWeight.w600,
+                    ),
                   ),
-                ),
 
-                Text(
-                  comment.date,
-                  style: TextStyle(
-                    color: Colors.grey[500],
-                    fontSize: 12.0,
+                  Text(
+                    comment.date,
+                    style: TextStyle(
+                      color: Colors.grey[500],
+                      fontSize: 12.0,
+                    ),
                   ),
-                ),
-              ],
-            ),
+                ],
+              ),
 
-            Text(comment.content),
+              Text(
+                comment.content,
+                softWrap: true,
+              ),
 
-          ],
+            ],
+          ),
         ),
       ],
     );
