@@ -52,10 +52,7 @@ class _CommentsPageState extends State<CommentsPage> {
   @override
   Widget build(BuildContext context) {
 
-    //todo: test page top bar with a long title. It should be clipped with 3 dots
-
     //todo: when I scroll, I should be able to hide the keyboard.
-
 
     return Scaffold(
       body: SafeArea(
@@ -76,11 +73,15 @@ class _CommentsPageState extends State<CommentsPage> {
                     onTap: () => context.router.popForced(),
                   ),
 
-                  Text(
-                    currentPost.title,
-                    style: const TextStyle(
-                      fontWeight: FontWeight.w500,
-                      fontSize: 16.0,
+                  Expanded(
+                    child: Text(
+                      currentPost.title,
+                      style: const TextStyle(
+                        fontWeight: FontWeight.w500,
+                        fontSize: 16.0,
+                      ),
+                      softWrap: true,
+                      overflow: TextOverflow.ellipsis,
                     ),
                   ),
 
