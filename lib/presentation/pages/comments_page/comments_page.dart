@@ -54,6 +54,10 @@ class _CommentsPageState extends State<CommentsPage> {
     //todo: switch to multiline text field when the chars are not fitting
     //todo: test page top bar with a long title. It should be clipped with 3 dots
 
+    //todo: test with a larger number of comments. Scroll view might be needed.
+    // And when I scroll, I should be able to hide the keyboard.
+
+
     return Scaffold(
       body: SafeArea(
         child: Padding(
