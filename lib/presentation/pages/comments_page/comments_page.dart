@@ -52,7 +52,7 @@ class _CommentsPageState extends State<CommentsPage> {
   @override
   Widget build(BuildContext context) {
 
-    //todo: when I scroll, I should be able to hide the keyboard.
+    //todo: when I scroll, I should be able to hide the keyboard. - Declined. It's pretty good enough
 
     return Scaffold(
       body: SafeArea(
