@@ -99,3 +99,8 @@ flutter:
     - family: SFPro
       fonts:
         - asset: fonts/SFPro-Regular.ttf
+          weight: 400
+        - asset: fonts/SFPro-Medium.otf
+          weight: 500
+        - asset: fonts/SFPro-Semibold.otf
+          weight: 600
