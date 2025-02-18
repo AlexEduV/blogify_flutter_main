@@ -51,6 +51,9 @@ class _CommentsPageState extends State<CommentsPage> {
   @override
   Widget build(BuildContext context) {
 
+    //todo: switch to multiline text field when the chars are not fitting
+    //todo: test page top bar with a long title. It should be clipped with 3 dots
+
     return Scaffold(
       body: SafeArea(
         child: Padding(
