@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 
 class RoundedButton extends StatelessWidget {
 
-  final bool isOpaque;
+  final bool filled;
   final IconData? trailingIcon;
   final IconData? leadingIcon;
   final double horizontalPadding;
@@ -17,7 +17,7 @@ class RoundedButton extends StatelessWidget {
     required this.text,
     this.leadingIcon,
     this.trailingIcon,
-    this.isOpaque = false,
+    this.filled = false,
     this.horizontalPadding = 16.0,
     this.borderRadius = 24.0,
     this.backgroundColor = AppColors.primaryColor,
@@ -30,7 +30,7 @@ class RoundedButton extends StatelessWidget {
   Widget build(BuildContext context) {
 
     return Material(
-      color: isOpaque ? backgroundColor : Colors.transparent,
+      color: filled ? backgroundColor : Colors.transparent,
       borderRadius: BorderRadius.circular(borderRadius),
       child: InkWell(
         onTap: onTap,
@@ -52,7 +52,7 @@ class RoundedButton extends StatelessWidget {
               Text(
                 text,
                 style: TextStyle(
-                  color: isOpaque ? tintColor : AppColors.accentColor,
+                  color: filled ? tintColor : AppColors.accentColor,
                   fontWeight: FontWeight.w500,
                 ),
               ),

@@ -52,7 +52,6 @@ class _CommentsPageState extends State<CommentsPage> {
   @override
   Widget build(BuildContext context) {
 
-    //todo: switch to multiline text field when the chars are not fitting
     //todo: test page top bar with a long title. It should be clipped with 3 dots
 
     //todo: test with a larger number of comments. Scroll view might be needed.
@@ -103,7 +102,7 @@ class _CommentsPageState extends State<CommentsPage> {
                 children: [
                   RoundedButton(
                     text: 'Respond',
-                    isOpaque: true,
+                    filled: true,
                     onTap: () => validateCommentInput(commentTextController.text),
                     backgroundColor: AppColors.emeraldGreen,
                     tintColor: Colors.white,

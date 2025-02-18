@@ -152,7 +152,7 @@ class _HomePageState extends State<HomePage> {
                         trailingIcon: notifier.isSelectionOpen
                             ? Icons.keyboard_arrow_up_outlined
                             : Icons.keyboard_arrow_down_outlined,
-                        isOpaque: true,
+                        filled: true,
                         onTap: showSearchColumnSelector,
                       );
                     }
