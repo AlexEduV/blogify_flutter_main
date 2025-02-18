@@ -14,7 +14,7 @@ class GlobalMockCommentProvider extends ChangeNotifier {
 
   void fetchCommentsByPostId(int postId) {
     _filteredComments = allComments.where((comment) => comment.postId == postId)
-        .toList()
+        .toList(growable: false)
         .reversed
         .toList();
     notifyListeners();
