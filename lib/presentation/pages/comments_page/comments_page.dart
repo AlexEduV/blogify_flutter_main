@@ -1,5 +1,7 @@
 import 'package:auto_route/annotations.dart';
 import 'package:blogify_flutter_main/data/mock_storage/global_mock_comment_provider.dart';
+import 'package:blogify_flutter_main/data/mock_storage/global_mock_user_provider.dart';
+import 'package:blogify_flutter_main/presentation/pages/comments_page/widgets/comments_list_tile.dart';
 import 'package:blogify_flutter_main/presentation/pages/home_page/widgets/rounded_button.dart';
 import 'package:blogify_flutter_main/presentation/theme/app_colors.dart';
 import 'package:flutter/material.dart';
@@ -90,6 +92,7 @@ class _CommentsPageState extends State<CommentsPage> {
                   builder: (context, notifier, child) {
 
                     final comments = notifier.filteredComments;
+                    final userNotifier = context.read<GlobalMockUserProvider>();
 
                     //placeholder
                     if (comments.isEmpty) {
@@ -106,17 +109,15 @@ class _CommentsPageState extends State<CommentsPage> {
                       );
                     }
 
-                    return ListView.builder(
+                    return ListView.separated(
                       itemCount: comments.length,
                       itemBuilder: (context, index) {
+                        final user = userNotifier.getUserEntityById(comments[index].userId);
 
-                        return Row(
-                          children: [
-                            Text(comments[index].content),
-                          ],
-                        );
+                        return CommentsListTile(user: user, comment: comments[index]);
 
-                      }
+                      },
+                      separatorBuilder: (context, index) => const SizedBox(height: 16,),
                     );
 
                   },
