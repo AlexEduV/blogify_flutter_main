@@ -31,5 +31,4 @@ class RelativeDateHelper {
 
     return '$difference days ago';
   }
-
 }
