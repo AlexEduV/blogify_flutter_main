@@ -97,39 +97,29 @@ class _CommentsPageState extends State<CommentsPage> {
                   borderRadius: BorderRadius.circular(24.0),
                 ),
                 padding: const EdgeInsets.all(8.0),
-                child: Row(
-                  children: [
-
-                    Expanded(
-                      child: Padding(
-                        padding: const EdgeInsets.symmetric(horizontal: 8.0),
-                        child: TextField(
-                          focusNode: commentFieldFocusNode,
-                          controller: commentTextController,
-                          decoration: const InputDecoration(
-                            hintText: 'What are your thoughts?',
-                            hintStyle: TextStyle(
-                              color: AppColors.accentColor,
-                              fontSize: 14.0,
-                            ),
-                            isDense: true,
-                          ),
-
-                        ),
+                child: Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 8.0),
+                  child: TextField(
+                    focusNode: commentFieldFocusNode,
+                    controller: commentTextController,
+                    decoration: const InputDecoration(
+                      hintText: 'What are your thoughts?',
+                      hintStyle: TextStyle(
+                        color: AppColors.accentColor,
+                        fontSize: 14.0,
                       ),
+                      isDense: true,
                     ),
 
-                  ],
+                  ),
                 ),
               ),
 
               const SizedBox(height: 12.0,),
 
               Row(
+                mainAxisAlignment: MainAxisAlignment.end,
                 children: [
-
-                  const Spacer(),
-
                   RoundedButton(
                     text: 'Respond',
                     isOpaque: true,

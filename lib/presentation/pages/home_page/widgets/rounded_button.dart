@@ -38,6 +38,7 @@ class RoundedButton extends StatelessWidget {
         child: Container(
           padding: EdgeInsets.symmetric(vertical: 8.0, horizontal: horizontalPadding),
           child: Row(
+            mainAxisSize: MainAxisSize.min,
             spacing: 8.0,
             children: [
 
