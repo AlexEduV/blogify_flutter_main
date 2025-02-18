@@ -8,6 +8,7 @@ import 'package:blogify_flutter_main/presentation/pages/home_page/notifiers/cate
 import 'package:blogify_flutter_main/presentation/pages/home_page/notifiers/search_column_notifier.dart';
 import 'package:blogify_flutter_main/presentation/pages/home_page/widgets/category_selector.dart';
 import 'package:blogify_flutter_main/presentation/pages/home_page/widgets/circled_button.dart';
+import 'package:blogify_flutter_main/presentation/pages/home_page/widgets/menu_item.dart';
 import 'package:blogify_flutter_main/presentation/pages/home_page/widgets/post_card.dart';
 import 'package:blogify_flutter_main/presentation/pages/home_page/widgets/rounded_button.dart';
 import 'package:blogify_flutter_main/presentation/pages/user_settings_page/user_settings_page.dart';
@@ -349,21 +350,25 @@ class _HomePageState extends State<HomePage> {
 
     await showMenu(
       context: context,
+      initialValue: selectorNotifier.value,
       position: RelativeRect.fromLTRB(
-        offset.dx, // X Position (left)
+        offset.dx - 10, // X Position (left and some space)
         offset.dy + size.height, // Y Position (below the button)
         offset.dx + size.width, // Right boundary
         offset.dy + size.height + 200, // Bottom boundary (just enough space)
       ),
+      color: Colors.white,
       items: [
         PopupMenuItem<String>(
+          padding: EdgeInsets.zero,
           value: items[0],
-          child: Text(items[0]),
+          child: MenuItem(text: items[0]),
           onTap: () => selectorNotifier.updateColumn(items[0]),
         ),
         PopupMenuItem<String>(
+          padding: EdgeInsets.zero,
           value: items[1],
-          child: Text(items[1]),
+          child: MenuItem(text: items[1]),
           onTap: () => selectorNotifier.updateColumn(items[1]),
         ),
       ],
