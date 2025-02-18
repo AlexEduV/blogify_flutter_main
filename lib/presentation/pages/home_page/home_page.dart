@@ -171,14 +171,14 @@ class _HomePageState extends State<HomePage> {
                     (Set<WidgetState> states) {
                       if (states.contains(WidgetState.focused)) {
                         return RoundedRectangleBorder(
-                          side: const BorderSide(color: AppColors.emeraldGreen, width: 2), // Highlighted border
+                          side: const BorderSide(color: AppColors.emeraldGreen, width: 2.0), // Highlighted border
                           borderRadius: BorderRadius.circular(32.0),
                         );
                       }
 
                       //default value
                       return  RoundedRectangleBorder(
-                        side: BorderSide(color: Colors.grey[200]!, width: 1),
+                        side: BorderSide(color: Colors.grey.shade200, width: 1.0),
                         borderRadius: BorderRadius.circular(32.0),
                       );
                     }
