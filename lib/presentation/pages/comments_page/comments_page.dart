@@ -54,8 +54,7 @@ class _CommentsPageState extends State<CommentsPage> {
 
     //todo: test page top bar with a long title. It should be clipped with 3 dots
 
-    //todo: test with a larger number of comments. Scroll view might be needed.
-    // And when I scroll, I should be able to hide the keyboard.
+    //todo: when I scroll, I should be able to hide the keyboard.
 
 
     return Scaffold(
@@ -144,6 +143,7 @@ class _CommentsPageState extends State<CommentsPage> {
 
                       },
                       separatorBuilder: (context, index) => const SizedBox(height: 16,),
+                      padding: const EdgeInsets.only(bottom: 16.0),
                     );
 
                   },
