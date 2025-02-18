@@ -13,7 +13,10 @@ class GlobalMockCommentProvider extends ChangeNotifier {
   List<CommentEntity> get filteredComments => _filteredComments;
 
   void fetchCommentsByPostId(int postId) {
-    _filteredComments = allComments.where((comment) => comment.postId == postId).toList();
+    _filteredComments = allComments.where((comment) => comment.postId == postId)
+        .toList()
+        .reversed
+        .toList();
     notifyListeners();
   }
 

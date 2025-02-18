@@ -2,12 +2,14 @@ import 'package:auto_route/annotations.dart';
 import 'package:auto_route/auto_route.dart';
 import 'package:blogify_flutter_main/data/mock_storage/global_mock_comment_provider.dart';
 import 'package:blogify_flutter_main/data/mock_storage/global_mock_user_provider.dart';
+import 'package:blogify_flutter_main/domain/entities/comment_entity.dart';
 import 'package:blogify_flutter_main/presentation/common/widgets/circled_button_outlined.dart';
 import 'package:blogify_flutter_main/presentation/pages/comments_page/widgets/comments_list_tile.dart';
 import 'package:blogify_flutter_main/presentation/pages/home_page/widgets/rounded_button.dart';
 import 'package:blogify_flutter_main/presentation/theme/app_colors.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:intl/intl.dart';
 import 'package:provider/provider.dart';
 
 @RoutePage()
@@ -25,6 +27,9 @@ class CommentsPage extends StatefulWidget {
 }
 
 class _CommentsPageState extends State<CommentsPage> {
+
+  final commentTextController = TextEditingController();
+  final commentFieldFocusNode = FocusNode();
 
   @override
   void initState() {
@@ -89,6 +94,8 @@ class _CommentsPageState extends State<CommentsPage> {
                       child: Padding(
                         padding: const EdgeInsets.symmetric(horizontal: 8.0),
                         child: TextField(
+                          focusNode: commentFieldFocusNode,
+                          controller: commentTextController,
                           decoration: InputDecoration(
                             hintText: 'What are your thoughts?',
                             hintStyle: TextStyle(
@@ -102,9 +109,10 @@ class _CommentsPageState extends State<CommentsPage> {
                       ),
                     ),
 
-                    const RoundedButton(
+                    RoundedButton(
                       text: 'Respond',
                       isOpaque: true,
+                      onTap: () => validateCommentInput(commentTextController.text),
                     ),
 
                   ],
@@ -157,6 +165,38 @@ class _CommentsPageState extends State<CommentsPage> {
       ),
 
     );
+  }
+
+  void validateCommentInput(String input) {
+
+    if (input.isEmpty) {
+      return;
+    }
+
+    //prepare data
+    final date = DateFormat('MM/dd/yy').format(DateTime.now());
+
+    final userNotifier = context.read<GlobalMockUserProvider>();
+    final userId = userNotifier.currentUser.id;
+
+    //update notifier
+    final commentsProvider = context.read<GlobalMockCommentProvider>();
+    commentsProvider.addComment(
+
+      CommentEntity(
+          postId: widget.id,
+          content: input,
+          date: date,
+          userId: userId,
+      ),
+    );
+
+    //clear the text field
+    commentTextController.clear();
+
+    //clear the focus
+    commentFieldFocusNode.unfocus();
+
   }
 }
 

@@ -22,7 +22,7 @@ class GlobalMockUserProvider extends ChangeNotifier {
   List<UserEntity> get userPool => _userPool;
 
   UserEntity getUserEntityById(int id) {
-    return _userPool.firstWhere((user) => user.id == id);
+    return _userPool.firstWhere((user) => user.id == id, orElse: () => _currentUser);
   }
 
 }
