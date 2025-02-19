@@ -25,7 +25,7 @@ class ShareFloatingBar extends StatelessWidget {
                   borderRadius: BorderRadius.circular(32.0),
                   boxShadow: [
                     BoxShadow(
-                      color: Colors.black.withOpacity(0.4), // Shadow for button
+                      color: Colors.black.withValues(alpha: 0.4), // Shadow for button
                       blurRadius: 10,
                       spreadRadius: 2,
                       offset: const Offset(0, 4),
