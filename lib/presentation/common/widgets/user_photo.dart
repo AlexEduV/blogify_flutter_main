@@ -19,10 +19,11 @@ class UserPhoto extends StatelessWidget {
       width: size,
       decoration: BoxDecoration(
         shape: BoxShape.circle,
-        image: DecorationImage(
+        image: imageSrc.isNotEmpty ? DecorationImage(
           image: AssetImage(imageSrc),
           fit: BoxFit.cover,
-        ),
+        ) : null,
+        color: imageSrc.isNotEmpty ? null : Colors.grey[400],
       ),
     );
   }

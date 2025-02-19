@@ -8,6 +8,7 @@ import 'package:blogify_flutter_main/presentation/pages/home_page/notifiers/cate
 import 'package:blogify_flutter_main/presentation/pages/home_page/notifiers/search_column_notifier.dart';
 import 'package:blogify_flutter_main/presentation/pages/home_page/widgets/category_selector.dart';
 import 'package:blogify_flutter_main/presentation/pages/home_page/widgets/circled_button.dart';
+import 'package:blogify_flutter_main/presentation/pages/home_page/widgets/menu_item.dart';
 import 'package:blogify_flutter_main/presentation/pages/home_page/widgets/post_card.dart';
 import 'package:blogify_flutter_main/presentation/pages/home_page/widgets/rounded_button.dart';
 import 'package:blogify_flutter_main/presentation/pages/user_settings_page/user_settings_page.dart';
@@ -97,7 +98,7 @@ class _HomePageState extends State<HomePage> {
                         ],
                       ),
 
-                      Text(
+                      const Text(
                         'I have some news for you',
                         style: TextStyle(
                           color: AppColors.accentColor,
@@ -136,7 +137,7 @@ class _HomePageState extends State<HomePage> {
               // it seems not normal
               SearchBar(
                 padding: const WidgetStatePropertyAll(EdgeInsets.only(left: 16.0, right: 8.0),),
-                leading: FaIcon(
+                leading: const FaIcon(
                   FontAwesomeIcons.magnifyingGlass,
                   color: AppColors.accentColor,
                   size: 20,
@@ -145,18 +146,21 @@ class _HomePageState extends State<HomePage> {
                   Consumer<SearchColumnNotifier>(
                     builder: (context, notifier, child) {
 
+                      //todo: find a way to animate between two state icons
                       return RoundedButton(
                         key: _searchSelectorButtonKey,
                         text: notifier.value,
-                        trailingIcon: Icons.keyboard_arrow_down_outlined,
-                        isSelected: true,
+                        trailingIcon: notifier.isSelectionOpen
+                            ? Icons.keyboard_arrow_up_outlined
+                            : Icons.keyboard_arrow_down_outlined,
+                        filled: true,
                         onTap: showSearchColumnSelector,
                       );
                     }
                   ),
                 ],
                 hintText: 'Search here',
-                hintStyle: WidgetStatePropertyAll(
+                hintStyle: const WidgetStatePropertyAll(
                     TextStyle(
                     color: AppColors.accentColor,
                     fontSize: 14.0,
@@ -164,11 +168,21 @@ class _HomePageState extends State<HomePage> {
                 ),
                 elevation: const WidgetStatePropertyAll(0.0),
                 backgroundColor: const WidgetStatePropertyAll(Colors.white),
-                shape: WidgetStatePropertyAll(
-                  RoundedRectangleBorder(
-                    side: BorderSide(color: Colors.grey[200]!, width: 1),
-                    borderRadius: BorderRadius.circular(32.0),
-                  ),
+                shape: WidgetStateProperty.resolveWith<RoundedRectangleBorder>(
+                    (Set<WidgetState> states) {
+                      if (states.contains(WidgetState.focused)) {
+                        return RoundedRectangleBorder(
+                          side: const BorderSide(color: AppColors.emeraldGreen, width: 2.0), // Highlighted border
+                          borderRadius: BorderRadius.circular(32.0),
+                        );
+                      }
+
+                      //default value
+                      return  RoundedRectangleBorder(
+                        side: BorderSide(color: Colors.grey.shade200, width: 1.0),
+                        borderRadius: BorderRadius.circular(32.0),
+                      );
+                    }
                 ),
                 onChanged: (String filter) {
                   final storageNotifier = context.read<GlobalMockStorageProvider>();
@@ -199,48 +213,54 @@ class _HomePageState extends State<HomePage> {
                     }
 
                     //post stack
-                    return Stack(
-                      clipBehavior: Clip.none,
-                      alignment: Alignment.topCenter,
-                      children: List.generate(posts.length, (index) {
+                    return Consumer<CategoryIndexNotifier>(
+                      builder: (context, categoryIndexNotifier, child) {
 
-                        return AnimatedPositioned(
-                          //this key blocks animation, but it was not working properly
-                          key: ValueKey(posts[index].id),
+                        return AnimatedSwitcher(
                           duration: const Duration(milliseconds: 400),
-                          curve: Curves.easeInOut,
-                          top: index * 65,
-                          left: 0,
-                          right: 0,
-                          child: Dismissible(
-                            key: ValueKey(posts[index].id),
-                            direction: DismissDirection.vertical,
-                            onDismissed: (direction) {
+                          child: Stack(
+                            key: ValueKey(categoryIndexNotifier.categoryIndex),
+                            clipBehavior: Clip.none,
+                            children: List.generate(posts.length, (index) {
 
-                              final PostEntity post = posts[index];
+                              return AnimatedPositioned(
+                                duration: const Duration(milliseconds: 400),
+                                curve: Curves.easeInOut,
+                                top: index * 65,
+                                left: 0,
+                                right: 0,
+                                child: Dismissible(
+                                  key: ValueKey(posts[index].id),
+                                  direction: DismissDirection.vertical,
+                                  onDismissed: (direction) {
 
-                              setState(() {
-                                notifier.postsFiltered.removeAt(index);
-                              });
+                                    final PostEntity post = posts[index];
 
-                              Future.delayed(const Duration(milliseconds: 400), () {
-                                setState(() {
-                                  posts.add(post);
-                                });
-                              });
-                            },
-                            child: AnimatedScale(
-                              duration: const Duration(milliseconds: 400),
-                              curve: Curves.easeInOut,
-                              scale: 1 - (index * 0.2),
-                              child: PostCard(
-                                post: posts[index],
-                                onTap: openArticlePage,
-                              ),
-                            ),
+                                    setState(() {
+                                      notifier.postsFiltered.removeAt(index);
+                                    });
+
+                                    Future.delayed(const Duration(milliseconds: 400), () {
+                                      setState(() {
+                                        posts.add(post);
+                                      });
+                                    });
+                                  },
+                                  child: AnimatedScale(
+                                    duration: const Duration(milliseconds: 400),
+                                    curve: Curves.easeInOut,
+                                    scale: 1 - (index * 0.2),
+                                    child: PostCard(
+                                      post: posts[index],
+                                      onTap: openArticlePage,
+                                    ),
+                                  ),
+                                ),
+                              );
+                            }).reversed.toList(),
                           ),
                         );
-                      }).reversed.toList(),
+                      }
                     );
                   }
                 ),
@@ -318,35 +338,42 @@ class _HomePageState extends State<HomePage> {
     context.router.push(ArticleRoute(id: id,));
   }
 
-  void showSearchColumnSelector() {
+  void showSearchColumnSelector() async {
     final RenderBox renderBox = _searchSelectorButtonKey.currentContext!.findRenderObject() as RenderBox;
     final Offset offset = renderBox.localToGlobal(Offset.zero); // Button's global position
     final Size size = renderBox.size; // Button's size
 
     final selectorNotifier = context.read<SearchColumnNotifier>();
+    selectorNotifier.updateSelectionOpenedState(true);
 
     final List<String> items = ['Author', 'Title'];
 
-    showMenu(
+    await showMenu(
       context: context,
+      initialValue: selectorNotifier.value,
       position: RelativeRect.fromLTRB(
-        offset.dx, // X Position (left)
+        offset.dx - 10, // X Position (left and some space)
         offset.dy + size.height, // Y Position (below the button)
         offset.dx + size.width, // Right boundary
         offset.dy + size.height + 200, // Bottom boundary (just enough space)
       ),
+      color: Colors.white,
       items: [
         PopupMenuItem<String>(
+          padding: EdgeInsets.zero,
           value: items[0],
-          child: Text(items[0]),
-          onTap: () => selectorNotifier.update(items[0]),
+          child: MenuItem(text: items[0]),
+          onTap: () => selectorNotifier.updateColumn(items[0]),
         ),
         PopupMenuItem<String>(
+          padding: EdgeInsets.zero,
           value: items[1],
-          child: Text(items[1]),
-          onTap: () => selectorNotifier.update(items[1]),
+          child: MenuItem(text: items[1]),
+          onTap: () => selectorNotifier.updateColumn(items[1]),
         ),
       ],
     );
+
+    selectorNotifier.updateSelectionOpenedState(false);
   }
 }

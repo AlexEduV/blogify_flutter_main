@@ -82,7 +82,9 @@ class _ArticlePageState extends State<ArticlePage> {
 
                                 CircledButtonOutlined(
                                   icon: FontAwesomeIcons.comment,
-                                  onTap: () {},
+                                  onTap: () {
+                                    context.router.push(CommentsRoute(id: widget.id));
+                                  },
                                 ),
 
                                 CircledButtonOutlined(
@@ -150,6 +152,7 @@ class _ArticlePageState extends State<ArticlePage> {
           ],
         ),
       ),
+      //todo: share screen is not ready yet
       floatingActionButton: const ShareFloatingBar(),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
     );

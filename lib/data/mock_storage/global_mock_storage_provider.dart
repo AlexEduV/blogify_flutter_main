@@ -116,4 +116,8 @@ class GlobalMockStorageProvider extends ChangeNotifier {
 
   }
 
+  PostEntity getPostById(int id) {
+    return _allPosts.firstWhere((post) => post.id == id);
+  }
+
 }

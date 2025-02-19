@@ -3,21 +3,25 @@ import 'package:flutter/material.dart';
 
 class RoundedButton extends StatelessWidget {
 
-  final bool isSelected;
+  final bool filled;
   final IconData? trailingIcon;
   final IconData? leadingIcon;
   final double horizontalPadding;
   final String text;
   final double borderRadius;
   final Function()? onTap;
+  final Color backgroundColor;
+  final Color tintColor;
 
   const RoundedButton({
     required this.text,
     this.leadingIcon,
     this.trailingIcon,
-    this.isSelected = false,
+    this.filled = false,
     this.horizontalPadding = 16.0,
     this.borderRadius = 24.0,
+    this.backgroundColor = AppColors.primaryColor,
+    this.tintColor = Colors.black,
     this.onTap,
     super.key,
   });
@@ -26,7 +30,7 @@ class RoundedButton extends StatelessWidget {
   Widget build(BuildContext context) {
 
     return Material(
-      color: isSelected ? AppColors.primaryColor : Colors.transparent,
+      color: filled ? backgroundColor : Colors.transparent,
       borderRadius: BorderRadius.circular(borderRadius),
       child: InkWell(
         onTap: onTap,
@@ -34,20 +38,21 @@ class RoundedButton extends StatelessWidget {
         child: Container(
           padding: EdgeInsets.symmetric(vertical: 8.0, horizontal: horizontalPadding),
           child: Row(
+            mainAxisSize: MainAxisSize.min,
             spacing: 8.0,
             children: [
 
               if (leadingIcon != null)
                 Icon(
                   leadingIcon,
-                  color: Colors.black,
+                  color: tintColor,
                   size: 20,
                 ),
 
               Text(
                 text,
                 style: TextStyle(
-                  color: isSelected ? Colors.black : AppColors.accentColor,
+                  color: filled ? tintColor : AppColors.accentColor,
                   fontWeight: FontWeight.w500,
                 ),
               ),
@@ -55,7 +60,7 @@ class RoundedButton extends StatelessWidget {
               if (trailingIcon != null)
                 Icon(
                   trailingIcon,
-                  color: Colors.black,
+                  color: tintColor,
                   size: 20,
                 ),
 

@@ -34,7 +34,7 @@ class ShareFloatingBar extends StatelessWidget {
                 ),
                 child: RoundedButton(
                   text: 'Share',
-                  isSelected: true,
+                  filled: true,
                   horizontalPadding: 32.0,
                   leadingIcon: FontAwesomeIcons.arrowUpFromBracket,
                   onTap: () {},

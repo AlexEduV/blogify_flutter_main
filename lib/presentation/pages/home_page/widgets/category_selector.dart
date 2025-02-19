@@ -49,7 +49,7 @@ class _CategorySelectorState extends State<CategorySelector> {
 
           return RoundedButton(
             text: widget.items[index],
-            isSelected: widget.selectedIndex == index,
+            filled: widget.selectedIndex == index,
             onTap: () => widget.onItemTapped != null ? widget.onItemTapped!(index) : () {},
           );
 
