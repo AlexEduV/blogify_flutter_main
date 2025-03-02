@@ -27,7 +27,7 @@ class PostCard extends StatelessWidget {
           border: Border.all(width: 4.0, color: Colors.white,),
           boxShadow: [
             BoxShadow(
-              color: Colors.black.withOpacity(0.17),
+              color: Colors.black.withValues(alpha: 0.17),
               blurRadius: 30,
               spreadRadius: 1,
               offset: const Offset(0, 5),
