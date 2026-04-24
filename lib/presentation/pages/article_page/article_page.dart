@@ -1,6 +1,5 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:blogify_flutter_main/data/mock_storage/global_mock_storage_provider.dart';
-import 'package:blogify_flutter_main/presentation/pages/article_page/widgets/share_floating_bar.dart';
 import 'package:blogify_flutter_main/router/router.gr.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
@@ -82,6 +81,10 @@ class _ArticlePageState extends State<ArticlePage> {
                                   notifier.likePost(widget.id);
                                 },
                               ),
+                              CircledButtonOutlined(
+                                icon: FontAwesomeIcons.share,
+                                onTap: () {},
+                              ),
                             ],
                           ),
                         ],
@@ -146,8 +149,6 @@ class _ArticlePageState extends State<ArticlePage> {
           ],
         ),
       ),
-      //todo: share screen is not ready yet
-      floatingActionButton: const ShareFloatingBar(),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
     );
   }

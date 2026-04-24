@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 class CircledButtonOutlined extends StatelessWidget {
-
   final IconData icon;
   final VoidCallback onTap;
 
@@ -14,14 +13,13 @@ class CircledButtonOutlined extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-
     return Material(
       color: Colors.transparent,
       child: InkWell(
         onTap: onTap,
         borderRadius: BorderRadius.circular(50),
         child: Container(
-          padding: const EdgeInsets.all(16.0),
+          padding: const EdgeInsets.all(12.0),
           decoration: BoxDecoration(
             shape: BoxShape.circle,
             border: Border.all(color: Colors.grey[300]!, width: 1),
