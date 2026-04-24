@@ -315,7 +315,7 @@ class _HomePageState extends State<HomePage> {
     ));
   }
 
-  void showSearchColumnSelector() async {
+  Future<void> showSearchColumnSelector() async {
     final RenderBox renderBox =
         _searchSelectorButtonKey.currentContext!.findRenderObject() as RenderBox;
     final Offset offset = renderBox.localToGlobal(Offset.zero); // Button's global position
@@ -331,11 +331,14 @@ class _HomePageState extends State<HomePage> {
       initialValue: selectorNotifier.value,
       position: RelativeRect.fromLTRB(
         offset.dx - 10, // X Position (left and some space)
-        offset.dy + size.height, // Y Position (below the button)
+        offset.dy + size.height + 10, // Y Position (below the button)
         offset.dx + size.width, // Right boundary
         offset.dy + size.height + 200, // Bottom boundary (just enough space)
       ),
       color: Colors.white,
+      elevation: 50.0,
+      shadowColor: Colors.grey,
+      menuPadding: EdgeInsets.zero,
       items: [
         PopupMenuItem<String>(
           padding: EdgeInsets.zero,
