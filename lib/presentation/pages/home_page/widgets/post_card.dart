@@ -17,87 +17,90 @@ class PostCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return InkWell(
-      onTap: () => onTap(post.id),
-      borderRadius: BorderRadius.circular(24),
-      child: Container(
-        decoration: BoxDecoration(
-          color: AppColors.primaryColor,
-          borderRadius: BorderRadius.circular(24),
-          border: Border.all(
-            width: 4.0,
-            color: Colors.white,
+    return SingleChildScrollView(
+      physics: const NeverScrollableScrollPhysics(),
+      child: InkWell(
+        onTap: () => onTap(post.id),
+        borderRadius: BorderRadius.circular(24),
+        child: Container(
+          decoration: BoxDecoration(
+            color: AppColors.primaryColor,
+            borderRadius: BorderRadius.circular(24),
+            border: Border.all(
+              width: 4.0,
+              color: Colors.white,
+            ),
+            boxShadow: [
+              BoxShadow(
+                color: Colors.black.withValues(alpha: 0.17),
+                blurRadius: 30,
+                spreadRadius: 1,
+                offset: const Offset(0, 5),
+              ),
+            ],
           ),
-          boxShadow: [
-            BoxShadow(
-              color: Colors.black.withValues(alpha: 0.17),
-              blurRadius: 30,
-              spreadRadius: 1,
-              offset: const Offset(0, 5),
-            ),
-          ],
-        ),
-        padding: const EdgeInsets.all(4.0),
-        child: Column(
-          children: [
-            PostCoverPhoto(
-              imageSrc: post.imageSrc,
-            ),
-            const SizedBox(
-              height: 16.0,
-            ),
-            Text(
-              post.author,
-              style: const TextStyle(
-                fontWeight: FontWeight.w600,
-                fontSize: 15.0,
+          padding: const EdgeInsets.all(4.0),
+          child: Column(
+            children: [
+              PostCoverPhoto(
+                imageSrc: post.imageSrc,
               ),
-            ),
-            Text(
-              IntlFormatter.getFormattedDays(post.daysAgoPublished),
-              style: const TextStyle(
-                fontWeight: FontWeight.w600,
-                fontSize: 12.0,
-                color: AppColors.accentColor,
+              const SizedBox(
+                height: 16.0,
               ),
-            ),
-            const SizedBox(
-              height: 24.0,
-            ),
-            Text(
-              post.title,
-              style: const TextStyle(
-                fontWeight: FontWeight.w600,
-                fontSize: 24.0,
-              ),
-              textAlign: TextAlign.center,
-            ),
-            const SizedBox(
-              height: 24.0,
-            ),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                const Text(
-                  'Read Time: ',
-                  style: TextStyle(
-                    color: AppColors.accentColor,
-                    fontWeight: FontWeight.w600,
-                  ),
+              Text(
+                post.author,
+                style: const TextStyle(
+                  fontWeight: FontWeight.w600,
+                  fontSize: 15.0,
                 ),
-                Text(
-                  '${post.minToRead} min',
-                  style: const TextStyle(
-                    fontSize: 14.0,
-                    fontWeight: FontWeight.w600,
-                  ),
+              ),
+              Text(
+                IntlFormatter.getFormattedDays(post.daysAgoPublished),
+                style: const TextStyle(
+                  fontWeight: FontWeight.w600,
+                  fontSize: 12.0,
+                  color: AppColors.accentColor,
                 ),
-              ],
-            ),
-            const SizedBox(
-              height: 12.0,
-            ),
-          ],
+              ),
+              const SizedBox(
+                height: 24.0,
+              ),
+              Text(
+                post.title,
+                style: const TextStyle(
+                  fontWeight: FontWeight.w600,
+                  fontSize: 24.0,
+                ),
+                textAlign: TextAlign.center,
+              ),
+              const SizedBox(
+                height: 24.0,
+              ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  const Text(
+                    'Read Time: ',
+                    style: TextStyle(
+                      color: AppColors.accentColor,
+                      fontWeight: FontWeight.w600,
+                    ),
+                  ),
+                  Text(
+                    '${post.minToRead} min',
+                    style: const TextStyle(
+                      fontSize: 14.0,
+                      fontWeight: FontWeight.w600,
+                    ),
+                  ),
+                ],
+              ),
+              const SizedBox(
+                height: 12.0,
+              ),
+            ],
+          ),
         ),
       ),
     );
