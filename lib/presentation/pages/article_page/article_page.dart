@@ -34,15 +34,16 @@ class _ArticlePageState extends State<ArticlePage> {
           children: [
             SingleChildScrollView(
               child: Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 24.0),
+                padding: const EdgeInsets.all(
+                  24.0,
+                ),
                 child: Consumer<GlobalMockStorageProvider>(builder: (context, notifier, child) {
                   final post = notifier.allPosts.firstWhere((post) => post.id == widget.id);
 
                   return Column(
+                    spacing: 24,
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      const SizedBox(height: 24.0),
-
                       Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
@@ -90,8 +91,6 @@ class _ArticlePageState extends State<ArticlePage> {
                         ],
                       ),
 
-                      const SizedBox(height: 24),
-
                       Text(
                         post.title,
                         style: const TextStyle(
@@ -99,8 +98,6 @@ class _ArticlePageState extends State<ArticlePage> {
                           fontSize: 24.0,
                         ),
                       ),
-
-                      const SizedBox(height: 24),
 
                       //post info row
                       Text(
@@ -112,16 +109,12 @@ class _ArticlePageState extends State<ArticlePage> {
                         ),
                       ),
 
-                      const SizedBox(height: 24),
-
                       //photo cover
                       PostCoverPhoto(
                         imageSrc: post.imageSrc,
                         placeholderColor: Colors.grey[300]!,
                         height: 220,
                       ),
-
-                      const SizedBox(height: 24),
 
                       //post content
                       ListView.separated(
