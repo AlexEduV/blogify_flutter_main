@@ -115,7 +115,6 @@ class _HomePageState extends State<HomePage> {
 
                                 Future.delayed(const Duration(milliseconds: 400), () {
                                   notifier.addPostBack(post);
-                                  posts.add(post);
                                 });
                               },
                               child: PostCard(
