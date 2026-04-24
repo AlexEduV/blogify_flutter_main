@@ -90,6 +90,7 @@ class _HomePageState extends State<HomePage> {
                       child: Stack(
                         key: ValueKey(categoryIndexNotifier.categoryIndex),
                         clipBehavior: Clip.none,
+                        alignment: AlignmentGeometry.topCenter,
                         children: List.generate(posts.length, (index) {
                           return AnimatedPositioned(
                             duration: const Duration(milliseconds: 400),
@@ -103,14 +104,11 @@ class _HomePageState extends State<HomePage> {
                               onDismissed: (direction) {
                                 final post = posts[index];
 
-                                setState(() {
-                                  notifier.postsFiltered.removeAt(index);
-                                });
+                                notifier.postsFiltered.removeAt(index);
 
                                 Future.delayed(const Duration(milliseconds: 400), () {
-                                  setState(() {
-                                    posts.add(post);
-                                  });
+                                  notifier.addPostBack(post);
+                                  posts.add(post);
                                 });
                               },
                               child: AnimatedScale(

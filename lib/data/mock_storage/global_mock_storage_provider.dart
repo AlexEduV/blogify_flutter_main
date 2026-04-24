@@ -175,4 +175,9 @@ class GlobalMockStorageProvider extends ChangeNotifier {
   PostEntity getPostById(int id) {
     return _allPosts.firstWhere((post) => post.id == id);
   }
+
+  void addPostBack(PostEntity post) {
+    _postsFiltered.add(post);
+    notifyListeners();
+  }
 }
