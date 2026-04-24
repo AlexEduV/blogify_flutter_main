@@ -1,6 +1,5 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:blogify_flutter_main/data/mock_storage/global_mock_storage_provider.dart';
-import 'package:blogify_flutter_main/data/mock_storage/global_mock_user_provider.dart';
 import 'package:blogify_flutter_main/domain/entities/post_entity.dart';
 import 'package:blogify_flutter_main/domain/helpers/category_helper.dart';
 import 'package:blogify_flutter_main/presentation/pages/home_page/notifiers/category_index_notifier.dart';
@@ -10,14 +9,12 @@ import 'package:blogify_flutter_main/presentation/pages/home_page/widgets/circle
 import 'package:blogify_flutter_main/presentation/pages/home_page/widgets/menu_item.dart';
 import 'package:blogify_flutter_main/presentation/pages/home_page/widgets/post_card.dart';
 import 'package:blogify_flutter_main/presentation/pages/home_page/widgets/rounded_button.dart';
-import 'package:blogify_flutter_main/presentation/pages/user_settings_page/user_settings_page.dart';
+import 'package:blogify_flutter_main/presentation/pages/home_page/widgets/user_welcome_row.dart';
 import 'package:blogify_flutter_main/presentation/theme/app_colors.dart';
 import 'package:blogify_flutter_main/router/router.gr.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:provider/provider.dart';
-
-import '../../widgets/user_photo.dart';
 
 @RoutePage()
 class HomePage extends StatefulWidget {
@@ -60,65 +57,9 @@ class _HomePageState extends State<HomePage> {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: <Widget>[
-              const SizedBox(
-                height: 24.0,
-              ),
+              const SizedBox(height: 24.0),
 
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      //todo: replace with text span
-                      Row(
-                        children: [
-                          const Text(
-                            'Hey, ',
-                            style: TextStyle(
-                              fontWeight: FontWeight.w500,
-                              fontSize: 24.0,
-                              height: 1.4,
-                            ),
-                          ),
-                          Consumer<GlobalMockUserProvider>(builder: (context, notifier, child) {
-                            return Text(
-                              notifier.currentUser.firstName,
-                              style: const TextStyle(
-                                fontWeight: FontWeight.w600,
-                                fontSize: 24.0,
-                                height: 1.4,
-                              ),
-                            );
-                          })
-                        ],
-                      ),
-                      const Text(
-                        'I have some news for you',
-                        style: TextStyle(
-                          color: AppColors.accentColor,
-                          fontSize: 14.0,
-                        ),
-                      ),
-                    ],
-                  ),
-
-                  //User Settings button
-                  //todo: no material effect is visible
-                  Material(
-                    child: InkWell(
-                      borderRadius: BorderRadius.circular(50.0),
-                      onTap: onUserSettingsButtonPressed,
-                      child: Consumer<GlobalMockUserProvider>(builder: (context, notifier, child) {
-                        return UserPhoto(
-                          imageSrc: notifier.currentUser.imageSrc,
-                          size: 55,
-                        );
-                      }),
-                    ),
-                  ),
-                ],
-              ),
+              const UserWelcomeRow(),
 
               const SizedBox(height: 24.0),
 
@@ -248,9 +189,7 @@ class _HomePageState extends State<HomePage> {
                 }),
               ),
 
-              const SizedBox(
-                height: 24.0,
-              ),
+              const SizedBox(height: 24.0),
 
               // topic selector & edit button
               Consumer<CategoryIndexNotifier>(builder: (context, notifier, child) {
@@ -278,25 +217,12 @@ class _HomePageState extends State<HomePage> {
                 );
               }),
 
-              const SizedBox(
-                height: 16.0,
-              ),
+              const SizedBox(height: 16.0),
             ],
           ),
         ),
       ),
     );
-  }
-
-  void onUserSettingsButtonPressed() {
-    showModalBottomSheet(
-        context: context,
-        backgroundColor: Colors.white,
-        showDragHandle: true,
-        isScrollControlled: true,
-        builder: (BuildContext context) {
-          return const UserSettingsPage();
-        });
   }
 
   void onCategoryItemTapped(int index) {
