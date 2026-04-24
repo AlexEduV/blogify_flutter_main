@@ -70,10 +70,11 @@ class _HomePageState extends State<HomePage> {
                   Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
+                      //todo: replace with text span
                       Row(
                         children: [
                           const Text(
-                            'Hello, ',
+                            'Hey, ',
                             style: TextStyle(
                               fontWeight: FontWeight.w500,
                               fontSize: 24.0,
@@ -96,7 +97,7 @@ class _HomePageState extends State<HomePage> {
                         'I have some news for you',
                         style: TextStyle(
                           color: AppColors.accentColor,
-                          fontSize: 12.0,
+                          fontSize: 14.0,
                         ),
                       ),
                     ],
@@ -148,11 +149,11 @@ class _HomePageState extends State<HomePage> {
                     );
                   }),
                 ],
-                hintText: 'Search here',
+                hintText: 'Search here...',
                 hintStyle: const WidgetStatePropertyAll(
                   TextStyle(
                     color: AppColors.accentColor,
-                    fontSize: 14.0,
+                    fontSize: 16.0,
                   ),
                 ),
                 elevation: const WidgetStatePropertyAll(0.0),
