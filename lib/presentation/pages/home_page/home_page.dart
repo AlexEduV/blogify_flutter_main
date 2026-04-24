@@ -79,6 +79,10 @@ class _HomePageState extends State<HomePage> {
 
                   //draw all the items, with the first one visible, and take out on top all items which are not the category
                   //like Apple CoreAnimation was back in the day
+
+                  //show transparent placeholders made of glass for 'all items' state, and then make them visible only when the category is loaded (1 second?)
+
+                  //the fourth item of the stack has wrong top padding. Maybe because the scale is so low, it takes up more height;
                   return Consumer<CategoryIndexNotifier>(
                       builder: (context, categoryIndexNotifier, child) {
                     return AnimatedSwitcher(
@@ -90,7 +94,7 @@ class _HomePageState extends State<HomePage> {
                           return AnimatedPositioned(
                             duration: const Duration(milliseconds: 400),
                             curve: Curves.easeInOut,
-                            top: index * 65,
+                            top: (index * 65 * 0.85),
                             left: 0,
                             right: 0,
                             child: Dismissible(
