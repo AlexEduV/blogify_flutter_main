@@ -4,7 +4,6 @@ import 'package:blogify_flutter_main/data/mock_storage/global_mock_storage_provi
 import 'package:blogify_flutter_main/data/mock_storage/global_mock_user_provider.dart';
 import 'package:blogify_flutter_main/domain/entities/comment_entity.dart';
 import 'package:blogify_flutter_main/domain/entities/post_entity.dart';
-import 'package:blogify_flutter_main/presentation/common/widgets/circled_button_outlined.dart';
 import 'package:blogify_flutter_main/presentation/pages/comments_page/widgets/comment_field.dart';
 import 'package:blogify_flutter_main/presentation/pages/comments_page/widgets/comments_list_tile.dart';
 import 'package:blogify_flutter_main/presentation/pages/home_page/widgets/rounded_button.dart';
@@ -14,9 +13,10 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:intl/intl.dart';
 import 'package:provider/provider.dart';
 
+import '../../widgets/circled_button_outlined.dart';
+
 @RoutePage()
 class CommentsPage extends StatefulWidget {
-
   final int id;
 
   const CommentsPage({
@@ -29,7 +29,6 @@ class CommentsPage extends StatefulWidget {
 }
 
 class _CommentsPageState extends State<CommentsPage> {
-
   final commentTextController = TextEditingController();
   final commentFieldFocusNode = FocusNode();
 
@@ -46,12 +45,10 @@ class _CommentsPageState extends State<CommentsPage> {
     WidgetsBinding.instance.addPostFrameCallback((_) {
       commentNotifier.fetchCommentsByPostId(widget.id);
     });
-
   }
 
   @override
   Widget build(BuildContext context) {
-
     //todo: when I scroll, I should be able to hide the keyboard.
     // - Declined. It's pretty good enough already
 
@@ -64,18 +61,17 @@ class _CommentsPageState extends State<CommentsPage> {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-
-              const SizedBox(height: 24,),
+              const SizedBox(
+                height: 24,
+              ),
 
               Row(
                 spacing: 16.0,
                 children: [
-
                   CircledButtonOutlined(
                     icon: FontAwesomeIcons.chevronLeft,
                     onTap: () => context.router.popForced(),
                   ),
-
                   Expanded(
                     child: Text(
                       currentPost.title,
@@ -87,18 +83,21 @@ class _CommentsPageState extends State<CommentsPage> {
                       overflow: TextOverflow.ellipsis,
                     ),
                   ),
-
                 ],
               ),
 
-              const SizedBox(height: 24,),
+              const SizedBox(
+                height: 24,
+              ),
 
               CommentField(
                 focusNode: commentFieldFocusNode,
                 textController: commentTextController,
               ),
 
-              const SizedBox(height: 12.0,),
+              const SizedBox(
+                height: 12.0,
+              ),
 
               Row(
                 mainAxisAlignment: MainAxisAlignment.end,
@@ -119,13 +118,11 @@ class _CommentsPageState extends State<CommentsPage> {
               Expanded(
                 child: Consumer<GlobalMockCommentProvider>(
                   builder: (context, notifier, child) {
-
                     final comments = notifier.filteredComments;
                     final userNotifier = context.read<GlobalMockUserProvider>();
 
                     //placeholder
                     if (comments.isEmpty) {
-
                       return const Padding(
                         padding: EdgeInsets.symmetric(horizontal: 8.0),
                         child: Text(
@@ -144,26 +141,23 @@ class _CommentsPageState extends State<CommentsPage> {
                         final user = userNotifier.getUserEntityById(comments[index].userId);
 
                         return CommentsListTile(user: user, comment: comments[index]);
-
                       },
-                      separatorBuilder: (context, index) => const SizedBox(height: 16,),
+                      separatorBuilder: (context, index) => const SizedBox(
+                        height: 16,
+                      ),
                       padding: const EdgeInsets.only(bottom: 16.0),
                     );
-
                   },
                 ),
               ),
-
             ],
           ),
         ),
       ),
-
     );
   }
 
   void validateCommentInput(String input) {
-
     if (input.isEmpty) {
       return;
     }
@@ -177,12 +171,11 @@ class _CommentsPageState extends State<CommentsPage> {
     //update notifier
     final commentsProvider = context.read<GlobalMockCommentProvider>();
     commentsProvider.addComment(
-
       CommentEntity(
-          postId: widget.id,
-          content: input,
-          date: date,
-          userId: userId,
+        postId: widget.id,
+        content: input,
+        date: date,
+        userId: userId,
       ),
     );
 
@@ -191,7 +184,5 @@ class _CommentsPageState extends State<CommentsPage> {
 
     //clear the focus
     commentFieldFocusNode.unfocus();
-
   }
 }
-

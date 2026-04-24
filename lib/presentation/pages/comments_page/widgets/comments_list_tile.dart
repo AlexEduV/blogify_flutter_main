@@ -1,11 +1,11 @@
 import 'package:blogify_flutter_main/domain/entities/comment_entity.dart';
 import 'package:blogify_flutter_main/domain/entities/user_entity.dart';
 import 'package:blogify_flutter_main/domain/helpers/relative_date_helper.dart';
-import 'package:blogify_flutter_main/presentation/common/widgets/user_photo.dart';
 import 'package:flutter/material.dart';
 
-class CommentsListTile extends StatelessWidget {
+import '../../../widgets/user_photo.dart';
 
+class CommentsListTile extends StatelessWidget {
   final UserEntity user;
   final CommentEntity comment;
 
@@ -17,23 +17,19 @@ class CommentsListTile extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-
     return Row(
       spacing: 12.0,
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-
         UserPhoto(
           imageSrc: user.imageSrc,
           size: 40,
         ),
-
         Expanded(
           child: Column(
             spacing: 4.0,
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-
               Row(
                 spacing: 8.0,
                 children: [
@@ -43,7 +39,6 @@ class CommentsListTile extends StatelessWidget {
                       fontWeight: FontWeight.w600,
                     ),
                   ),
-
                   Text(
                     RelativeDateHelper.getRelativeDate(comment.date),
                     style: TextStyle(
@@ -53,12 +48,10 @@ class CommentsListTile extends StatelessWidget {
                   ),
                 ],
               ),
-
               Text(
                 comment.content,
                 softWrap: true,
               ),
-
             ],
           ),
         ),

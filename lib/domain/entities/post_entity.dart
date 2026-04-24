@@ -1,7 +1,6 @@
 import 'package:blogify_flutter_main/domain/helpers/category_helper.dart';
 
 class PostEntity {
-
   final int id;
   final String title;
 
@@ -14,7 +13,7 @@ class PostEntity {
 
   final bool isLiked;
 
-  final String content;
+  final List<String> paragraphs;
 
   const PostEntity({
     required this.id,
@@ -25,7 +24,7 @@ class PostEntity {
     this.category = Category.none,
     this.isLiked = false,
     this.imageSrc = '',
-    this.content = '',
+    this.paragraphs = const [],
   });
 
   PostEntity copyWith({
@@ -37,7 +36,7 @@ class PostEntity {
     int? daysAgoPublished,
     bool? isLiked,
     int? minToRead,
-    String? content,
+    List<String>? paragraphs,
   }) {
     return PostEntity(
       id: id ?? this.id,
@@ -47,9 +46,8 @@ class PostEntity {
       daysAgoPublished: daysAgoPublished ?? this.daysAgoPublished,
       minToRead: minToRead ?? this.minToRead,
       isLiked: isLiked ?? this.isLiked,
-      content: content ?? this.content,
       imageSrc: imageSrc ?? this.imageSrc,
+      paragraphs: paragraphs ?? this.paragraphs,
     );
   }
-
 }
