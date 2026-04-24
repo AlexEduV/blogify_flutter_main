@@ -71,12 +71,20 @@ class _HomePageState extends State<HomePage> {
                   // but the new articles should just change opacity gradually;
                   // the animation should not be 2-way
                   // sometimes the most visible article gets stuck in the wrong position
+
+                  //if the category is changed - no animation for loading, just a fade transition; pager will not be good, since
+                  //it's the same stack, just filtered.
+
+                  //the coolest animation on category change:
+
+                  //draw all the items, with the first one visible, and take out on top all items which are not the category
+                  //like Apple CoreAnimation was back in the day
                   return Consumer<CategoryIndexNotifier>(
                       builder: (context, categoryIndexNotifier, child) {
                     return AnimatedSwitcher(
                       duration: const Duration(milliseconds: 400),
                       child: Stack(
-                        key: ValueKey(categoryIndexNotifier.categoryIndex),
+                        //key: ValueKey(categoryIndexNotifier.categoryIndex),
                         clipBehavior: Clip.none,
                         children: List.generate(posts.length, (index) {
                           return AnimatedPositioned(
