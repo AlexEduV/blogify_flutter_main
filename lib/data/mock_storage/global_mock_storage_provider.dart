@@ -22,7 +22,7 @@ class GlobalMockStorageProvider extends ChangeNotifier {
         author: 'Josh Brian',
         daysAgoPublished: 1,
         minToRead: 5,
-        imageSrc: 'assets/images/design-2.jpg',
+        imageSrc: '',
         category: Category.tech,
         paragraphs: [
           'The evolution of the internet has been marked by transformative shifts, from the static pages of Web 1.0 to the interactive and social-driven Web 2.0. Now, Web 3.0 promises a decentralized future where users regain control over their data, digital assets, and online identities. Built on blockchain technology, Web 3 introduces concepts like smart contracts, decentralized finance (DeFi), and tokenized economies, fundamentally changing how we interact with online platforms. Instead of relying on centralized corporations, users in a Web 3 ecosystem engage with peer-to-peer networks, reducing dependency on intermediaries and enabling a more transparent digital space.',
@@ -35,7 +35,7 @@ class GlobalMockStorageProvider extends ChangeNotifier {
         title: 'Good Listeners Urgently Required',
         author: 'Jay Fitzgerald',
         daysAgoPublished: 2,
-        imageSrc: 'assets/images/leadership-2.jpg',
+        imageSrc: '',
         minToRead: 15,
         category: Category.trending,
         paragraphs: [
@@ -50,7 +50,7 @@ class GlobalMockStorageProvider extends ChangeNotifier {
         author: 'Britton Stipetic',
         daysAgoPublished: 6,
         minToRead: 10,
-        imageSrc: 'assets/images/design-3.jpg',
+        imageSrc: '',
         category: Category.trending,
         paragraphs: [
           'Being a creative director requires a unique combination of vision, leadership, and communication skills. It’s not just about having a flair for design or coming up with the next big idea; it’s about leading a team toward a common goal and guiding them to success. A great creative director understands how to inspire and motivate their team, balancing creative freedom with the need to meet deadlines and business objectives. By fostering an environment of collaboration and trust, they can unlock the full potential of their team, leading to innovative solutions that exceed expectations.',
@@ -64,7 +64,7 @@ class GlobalMockStorageProvider extends ChangeNotifier {
         author: 'Elena Martinez',
         daysAgoPublished: 2,
         minToRead: 6,
-        imageSrc: 'assets/images/tech-quantum.jpg',
+        imageSrc: '',
         category: Category.tech,
         paragraphs: [
           'Quantum computing is poised to revolutionize the way we process information, offering computational power far beyond the capabilities of classical computers. By leveraging the principles of quantum mechanics, such as superposition and entanglement, quantum computers can solve complex problems in seconds that would take traditional machines millennia.',
@@ -78,7 +78,7 @@ class GlobalMockStorageProvider extends ChangeNotifier {
         author: 'Priya Singh',
         daysAgoPublished: 3,
         minToRead: 4,
-        imageSrc: 'assets/images/sustainable-city.jpg',
+        imageSrc: '',
         category: Category.trending,
         paragraphs: [
           'As urban populations swell, the need for sustainable city planning has never been greater. Modern cities are embracing green technologies, renewable energy, and smart infrastructure to reduce their environmental footprint and improve quality of life.',
@@ -88,11 +88,11 @@ class GlobalMockStorageProvider extends ChangeNotifier {
       ),
       const PostEntity(
         id: 6,
-        title: 'The Art of Remote Work: Balancing Productivity and Well-being',
+        title: 'Balancing Productivity and Well-being in remote work',
         author: 'Samantha Lee',
         daysAgoPublished: 5,
         minToRead: 3,
-        imageSrc: 'assets/images/remote-work.jpg',
+        imageSrc: '',
         category: Category.trending,
         paragraphs: [
           'Remote work has become a defining feature of the modern workplace, offering flexibility and autonomy to employees worldwide. With the right tools and strategies, teams can maintain high productivity levels while enjoying a better work-life balance.',
@@ -106,7 +106,7 @@ class GlobalMockStorageProvider extends ChangeNotifier {
         author: 'Lucas Kim',
         daysAgoPublished: 4,
         minToRead: 5,
-        imageSrc: 'assets/images/metaverse.jpg',
+        imageSrc: '',
         category: Category.tech,
         paragraphs: [
           'The metaverse is emerging as the next frontier in digital interaction, blending virtual reality, augmented reality, and blockchain technology to create immersive online worlds. Users can socialize, work, and play in environments limited only by imagination.',
@@ -120,7 +120,7 @@ class GlobalMockStorageProvider extends ChangeNotifier {
         author: 'Dr. Michael Chen',
         daysAgoPublished: 1,
         minToRead: 5,
-        imageSrc: 'assets/images/ai-healthcare.jpg',
+        imageSrc: '',
         category: Category.trending,
         paragraphs: [
           'Artificial intelligence is rapidly transforming healthcare, from diagnostics to personalized treatment plans. Machine learning algorithms can analyze vast datasets, identifying patterns that help doctors make more accurate diagnoses and predict patient outcomes.',
@@ -132,6 +132,9 @@ class GlobalMockStorageProvider extends ChangeNotifier {
 
     _postsInCategory = _allPosts;
     _postsFiltered = _allPosts;
+
+    loadAllInCategory(Category.trending);
+
     notifyListeners();
   }
 
@@ -174,5 +177,15 @@ class GlobalMockStorageProvider extends ChangeNotifier {
 
   PostEntity getPostById(int id) {
     return _allPosts.firstWhere((post) => post.id == id);
+  }
+
+  void addPostBack(PostEntity post) {
+    _postsFiltered.add(post);
+    notifyListeners();
+  }
+
+  void removePostById(int id) {
+    _postsFiltered.removeWhere((element) => element.id == id);
+    notifyListeners();
   }
 }
