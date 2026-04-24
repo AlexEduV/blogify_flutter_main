@@ -93,8 +93,7 @@ class _HomePageState extends State<HomePage> {
                               key: ValueKey(post.id),
                               direction: DismissDirection.vertical,
                               onDismissed: (direction) {
-                                notifier.postsFiltered
-                                    .removeWhere((element) => element.id == post.id);
+                                notifier.removePostById(post.id);
 
                                 Future.delayed(const Duration(milliseconds: 400), () {
                                   notifier.addPostBack(post);

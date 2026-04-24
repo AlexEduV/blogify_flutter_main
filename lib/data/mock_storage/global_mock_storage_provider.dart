@@ -180,4 +180,9 @@ class GlobalMockStorageProvider extends ChangeNotifier {
     _postsFiltered.add(post);
     notifyListeners();
   }
+
+  void removePostById(int id) {
+    postsFiltered.removeWhere((element) => element.id == id);
+    notifyListeners();
+  }
 }
