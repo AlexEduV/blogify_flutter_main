@@ -6,6 +6,7 @@ import 'package:blogify_flutter_main/presentation/pages/home_page/notifiers/cate
 import 'package:blogify_flutter_main/presentation/pages/home_page/notifiers/search_column_notifier.dart';
 import 'package:blogify_flutter_main/presentation/pages/home_page/widgets/category_selector.dart';
 import 'package:blogify_flutter_main/presentation/pages/home_page/widgets/circled_button.dart';
+import 'package:blogify_flutter_main/presentation/pages/home_page/widgets/empty_posts_placeholder.dart';
 import 'package:blogify_flutter_main/presentation/pages/home_page/widgets/menu_item.dart';
 import 'package:blogify_flutter_main/presentation/pages/home_page/widgets/post_card.dart';
 import 'package:blogify_flutter_main/presentation/pages/home_page/widgets/rounded_button.dart';
@@ -124,16 +125,8 @@ class _HomePageState extends State<HomePage> {
               Expanded(
                 child: Consumer<GlobalMockStorageProvider>(builder: (context, notifier, child) {
                   final posts = notifier.postsFiltered;
-
                   if (posts.isEmpty) {
-                    //placeholder
-                    return const Text(
-                      'No posts available at the moment.',
-                      style: TextStyle(
-                        fontSize: 16.0,
-                        fontWeight: FontWeight.w500,
-                      ),
-                    );
+                    return const EmptyPostsPlaceholder();
                   }
 
                   //post stack
