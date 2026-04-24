@@ -42,9 +42,7 @@ class _ArticlePageState extends State<ArticlePage> {
                   return Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      const SizedBox(
-                        height: 24.0,
-                      ),
+                      const SizedBox(height: 24.0),
 
                       Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -89,9 +87,7 @@ class _ArticlePageState extends State<ArticlePage> {
                         ],
                       ),
 
-                      const SizedBox(
-                        height: 24,
-                      ),
+                      const SizedBox(height: 24),
 
                       Text(
                         post.title,
@@ -101,9 +97,7 @@ class _ArticlePageState extends State<ArticlePage> {
                         ),
                       ),
 
-                      const SizedBox(
-                        height: 24,
-                      ),
+                      const SizedBox(height: 24),
 
                       //post info row
                       Text(
@@ -115,9 +109,7 @@ class _ArticlePageState extends State<ArticlePage> {
                         ),
                       ),
 
-                      const SizedBox(
-                        height: 24,
-                      ),
+                      const SizedBox(height: 24),
 
                       //photo cover
                       PostCoverPhoto(
@@ -126,17 +118,25 @@ class _ArticlePageState extends State<ArticlePage> {
                         height: 220,
                       ),
 
-                      const SizedBox(
-                        height: 24,
-                      ),
+                      const SizedBox(height: 24),
 
                       //post content
-                      Text(
-                        post.content,
-                        style: const TextStyle(
-                          fontSize: 13.0,
-                          height: 1.7,
+                      ListView.separated(
+                        itemBuilder: (context, index) {
+                          return Text(
+                            post.paragraphs[index],
+                            style: const TextStyle(
+                              fontSize: 14.0,
+                              height: 1.7,
+                            ),
+                          );
+                        },
+                        separatorBuilder: (context, index) => const SizedBox(
+                          height: 12,
                         ),
+                        itemCount: post.paragraphs.length,
+                        shrinkWrap: true,
+                        physics: const NeverScrollableScrollPhysics(),
                       ),
                     ],
                   );
