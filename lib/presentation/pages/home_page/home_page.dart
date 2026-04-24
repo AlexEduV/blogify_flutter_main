@@ -1,3 +1,5 @@
+import 'dart:math';
+
 import 'package:auto_route/auto_route.dart';
 import 'package:blogify_flutter_main/data/mock_storage/global_mock_storage_provider.dart';
 import 'package:blogify_flutter_main/domain/helpers/category_helper.dart';
@@ -24,7 +26,6 @@ class HomePage extends StatefulWidget {
 class _HomePageState extends State<HomePage> {
   final GlobalKey _searchSelectorButtonKey = GlobalKey();
 
-  //todo: dig into animations to create what you want
   //todo: firebase authentication (Google, Apple)
 
   //todo: on the emulator (Pixel 4), the paddings of the card stack are not right,
@@ -82,19 +83,18 @@ class _HomePageState extends State<HomePage> {
 
                   //show transparent placeholders made of glass for 'all items' state, and then make them visible only when the category is loaded (1 second?)
 
-                  //the fourth item of the stack has wrong top padding. Maybe because the scale is so low, it takes up more height;
                   return Consumer<CategoryIndexNotifier>(
                       builder: (context, categoryIndexNotifier, child) {
                     return AnimatedSwitcher(
                       duration: const Duration(milliseconds: 400),
                       child: Stack(
-                        //key: ValueKey(categoryIndexNotifier.categoryIndex),
+                        key: ValueKey(categoryIndexNotifier.categoryIndex),
                         clipBehavior: Clip.none,
                         children: List.generate(posts.length, (index) {
                           return AnimatedPositioned(
                             duration: const Duration(milliseconds: 400),
                             curve: Curves.easeInOut,
-                            top: (index * 65 * 0.85),
+                            top: getTopOffset(index, 65, 1 - (index * 0.1)),
                             left: 0,
                             right: 0,
                             child: Dismissible(
@@ -143,5 +143,13 @@ class _HomePageState extends State<HomePage> {
     context.router.push(ArticleRoute(
       id: id,
     ));
+  }
+
+  double getTopOffset(int index, double baseHeight, double scale) {
+    double offset = 0;
+    for (int i = 0; i < index; i++) {
+      offset += baseHeight * pow(scale, i);
+    }
+    return offset;
   }
 }
