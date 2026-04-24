@@ -1,6 +1,5 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:blogify_flutter_main/data/mock_storage/global_mock_storage_provider.dart';
-import 'package:blogify_flutter_main/domain/helpers/category_helper.dart';
 import 'package:blogify_flutter_main/presentation/pages/home_page/notifiers/category_index_notifier.dart';
 import 'package:blogify_flutter_main/presentation/pages/home_page/widgets/empty_posts_placeholder.dart';
 import 'package:blogify_flutter_main/presentation/pages/home_page/widgets/home_bottom_bar.dart';
@@ -32,9 +31,6 @@ class _HomePageState extends State<HomePage> {
   @override
   void initState() {
     super.initState();
-
-    final storageNotifier = context.read<GlobalMockStorageProvider>();
-    storageNotifier.loadAllInCategory(Category.trending);
   }
 
   @override
