@@ -70,23 +70,6 @@ class _HomePageState extends State<HomePage> {
                   final visibleList = posts.take(visibleCount).toList();
 
                   //post stack
-
-                  //todo: this is not correct;
-                  // the stack should display (visible) only 3 items,
-                  // but the new articles should just change opacity gradually;
-                  // the animation should not be 2-way
-                  // sometimes the most visible article gets stuck in the wrong position
-
-                  //if the category is changed - no animation for loading, just a fade transition; pager will not be good, since
-                  //it's the same stack, just filtered.
-
-                  //the coolest animation on category change:
-
-                  //draw all the items, with the first one visible, and take out on top all items which are not the category
-                  //like Apple CoreAnimation was back in the day
-
-                  //show transparent placeholders made of glass for 'all items' state, and then make them visible only when the category is loaded (1 second?)
-
                   return Consumer<CategoryIndexNotifier>(
                       builder: (_, categoryIndexNotifier, child) {
                     return Stack(
