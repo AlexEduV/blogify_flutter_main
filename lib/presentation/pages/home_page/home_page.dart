@@ -54,7 +54,7 @@ class _HomePageState extends State<HomePage> {
               //card stack
               Expanded(
                 child: Consumer<GlobalMockStorageProvider>(builder: (context, notifier, child) {
-                  final posts = notifier.postsFiltered.reversed.toList();
+                  final posts = notifier.postsFiltered;
                   if (posts.isEmpty) {
                     return const EmptyPostsPlaceholder();
                   }
@@ -66,7 +66,7 @@ class _HomePageState extends State<HomePage> {
                       (length - 1 - index) * baseOffset;
 
                   final visibleCount = 3;
-                  final visibleList = posts.take(visibleCount).toList().reversed.toList();
+                  final visibleList = posts.take(visibleCount).toList();
 
                   //post stack
                   return Consumer<CategoryIndexNotifier>(
