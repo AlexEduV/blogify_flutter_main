@@ -88,7 +88,7 @@ class GlobalMockStorageProvider extends ChangeNotifier {
       ),
       const PostEntity(
         id: 6,
-        title: 'The Art of Remote Work: Balancing Productivity and Well-being',
+        title: 'Balancing Productivity and Well-being in remote work',
         author: 'Samantha Lee',
         daysAgoPublished: 5,
         minToRead: 3,
