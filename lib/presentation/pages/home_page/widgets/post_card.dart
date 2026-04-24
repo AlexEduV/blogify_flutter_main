@@ -1,8 +1,9 @@
-import 'package:blogify_flutter_main/core/utils/intl_formatter.dart';
 import 'package:blogify_flutter_main/domain/entities/post_entity.dart';
-import 'package:blogify_flutter_main/presentation/common/widgets/post_cover_photo.dart';
 import 'package:blogify_flutter_main/presentation/theme/app_colors.dart';
 import 'package:flutter/material.dart';
+
+import '../../../../utils/intl_formatter.dart';
+import '../../../widgets/post_cover_photo.dart';
 
 class PostCard extends StatelessWidget {
   final PostEntity post;
@@ -16,7 +17,6 @@ class PostCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-
     return InkWell(
       onTap: () => onTap(post.id),
       borderRadius: BorderRadius.circular(24),
@@ -24,7 +24,10 @@ class PostCard extends StatelessWidget {
         decoration: BoxDecoration(
           color: AppColors.primaryColor,
           borderRadius: BorderRadius.circular(24),
-          border: Border.all(width: 4.0, color: Colors.white,),
+          border: Border.all(
+            width: 4.0,
+            color: Colors.white,
+          ),
           boxShadow: [
             BoxShadow(
               color: Colors.black.withValues(alpha: 0.17),
@@ -37,13 +40,12 @@ class PostCard extends StatelessWidget {
         padding: const EdgeInsets.all(4.0),
         child: Column(
           children: [
-
             PostCoverPhoto(
               imageSrc: post.imageSrc,
             ),
-
-            const SizedBox(height: 16.0,),
-
+            const SizedBox(
+              height: 16.0,
+            ),
             Text(
               post.author,
               style: const TextStyle(
@@ -51,7 +53,6 @@ class PostCard extends StatelessWidget {
                 fontSize: 15.0,
               ),
             ),
-
             Text(
               IntlFormatter.getFormattedDays(post.daysAgoPublished),
               style: const TextStyle(
@@ -60,9 +61,9 @@ class PostCard extends StatelessWidget {
                 color: AppColors.accentColor,
               ),
             ),
-
-            const SizedBox(height: 24.0,),
-
+            const SizedBox(
+              height: 24.0,
+            ),
             Text(
               post.title,
               style: const TextStyle(
@@ -71,9 +72,9 @@ class PostCard extends StatelessWidget {
               ),
               textAlign: TextAlign.center,
             ),
-
-            const SizedBox(height: 24.0,),
-
+            const SizedBox(
+              height: 24.0,
+            ),
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
@@ -84,7 +85,6 @@ class PostCard extends StatelessWidget {
                     fontWeight: FontWeight.w600,
                   ),
                 ),
-
                 Text(
                   '${post.minToRead} min',
                   style: const TextStyle(
@@ -94,9 +94,9 @@ class PostCard extends StatelessWidget {
                 ),
               ],
             ),
-
-            const SizedBox(height: 12.0,),
-
+            const SizedBox(
+              height: 12.0,
+            ),
           ],
         ),
       ),
