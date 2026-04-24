@@ -104,7 +104,7 @@ class _HomePageState extends State<HomePage> {
                           child: AnimatedScale(
                             duration: const Duration(milliseconds: 400),
                             curve: Curves.easeInOut,
-                            scale: getScale(index, 0.1),
+                            scale: getScale(index, 0.2),
                             child: Dismissible(
                               key: ValueKey(post.id),
                               direction: DismissDirection.vertical,
