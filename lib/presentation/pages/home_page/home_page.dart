@@ -65,6 +65,8 @@ class _HomePageState extends State<HomePage> {
                     return const EmptyPostsPlaceholder();
                   }
 
+                  final visibleList = posts.take(3).toList();
+
                   //post stack
 
                   //todo: this is not correct;
@@ -91,7 +93,7 @@ class _HomePageState extends State<HomePage> {
                         key: ValueKey(categoryIndexNotifier.categoryIndex),
                         clipBehavior: Clip.none,
                         alignment: AlignmentGeometry.topCenter,
-                        children: List.generate(posts.length, (index) {
+                        children: List.generate(visibleList.length, (index) {
                           return AnimatedPositioned(
                             duration: const Duration(milliseconds: 400),
                             curve: Curves.easeInOut,
@@ -99,12 +101,13 @@ class _HomePageState extends State<HomePage> {
                             left: 0,
                             right: 0,
                             child: Dismissible(
-                              key: ValueKey(posts[index].id),
+                              key: ValueKey(visibleList[index].id),
                               direction: DismissDirection.vertical,
                               onDismissed: (direction) {
-                                final post = posts[index];
+                                final post = visibleList[index];
 
-                                notifier.postsFiltered.removeAt(index);
+                                notifier.postsFiltered
+                                    .removeWhere((element) => element.id == visibleList[index].id);
 
                                 Future.delayed(const Duration(milliseconds: 400), () {
                                   notifier.addPostBack(post);
@@ -116,7 +119,7 @@ class _HomePageState extends State<HomePage> {
                                 curve: Curves.easeInOut,
                                 scale: 1 - (index * 0.2),
                                 child: PostCard(
-                                  post: posts[index],
+                                  post: visibleList[index],
                                   onTap: openArticlePage,
                                 ),
                               ),
