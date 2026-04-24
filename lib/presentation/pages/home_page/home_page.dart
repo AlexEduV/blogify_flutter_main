@@ -96,6 +96,7 @@ class _HomePageState extends State<HomePage> {
                         final post = visibleList[index];
 
                         return AnimatedPositioned(
+                          key: ValueKey(post.id),
                           duration: const Duration(milliseconds: 400),
                           curve: Curves.easeInOut,
                           top: getTopOffset(index, 65),
