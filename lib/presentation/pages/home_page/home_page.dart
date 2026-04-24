@@ -1,12 +1,10 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:blogify_flutter_main/data/mock_storage/global_mock_storage_provider.dart';
-import 'package:blogify_flutter_main/domain/entities/post_entity.dart';
 import 'package:blogify_flutter_main/domain/helpers/category_helper.dart';
 import 'package:blogify_flutter_main/presentation/pages/home_page/notifiers/category_index_notifier.dart';
 import 'package:blogify_flutter_main/presentation/pages/home_page/notifiers/search_column_notifier.dart';
-import 'package:blogify_flutter_main/presentation/pages/home_page/widgets/category_selector.dart';
-import 'package:blogify_flutter_main/presentation/pages/home_page/widgets/circled_button.dart';
 import 'package:blogify_flutter_main/presentation/pages/home_page/widgets/empty_posts_placeholder.dart';
+import 'package:blogify_flutter_main/presentation/pages/home_page/widgets/home_bottom_bar.dart';
 import 'package:blogify_flutter_main/presentation/pages/home_page/widgets/menu_item.dart';
 import 'package:blogify_flutter_main/presentation/pages/home_page/widgets/post_card.dart';
 import 'package:blogify_flutter_main/presentation/pages/home_page/widgets/rounded_button.dart';
@@ -148,7 +146,7 @@ class _HomePageState extends State<HomePage> {
                               key: ValueKey(posts[index].id),
                               direction: DismissDirection.vertical,
                               onDismissed: (direction) {
-                                final PostEntity post = posts[index];
+                                final post = posts[index];
 
                                 setState(() {
                                   notifier.postsFiltered.removeAt(index);
@@ -180,31 +178,7 @@ class _HomePageState extends State<HomePage> {
 
               const SizedBox(height: 24.0),
 
-              // topic selector & edit button
-              Consumer<CategoryIndexNotifier>(builder: (context, notifier, child) {
-                return Row(
-                  spacing: 12,
-                  children: [
-                    Expanded(
-                      child: CategorySelector(
-                        selectedIndex: notifier.categoryIndex,
-                        items: const [
-                          'Trending',
-                          'Design',
-                          'Tech',
-                        ],
-                        onItemTapped: onCategoryItemTapped,
-                      ),
-                    ),
-                    CircledButton(
-                      icon: FontAwesomeIcons.penToSquare,
-                      onTap: () {
-                        //todo: new publication screen
-                      },
-                    ),
-                  ],
-                );
-              }),
+              const HomeBottomBar(),
 
               const SizedBox(height: 16.0),
             ],
@@ -212,17 +186,6 @@ class _HomePageState extends State<HomePage> {
         ),
       ),
     );
-  }
-
-  void onCategoryItemTapped(int index) {
-    //update index
-    context.read<CategoryIndexNotifier>().update(index);
-
-    //filter storage
-    final category = CategoryHelper.getCategoryByIndex(index);
-
-    final storageNotifier = context.read<GlobalMockStorageProvider>();
-    storageNotifier.loadAllInCategory(category);
   }
 
   void openArticlePage(int id) {
