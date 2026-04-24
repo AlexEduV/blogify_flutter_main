@@ -1,5 +1,3 @@
-import 'dart:math';
-
 import 'package:auto_route/auto_route.dart';
 import 'package:blogify_flutter_main/data/mock_storage/global_mock_storage_provider.dart';
 import 'package:blogify_flutter_main/domain/helpers/category_helper.dart';
@@ -65,7 +63,11 @@ class _HomePageState extends State<HomePage> {
                     return const EmptyPostsPlaceholder();
                   }
 
-                  final visibleList = posts.take(3).toList();
+                  double getTopOffset(int index, double baseOffset) => index * baseOffset;
+                  double getScale(int index, double scaleStep) => 1.0 - (index * scaleStep);
+
+                  final visibleCount = 3;
+                  final visibleList = posts.take(visibleCount).toList();
 
                   //post stack
 
@@ -86,47 +88,43 @@ class _HomePageState extends State<HomePage> {
                   //show transparent placeholders made of glass for 'all items' state, and then make them visible only when the category is loaded (1 second?)
 
                   return Consumer<CategoryIndexNotifier>(
-                      builder: (context, categoryIndexNotifier, child) {
-                    return AnimatedSwitcher(
-                      duration: const Duration(milliseconds: 400),
-                      child: Stack(
-                        key: ValueKey(categoryIndexNotifier.categoryIndex),
-                        clipBehavior: Clip.none,
-                        alignment: AlignmentGeometry.topCenter,
-                        children: List.generate(visibleList.length, (index) {
-                          return AnimatedPositioned(
+                      builder: (_, categoryIndexNotifier, child) {
+                    return Stack(
+                      clipBehavior: Clip.none,
+                      alignment: AlignmentGeometry.topCenter,
+                      children: List.generate(visibleList.length, (index) {
+                        final post = visibleList[index];
+
+                        return AnimatedPositioned(
+                          duration: const Duration(milliseconds: 400),
+                          curve: Curves.easeInOut,
+                          top: getTopOffset(index, 65),
+                          left: 0,
+                          right: 0,
+                          child: AnimatedScale(
                             duration: const Duration(milliseconds: 400),
                             curve: Curves.easeInOut,
-                            top: getTopOffset(index, 65, 1 - (index * 0.1)),
-                            left: 0,
-                            right: 0,
+                            scale: getScale(index, 0.1),
                             child: Dismissible(
-                              key: ValueKey(visibleList[index].id),
+                              key: ValueKey(post.id),
                               direction: DismissDirection.vertical,
                               onDismissed: (direction) {
-                                final post = visibleList[index];
-
                                 notifier.postsFiltered
-                                    .removeWhere((element) => element.id == visibleList[index].id);
+                                    .removeWhere((element) => element.id == post.id);
 
                                 Future.delayed(const Duration(milliseconds: 400), () {
                                   notifier.addPostBack(post);
                                   posts.add(post);
                                 });
                               },
-                              child: AnimatedScale(
-                                duration: const Duration(milliseconds: 400),
-                                curve: Curves.easeInOut,
-                                scale: 1 - (index * 0.2),
-                                child: PostCard(
-                                  post: visibleList[index],
-                                  onTap: openArticlePage,
-                                ),
+                              child: PostCard(
+                                post: post,
+                                onTap: openArticlePage,
                               ),
                             ),
-                          );
-                        }).reversed.toList(),
-                      ),
+                          ),
+                        );
+                      }).reversed.toList(),
                     );
                   });
                 }),
@@ -144,13 +142,5 @@ class _HomePageState extends State<HomePage> {
     context.router.push(ArticleRoute(
       id: id,
     ));
-  }
-
-  double getTopOffset(int index, double baseHeight, double scale) {
-    double offset = 0;
-    for (int i = 0; i < index; i++) {
-      offset += baseHeight * pow(scale, i);
-    }
-    return offset;
   }
 }
