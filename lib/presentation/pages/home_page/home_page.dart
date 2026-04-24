@@ -54,16 +54,19 @@ class _HomePageState extends State<HomePage> {
               //card stack
               Expanded(
                 child: Consumer<GlobalMockStorageProvider>(builder: (context, notifier, child) {
-                  final posts = notifier.postsFiltered;
+                  final posts = notifier.postsFiltered.reversed.toList();
                   if (posts.isEmpty) {
                     return const EmptyPostsPlaceholder();
                   }
 
-                  double getTopOffset(int index, double baseOffset) => index * baseOffset;
-                  double getScale(int index, double scaleStep) => 1.0 - (index * scaleStep);
+                  double getScale(int index, int length, double scaleStep) =>
+                      1.0 - ((length - 1 - index) * scaleStep);
+
+                  double getTopOffset(int index, int length, double baseOffset) =>
+                      (length - 1 - index) * baseOffset;
 
                   final visibleCount = 3;
-                  final visibleList = posts.take(visibleCount).toList();
+                  final visibleList = posts.take(visibleCount).toList().reversed.toList();
 
                   //post stack
                   return Consumer<CategoryIndexNotifier>(
@@ -78,13 +81,13 @@ class _HomePageState extends State<HomePage> {
                           key: ValueKey(post.id),
                           duration: const Duration(milliseconds: 400),
                           curve: Curves.easeInOut,
-                          top: getTopOffset(index, 65),
+                          top: getTopOffset(index, visibleCount, 65),
                           left: 0,
                           right: 0,
                           child: AnimatedScale(
                             duration: const Duration(milliseconds: 400),
                             curve: Curves.easeInOut,
-                            scale: getScale(index, 0.2),
+                            scale: getScale(index, visibleCount, 0.2),
                             child: Dismissible(
                               key: ValueKey(post.id),
                               direction: DismissDirection.vertical,
@@ -102,7 +105,7 @@ class _HomePageState extends State<HomePage> {
                             ),
                           ),
                         );
-                      }).reversed.toList(),
+                      }),
                     );
                   });
                 }),

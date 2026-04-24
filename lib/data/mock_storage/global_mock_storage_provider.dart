@@ -180,7 +180,7 @@ class GlobalMockStorageProvider extends ChangeNotifier {
   }
 
   void addPostBack(PostEntity post) {
-    _postsFiltered.add(post);
+    _postsFiltered.insert(0, post);
     notifyListeners();
   }
 
