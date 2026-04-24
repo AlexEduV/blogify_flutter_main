@@ -14,6 +14,7 @@ class GlobalMockStorageProvider extends ChangeNotifier {
 
   void initStorage() {
     //todo: move to remote data source
+    //todo: some images are not in the bundle -> move to using network images
     _allPosts = [
       const PostEntity(
         id: 1,

@@ -65,6 +65,12 @@ class _HomePageState extends State<HomePage> {
                   }
 
                   //post stack
+
+                  //todo: this is not correct;
+                  // the stack should display (visible) only 3 items,
+                  // but the new articles should just change opacity gradually;
+                  // the animation should not be 2-way
+                  // sometimes the most visible article gets stuck in the wrong position
                   return Consumer<CategoryIndexNotifier>(
                       builder: (context, categoryIndexNotifier, child) {
                     return AnimatedSwitcher(
