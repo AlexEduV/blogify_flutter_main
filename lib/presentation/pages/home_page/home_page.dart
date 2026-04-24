@@ -40,11 +40,7 @@ class _HomePageState extends State<HomePage> {
     super.initState();
 
     final storageNotifier = context.read<GlobalMockStorageProvider>();
-
-    WidgetsBinding.instance.addPostFrameCallback((_) {
-      storageNotifier.initStorage();
-      storageNotifier.loadAllInCategory(Category.trending);
-    });
+    storageNotifier.loadAllInCategory(Category.trending);
   }
 
   @override
