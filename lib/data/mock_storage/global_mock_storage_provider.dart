@@ -14,7 +14,6 @@ class GlobalMockStorageProvider extends ChangeNotifier {
 
   void initStorage() {
     //todo: move to remote data source
-    //todo: some images are not in the bundle -> move to using network images
     _allPosts = [
       const PostEntity(
         id: 1,
@@ -22,7 +21,8 @@ class GlobalMockStorageProvider extends ChangeNotifier {
         author: 'Josh Brian',
         daysAgoPublished: 1,
         minToRead: 5,
-        imageSrc: '',
+        imageSrc:
+            'https://images.unsplash.com/photo-1665597704311-d7304eaf70ac?q=80&w=600&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
         category: Category.tech,
         paragraphs: [
           'The evolution of the internet has been marked by transformative shifts, from the static pages of Web 1.0 to the interactive and social-driven Web 2.0. Now, Web 3.0 promises a decentralized future where users regain control over their data, digital assets, and online identities. Built on blockchain technology, Web 3 introduces concepts like smart contracts, decentralized finance (DeFi), and tokenized economies, fundamentally changing how we interact with online platforms. Instead of relying on centralized corporations, users in a Web 3 ecosystem engage with peer-to-peer networks, reducing dependency on intermediaries and enabling a more transparent digital space.',
@@ -35,7 +35,8 @@ class GlobalMockStorageProvider extends ChangeNotifier {
         title: 'Good Listeners Urgently Required',
         author: 'Jay Fitzgerald',
         daysAgoPublished: 2,
-        imageSrc: '',
+        imageSrc:
+            'https://images.unsplash.com/photo-1642406415849-a410b5d01a94?q=80&w=200&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
         minToRead: 15,
         category: Category.trending,
         paragraphs: [
@@ -50,7 +51,8 @@ class GlobalMockStorageProvider extends ChangeNotifier {
         author: 'Britton Stipetic',
         daysAgoPublished: 6,
         minToRead: 10,
-        imageSrc: '',
+        imageSrc:
+            'https://images.unsplash.com/photo-1596025489331-e31b4d8dc556?q=80&w=200&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
         category: Category.trending,
         paragraphs: [
           'Being a creative director requires a unique combination of vision, leadership, and communication skills. It’s not just about having a flair for design or coming up with the next big idea; it’s about leading a team toward a common goal and guiding them to success. A great creative director understands how to inspire and motivate their team, balancing creative freedom with the need to meet deadlines and business objectives. By fostering an environment of collaboration and trust, they can unlock the full potential of their team, leading to innovative solutions that exceed expectations.',
@@ -64,7 +66,8 @@ class GlobalMockStorageProvider extends ChangeNotifier {
         author: 'Elena Martinez',
         daysAgoPublished: 2,
         minToRead: 6,
-        imageSrc: '',
+        imageSrc:
+            'https://images.unsplash.com/photo-1617839625591-e5a789593135?q=80&w=200&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
         category: Category.tech,
         paragraphs: [
           'Quantum computing is poised to revolutionize the way we process information, offering computational power far beyond the capabilities of classical computers. By leveraging the principles of quantum mechanics, such as superposition and entanglement, quantum computers can solve complex problems in seconds that would take traditional machines millennia.',
@@ -78,7 +81,8 @@ class GlobalMockStorageProvider extends ChangeNotifier {
         author: 'Priya Singh',
         daysAgoPublished: 3,
         minToRead: 4,
-        imageSrc: '',
+        imageSrc:
+            'https://plus.unsplash.com/premium_photo-1681987448179-4a93b7975018?q=80&w=200&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
         category: Category.trending,
         paragraphs: [
           'As urban populations swell, the need for sustainable city planning has never been greater. Modern cities are embracing green technologies, renewable energy, and smart infrastructure to reduce their environmental footprint and improve quality of life.',
@@ -92,7 +96,8 @@ class GlobalMockStorageProvider extends ChangeNotifier {
         author: 'Samantha Lee',
         daysAgoPublished: 5,
         minToRead: 3,
-        imageSrc: '',
+        imageSrc:
+            'https://images.unsplash.com/photo-1497032628192-86f99bcd76bc?q=80&w=200&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
         category: Category.trending,
         paragraphs: [
           'Remote work has become a defining feature of the modern workplace, offering flexibility and autonomy to employees worldwide. With the right tools and strategies, teams can maintain high productivity levels while enjoying a better work-life balance.',
@@ -106,7 +111,8 @@ class GlobalMockStorageProvider extends ChangeNotifier {
         author: 'Lucas Kim',
         daysAgoPublished: 4,
         minToRead: 5,
-        imageSrc: '',
+        imageSrc:
+            'https://images.unsplash.com/photo-1653565685070-660c4cf6c68b?q=80&w=200&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
         category: Category.tech,
         paragraphs: [
           'The metaverse is emerging as the next frontier in digital interaction, blending virtual reality, augmented reality, and blockchain technology to create immersive online worlds. Users can socialize, work, and play in environments limited only by imagination.',
@@ -120,7 +126,8 @@ class GlobalMockStorageProvider extends ChangeNotifier {
         author: 'Dr. Michael Chen',
         daysAgoPublished: 1,
         minToRead: 5,
-        imageSrc: '',
+        imageSrc:
+            'https://plus.unsplash.com/premium_photo-1698755473432-4a8e954685e0?q=80&w=200&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
         category: Category.trending,
         paragraphs: [
           'Artificial intelligence is rapidly transforming healthcare, from diagnostics to personalized treatment plans. Machine learning algorithms can analyze vast datasets, identifying patterns that help doctors make more accurate diagnoses and predict patient outcomes.',
