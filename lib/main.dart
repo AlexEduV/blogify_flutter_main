@@ -1,4 +1,5 @@
 import 'package:blogify_flutter_main/common/app_colors.dart';
+import 'package:blogify_flutter_main/data/data_sources/mock_comments_data_source_impl.dart';
 import 'package:blogify_flutter_main/data/data_sources/mock_posts_data_source_impl.dart';
 import 'package:blogify_flutter_main/data/mock_storage/global_mock_comment_provider.dart';
 import 'package:blogify_flutter_main/data/mock_storage/global_mock_storage_provider.dart';
@@ -12,13 +13,14 @@ import 'package:provider/provider.dart';
 
 void main() {
   final mockPostsDataSource = MockPostsDataSourceImpl()..init();
+  final mockCommentsDataSource = MockCommentsDataSourceImpl()..init();
 
   runApp(MultiProvider(
     providers: [
       ChangeNotifierProvider(
           create: (_) => GlobalMockStorageProvider(mockPostsDataSource)..initStorage()),
       ChangeNotifierProvider(create: (_) => GlobalMockUserProvider()),
-      ChangeNotifierProvider(create: (_) => GlobalMockCommentProvider()),
+      ChangeNotifierProvider(create: (_) => GlobalMockCommentProvider(mockCommentsDataSource)),
       ChangeNotifierProvider(create: (_) => CategoryIndexNotifier()),
       ChangeNotifierProvider(create: (_) => SearchColumnNotifier()),
     ],
