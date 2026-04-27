@@ -31,6 +31,7 @@ class _HomePageState extends State<HomePage> {
   //todo: firebase authentication (Google, Apple)
 
   final CardSwiperController controller = CardSwiperController();
+  final searchFocusNode = FocusNode();
 
   @override
   void initState() {
@@ -39,6 +40,7 @@ class _HomePageState extends State<HomePage> {
 
   @override
   void dispose() {
+    searchFocusNode.dispose();
     controller.dispose();
     super.dispose();
   }
@@ -48,7 +50,7 @@ class _HomePageState extends State<HomePage> {
     return Scaffold(
       resizeToAvoidBottomInset: false,
       body: GestureDetector(
-        onTap: () => FocusScope.of(context).unfocus(),
+        onTap: () => searchFocusNode.unfocus(),
         behavior: HitTestBehavior.translucent,
         child: SafeArea(
           child: Padding(
@@ -63,6 +65,7 @@ class _HomePageState extends State<HomePage> {
                 //search bar
                 HomeSearchBar(
                   selectorKey: _searchSelectorButtonKey,
+                  focusNode: searchFocusNode,
                 ),
 
                 //card stack

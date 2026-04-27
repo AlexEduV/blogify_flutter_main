@@ -13,13 +13,15 @@ import '../notifiers/search_column_notifier.dart';
 import 'menu_item.dart';
 
 class HomeSearchBar extends StatelessWidget {
+  final FocusNode focusNode;
   final GlobalKey selectorKey;
 
-  const HomeSearchBar({required this.selectorKey, super.key});
+  const HomeSearchBar({required this.selectorKey, required this.focusNode, super.key});
 
   @override
   Widget build(BuildContext context) {
     return SearchBar(
+      focusNode: focusNode,
       padding: const WidgetStatePropertyAll(
         EdgeInsets.only(left: AppDimensions.normalM, right: AppDimensions.minorL),
       ),
