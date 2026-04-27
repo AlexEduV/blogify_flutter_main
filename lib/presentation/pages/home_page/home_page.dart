@@ -77,7 +77,7 @@ class _HomePageState extends State<HomePage> {
                       controller: controller,
                       cardsCount: posts.length,
                       onSwipe: (_, __, direction) => true,
-                      numberOfCardsDisplayed: limitedCount(AppConstants.homePagePostsVisibleCount),
+                      numberOfCardsDisplayed: limitedCount(posts.length),
                       backCardOffset: const Offset(0, 40),
                       padding: EdgeInsets.zero,
                       cardBuilder: (
@@ -104,5 +104,6 @@ class _HomePageState extends State<HomePage> {
     context.router.push(ArticleRoute(id: id));
   }
 
-  int limitedCount(int length, [int max = 3]) => min(length, max);
+  int limitedCount(int length, [int max = AppConstants.homePagePostsVisibleCount]) =>
+      min(length, max);
 }
