@@ -1,10 +1,10 @@
-import 'package:blogify_flutter_main/domain/helpers/category_helper.dart';
+import '../../common/enums/post_category.dart';
 
 class PostEntity {
   final int id;
   final String title;
 
-  final Category? category;
+  final PostCategory? category;
 
   final String author;
   final String imageSrc;
@@ -21,7 +21,7 @@ class PostEntity {
     required this.author,
     required this.daysAgoPublished,
     required this.minToRead,
-    this.category = Category.none,
+    this.category = PostCategory.none,
     this.isLiked = false,
     this.imageSrc = '',
     this.paragraphs = const [],
@@ -30,7 +30,7 @@ class PostEntity {
   PostEntity copyWith({
     int? id,
     String? title,
-    Category? category,
+    PostCategory? category,
     String? author,
     String? imageSrc,
     int? daysAgoPublished,

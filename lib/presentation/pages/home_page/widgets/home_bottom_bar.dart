@@ -4,8 +4,8 @@ import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:provider/provider.dart';
 
+import '../../../../common/enums/post_category.dart';
 import '../../../../data/mock_storage/global_mock_storage_provider.dart';
-import '../../../../domain/helpers/category_helper.dart';
 import '../notifiers/category_index_notifier.dart';
 import 'category_selector.dart';
 import 'circled_button.dart';
@@ -48,7 +48,7 @@ class HomeBottomBar extends StatelessWidget {
     context.read<CategoryIndexNotifier>().update(index);
 
     //filter storage
-    final category = CategoryHelper.getCategoryByIndex(index);
+    final category = PostCategory.values.where((element) => element.tabIndex == index).first;
 
     final storageNotifier = context.read<GlobalMockStorageProvider>();
     storageNotifier.loadAllInCategory(category);
