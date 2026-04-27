@@ -1,5 +1,4 @@
 import 'package:blogify_flutter_main/common/app_dimensions.dart';
-import 'package:blogify_flutter_main/l10n/l10n.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:provider/provider.dart';
@@ -22,11 +21,10 @@ class HomeBottomBar extends StatelessWidget {
           Expanded(
             child: CategorySelector(
               selectedIndex: notifier.categoryIndex,
-              items: const [
-                //todo: can be moved to an enum
-                L10n.postsCategoryTrending,
-                L10n.postsCategoryDesign,
-                L10n.postsCategoryTech,
+              items: [
+                PostCategory.trending.label,
+                PostCategory.design.label,
+                PostCategory.tech.label,
               ],
               onItemTapped: (index) => onCategoryItemTapped(context, index),
             ),
