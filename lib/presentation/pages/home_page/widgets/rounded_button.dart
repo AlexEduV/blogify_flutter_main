@@ -13,6 +13,7 @@ class RoundedButton extends StatelessWidget {
   final Function()? onTap;
   final Color backgroundColor;
   final Color tintColor;
+  final bool? expanded;
 
   const RoundedButton({
     required this.text,
@@ -24,6 +25,7 @@ class RoundedButton extends StatelessWidget {
     this.backgroundColor = AppColors.primaryColor,
     this.tintColor = Colors.black,
     this.onTap,
+    this.expanded = false,
     super.key,
   });
 
@@ -42,12 +44,13 @@ class RoundedButton extends StatelessWidget {
             mainAxisSize: MainAxisSize.min,
             spacing: AppDimensions.minorL,
             children: [
-              if (leadingIcon != null)
+              if (leadingIcon != null) ...[
                 Icon(
                   leadingIcon,
                   color: tintColor,
                   size: AppDimensions.appBarIconSize,
                 ),
+              ],
               Text(
                 text,
                 style: AppTextStyles.sfPro14.copyWith(
@@ -55,12 +58,17 @@ class RoundedButton extends StatelessWidget {
                   fontWeight: FontWeight.w500,
                 ),
               ),
-              if (trailingIcon != null)
-                Icon(
-                  trailingIcon,
-                  color: tintColor,
-                  size: AppDimensions.appBarIconSize,
+              if (trailingIcon != null) ...[
+                AnimatedRotation(
+                  duration: const Duration(milliseconds: 250),
+                  turns: (expanded ?? false) ? -1.0 : -0.5,
+                  child: Icon(
+                    trailingIcon,
+                    color: tintColor,
+                    size: AppDimensions.appBarIconSize,
+                  ),
                 ),
+              ],
             ],
           ),
         ),

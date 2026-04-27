@@ -30,13 +30,11 @@ class HomeSearchBar extends StatelessWidget {
       ),
       trailing: [
         Consumer<SearchColumnNotifier>(builder: (context, notifier, child) {
-          //todo: find a way to animate between two state icons
           return RoundedButton(
             key: selectorKey,
             text: notifier.value,
-            trailingIcon: notifier.isSelectionOpen
-                ? Icons.keyboard_arrow_up_outlined
-                : Icons.keyboard_arrow_down_outlined,
+            expanded: notifier.isSelectionOpen,
+            trailingIcon: Icons.keyboard_arrow_up_outlined,
             filled: true,
             onTap: () => showSearchColumnSelector(context),
           );
