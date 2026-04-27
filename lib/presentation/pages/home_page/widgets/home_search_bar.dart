@@ -1,10 +1,12 @@
+import 'package:blogify_flutter_main/common/app_dimensions.dart';
+import 'package:blogify_flutter_main/l10n/l10n.dart';
 import 'package:blogify_flutter_main/presentation/pages/home_page/widgets/rounded_button.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:provider/provider.dart';
 
+import '../../../../common/app_colors.dart';
 import '../../../../data/mock_storage/global_mock_storage_provider.dart';
-import '../../../theme/app_colors.dart';
 import '../notifiers/search_column_notifier.dart';
 import 'menu_item.dart';
 
@@ -22,12 +24,12 @@ class HomeSearchBar extends StatelessWidget {
 
     return SearchBar(
       padding: const WidgetStatePropertyAll(
-        EdgeInsets.only(left: 16.0, right: 8.0),
+        EdgeInsets.only(left: AppDimensions.normalM, right: AppDimensions.minorL),
       ),
       leading: const FaIcon(
         FontAwesomeIcons.magnifyingGlass,
         color: AppColors.accentColor,
-        size: 20,
+        size: AppDimensions.appBarIconSize,
       ),
       trailing: [
         Consumer<SearchColumnNotifier>(builder: (context, notifier, child) {
@@ -43,7 +45,7 @@ class HomeSearchBar extends StatelessWidget {
           );
         }),
       ],
-      hintText: 'Search here...',
+      hintText: L10n.searchBarHint,
       hintStyle: const WidgetStatePropertyAll(
         TextStyle(
           color: AppColors.accentColor,
@@ -55,15 +57,16 @@ class HomeSearchBar extends StatelessWidget {
       shape: WidgetStateProperty.resolveWith<RoundedRectangleBorder>((Set<WidgetState> states) {
         if (states.contains(WidgetState.focused)) {
           return RoundedRectangleBorder(
-            side: const BorderSide(color: AppColors.emeraldGreen, width: 2.0), // Highlighted border
-            borderRadius: BorderRadius.circular(32.0),
+            side: const BorderSide(color: AppColors.emeraldGreen, width: AppDimensions.minorXS),
+            // Highlighted border
+            borderRadius: BorderRadius.circular(AppDimensions.majorL),
           );
         }
 
         //default value
         return RoundedRectangleBorder(
-          side: BorderSide(color: Colors.grey.shade200, width: 1.0),
-          borderRadius: BorderRadius.circular(32.0),
+          side: BorderSide(color: AppColors.offGrey),
+          borderRadius: BorderRadius.circular(AppDimensions.majorL),
         );
       }),
       onChanged: (String filter) {
@@ -82,7 +85,8 @@ class HomeSearchBar extends StatelessWidget {
     final selectorNotifier = context.read<SearchColumnNotifier>();
     selectorNotifier.updateSelectionOpenedState(true);
 
-    final List<String> items = ['Author', 'Title'];
+    //todo: use an enum
+    final List<String> items = [L10n.searchFilterAuthor, L10n.searchFilterTitle];
 
     await showMenu(
       context: context,

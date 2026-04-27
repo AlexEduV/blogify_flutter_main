@@ -1,3 +1,4 @@
+import 'package:blogify_flutter_main/l10n/l10n.dart';
 import 'package:flutter/material.dart';
 
 class EmptyPostsPlaceholder extends StatelessWidget {
@@ -6,7 +7,7 @@ class EmptyPostsPlaceholder extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return const Text(
-      'No posts available at the moment.',
+      L10n.noPostsPlaceholder,
       style: TextStyle(
         fontSize: 16.0,
         fontWeight: FontWeight.w500,

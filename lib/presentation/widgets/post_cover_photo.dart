@@ -1,3 +1,4 @@
+import 'package:blogify_flutter_main/common/app_dimensions.dart';
 import 'package:flutter/material.dart';
 
 class PostCoverPhoto extends StatelessWidget {
@@ -8,7 +9,7 @@ class PostCoverPhoto extends StatelessWidget {
   const PostCoverPhoto({
     this.placeholderColor = Colors.white,
     this.imageSrc = '',
-    this.height = 250,
+    this.height = AppDimensions.postCoverImageHeight,
     super.key,
   });
 
@@ -25,10 +26,10 @@ class PostCoverPhoto extends StatelessWidget {
                 fit: BoxFit.cover,
               )
             : null,
-        borderRadius: BorderRadius.circular(16),
+        borderRadius: BorderRadius.circular(AppDimensions.normalM),
       ),
       height: height,
-      padding: const EdgeInsets.all(4.0),
+      padding: const EdgeInsets.all(AppDimensions.minorS),
     );
   }
 }

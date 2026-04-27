@@ -1,8 +1,8 @@
-import 'package:blogify_flutter_main/presentation/theme/app_colors.dart';
+import 'package:blogify_flutter_main/common/app_colors.dart';
+import 'package:blogify_flutter_main/common/app_dimensions.dart';
 import 'package:flutter/material.dart';
 
 class RoundedButton extends StatelessWidget {
-
   final bool filled;
   final IconData? trailingIcon;
   final IconData? leadingIcon;
@@ -18,8 +18,8 @@ class RoundedButton extends StatelessWidget {
     this.leadingIcon,
     this.trailingIcon,
     this.filled = false,
-    this.horizontalPadding = 16.0,
-    this.borderRadius = 24.0,
+    this.horizontalPadding = AppDimensions.normalM,
+    this.borderRadius = AppDimensions.majorS,
     this.backgroundColor = AppColors.primaryColor,
     this.tintColor = Colors.black,
     this.onTap,
@@ -28,27 +28,25 @@ class RoundedButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-
     return Material(
       color: filled ? backgroundColor : Colors.transparent,
       borderRadius: BorderRadius.circular(borderRadius),
       child: InkWell(
         onTap: onTap,
         borderRadius: BorderRadius.circular(borderRadius),
-        child: Container(
-          padding: EdgeInsets.symmetric(vertical: 8.0, horizontal: horizontalPadding),
+        child: Padding(
+          padding:
+              EdgeInsets.symmetric(vertical: AppDimensions.minorL, horizontal: horizontalPadding),
           child: Row(
             mainAxisSize: MainAxisSize.min,
-            spacing: 8.0,
+            spacing: AppDimensions.minorL,
             children: [
-
               if (leadingIcon != null)
                 Icon(
                   leadingIcon,
                   color: tintColor,
-                  size: 20,
+                  size: AppDimensions.appBarIconSize,
                 ),
-
               Text(
                 text,
                 style: TextStyle(
@@ -56,14 +54,12 @@ class RoundedButton extends StatelessWidget {
                   fontWeight: FontWeight.w500,
                 ),
               ),
-
               if (trailingIcon != null)
                 Icon(
                   trailingIcon,
                   color: tintColor,
-                  size: 20,
+                  size: AppDimensions.appBarIconSize,
                 ),
-
             ],
           ),
         ),

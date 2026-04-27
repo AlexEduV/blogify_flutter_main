@@ -4,12 +4,15 @@ import 'package:flutter/material.dart';
 
 class GlobalMockStorageProvider extends ChangeNotifier {
   List<PostEntity> _allPosts = [];
+
   List<PostEntity> get allPosts => _allPosts;
 
   List<PostEntity> _postsInCategory = [];
+
   List<PostEntity> get postsInCategory => _postsInCategory;
 
   List<PostEntity> _postsFiltered = [];
+
   List<PostEntity> get postsFiltered => _postsFiltered;
 
   void initStorage() {
@@ -147,6 +150,7 @@ class GlobalMockStorageProvider extends ChangeNotifier {
 
   void filter(String filter, String column) {
     if (filter.isNotEmpty) {
+      //todo: move to enum
       if (column == 'Title') {
         _postsFiltered = _postsInCategory
             .where((post) => post.title.toLowerCase().contains(filter.toLowerCase()))

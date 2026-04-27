@@ -1,13 +1,15 @@
 import 'package:auto_route/auto_route.dart';
+import 'package:blogify_flutter_main/common/app_colors.dart';
+import 'package:blogify_flutter_main/common/app_dimensions.dart';
 import 'package:blogify_flutter_main/data/mock_storage/global_mock_comment_provider.dart';
 import 'package:blogify_flutter_main/data/mock_storage/global_mock_storage_provider.dart';
 import 'package:blogify_flutter_main/data/mock_storage/global_mock_user_provider.dart';
 import 'package:blogify_flutter_main/domain/entities/comment_entity.dart';
 import 'package:blogify_flutter_main/domain/entities/post_entity.dart';
+import 'package:blogify_flutter_main/l10n/l10n.dart';
 import 'package:blogify_flutter_main/presentation/pages/comments_page/widgets/comment_field.dart';
 import 'package:blogify_flutter_main/presentation/pages/comments_page/widgets/comments_list_tile.dart';
 import 'package:blogify_flutter_main/presentation/pages/home_page/widgets/rounded_button.dart';
-import 'package:blogify_flutter_main/presentation/theme/app_colors.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:intl/intl.dart';
@@ -57,16 +59,14 @@ class _CommentsPageState extends State<CommentsPage> {
     return Scaffold(
       body: SafeArea(
         child: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 24.0),
+          padding: const EdgeInsets.symmetric(horizontal: AppDimensions.majorS),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              const SizedBox(
-                height: 24,
-              ),
+              const SizedBox(height: AppDimensions.majorS),
 
               Row(
-                spacing: 16.0,
+                spacing: AppDimensions.normalM,
                 children: [
                   CircledButtonOutlined(
                     icon: FontAwesomeIcons.chevronLeft,
@@ -77,7 +77,7 @@ class _CommentsPageState extends State<CommentsPage> {
                       currentPost.title,
                       style: const TextStyle(
                         fontWeight: FontWeight.w500,
-                        fontSize: 16.0,
+                        fontSize: AppDimensions.normalM,
                       ),
                       softWrap: true,
                       overflow: TextOverflow.ellipsis,
@@ -86,24 +86,20 @@ class _CommentsPageState extends State<CommentsPage> {
                 ],
               ),
 
-              const SizedBox(
-                height: 24,
-              ),
+              const SizedBox(height: AppDimensions.majorS),
 
               CommentField(
                 focusNode: commentFieldFocusNode,
                 textController: commentTextController,
               ),
 
-              const SizedBox(
-                height: 12.0,
-              ),
+              const SizedBox(height: AppDimensions.normalS),
 
               Row(
                 mainAxisAlignment: MainAxisAlignment.end,
                 children: [
                   RoundedButton(
-                    text: 'Respond',
+                    text: L10n.commentsRespondButtonTitle,
                     filled: true,
                     onTap: () => validateCommentInput(commentTextController.text),
                     backgroundColor: AppColors.emeraldGreen,
@@ -112,7 +108,7 @@ class _CommentsPageState extends State<CommentsPage> {
                 ],
               ),
 
-              const SizedBox(height: 24.0),
+              const SizedBox(height: AppDimensions.majorS),
 
               //comments or a placeholder
               Expanded(
@@ -124,9 +120,9 @@ class _CommentsPageState extends State<CommentsPage> {
                     //placeholder
                     if (comments.isEmpty) {
                       return const Padding(
-                        padding: EdgeInsets.symmetric(horizontal: 8.0),
+                        padding: EdgeInsets.symmetric(horizontal: AppDimensions.minorL),
                         child: Text(
-                          'No comments yet',
+                          L10n.emptyCommentSectionPlaceholder,
                           style: TextStyle(
                             fontSize: 16.0,
                             fontWeight: FontWeight.w500,
@@ -142,10 +138,10 @@ class _CommentsPageState extends State<CommentsPage> {
 
                         return CommentsListTile(user: user, comment: comments[index]);
                       },
-                      separatorBuilder: (context, index) => const SizedBox(
-                        height: 16,
-                      ),
-                      padding: const EdgeInsets.only(bottom: 16.0),
+                      separatorBuilder: (context, index) {
+                        return const SizedBox(height: AppDimensions.normalM);
+                      },
+                      padding: const EdgeInsets.only(bottom: AppDimensions.normalM),
                     );
                   },
                 ),
@@ -157,12 +153,14 @@ class _CommentsPageState extends State<CommentsPage> {
     );
   }
 
+  //todo: move to the notifier;
   void validateCommentInput(String input) {
     if (input.isEmpty) {
       return;
     }
 
     //prepare data
+    //todo: move to date formatter
     final date = DateFormat('MM/dd/yy').format(DateTime.now());
 
     final userNotifier = context.read<GlobalMockUserProvider>();

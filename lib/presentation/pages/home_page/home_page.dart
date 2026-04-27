@@ -1,6 +1,7 @@
 import 'dart:math';
 
 import 'package:auto_route/auto_route.dart';
+import 'package:blogify_flutter_main/common/app_dimensions.dart';
 import 'package:blogify_flutter_main/data/mock_storage/global_mock_storage_provider.dart';
 import 'package:blogify_flutter_main/presentation/pages/home_page/notifiers/category_index_notifier.dart';
 import 'package:blogify_flutter_main/presentation/pages/home_page/widgets/empty_posts_placeholder.dart';
@@ -50,9 +51,10 @@ class _HomePageState extends State<HomePage> {
       resizeToAvoidBottomInset: false,
       body: SafeArea(
         child: Padding(
-          padding: const EdgeInsets.all(24.0).copyWith(bottom: 16.0),
+          padding:
+              const EdgeInsets.all(AppDimensions.majorS).copyWith(bottom: AppDimensions.normalM),
           child: Column(
-            spacing: 24.0,
+            spacing: AppDimensions.majorS,
             crossAxisAlignment: CrossAxisAlignment.start,
             children: <Widget>[
               const UserWelcomeRow(),
@@ -103,9 +105,7 @@ class _HomePageState extends State<HomePage> {
   }
 
   void openArticlePage(int id) {
-    context.router.push(ArticleRoute(
-      id: id,
-    ));
+    context.router.push(ArticleRoute(id: id));
   }
 
   int limitedCount(int length, [int max = 3]) => min(length, max);
