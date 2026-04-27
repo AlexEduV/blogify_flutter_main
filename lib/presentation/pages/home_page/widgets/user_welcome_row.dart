@@ -4,7 +4,7 @@ import 'package:blogify_flutter_main/l10n/l10n.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
-import '../../../../data/mock_storage/global_mock_user_provider.dart';
+import '../../../../data/providers/global_mock_user_provider.dart';
 import '../../../widgets/user_photo.dart';
 import '../../user_settings_page/user_settings_page.dart';
 

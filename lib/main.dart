@@ -1,15 +1,16 @@
 import 'package:blogify_flutter_main/common/app_colors.dart';
 import 'package:blogify_flutter_main/data/data_sources/mock_comments_data_source_impl.dart';
 import 'package:blogify_flutter_main/data/data_sources/mock_posts_data_source_impl.dart';
-import 'package:blogify_flutter_main/data/mock_storage/global_mock_comment_provider.dart';
-import 'package:blogify_flutter_main/data/mock_storage/global_mock_storage_provider.dart';
-import 'package:blogify_flutter_main/data/mock_storage/global_mock_user_provider.dart';
 import 'package:blogify_flutter_main/l10n/l10n.dart';
 import 'package:blogify_flutter_main/presentation/pages/home_page/notifiers/category_index_notifier.dart';
 import 'package:blogify_flutter_main/presentation/pages/home_page/notifiers/search_column_notifier.dart';
 import 'package:blogify_flutter_main/router/router.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+
+import 'data/providers/global_mock_comment_provider.dart';
+import 'data/providers/global_mock_storage_provider.dart';
+import 'data/providers/global_mock_user_provider.dart';
 
 void main() {
   final mockPostsDataSource = MockPostsDataSourceImpl()..init();
