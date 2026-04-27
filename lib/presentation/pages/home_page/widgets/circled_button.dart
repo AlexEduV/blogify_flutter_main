@@ -1,3 +1,4 @@
+import 'package:blogify_flutter_main/common/app_colors.dart';
 import 'package:blogify_flutter_main/common/app_dimensions.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
@@ -41,7 +42,7 @@ class CircledButton extends StatelessWidget {
               shape: BoxShape.circle,
               border: Border(
                 bottom: BorderSide(
-                  color: Colors.grey[300]!,
+                  color: AppColors.lightGrey,
                   width: 0.5,
                 ),
               ),

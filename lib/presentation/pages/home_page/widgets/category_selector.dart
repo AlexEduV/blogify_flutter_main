@@ -1,3 +1,4 @@
+import 'package:blogify_flutter_main/common/app_colors.dart';
 import 'package:blogify_flutter_main/common/app_dimensions.dart';
 import 'package:blogify_flutter_main/presentation/pages/home_page/widgets/rounded_button.dart';
 import 'package:flutter/material.dart';
@@ -27,13 +28,13 @@ class _CategorySelectorState extends State<CategorySelector> {
         borderRadius: BorderRadius.circular(AppDimensions.majorS),
         border: Border(
           bottom: BorderSide(
-            color: Colors.grey[300]!,
+            color: AppColors.lightGrey,
             width: 0.5,
           ),
         ),
         boxShadow: [
           BoxShadow(
-            color: Colors.grey[200]!,
+            color: AppColors.offGrey,
             offset: const Offset(0, 2),
             blurRadius: 5.0,
             spreadRadius: 2.0,

@@ -26,7 +26,7 @@ class ListItem extends StatelessWidget {
       child: InkWell(
         borderRadius: BorderRadius.circular(borderRadius),
         onTap: onTap,
-        child: Container(
+        child: Padding(
           padding: const EdgeInsets.symmetric(
               vertical: AppDimensions.normalS, horizontal: AppDimensions.normalM),
           child: Row(

@@ -34,7 +34,7 @@ class RoundedButton extends StatelessWidget {
       child: InkWell(
         onTap: onTap,
         borderRadius: BorderRadius.circular(borderRadius),
-        child: Container(
+        child: Padding(
           padding:
               EdgeInsets.symmetric(vertical: AppDimensions.minorL, horizontal: horizontalPadding),
           child: Row(

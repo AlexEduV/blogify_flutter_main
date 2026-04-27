@@ -105,9 +105,7 @@ class _HomePageState extends State<HomePage> {
   }
 
   void openArticlePage(int id) {
-    context.router.push(ArticleRoute(
-      id: id,
-    ));
+    context.router.push(ArticleRoute(id: id));
   }
 
   int limitedCount(int length, [int max = 3]) => min(length, max);

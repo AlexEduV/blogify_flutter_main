@@ -1,3 +1,4 @@
+import 'package:blogify_flutter_main/common/app_colors.dart';
 import 'package:blogify_flutter_main/common/app_dimensions.dart';
 import 'package:flutter/material.dart';
 
@@ -24,7 +25,7 @@ class UserPhoto extends StatelessWidget {
                 fit: BoxFit.cover,
               )
             : null,
-        color: imageSrc.isNotEmpty ? null : Colors.grey[400],
+        color: imageSrc.isNotEmpty ? null : AppColors.lightGrey,
       ),
     );
   }

@@ -1,4 +1,5 @@
 import 'package:auto_route/auto_route.dart';
+import 'package:blogify_flutter_main/common/app_colors.dart';
 import 'package:blogify_flutter_main/common/app_dimensions.dart';
 import 'package:blogify_flutter_main/data/mock_storage/global_mock_storage_provider.dart';
 import 'package:blogify_flutter_main/l10n/l10n.dart';
@@ -49,9 +50,7 @@ class _ArticlePageState extends State<ArticlePage> {
                             children: [
                               CircledButtonOutlined(
                                 icon: FontAwesomeIcons.chevronLeft,
-                                onTap: () {
-                                  context.router.popUntilRouteWithName(HomeRoute.name);
-                                },
+                                onTap: () => context.router.popUntilRouteWithName(HomeRoute.name),
                               ),
                               const Text(
                                 L10n.backButtonTitle,
@@ -106,7 +105,7 @@ class _ArticlePageState extends State<ArticlePage> {
                       //photo cover
                       PostCoverPhoto(
                         imageSrc: post.imageSrc,
-                        placeholderColor: Colors.grey[300]!,
+                        placeholderColor: AppColors.lightGrey,
                         height: 220,
                       ),
 

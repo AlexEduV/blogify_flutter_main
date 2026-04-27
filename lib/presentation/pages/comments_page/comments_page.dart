@@ -63,9 +63,7 @@ class _CommentsPageState extends State<CommentsPage> {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              const SizedBox(
-                height: AppDimensions.majorS,
-              ),
+              const SizedBox(height: AppDimensions.majorS),
 
               Row(
                 spacing: AppDimensions.normalM,

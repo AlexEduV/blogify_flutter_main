@@ -35,7 +35,7 @@ class CommentField extends StatelessWidget {
           enabledBorder: OutlineInputBorder(
             borderRadius: BorderRadius.circular(AppDimensions.majorS),
             borderSide: BorderSide(
-              color: Colors.grey.shade200,
+              color: AppColors.textFieldBorderColor,
               width: 1.5,
             ),
           ),
