@@ -1,8 +1,8 @@
+import 'package:blogify_flutter_main/common/app_dimensions.dart';
 import 'package:blogify_flutter_main/presentation/pages/home_page/widgets/rounded_button.dart';
 import 'package:flutter/material.dart';
 
 class CategorySelector extends StatefulWidget {
-
   final int? selectedIndex;
   final List<String> items;
   final Function(int)? onItemTapped;
@@ -19,14 +19,12 @@ class CategorySelector extends StatefulWidget {
 }
 
 class _CategorySelectorState extends State<CategorySelector> {
-
   @override
   Widget build(BuildContext context) {
-
     return Container(
       decoration: BoxDecoration(
         color: Colors.white,
-        borderRadius: BorderRadius.circular(24.0),
+        borderRadius: BorderRadius.circular(AppDimensions.majorS),
         border: Border(
           bottom: BorderSide(
             color: Colors.grey[300]!,
@@ -42,19 +40,16 @@ class _CategorySelectorState extends State<CategorySelector> {
           ),
         ],
       ),
-      padding: const EdgeInsets.all(8.0),
+      padding: const EdgeInsets.all(AppDimensions.minorL),
       child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        children: List.generate(widget.items.length, (index) {
-
-          return RoundedButton(
-            text: widget.items[index],
-            filled: widget.selectedIndex == index,
-            onTap: () => widget.onItemTapped != null ? widget.onItemTapped!(index) : () {},
-          );
-
-        })
-      ),
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: List.generate(widget.items.length, (index) {
+            return RoundedButton(
+              text: widget.items[index],
+              filled: widget.selectedIndex == index,
+              onTap: () => widget.onItemTapped != null ? widget.onItemTapped!(index) : () {},
+            );
+          })),
     );
   }
 }

@@ -1,3 +1,4 @@
+import 'package:blogify_flutter_main/common/app_dimensions.dart';
 import 'package:blogify_flutter_main/presentation/pages/home_page/widgets/rounded_button.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
@@ -22,12 +23,12 @@ class HomeSearchBar extends StatelessWidget {
 
     return SearchBar(
       padding: const WidgetStatePropertyAll(
-        EdgeInsets.only(left: 16.0, right: 8.0),
+        EdgeInsets.only(left: AppDimensions.normalM, right: AppDimensions.minorL),
       ),
       leading: const FaIcon(
         FontAwesomeIcons.magnifyingGlass,
         color: AppColors.accentColor,
-        size: 20,
+        size: AppDimensions.appBarIconSize,
       ),
       trailing: [
         Consumer<SearchColumnNotifier>(builder: (context, notifier, child) {
@@ -55,15 +56,16 @@ class HomeSearchBar extends StatelessWidget {
       shape: WidgetStateProperty.resolveWith<RoundedRectangleBorder>((Set<WidgetState> states) {
         if (states.contains(WidgetState.focused)) {
           return RoundedRectangleBorder(
-            side: const BorderSide(color: AppColors.emeraldGreen, width: 2.0), // Highlighted border
-            borderRadius: BorderRadius.circular(32.0),
+            side: const BorderSide(color: AppColors.emeraldGreen, width: AppDimensions.minorXS),
+            // Highlighted border
+            borderRadius: BorderRadius.circular(AppDimensions.majorL),
           );
         }
 
         //default value
         return RoundedRectangleBorder(
           side: BorderSide(color: Colors.grey.shade200, width: 1.0),
-          borderRadius: BorderRadius.circular(32.0),
+          borderRadius: BorderRadius.circular(AppDimensions.majorL),
         );
       }),
       onChanged: (String filter) {

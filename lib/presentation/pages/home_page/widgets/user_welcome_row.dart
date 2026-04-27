@@ -1,3 +1,4 @@
+import 'package:blogify_flutter_main/common/app_dimensions.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -59,7 +60,7 @@ class UserWelcomeRow extends StatelessWidget {
             child: Consumer<GlobalMockUserProvider>(builder: (context, notifier, child) {
               return UserPhoto(
                 imageSrc: notifier.currentUser.imageSrc,
-                size: 55,
+                size: AppDimensions.appBarUserAvatarImageSize,
               );
             }),
           ),

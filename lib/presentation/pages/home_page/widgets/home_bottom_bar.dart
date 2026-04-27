@@ -1,3 +1,4 @@
+import 'package:blogify_flutter_main/common/app_dimensions.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:provider/provider.dart';
@@ -15,7 +16,7 @@ class HomeBottomBar extends StatelessWidget {
   Widget build(BuildContext context) {
     return Consumer<CategoryIndexNotifier>(builder: (context, notifier, child) {
       return Row(
-        spacing: 12,
+        spacing: AppDimensions.normalS,
         children: [
           Expanded(
             child: CategorySelector(

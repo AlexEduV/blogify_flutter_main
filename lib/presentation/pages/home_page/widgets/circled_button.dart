@@ -1,8 +1,8 @@
+import 'package:blogify_flutter_main/common/app_dimensions.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 class CircledButton extends StatelessWidget {
-
   final IconData icon;
   final VoidCallback onTap;
 
@@ -14,7 +14,6 @@ class CircledButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-
     return Container(
       decoration: BoxDecoration(
         color: Colors.white,
@@ -29,6 +28,7 @@ class CircledButton extends StatelessWidget {
         ],
       ),
 
+      //todo: use circle shape here
       child: Material(
         color: Colors.transparent,
         borderRadius: BorderRadius.circular(50.0),
@@ -36,7 +36,7 @@ class CircledButton extends StatelessWidget {
           onTap: onTap,
           borderRadius: BorderRadius.circular(50.0),
           child: Container(
-            padding: const EdgeInsets.all(16.0),
+            padding: const EdgeInsets.all(AppDimensions.normalM),
             decoration: BoxDecoration(
               shape: BoxShape.circle,
               border: Border(
@@ -49,7 +49,7 @@ class CircledButton extends StatelessWidget {
             child: FaIcon(
               icon,
               color: Colors.black54,
-              size: 20,
+              size: AppDimensions.appBarIconSize,
             ),
           ),
         ),

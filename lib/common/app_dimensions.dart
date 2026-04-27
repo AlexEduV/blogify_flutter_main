@@ -13,4 +13,6 @@ class AppDimensions {
   static const majorL = 32.0;
 
   static const commentsUserAvatarImageSize = 40.0;
+  static const appBarUserAvatarImageSize = 55.0;
+  static const appBarIconSize = 20.0;
 }
