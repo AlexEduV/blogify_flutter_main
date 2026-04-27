@@ -50,4 +50,13 @@ class PostEntity {
       paragraphs: paragraphs ?? this.paragraphs,
     );
   }
+
+  factory PostEntity.empty() {
+    return const PostEntity(
+        id: 0,
+        title: 'Sample article',
+        author: 'Unknown author',
+        daysAgoPublished: 7,
+        minToRead: 15);
+  }
 }

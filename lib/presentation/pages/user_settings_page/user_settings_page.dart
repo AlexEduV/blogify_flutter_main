@@ -1,7 +1,7 @@
 import 'package:blogify_flutter_main/common/app_dimensions.dart';
 import 'package:blogify_flutter_main/common/app_text_styles.dart';
-import 'package:blogify_flutter_main/data/mock_storage/global_mock_user_provider.dart';
 import 'package:blogify_flutter_main/l10n/l10n.dart';
+import 'package:blogify_flutter_main/presentation/notifiers/user/user_data_notifier.dart';
 import 'package:blogify_flutter_main/presentation/pages/user_settings_page/widgets/list_item.dart';
 import 'package:blogify_flutter_main/presentation/pages/user_settings_page/widgets/section_title.dart';
 import 'package:flutter/material.dart';
@@ -32,7 +32,7 @@ class UserSettingsPage extends StatelessWidget {
       child: Padding(
         padding: const EdgeInsets.symmetric(horizontal: AppDimensions.majorS),
         child: SingleChildScrollView(
-          child: Consumer<GlobalMockUserProvider>(builder: (context, userNotifier, child) {
+          child: Consumer<UserDataNotifier>(builder: (context, userNotifier, child) {
             return Column(
               children: [
                 const Text(
@@ -44,20 +44,20 @@ class UserSettingsPage extends StatelessWidget {
 
                 //todo: enable replacement (tier + 1)
                 UserPhoto(
-                  imageSrc: userNotifier.currentUser.imageSrc,
+                  imageSrc: userNotifier.user.imageSrc,
                 ),
 
                 const SizedBox(height: AppDimensions.normalM),
 
                 Text(
-                  '${userNotifier.currentUser.firstName} ${userNotifier.currentUser.lastName}',
+                  '${userNotifier.user.firstName} ${userNotifier.user.lastName}',
                   style: AppTextStyles.sfPro20,
                 ),
 
                 const SizedBox(height: AppDimensions.minorS),
 
                 Text(
-                  userNotifier.currentUser.email,
+                  userNotifier.user.email,
                   style: AppTextStyles.sfPro12Dark,
                 ),
 

@@ -3,8 +3,7 @@ import 'dart:math';
 import 'package:auto_route/auto_route.dart';
 import 'package:blogify_flutter_main/common/app_constants.dart';
 import 'package:blogify_flutter_main/common/app_dimensions.dart';
-import 'package:blogify_flutter_main/data/mock_storage/global_mock_storage_provider.dart';
-import 'package:blogify_flutter_main/presentation/pages/home_page/notifiers/category_index_notifier.dart';
+import 'package:blogify_flutter_main/presentation/notifiers/home_page/category_index_notifier.dart';
 import 'package:blogify_flutter_main/presentation/pages/home_page/widgets/empty_posts_placeholder.dart';
 import 'package:blogify_flutter_main/presentation/pages/home_page/widgets/home_bottom_bar.dart';
 import 'package:blogify_flutter_main/presentation/pages/home_page/widgets/home_search_bar.dart';
@@ -14,6 +13,8 @@ import 'package:blogify_flutter_main/router/router.gr.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_card_swiper/flutter_card_swiper.dart';
 import 'package:provider/provider.dart';
+
+import '../../../data/providers/global_mock_storage_provider.dart';
 
 @RoutePage()
 class HomePage extends StatefulWidget {

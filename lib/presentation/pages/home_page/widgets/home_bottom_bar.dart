@@ -4,8 +4,8 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:provider/provider.dart';
 
 import '../../../../common/enums/post_category.dart';
-import '../../../../data/mock_storage/global_mock_storage_provider.dart';
-import '../notifiers/category_index_notifier.dart';
+import '../../../../data/providers/global_mock_storage_provider.dart';
+import '../../../notifiers/home_page/category_index_notifier.dart';
 import 'category_selector.dart';
 import 'circled_button.dart';
 

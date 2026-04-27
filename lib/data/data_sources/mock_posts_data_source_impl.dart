@@ -1,25 +1,16 @@
-import 'package:blogify_flutter_main/common/enums/post_category.dart';
-import 'package:blogify_flutter_main/domain/entities/post_entity.dart';
-import 'package:flutter/material.dart';
+import 'package:blogify_flutter_main/domain/data_sources/posts_data_source.dart';
+import 'package:collection/collection.dart';
 
-import '../../common/enums/post_filter.dart';
+import '../../common/enums/post_category.dart';
+import '../../domain/entities/post_entity.dart';
 
-class GlobalMockStorageProvider extends ChangeNotifier {
-  List<PostEntity> _allPosts = [];
+class MockPostsDataSourceImpl implements PostsDataSource {
+  @override
+  List<PostEntity> allPosts = [];
 
-  List<PostEntity> get allPosts => _allPosts;
-
-  List<PostEntity> _postsInCategory = [];
-
-  List<PostEntity> get postsInCategory => _postsInCategory;
-
-  List<PostEntity> _postsFiltered = [];
-
-  List<PostEntity> get postsFiltered => _postsFiltered;
-
-  void initStorage() {
-    //todo: move to remote data source
-    _allPosts = [
+  @override
+  void init() {
+    allPosts = [
       const PostEntity(
         id: 1,
         title: 'Where Web 3\nis Going to?',
@@ -141,63 +132,33 @@ class GlobalMockStorageProvider extends ChangeNotifier {
         ],
       ),
     ];
-
-    _postsInCategory = _allPosts;
-    _postsFiltered = _allPosts;
-
-    loadAllInCategory(PostCategory.trending);
-
-    notifyListeners();
   }
 
-  void filter(String filter, String column) {
-    if (filter.isNotEmpty) {
-      if (column == PostFilter.title.label) {
-        _postsFiltered = _postsInCategory
-            .where((post) => post.title.toLowerCase().contains(filter.toLowerCase()))
-            .toList();
-      } else if (column == PostFilter.author.label) {
-        _postsFiltered = _postsInCategory
-            .where((post) => post.author.toLowerCase().contains(filter.toLowerCase()))
-            .toList();
-      } else {
-        throw Exception('Unexpected column');
-      }
-    } else {
-      _postsFiltered = _postsInCategory;
-    }
-
-    notifyListeners();
-  }
-
-  void loadAllInCategory(PostCategory category) {
-    _postsInCategory = _allPosts.where((post) => post.category == category).toList();
-    _postsFiltered = _postsInCategory;
-    notifyListeners();
-  }
-
-  void likePost(int id) {
-    // Find the post that matches the id
-    final postIndex = _allPosts.indexWhere((post) => post.id == id);
-
-    if (postIndex != -1) {
-      final updatedPost = _allPosts[postIndex].copyWith(isLiked: !_allPosts[postIndex].isLiked);
-      _allPosts[postIndex] = updatedPost;
-      notifyListeners();
-    }
-  }
-
+  @override
   PostEntity getPostById(int id) {
-    return _allPosts.firstWhere((post) => post.id == id);
+    final entity = allPosts.firstWhereOrNull((post) => post.id == id);
+    if (entity == null) {
+      return PostEntity.empty();
+    }
+
+    return entity;
   }
 
-  void addPostBack(PostEntity post) {
-    _postsFiltered.add(post);
-    notifyListeners();
+  @override
+  List<PostEntity> getPostsByCategory(PostCategory category) {
+    return allPosts.where((post) => post.category == category).toList();
   }
 
-  void removePostById(int id) {
-    _postsFiltered.removeWhere((element) => element.id == id);
-    notifyListeners();
+  @override
+  bool likePostById(int id) {
+    final postIndex = allPosts.indexWhere((post) => post.id == id);
+    if (postIndex == -1) {
+      return false;
+    }
+
+    final updatedPost = allPosts[postIndex].copyWith(isLiked: !allPosts[postIndex].isLiked);
+    allPosts[postIndex] = updatedPost;
+
+    return true;
   }
 }
