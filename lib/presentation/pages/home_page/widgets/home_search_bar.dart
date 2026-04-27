@@ -19,11 +19,6 @@ class HomeSearchBar extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    //search bar
-    //todo: if I search for something, and then open another page, the keyboard,
-    // which was on, returns, when I come back, but after navigating back and forth
-    // it seems not normal
-
     return SearchBar(
       padding: const WidgetStatePropertyAll(
         EdgeInsets.only(left: AppDimensions.normalM, right: AppDimensions.minorL),
