@@ -65,7 +65,7 @@ class HomeSearchBar extends StatelessWidget {
 
         //default value
         return RoundedRectangleBorder(
-          side: BorderSide(color: AppColors.textFieldBorderColor),
+          side: BorderSide(color: AppColors.offGrey),
           borderRadius: BorderRadius.circular(AppDimensions.majorL),
         );
       }),
