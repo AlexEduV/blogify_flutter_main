@@ -1,6 +1,7 @@
 import 'package:blogify_flutter_main/common/app_colors.dart';
 import 'package:blogify_flutter_main/common/app_dimensions.dart';
 import 'package:blogify_flutter_main/common/app_text_styles.dart';
+import 'package:blogify_flutter_main/common/extensions/num_extension.dart';
 import 'package:flutter/material.dart';
 
 class RoundedButton extends StatelessWidget {
@@ -61,7 +62,7 @@ class RoundedButton extends StatelessWidget {
               if (trailingIcon != null) ...[
                 AnimatedRotation(
                   duration: const Duration(milliseconds: 250),
-                  turns: (expanded ?? false) ? -1.0 : -0.5,
+                  turns: (expanded ?? false) ? -360.toTurns : -180.toTurns,
                   child: Icon(
                     trailingIcon,
                     color: tintColor,
