@@ -29,7 +29,6 @@ class GlobalMockStorageProvider extends ChangeNotifier {
     notifyListeners();
   }
 
-  //todo: what is going on here?
   void filter(String searchValue, PostFilter type) {
     if (searchValue.isEmpty) {
       _postsFiltered = _postsInCategory;
@@ -40,15 +39,10 @@ class GlobalMockStorageProvider extends ChangeNotifier {
 
     final isTitle = type == PostFilter.title;
 
-    if (isTitle) {
-      _postsFiltered = _postsInCategory
-          .where((post) => post.title.toLowerCase().contains(searchValue.toLowerCase()))
-          .toList();
-    } else {
-      _postsFiltered = _postsInCategory
-          .where((post) => post.author.toLowerCase().contains(searchValue.toLowerCase()))
-          .toList();
-    }
+    _postsFiltered = _postsInCategory.where((post) {
+      final searchedField = isTitle ? post.title : post.author;
+      return searchedField.toLowerCase().contains(searchValue.toLowerCase());
+    }).toList();
 
     notifyListeners();
   }
