@@ -1,4 +1,5 @@
 import 'package:blogify_flutter_main/common/app_dimensions.dart';
+import 'package:blogify_flutter_main/common/app_text_styles.dart';
 import 'package:blogify_flutter_main/common/enums/post_filter.dart';
 import 'package:blogify_flutter_main/l10n/l10n.dart';
 import 'package:blogify_flutter_main/presentation/pages/home_page/widgets/rounded_button.dart';
@@ -47,12 +48,7 @@ class HomeSearchBar extends StatelessWidget {
         }),
       ],
       hintText: L10n.searchBarHint,
-      hintStyle: const WidgetStatePropertyAll(
-        TextStyle(
-          color: AppColors.accentColor,
-          fontSize: 16.0,
-        ),
-      ),
+      hintStyle: WidgetStatePropertyAll(AppTextStyles.sfPro16Accent),
       elevation: const WidgetStatePropertyAll(0.0),
       backgroundColor: const WidgetStatePropertyAll(Colors.white),
       shape: WidgetStateProperty.resolveWith<RoundedRectangleBorder>((Set<WidgetState> states) {

@@ -72,6 +72,7 @@ class _HomePageState extends State<HomePage> {
                     return const EmptyPostsPlaceholder();
                   }
 
+                  //todo: move to app constants
                   final visibleCount = 3;
 
                   //post stack

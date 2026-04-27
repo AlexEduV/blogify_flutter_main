@@ -17,5 +17,6 @@ class AppDimensions {
   static const appBarIconSize = 20.0;
 
   static const postCoverImageHeight = 250.0;
+  static const articleImageHeight = 220.0;
   static const userPhotoImageHeight = 80.0;
 }
