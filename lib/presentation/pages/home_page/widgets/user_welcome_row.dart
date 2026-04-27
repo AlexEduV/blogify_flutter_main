@@ -1,4 +1,5 @@
 import 'package:blogify_flutter_main/common/app_dimensions.dart';
+import 'package:blogify_flutter_main/l10n/l10n.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -22,7 +23,7 @@ class UserWelcomeRow extends StatelessWidget {
             Row(
               children: [
                 const Text(
-                  'Hey, ',
+                  L10n.welcomeScreenLabel,
                   style: TextStyle(
                     fontWeight: FontWeight.w500,
                     fontSize: 24.0,
@@ -42,7 +43,7 @@ class UserWelcomeRow extends StatelessWidget {
               ],
             ),
             const Text(
-              'I have some news for you',
+              L10n.welcomeScreenSubtitle,
               style: TextStyle(
                 color: AppColors.accentColor,
                 fontSize: 14.0,

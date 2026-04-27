@@ -1,6 +1,7 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:blogify_flutter_main/common/app_dimensions.dart';
 import 'package:blogify_flutter_main/data/mock_storage/global_mock_storage_provider.dart';
+import 'package:blogify_flutter_main/l10n/l10n.dart';
 import 'package:blogify_flutter_main/router/router.gr.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
@@ -53,7 +54,7 @@ class _ArticlePageState extends State<ArticlePage> {
                                 },
                               ),
                               const Text(
-                                'Back',
+                                L10n.backButtonTitle,
                                 style: TextStyle(
                                   fontWeight: FontWeight.w500,
                                   fontSize: 16.0,
@@ -93,7 +94,8 @@ class _ArticlePageState extends State<ArticlePage> {
 
                       //post info row
                       Text(
-                        '${post.author}  |  ${IntlFormatter.getFormattedDays(post.daysAgoPublished)}  |  Read time: ${post.minToRead} min',
+                        //todo: can be refactored into a formatter;
+                        '${post.author}  |  ${IntlFormatter.getFormattedDays(post.daysAgoPublished)}  |  ${L10n.articleReadTimeLabel} ${post.minToRead} ${L10n.articleReadTimeUnits}',
                         style: const TextStyle(
                           fontWeight: FontWeight.w500,
                           fontSize: 13.0,

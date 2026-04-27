@@ -1,4 +1,5 @@
 import 'package:blogify_flutter_main/common/app_dimensions.dart';
+import 'package:blogify_flutter_main/l10n/l10n.dart';
 import 'package:blogify_flutter_main/presentation/pages/home_page/widgets/rounded_button.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
@@ -44,7 +45,7 @@ class HomeSearchBar extends StatelessWidget {
           );
         }),
       ],
-      hintText: 'Search here...',
+      hintText: L10n.searchBarHint,
       hintStyle: const WidgetStatePropertyAll(
         TextStyle(
           color: AppColors.accentColor,
@@ -84,7 +85,8 @@ class HomeSearchBar extends StatelessWidget {
     final selectorNotifier = context.read<SearchColumnNotifier>();
     selectorNotifier.updateSelectionOpenedState(true);
 
-    final List<String> items = ['Author', 'Title'];
+    //todo: use an enum
+    final List<String> items = [L10n.searchFilterAuthor, L10n.searchFilterTitle];
 
     await showMenu(
       context: context,

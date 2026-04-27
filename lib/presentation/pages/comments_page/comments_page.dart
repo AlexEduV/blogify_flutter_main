@@ -6,6 +6,7 @@ import 'package:blogify_flutter_main/data/mock_storage/global_mock_storage_provi
 import 'package:blogify_flutter_main/data/mock_storage/global_mock_user_provider.dart';
 import 'package:blogify_flutter_main/domain/entities/comment_entity.dart';
 import 'package:blogify_flutter_main/domain/entities/post_entity.dart';
+import 'package:blogify_flutter_main/l10n/l10n.dart';
 import 'package:blogify_flutter_main/presentation/pages/comments_page/widgets/comment_field.dart';
 import 'package:blogify_flutter_main/presentation/pages/comments_page/widgets/comments_list_tile.dart';
 import 'package:blogify_flutter_main/presentation/pages/home_page/widgets/rounded_button.dart';
@@ -100,7 +101,7 @@ class _CommentsPageState extends State<CommentsPage> {
                 mainAxisAlignment: MainAxisAlignment.end,
                 children: [
                   RoundedButton(
-                    text: 'Respond',
+                    text: L10n.commentsRespondButtonTitle,
                     filled: true,
                     onTap: () => validateCommentInput(commentTextController.text),
                     backgroundColor: AppColors.emeraldGreen,
@@ -123,7 +124,7 @@ class _CommentsPageState extends State<CommentsPage> {
                       return const Padding(
                         padding: EdgeInsets.symmetric(horizontal: AppDimensions.minorL),
                         child: Text(
-                          'No comments yet',
+                          L10n.emptyCommentSectionPlaceholder,
                           style: TextStyle(
                             fontSize: 16.0,
                             fontWeight: FontWeight.w500,

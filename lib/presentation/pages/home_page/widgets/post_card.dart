@@ -1,6 +1,7 @@
 import 'package:blogify_flutter_main/common/app_colors.dart';
 import 'package:blogify_flutter_main/common/app_dimensions.dart';
 import 'package:blogify_flutter_main/domain/entities/post_entity.dart';
+import 'package:blogify_flutter_main/l10n/l10n.dart';
 import 'package:flutter/material.dart';
 
 import '../../../../utils/intl_formatter.dart';
@@ -76,14 +77,14 @@ class PostCard extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   const Text(
-                    'Read Time: ',
+                    '${L10n.articleReadTimeLabel} ',
                     style: TextStyle(
                       color: AppColors.accentColor,
                       fontWeight: FontWeight.w600,
                     ),
                   ),
                   Text(
-                    '${post.minToRead} min',
+                    '${post.minToRead} ${L10n.articleReadTimeUnits}',
                     style: const TextStyle(
                       fontSize: 14.0,
                       fontWeight: FontWeight.w600,

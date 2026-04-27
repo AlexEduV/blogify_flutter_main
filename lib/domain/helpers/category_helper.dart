@@ -1,7 +1,6 @@
 class CategoryHelper {
-
+  //todo: can be upgraded
   static Category getCategoryByIndex(int index) {
-
     switch (index) {
       case 0:
         return Category.trending;
@@ -14,9 +13,11 @@ class CategoryHelper {
         return Category.none;
     }
   }
-
 }
 
 enum Category {
-  design, tech, trending, none,
+  design,
+  tech,
+  trending,
+  none,
 }

@@ -1,12 +1,12 @@
 import 'package:blogify_flutter_main/common/app_dimensions.dart';
 import 'package:blogify_flutter_main/data/mock_storage/global_mock_user_provider.dart';
+import 'package:blogify_flutter_main/l10n/l10n.dart';
 import 'package:blogify_flutter_main/presentation/pages/user_settings_page/widgets/list_item.dart';
 import 'package:blogify_flutter_main/presentation/pages/user_settings_page/widgets/section_title.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:provider/provider.dart';
 
-import '../../../utils/app_display_version.dart';
 import '../../widgets/user_photo.dart';
 
 class UserSettingsPage extends StatelessWidget {
@@ -75,9 +75,9 @@ class UserSettingsPage extends StatelessWidget {
                 buildSection('General', generalItems),
 
                 //app version footer
-                Text(
-                  'Blogify, ${AppDisplayVersion.appVersion}',
-                  style: const TextStyle(
+                const Text(
+                  'Blogify, ${L10n.appVersion}',
+                  style: TextStyle(
                     color: Colors.black54,
                     fontSize: 12.0,
                   ),

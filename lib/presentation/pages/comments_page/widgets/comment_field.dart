@@ -1,5 +1,6 @@
 import 'package:blogify_flutter_main/common/app_colors.dart';
 import 'package:blogify_flutter_main/common/app_dimensions.dart';
+import 'package:blogify_flutter_main/l10n/l10n.dart';
 import 'package:flutter/material.dart';
 
 class CommentField extends StatelessWidget {
@@ -21,7 +22,7 @@ class CommentField extends StatelessWidget {
         controller: textController,
         maxLines: null,
         decoration: InputDecoration(
-          hintText: 'What are your thoughts?',
+          hintText: L10n.commentInputHint,
           hintStyle: const TextStyle(
             color: AppColors.accentColor,
             fontSize: 14.0,
