@@ -12,8 +12,6 @@ import 'data/providers/global_mock_comment_provider.dart';
 import 'data/providers/global_mock_storage_provider.dart';
 
 void main() {
-  //test changes;
-
   initDependenciesContainer();
 
   runApp(MultiProvider(
