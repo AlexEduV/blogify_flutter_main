@@ -15,4 +15,7 @@ class AppDimensions {
   static const commentsUserAvatarImageSize = 40.0;
   static const appBarUserAvatarImageSize = 55.0;
   static const appBarIconSize = 20.0;
+
+  static const postCoverImageHeight = 250.0;
+  static const userPhotoImageHeight = 80.0;
 }

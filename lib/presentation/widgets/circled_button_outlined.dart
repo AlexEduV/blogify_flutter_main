@@ -1,3 +1,4 @@
+import 'package:blogify_flutter_main/common/app_dimensions.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
@@ -19,7 +20,7 @@ class CircledButtonOutlined extends StatelessWidget {
         onTap: onTap,
         borderRadius: BorderRadius.circular(50),
         child: Container(
-          padding: const EdgeInsets.all(12.0),
+          padding: const EdgeInsets.all(AppDimensions.normalS),
           decoration: BoxDecoration(
             shape: BoxShape.circle,
             border: Border.all(color: Colors.grey[300]!, width: 1),
@@ -27,7 +28,7 @@ class CircledButtonOutlined extends StatelessWidget {
           child: FaIcon(
             icon,
             color: Colors.black54,
-            size: 20,
+            size: AppDimensions.appBarIconSize,
           ),
         ),
       ),

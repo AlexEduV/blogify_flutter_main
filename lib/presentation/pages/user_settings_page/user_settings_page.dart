@@ -14,15 +14,16 @@ class UserSettingsPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    //todo: move to a repository or data source with toJson and fromJson methods
     final activityItems = [
-      {'icon': FontAwesomeIcons.fileLines, 'title': 'Published Articles'},
-      {'icon': FontAwesomeIcons.thumbsUp, 'title': 'Liked Articles'},
+      {'icon': FontAwesomeIcons.fileLines, 'title': L10n.settingsPublishedArticlesItemTitle},
+      {'icon': FontAwesomeIcons.thumbsUp, 'title': L10n.settingsLikedArticlesItemTitle},
     ];
 
     final generalItems = [
-      {'icon': FontAwesomeIcons.user, 'title': 'Personal Data'},
-      {'icon': FontAwesomeIcons.bell, 'title': 'Push Notifications'},
-      {'icon': FontAwesomeIcons.gear, 'title': 'Settings'},
+      {'icon': FontAwesomeIcons.user, 'title': L10n.settingsPersonalDataItemTitle},
+      {'icon': FontAwesomeIcons.bell, 'title': L10n.settingsPushNotificationsItemTitle},
+      {'icon': FontAwesomeIcons.gear, 'title': L10n.settingsGeneralSettingsItemTitle},
     ];
 
     return SizedBox(
@@ -34,7 +35,7 @@ class UserSettingsPage extends StatelessWidget {
             return Column(
               children: [
                 const Text(
-                  'Settings',
+                  L10n.appSettingsTitle,
                   style: TextStyle(
                     fontWeight: FontWeight.w500,
                     fontSize: 16.0,
@@ -71,12 +72,12 @@ class UserSettingsPage extends StatelessWidget {
 
                 const SizedBox(height: AppDimensions.majorL),
 
-                buildSection('Your Activity', activityItems),
-                buildSection('General', generalItems),
+                buildSection(L10n.settingsSectionYourActivity, activityItems),
+                buildSection(L10n.settingsSectionGeneral, generalItems),
 
                 //app version footer
                 const Text(
-                  'Blogify, ${L10n.appVersion}',
+                  '${L10n.appName}, ${L10n.appVersion}',
                   style: TextStyle(
                     color: Colors.black54,
                     fontSize: 12.0,

@@ -1,4 +1,5 @@
 class L10n {
+  static const appName = 'Blogify';
   static const appVersion = 'V1.2';
 
   static const backButtonTitle = 'Back';
@@ -22,4 +23,15 @@ class L10n {
 
   static const welcomeScreenLabel = 'Hey, ';
   static const welcomeScreenSubtitle = 'I have some news for you.';
+
+  static const appSettingsTitle = 'Settings';
+
+  static const settingsSectionYourActivity = 'Your activity';
+  static const settingsPublishedArticlesItemTitle = 'Published articles';
+  static const settingsLikedArticlesItemTitle = 'Liked articles';
+
+  static const settingsSectionGeneral = 'General';
+  static const settingsPersonalDataItemTitle = 'Personal data';
+  static const settingsPushNotificationsItemTitle = 'Push notifications';
+  static const settingsGeneralSettingsItemTitle = 'Settings';
 }
