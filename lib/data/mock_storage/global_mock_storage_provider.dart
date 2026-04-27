@@ -1,6 +1,8 @@
+import 'package:blogify_flutter_main/common/enums/post_category.dart';
 import 'package:blogify_flutter_main/domain/entities/post_entity.dart';
-import 'package:blogify_flutter_main/domain/helpers/category_helper.dart';
 import 'package:flutter/material.dart';
+
+import '../../common/enums/post_filter.dart';
 
 class GlobalMockStorageProvider extends ChangeNotifier {
   List<PostEntity> _allPosts = [];
@@ -26,7 +28,7 @@ class GlobalMockStorageProvider extends ChangeNotifier {
         minToRead: 5,
         imageSrc:
             'https://images.unsplash.com/photo-1665597704311-d7304eaf70ac?q=80&w=600&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
-        category: Category.tech,
+        category: PostCategory.tech,
         paragraphs: [
           'The evolution of the internet has been marked by transformative shifts, from the static pages of Web 1.0 to the interactive and social-driven Web 2.0. Now, Web 3.0 promises a decentralized future where users regain control over their data, digital assets, and online identities. Built on blockchain technology, Web 3 introduces concepts like smart contracts, decentralized finance (DeFi), and tokenized economies, fundamentally changing how we interact with online platforms. Instead of relying on centralized corporations, users in a Web 3 ecosystem engage with peer-to-peer networks, reducing dependency on intermediaries and enabling a more transparent digital space.',
           'However, Web 3 is still in its infancy, facing challenges that range from scalability to user adoption. While decentralization is an attractive concept, the current infrastructure struggles with high transaction fees, slow processing times, and complex user experiences. Moreover, regulatory concerns loom over the industry, as governments and institutions grapple with how to integrate blockchain-based systems into existing legal frameworks. Despite these hurdles, innovations like Layer 2 solutions, cross-chain interoperability, and decentralized autonomous organizations (DAOs) are pushing the boundaries of what’s possible, paving the way for a more accessible and efficient decentralized web.',
@@ -41,7 +43,7 @@ class GlobalMockStorageProvider extends ChangeNotifier {
         imageSrc:
             'https://images.unsplash.com/photo-1642406415849-a410b5d01a94?q=80&w=200&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
         minToRead: 15,
-        category: Category.trending,
+        category: PostCategory.trending,
         paragraphs: [
           'In today\'s fast-paced world, effective communication has never been more crucial. However, the importance of listening is often overlooked. While many focus on the art of speaking, the ability to listen attentively and empathetically is just as essential in building strong relationships, both professionally and personally. As society becomes increasingly distracted by technology and busy schedules, the need for good listeners has never been more urgent. It is not just about hearing words; it\'s about understanding and responding in a way that fosters connection and trust.',
           'The role of a listener goes beyond simply absorbing information. A good listener is someone who is fully present, giving their undivided attention to the speaker. They take the time to understand the message being conveyed and reflect on it before responding thoughtfully. In a world where interruptions and distractions are commonplace, being able to truly listen can set you apart from the rest. It allows for deeper connections, more meaningful conversations, and can lead to a greater sense of empathy and understanding between individuals.',
@@ -56,7 +58,7 @@ class GlobalMockStorageProvider extends ChangeNotifier {
         minToRead: 10,
         imageSrc:
             'https://images.unsplash.com/photo-1596025489331-e31b4d8dc556?q=80&w=200&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
-        category: Category.trending,
+        category: PostCategory.trending,
         paragraphs: [
           'Being a creative director requires a unique combination of vision, leadership, and communication skills. It’s not just about having a flair for design or coming up with the next big idea; it’s about leading a team toward a common goal and guiding them to success. A great creative director understands how to inspire and motivate their team, balancing creative freedom with the need to meet deadlines and business objectives. By fostering an environment of collaboration and trust, they can unlock the full potential of their team, leading to innovative solutions that exceed expectations.',
           'The key to being a better creative director lies in developing a keen understanding of the project and the brand, as well as the needs of the audience. A strong creative director takes the time to research, analyze, and develop a clear vision that is aligned with the brand’s values and goals. They also know how to adapt to changing circumstances, remaining flexible while staying true to the core creative direction. By being open to feedback and encouraging constructive criticism, they ensure that every idea is explored and refined, ultimately creating a product that resonates deeply with the audience.',
@@ -71,7 +73,7 @@ class GlobalMockStorageProvider extends ChangeNotifier {
         minToRead: 6,
         imageSrc:
             'https://images.unsplash.com/photo-1617839625591-e5a789593135?q=80&w=200&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
-        category: Category.tech,
+        category: PostCategory.tech,
         paragraphs: [
           'Quantum computing is poised to revolutionize the way we process information, offering computational power far beyond the capabilities of classical computers. By leveraging the principles of quantum mechanics, such as superposition and entanglement, quantum computers can solve complex problems in seconds that would take traditional machines millennia.',
           'Despite its promise, the field faces significant hurdles. Quantum hardware is notoriously difficult to build and maintain, requiring extremely low temperatures and precise control over quantum bits, or qubits. Additionally, developing algorithms that can fully utilize quantum advantages remains a challenge for researchers.',
@@ -86,7 +88,7 @@ class GlobalMockStorageProvider extends ChangeNotifier {
         minToRead: 4,
         imageSrc:
             'https://plus.unsplash.com/premium_photo-1681987448179-4a93b7975018?q=80&w=200&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
-        category: Category.trending,
+        category: PostCategory.trending,
         paragraphs: [
           'As urban populations swell, the need for sustainable city planning has never been greater. Modern cities are embracing green technologies, renewable energy, and smart infrastructure to reduce their environmental footprint and improve quality of life.',
           'Initiatives like vertical gardens, efficient public transport, and waste-to-energy plants are transforming urban landscapes. These innovations not only address pollution and congestion but also foster healthier, more resilient communities.',
@@ -101,7 +103,7 @@ class GlobalMockStorageProvider extends ChangeNotifier {
         minToRead: 3,
         imageSrc:
             'https://images.unsplash.com/photo-1497032628192-86f99bcd76bc?q=80&w=200&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
-        category: Category.trending,
+        category: PostCategory.trending,
         paragraphs: [
           'Remote work has become a defining feature of the modern workplace, offering flexibility and autonomy to employees worldwide. With the right tools and strategies, teams can maintain high productivity levels while enjoying a better work-life balance.',
           'However, remote work also presents challenges, such as isolation, communication barriers, and difficulty separating work from personal life. Companies are investing in digital collaboration platforms and wellness programs to support their distributed workforce.',
@@ -116,7 +118,7 @@ class GlobalMockStorageProvider extends ChangeNotifier {
         minToRead: 5,
         imageSrc:
             'https://images.unsplash.com/photo-1653565685070-660c4cf6c68b?q=80&w=200&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
-        category: Category.tech,
+        category: PostCategory.tech,
         paragraphs: [
           'The metaverse is emerging as the next frontier in digital interaction, blending virtual reality, augmented reality, and blockchain technology to create immersive online worlds. Users can socialize, work, and play in environments limited only by imagination.',
           'Major tech companies are investing heavily in metaverse platforms, developing tools for digital commerce, entertainment, and education. Virtual assets and NFTs are becoming integral to these ecosystems, enabling new forms of ownership and creativity.',
@@ -131,7 +133,7 @@ class GlobalMockStorageProvider extends ChangeNotifier {
         minToRead: 5,
         imageSrc:
             'https://plus.unsplash.com/premium_photo-1698755473432-4a8e954685e0?q=80&w=200&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
-        category: Category.trending,
+        category: PostCategory.trending,
         paragraphs: [
           'Artificial intelligence is rapidly transforming healthcare, from diagnostics to personalized treatment plans. Machine learning algorithms can analyze vast datasets, identifying patterns that help doctors make more accurate diagnoses and predict patient outcomes.',
           'AI-powered tools are streamlining administrative tasks, reducing the burden on healthcare professionals and allowing them to focus more on patient care. Robotics and automation are also enhancing surgical precision and efficiency.',
@@ -143,19 +145,18 @@ class GlobalMockStorageProvider extends ChangeNotifier {
     _postsInCategory = _allPosts;
     _postsFiltered = _allPosts;
 
-    loadAllInCategory(Category.trending);
+    loadAllInCategory(PostCategory.trending);
 
     notifyListeners();
   }
 
   void filter(String filter, String column) {
     if (filter.isNotEmpty) {
-      //todo: move to enum
-      if (column == 'Title') {
+      if (column == PostFilter.title.label) {
         _postsFiltered = _postsInCategory
             .where((post) => post.title.toLowerCase().contains(filter.toLowerCase()))
             .toList();
-      } else if (column == 'Author') {
+      } else if (column == PostFilter.author.label) {
         _postsFiltered = _postsInCategory
             .where((post) => post.author.toLowerCase().contains(filter.toLowerCase()))
             .toList();
@@ -169,7 +170,7 @@ class GlobalMockStorageProvider extends ChangeNotifier {
     notifyListeners();
   }
 
-  void loadAllInCategory(Category category) {
+  void loadAllInCategory(PostCategory category) {
     _postsInCategory = _allPosts.where((post) => post.category == category).toList();
     _postsFiltered = _postsInCategory;
     notifyListeners();

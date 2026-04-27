@@ -1,6 +1,7 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:blogify_flutter_main/common/app_colors.dart';
 import 'package:blogify_flutter_main/common/app_dimensions.dart';
+import 'package:blogify_flutter_main/common/app_text_styles.dart';
 import 'package:blogify_flutter_main/data/mock_storage/global_mock_storage_provider.dart';
 import 'package:blogify_flutter_main/l10n/l10n.dart';
 import 'package:blogify_flutter_main/router/router.gr.dart';
@@ -54,10 +55,7 @@ class _ArticlePageState extends State<ArticlePage> {
                               ),
                               const Text(
                                 L10n.backButtonTitle,
-                                style: TextStyle(
-                                  fontWeight: FontWeight.w500,
-                                  fontSize: 16.0,
-                                ),
+                                style: AppTextStyles.sfPro16,
                               ),
                             ],
                           ),
@@ -85,28 +83,21 @@ class _ArticlePageState extends State<ArticlePage> {
 
                       Text(
                         post.title,
-                        style: const TextStyle(
-                          fontWeight: FontWeight.w600,
-                          fontSize: 24.0,
-                        ),
+                        style: AppTextStyles.sfPro24,
                       ),
 
                       //post info row
                       Text(
                         //todo: can be refactored into a formatter;
                         '${post.author}  |  ${IntlFormatter.getFormattedDays(post.daysAgoPublished)}  |  ${L10n.articleReadTimeLabel} ${post.minToRead} ${L10n.articleReadTimeUnits}',
-                        style: const TextStyle(
-                          fontWeight: FontWeight.w500,
-                          fontSize: 13.0,
-                          color: Colors.black54,
-                        ),
+                        style: AppTextStyles.sfPro13Dark,
                       ),
 
                       //photo cover
                       PostCoverPhoto(
                         imageSrc: post.imageSrc,
                         placeholderColor: AppColors.lightGrey,
-                        height: 220,
+                        height: AppDimensions.articleImageHeight,
                       ),
 
                       //post content
@@ -114,10 +105,7 @@ class _ArticlePageState extends State<ArticlePage> {
                         itemBuilder: (context, index) {
                           return Text(
                             post.paragraphs[index],
-                            style: const TextStyle(
-                              fontSize: 14.0,
-                              height: 1.7,
-                            ),
+                            style: AppTextStyles.sfPro14,
                           );
                         },
                         separatorBuilder: (context, index) {

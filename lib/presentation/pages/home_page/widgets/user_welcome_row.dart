@@ -1,9 +1,9 @@
 import 'package:blogify_flutter_main/common/app_dimensions.dart';
+import 'package:blogify_flutter_main/common/app_text_styles.dart';
 import 'package:blogify_flutter_main/l10n/l10n.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
-import '../../../../common/app_colors.dart';
 import '../../../../data/mock_storage/global_mock_user_provider.dart';
 import '../../../widgets/user_photo.dart';
 import '../../user_settings_page/user_settings_page.dart';
@@ -22,32 +22,21 @@ class UserWelcomeRow extends StatelessWidget {
             //todo: replace with text span
             Row(
               children: [
-                const Text(
+                Text(
                   L10n.welcomeScreenLabel,
-                  style: TextStyle(
-                    fontWeight: FontWeight.w500,
-                    fontSize: 24.0,
-                    height: 1.4,
-                  ),
+                  style: AppTextStyles.sfPro24.copyWith(fontWeight: FontWeight.w500),
                 ),
                 Consumer<GlobalMockUserProvider>(builder: (context, notifier, child) {
                   return Text(
                     notifier.currentUser.firstName,
-                    style: const TextStyle(
-                      fontWeight: FontWeight.w600,
-                      fontSize: 24.0,
-                      height: 1.4,
-                    ),
+                    style: AppTextStyles.sfPro24,
                   );
                 })
               ],
             ),
-            const Text(
+            Text(
               L10n.welcomeScreenSubtitle,
-              style: TextStyle(
-                color: AppColors.accentColor,
-                fontSize: 14.0,
-              ),
+              style: AppTextStyles.sfPro14Accent,
             ),
           ],
         ),

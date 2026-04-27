@@ -1,6 +1,7 @@
 import 'dart:math';
 
 import 'package:auto_route/auto_route.dart';
+import 'package:blogify_flutter_main/common/app_constants.dart';
 import 'package:blogify_flutter_main/common/app_dimensions.dart';
 import 'package:blogify_flutter_main/data/mock_storage/global_mock_storage_provider.dart';
 import 'package:blogify_flutter_main/presentation/pages/home_page/notifiers/category_index_notifier.dart';
@@ -28,9 +29,6 @@ class _HomePageState extends State<HomePage> {
   final GlobalKey _searchSelectorButtonKey = GlobalKey();
 
   //todo: firebase authentication (Google, Apple)
-
-  //todo: on the emulator (Pixel 4), the paddings of the card stack are not right,
-  // the bottom cards are not visible
 
   final CardSwiperController controller = CardSwiperController();
 
@@ -72,8 +70,6 @@ class _HomePageState extends State<HomePage> {
                     return const EmptyPostsPlaceholder();
                   }
 
-                  final visibleCount = 3;
-
                   //post stack
                   return Consumer<CategoryIndexNotifier>(
                       builder: (_, categoryIndexNotifier, child) {
@@ -81,7 +77,7 @@ class _HomePageState extends State<HomePage> {
                       controller: controller,
                       cardsCount: posts.length,
                       onSwipe: (_, __, direction) => true,
-                      numberOfCardsDisplayed: limitedCount(visibleCount),
+                      numberOfCardsDisplayed: limitedCount(AppConstants.homePagePostsVisibleCount),
                       backCardOffset: const Offset(0, 40),
                       padding: EdgeInsets.zero,
                       cardBuilder: (

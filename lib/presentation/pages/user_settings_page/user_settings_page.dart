@@ -1,4 +1,5 @@
 import 'package:blogify_flutter_main/common/app_dimensions.dart';
+import 'package:blogify_flutter_main/common/app_text_styles.dart';
 import 'package:blogify_flutter_main/data/mock_storage/global_mock_user_provider.dart';
 import 'package:blogify_flutter_main/l10n/l10n.dart';
 import 'package:blogify_flutter_main/presentation/pages/user_settings_page/widgets/list_item.dart';
@@ -36,10 +37,7 @@ class UserSettingsPage extends StatelessWidget {
               children: [
                 const Text(
                   L10n.appSettingsTitle,
-                  style: TextStyle(
-                    fontWeight: FontWeight.w500,
-                    fontSize: 16.0,
-                  ),
+                  style: AppTextStyles.sfPro16,
                 ),
 
                 const SizedBox(height: AppDimensions.normalM),
@@ -53,21 +51,14 @@ class UserSettingsPage extends StatelessWidget {
 
                 Text(
                   '${userNotifier.currentUser.firstName} ${userNotifier.currentUser.lastName}',
-                  style: const TextStyle(
-                    fontWeight: FontWeight.w500,
-                    fontSize: 20.0,
-                    height: 1.4,
-                  ),
+                  style: AppTextStyles.sfPro20,
                 ),
 
                 const SizedBox(height: AppDimensions.minorS),
 
                 Text(
                   userNotifier.currentUser.email,
-                  style: const TextStyle(
-                    color: Colors.black54,
-                    fontSize: 12.0,
-                  ),
+                  style: AppTextStyles.sfPro12Dark,
                 ),
 
                 const SizedBox(height: AppDimensions.majorL),
@@ -76,12 +67,9 @@ class UserSettingsPage extends StatelessWidget {
                 buildSection(L10n.settingsSectionGeneral, generalItems),
 
                 //app version footer
-                const Text(
+                Text(
                   '${L10n.appName}, ${L10n.appVersion}',
-                  style: TextStyle(
-                    color: Colors.black54,
-                    fontSize: 12.0,
-                  ),
+                  style: AppTextStyles.sfPro12Dark,
                 ),
 
                 const SizedBox(height: AppDimensions.majorM),

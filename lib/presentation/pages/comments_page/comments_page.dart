@@ -1,6 +1,7 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:blogify_flutter_main/common/app_colors.dart';
 import 'package:blogify_flutter_main/common/app_dimensions.dart';
+import 'package:blogify_flutter_main/common/app_text_styles.dart';
 import 'package:blogify_flutter_main/data/mock_storage/global_mock_comment_provider.dart';
 import 'package:blogify_flutter_main/data/mock_storage/global_mock_storage_provider.dart';
 import 'package:blogify_flutter_main/data/mock_storage/global_mock_user_provider.dart';
@@ -75,10 +76,7 @@ class _CommentsPageState extends State<CommentsPage> {
                   Expanded(
                     child: Text(
                       currentPost.title,
-                      style: const TextStyle(
-                        fontWeight: FontWeight.w500,
-                        fontSize: AppDimensions.normalM,
-                      ),
+                      style: AppTextStyles.sfPro16,
                       softWrap: true,
                       overflow: TextOverflow.ellipsis,
                     ),
@@ -123,10 +121,7 @@ class _CommentsPageState extends State<CommentsPage> {
                         padding: EdgeInsets.symmetric(horizontal: AppDimensions.minorL),
                         child: Text(
                           L10n.emptyCommentSectionPlaceholder,
-                          style: TextStyle(
-                            fontSize: 16.0,
-                            fontWeight: FontWeight.w500,
-                          ),
+                          style: AppTextStyles.sfPro16,
                         ),
                       );
                     }
