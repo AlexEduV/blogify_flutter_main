@@ -1,5 +1,6 @@
 import 'package:blogify_flutter_main/common/app_colors.dart';
 import 'package:blogify_flutter_main/common/app_dimensions.dart';
+import 'package:blogify_flutter_main/common/app_text_styles.dart';
 import 'package:flutter/material.dart';
 
 class RoundedButton extends StatelessWidget {
@@ -49,7 +50,7 @@ class RoundedButton extends StatelessWidget {
                 ),
               Text(
                 text,
-                style: TextStyle(
+                style: AppTextStyles.sfPro14.copyWith(
                   color: filled ? tintColor : AppColors.accentColor,
                   fontWeight: FontWeight.w500,
                 ),

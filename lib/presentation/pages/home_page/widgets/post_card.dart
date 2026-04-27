@@ -51,38 +51,25 @@ class PostCard extends StatelessWidget {
               const SizedBox(height: AppDimensions.normalM),
               Text(
                 post.author,
-                style: const TextStyle(
-                  fontWeight: FontWeight.w600,
-                  fontSize: 15.0,
-                ),
+                style: AppTextStyles.sfPro16,
               ),
               Text(
                 IntlFormatter.getFormattedDays(post.daysAgoPublished),
-                style: const TextStyle(
-                  fontWeight: FontWeight.w600,
-                  fontSize: 12.0,
-                  color: AppColors.accentColor,
-                ),
+                style: AppTextStyles.sfPro14Accent,
               ),
               const SizedBox(height: AppDimensions.majorS),
               Text(
                 post.title,
-                style: const TextStyle(
-                  fontWeight: FontWeight.w600,
-                  fontSize: 24.0,
-                ),
+                style: AppTextStyles.sfPro24,
                 textAlign: TextAlign.center,
               ),
               const SizedBox(height: AppDimensions.majorS),
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  const Text(
+                  Text(
                     '${L10n.articleReadTimeLabel} ',
-                    style: TextStyle(
-                      color: AppColors.accentColor,
-                      fontWeight: FontWeight.w600,
-                    ),
+                    style: AppTextStyles.sfPro14Accent.copyWith(fontWeight: FontWeight.w600),
                   ),
                   Text(
                     '${post.minToRead} ${L10n.articleReadTimeUnits}',
