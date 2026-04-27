@@ -34,7 +34,7 @@ class HomeSearchBar extends StatelessWidget {
         Consumer<SearchColumnNotifier>(builder: (context, notifier, child) {
           return RoundedButton(
             key: selectorKey,
-            text: notifier.value,
+            text: notifier.value.label,
             expanded: notifier.isSelectionOpen,
             trailingIcon: Icons.keyboard_arrow_up_outlined,
             filled: true,
@@ -77,7 +77,7 @@ class HomeSearchBar extends StatelessWidget {
     final selectorNotifier = context.read<SearchColumnNotifier>();
     selectorNotifier.updateSelectionOpenedState(true);
 
-    final List<String> items = PostFilter.values.map((element) => element.label).toList();
+    final List<PostFilter> items = PostFilter.values;
 
     await showMenu(
       context: context,
@@ -95,15 +95,15 @@ class HomeSearchBar extends StatelessWidget {
       items: [
         PopupMenuItem<String>(
           padding: EdgeInsets.zero,
-          value: items[0],
-          child: MenuItem(text: items[0]),
-          onTap: () => selectorNotifier.updateColumn(items[0]),
+          value: items[0].label,
+          child: MenuItem(text: items[0].label),
+          onTap: () => selectorNotifier.updateFilterType(items[0]),
         ),
         PopupMenuItem<String>(
           padding: EdgeInsets.zero,
-          value: items[1],
-          child: MenuItem(text: items[1]),
-          onTap: () => selectorNotifier.updateColumn(items[1]),
+          value: items[1].label,
+          child: MenuItem(text: items[1].label),
+          onTap: () => selectorNotifier.updateFilterType(items[1]),
         ),
       ],
     );

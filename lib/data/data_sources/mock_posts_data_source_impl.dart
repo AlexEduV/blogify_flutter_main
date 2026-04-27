@@ -143,4 +143,22 @@ class MockPostsDataSourceImpl implements PostsDataSource {
 
     return entity;
   }
+
+  @override
+  List<PostEntity> getPostsByCategory(PostCategory category) {
+    return allPosts.where((post) => post.category == category).toList();
+  }
+
+  @override
+  bool likePostById(int id) {
+    final postIndex = allPosts.indexWhere((post) => post.id == id);
+    if (postIndex == -1) {
+      return false;
+    }
+
+    final updatedPost = allPosts[postIndex].copyWith(isLiked: !allPosts[postIndex].isLiked);
+    allPosts[postIndex] = updatedPost;
+
+    return true;
+  }
 }

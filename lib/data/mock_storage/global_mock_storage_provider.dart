@@ -10,9 +10,7 @@ class GlobalMockStorageProvider extends ChangeNotifier {
 
   GlobalMockStorageProvider(this._postsDataSource);
 
-  List<PostEntity> _allPosts = [];
-
-  List<PostEntity> get allPosts => _allPosts;
+  List<PostEntity> get allPosts => _postsDataSource.allPosts;
 
   List<PostEntity> _postsInCategory = [];
 
@@ -23,31 +21,29 @@ class GlobalMockStorageProvider extends ChangeNotifier {
   List<PostEntity> get postsFiltered => _postsFiltered;
 
   void initStorage() {
-    _allPosts = _postsDataSource.allPosts;
-
-    _postsInCategory = _allPosts;
-    _postsFiltered = _allPosts;
+    _postsInCategory = allPosts;
+    _postsFiltered = allPosts;
 
     loadAllInCategory(PostCategory.trending);
 
     notifyListeners();
   }
 
-  void filter(String filter, String column) {
-    if (filter.isEmpty) {
+  void filter(String searchValue, PostFilter type) {
+    if (searchValue.isEmpty) {
       _postsFiltered = _postsInCategory;
       notifyListeners();
 
       return;
     }
 
-    if (column == PostFilter.title.label) {
+    if (type == PostFilter.title) {
       _postsFiltered = _postsInCategory
-          .where((post) => post.title.toLowerCase().contains(filter.toLowerCase()))
+          .where((post) => post.title.toLowerCase().contains(searchValue.toLowerCase()))
           .toList();
-    } else if (column == PostFilter.author.label) {
+    } else if (type == PostFilter.author) {
       _postsFiltered = _postsInCategory
-          .where((post) => post.author.toLowerCase().contains(filter.toLowerCase()))
+          .where((post) => post.author.toLowerCase().contains(searchValue.toLowerCase()))
           .toList();
     } else {
       throw Exception('Unexpected column');
@@ -57,18 +53,14 @@ class GlobalMockStorageProvider extends ChangeNotifier {
   }
 
   void loadAllInCategory(PostCategory category) {
-    _postsInCategory = _allPosts.where((post) => post.category == category).toList();
+    _postsInCategory = _postsDataSource.getPostsByCategory(category);
     _postsFiltered = _postsInCategory;
     notifyListeners();
   }
 
   void likePost(int id) {
-    // Find the post that matches the id
-    final postIndex = _allPosts.indexWhere((post) => post.id == id);
-
-    if (postIndex != -1) {
-      final updatedPost = _allPosts[postIndex].copyWith(isLiked: !_allPosts[postIndex].isLiked);
-      _allPosts[postIndex] = updatedPost;
+    final isSuccessful = _postsDataSource.likePostById(id);
+    if (isSuccessful) {
       notifyListeners();
     }
   }
