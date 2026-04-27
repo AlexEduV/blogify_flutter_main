@@ -3,7 +3,7 @@ import 'dart:math';
 import 'package:auto_route/auto_route.dart';
 import 'package:blogify_flutter_main/common/app_constants.dart';
 import 'package:blogify_flutter_main/common/app_dimensions.dart';
-import 'package:blogify_flutter_main/presentation/pages/home_page/notifiers/category_index_notifier.dart';
+import 'package:blogify_flutter_main/presentation/notifiers/home_page/category_index_notifier.dart';
 import 'package:blogify_flutter_main/presentation/pages/home_page/widgets/empty_posts_placeholder.dart';
 import 'package:blogify_flutter_main/presentation/pages/home_page/widgets/home_bottom_bar.dart';
 import 'package:blogify_flutter_main/presentation/pages/home_page/widgets/home_search_bar.dart';

@@ -1,10 +1,10 @@
 import 'package:blogify_flutter_main/common/app_dimensions.dart';
 import 'package:blogify_flutter_main/common/app_text_styles.dart';
 import 'package:blogify_flutter_main/l10n/l10n.dart';
+import 'package:blogify_flutter_main/presentation/notifiers/user/user_data_notifier.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
-import '../../../../data/providers/global_mock_user_provider.dart';
 import '../../../widgets/user_photo.dart';
 import '../../user_settings_page/user_settings_page.dart';
 
@@ -26,9 +26,9 @@ class UserWelcomeRow extends StatelessWidget {
                   L10n.welcomeScreenLabel,
                   style: AppTextStyles.sfPro24.copyWith(fontWeight: FontWeight.w500),
                 ),
-                Consumer<GlobalMockUserProvider>(builder: (context, notifier, child) {
+                Consumer<UserDataNotifier>(builder: (context, notifier, child) {
                   return Text(
-                    notifier.currentUser.firstName,
+                    notifier.user.firstName,
                     style: AppTextStyles.sfPro24,
                   );
                 })
@@ -47,9 +47,9 @@ class UserWelcomeRow extends StatelessWidget {
           child: InkWell(
             borderRadius: BorderRadius.circular(50.0),
             onTap: () => onUserSettingsButtonPressed(context),
-            child: Consumer<GlobalMockUserProvider>(builder: (context, notifier, child) {
+            child: Consumer<UserDataNotifier>(builder: (context, notifier, child) {
               return UserPhoto(
-                imageSrc: notifier.currentUser.imageSrc,
+                imageSrc: notifier.user.imageSrc,
                 size: AppDimensions.appBarUserAvatarImageSize,
               );
             }),

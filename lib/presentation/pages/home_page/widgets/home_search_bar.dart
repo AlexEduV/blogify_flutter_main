@@ -9,7 +9,7 @@ import 'package:provider/provider.dart';
 
 import '../../../../common/app_colors.dart';
 import '../../../../data/providers/global_mock_storage_provider.dart';
-import '../notifiers/search_column_notifier.dart';
+import '../../../notifiers/home_page/search_column_notifier.dart';
 import 'menu_item.dart';
 
 class HomeSearchBar extends StatelessWidget {
