@@ -84,7 +84,7 @@ class UserSettingsPage extends StatelessWidget {
                   ),
                 ),
 
-                const SizedBox(height: AppDimensions.normalM),
+                const SizedBox(height: AppDimensions.majorM),
               ],
             );
           }),
