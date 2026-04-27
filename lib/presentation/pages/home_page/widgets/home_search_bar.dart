@@ -19,11 +19,6 @@ class HomeSearchBar extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    //search bar
-    //todo: if I search for something, and then open another page, the keyboard,
-    // which was on, returns, when I come back, but after navigating back and forth
-    // it seems not normal
-
     return SearchBar(
       padding: const WidgetStatePropertyAll(
         EdgeInsets.only(left: AppDimensions.normalM, right: AppDimensions.minorL),
@@ -35,13 +30,11 @@ class HomeSearchBar extends StatelessWidget {
       ),
       trailing: [
         Consumer<SearchColumnNotifier>(builder: (context, notifier, child) {
-          //todo: find a way to animate between two state icons
           return RoundedButton(
             key: selectorKey,
             text: notifier.value,
-            trailingIcon: notifier.isSelectionOpen
-                ? Icons.keyboard_arrow_up_outlined
-                : Icons.keyboard_arrow_down_outlined,
+            expanded: notifier.isSelectionOpen,
+            trailingIcon: Icons.keyboard_arrow_up_outlined,
             filled: true,
             onTap: () => showSearchColumnSelector(context),
           );

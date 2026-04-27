@@ -47,53 +47,57 @@ class _HomePageState extends State<HomePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       resizeToAvoidBottomInset: false,
-      body: SafeArea(
-        child: Padding(
-          padding:
-              const EdgeInsets.all(AppDimensions.majorS).copyWith(bottom: AppDimensions.normalM),
-          child: Column(
-            spacing: AppDimensions.majorS,
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: <Widget>[
-              const UserWelcomeRow(),
+      body: GestureDetector(
+        onTap: () => FocusScope.of(context).unfocus(),
+        behavior: HitTestBehavior.translucent,
+        child: SafeArea(
+          child: Padding(
+            padding:
+                const EdgeInsets.all(AppDimensions.majorS).copyWith(bottom: AppDimensions.normalM),
+            child: Column(
+              spacing: AppDimensions.majorS,
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: <Widget>[
+                const UserWelcomeRow(),
 
-              //search bar
-              HomeSearchBar(
-                selectorKey: _searchSelectorButtonKey,
-              ),
+                //search bar
+                HomeSearchBar(
+                  selectorKey: _searchSelectorButtonKey,
+                ),
 
-              //card stack
-              Expanded(
-                child: Consumer<GlobalMockStorageProvider>(builder: (context, notifier, child) {
-                  final posts = notifier.postsFiltered;
-                  if (posts.isEmpty) {
-                    return const EmptyPostsPlaceholder();
-                  }
+                //card stack
+                Expanded(
+                  child: Consumer<GlobalMockStorageProvider>(builder: (context, notifier, child) {
+                    final posts = notifier.postsFiltered;
+                    if (posts.isEmpty) {
+                      return const EmptyPostsPlaceholder();
+                    }
 
-                  //post stack
-                  return Consumer<CategoryIndexNotifier>(
-                      builder: (_, categoryIndexNotifier, child) {
-                    return CardSwiper(
-                      controller: controller,
-                      cardsCount: posts.length,
-                      onSwipe: (_, __, direction) => true,
-                      numberOfCardsDisplayed: limitedCount(AppConstants.homePagePostsVisibleCount),
-                      backCardOffset: const Offset(0, 40),
-                      padding: EdgeInsets.zero,
-                      cardBuilder: (
-                        context,
-                        index,
-                        horizontalThresholdPercentage,
-                        verticalThresholdPercentage,
-                      ) =>
-                          PostCard(post: posts[index], onTap: openArticlePage),
-                    );
-                  });
-                }),
-              ),
+                    //post stack
+                    return Consumer<CategoryIndexNotifier>(
+                        builder: (_, categoryIndexNotifier, child) {
+                      return CardSwiper(
+                        controller: controller,
+                        cardsCount: posts.length,
+                        onSwipe: (_, __, direction) => true,
+                        numberOfCardsDisplayed: limitedCount(posts.length),
+                        backCardOffset: const Offset(0, 40),
+                        padding: EdgeInsets.zero,
+                        cardBuilder: (
+                          context,
+                          index,
+                          horizontalThresholdPercentage,
+                          verticalThresholdPercentage,
+                        ) =>
+                            PostCard(post: posts[index], onTap: openArticlePage),
+                      );
+                    });
+                  }),
+                ),
 
-              const HomeBottomBar(),
-            ],
+                const HomeBottomBar(),
+              ],
+            ),
           ),
         ),
       ),
@@ -104,5 +108,6 @@ class _HomePageState extends State<HomePage> {
     context.router.push(ArticleRoute(id: id));
   }
 
-  int limitedCount(int length, [int max = 3]) => min(length, max);
+  int limitedCount(int length, [int max = AppConstants.homePagePostsVisibleCount]) =>
+      min(length, max);
 }
