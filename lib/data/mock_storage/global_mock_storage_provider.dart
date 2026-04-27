@@ -29,6 +29,7 @@ class GlobalMockStorageProvider extends ChangeNotifier {
     notifyListeners();
   }
 
+  //todo: what is going on here?
   void filter(String searchValue, PostFilter type) {
     if (searchValue.isEmpty) {
       _postsFiltered = _postsInCategory;
@@ -37,16 +38,16 @@ class GlobalMockStorageProvider extends ChangeNotifier {
       return;
     }
 
-    if (type == PostFilter.title) {
+    final isTitle = type == PostFilter.title;
+
+    if (isTitle) {
       _postsFiltered = _postsInCategory
           .where((post) => post.title.toLowerCase().contains(searchValue.toLowerCase()))
           .toList();
-    } else if (type == PostFilter.author) {
+    } else {
       _postsFiltered = _postsInCategory
           .where((post) => post.author.toLowerCase().contains(searchValue.toLowerCase()))
           .toList();
-    } else {
-      throw Exception('Unexpected column');
     }
 
     notifyListeners();
