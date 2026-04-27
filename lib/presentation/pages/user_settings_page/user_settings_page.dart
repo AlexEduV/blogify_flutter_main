@@ -1,3 +1,4 @@
+import 'package:blogify_flutter_main/common/app_dimensions.dart';
 import 'package:blogify_flutter_main/data/mock_storage/global_mock_user_provider.dart';
 import 'package:blogify_flutter_main/presentation/pages/user_settings_page/widgets/list_item.dart';
 import 'package:blogify_flutter_main/presentation/pages/user_settings_page/widgets/section_title.dart';
@@ -27,7 +28,7 @@ class UserSettingsPage extends StatelessWidget {
     return SizedBox(
       width: double.infinity,
       child: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 24.0),
+        padding: const EdgeInsets.symmetric(horizontal: AppDimensions.majorS),
         child: SingleChildScrollView(
           child: Consumer<GlobalMockUserProvider>(builder: (context, userNotifier, child) {
             return Column(
@@ -40,18 +41,14 @@ class UserSettingsPage extends StatelessWidget {
                   ),
                 ),
 
-                const SizedBox(
-                  height: 16.0,
-                ),
+                const SizedBox(height: AppDimensions.normalM),
 
                 //todo: enable replacement (tier + 1)
                 UserPhoto(
                   imageSrc: userNotifier.currentUser.imageSrc,
                 ),
 
-                const SizedBox(
-                  height: 16.0,
-                ),
+                const SizedBox(height: AppDimensions.normalM),
 
                 Text(
                   '${userNotifier.currentUser.firstName} ${userNotifier.currentUser.lastName}',
@@ -62,9 +59,7 @@ class UserSettingsPage extends StatelessWidget {
                   ),
                 ),
 
-                const SizedBox(
-                  height: 4.0,
-                ),
+                const SizedBox(height: AppDimensions.minorS),
 
                 Text(
                   userNotifier.currentUser.email,
@@ -74,9 +69,7 @@ class UserSettingsPage extends StatelessWidget {
                   ),
                 ),
 
-                const SizedBox(
-                  height: 32.0,
-                ),
+                const SizedBox(height: AppDimensions.majorL),
 
                 buildSection('Your Activity', activityItems),
                 buildSection('General', generalItems),
@@ -90,9 +83,7 @@ class UserSettingsPage extends StatelessWidget {
                   ),
                 ),
 
-                const SizedBox(
-                  height: 16.0,
-                ),
+                const SizedBox(height: AppDimensions.normalM),
               ],
             );
           }),
@@ -105,9 +96,13 @@ class UserSettingsPage extends StatelessWidget {
   Widget buildSection(String title, List<Map<String, dynamic>> items) {
     return Column(
       children: [
-        const SizedBox(height: 32.0),
+        const SizedBox(height: AppDimensions.majorL),
+
         SectionTitle(title: title),
-        const SizedBox(height: 16.0),
+
+        const SizedBox(height: AppDimensions.normalM),
+
+        //todo: can be refactored to 'spacing: '
         ...items.map((item) {
           return Column(
             children: [
@@ -117,7 +112,7 @@ class UserSettingsPage extends StatelessWidget {
                 icon: item['icon'],
                 title: item['title'],
               ),
-              const SizedBox(height: 16.0),
+              const SizedBox(height: AppDimensions.normalM),
             ],
           );
         }),
