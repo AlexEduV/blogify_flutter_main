@@ -1,4 +1,5 @@
 import 'package:blogify_flutter_main/common/app_dimensions.dart';
+import 'package:blogify_flutter_main/common/enums/post_filter.dart';
 import 'package:blogify_flutter_main/l10n/l10n.dart';
 import 'package:blogify_flutter_main/presentation/pages/home_page/widgets/rounded_button.dart';
 import 'package:flutter/material.dart';
@@ -85,8 +86,7 @@ class HomeSearchBar extends StatelessWidget {
     final selectorNotifier = context.read<SearchColumnNotifier>();
     selectorNotifier.updateSelectionOpenedState(true);
 
-    //todo: use an enum
-    final List<String> items = [L10n.searchFilterAuthor, L10n.searchFilterTitle];
+    final List<String> items = PostFilter.values.map((element) => element.label).toList();
 
     await showMenu(
       context: context,

@@ -2,6 +2,8 @@ import 'package:blogify_flutter_main/common/enums/post_category.dart';
 import 'package:blogify_flutter_main/domain/entities/post_entity.dart';
 import 'package:flutter/material.dart';
 
+import '../../common/enums/post_filter.dart';
+
 class GlobalMockStorageProvider extends ChangeNotifier {
   List<PostEntity> _allPosts = [];
 
@@ -150,12 +152,11 @@ class GlobalMockStorageProvider extends ChangeNotifier {
 
   void filter(String filter, String column) {
     if (filter.isNotEmpty) {
-      //todo: move to enum
-      if (column == 'Title') {
+      if (column == PostFilter.title.label) {
         _postsFiltered = _postsInCategory
             .where((post) => post.title.toLowerCase().contains(filter.toLowerCase()))
             .toList();
-      } else if (column == 'Author') {
+      } else if (column == PostFilter.author.label) {
         _postsFiltered = _postsInCategory
             .where((post) => post.author.toLowerCase().contains(filter.toLowerCase()))
             .toList();
