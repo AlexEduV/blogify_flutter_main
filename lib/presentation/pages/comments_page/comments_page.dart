@@ -1,4 +1,5 @@
 import 'package:auto_route/auto_route.dart';
+import 'package:blogify_flutter_main/common/app_dimensions.dart';
 import 'package:blogify_flutter_main/data/mock_storage/global_mock_comment_provider.dart';
 import 'package:blogify_flutter_main/data/mock_storage/global_mock_storage_provider.dart';
 import 'package:blogify_flutter_main/data/mock_storage/global_mock_user_provider.dart';
@@ -57,16 +58,16 @@ class _CommentsPageState extends State<CommentsPage> {
     return Scaffold(
       body: SafeArea(
         child: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 24.0),
+          padding: const EdgeInsets.symmetric(horizontal: AppDimensions.majorS),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               const SizedBox(
-                height: 24,
+                height: AppDimensions.majorS,
               ),
 
               Row(
-                spacing: 16.0,
+                spacing: AppDimensions.normalM,
                 children: [
                   CircledButtonOutlined(
                     icon: FontAwesomeIcons.chevronLeft,
@@ -77,7 +78,7 @@ class _CommentsPageState extends State<CommentsPage> {
                       currentPost.title,
                       style: const TextStyle(
                         fontWeight: FontWeight.w500,
-                        fontSize: 16.0,
+                        fontSize: AppDimensions.normalM,
                       ),
                       softWrap: true,
                       overflow: TextOverflow.ellipsis,
@@ -86,18 +87,14 @@ class _CommentsPageState extends State<CommentsPage> {
                 ],
               ),
 
-              const SizedBox(
-                height: 24,
-              ),
+              const SizedBox(height: AppDimensions.majorS),
 
               CommentField(
                 focusNode: commentFieldFocusNode,
                 textController: commentTextController,
               ),
 
-              const SizedBox(
-                height: 12.0,
-              ),
+              const SizedBox(height: AppDimensions.normalS),
 
               Row(
                 mainAxisAlignment: MainAxisAlignment.end,
@@ -112,7 +109,7 @@ class _CommentsPageState extends State<CommentsPage> {
                 ],
               ),
 
-              const SizedBox(height: 24.0),
+              const SizedBox(height: AppDimensions.majorS),
 
               //comments or a placeholder
               Expanded(
@@ -124,7 +121,7 @@ class _CommentsPageState extends State<CommentsPage> {
                     //placeholder
                     if (comments.isEmpty) {
                       return const Padding(
-                        padding: EdgeInsets.symmetric(horizontal: 8.0),
+                        padding: EdgeInsets.symmetric(horizontal: AppDimensions.minorL),
                         child: Text(
                           'No comments yet',
                           style: TextStyle(
@@ -142,10 +139,10 @@ class _CommentsPageState extends State<CommentsPage> {
 
                         return CommentsListTile(user: user, comment: comments[index]);
                       },
-                      separatorBuilder: (context, index) => const SizedBox(
-                        height: 16,
-                      ),
-                      padding: const EdgeInsets.only(bottom: 16.0),
+                      separatorBuilder: (context, index) {
+                        return const SizedBox(height: AppDimensions.normalM);
+                      },
+                      padding: const EdgeInsets.only(bottom: AppDimensions.normalM),
                     );
                   },
                 ),
@@ -157,12 +154,14 @@ class _CommentsPageState extends State<CommentsPage> {
     );
   }
 
+  //todo: move to the notifier;
   void validateCommentInput(String input) {
     if (input.isEmpty) {
       return;
     }
 
     //prepare data
+    //todo: move to date formatter
     final date = DateFormat('MM/dd/yy').format(DateTime.now());
 
     final userNotifier = context.read<GlobalMockUserProvider>();
