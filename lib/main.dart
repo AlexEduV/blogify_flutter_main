@@ -16,11 +16,12 @@ void main() {
 
   runApp(MultiProvider(
     providers: [
-      ChangeNotifierProvider(create: (_) => GlobalMockStorageProvider(serviceLocator())),
+      ChangeNotifierProvider(
+          create: (_) => GlobalMockStorageProvider(serviceLocator())..initStorage()),
       ChangeNotifierProvider(create: (_) => GlobalMockCommentProvider(serviceLocator())),
       ChangeNotifierProvider(create: (_) => CategoryIndexNotifier()),
       ChangeNotifierProvider(create: (_) => SearchColumnNotifier()),
-      ChangeNotifierProvider(create: (_) => UserDataNotifier(serviceLocator())),
+      ChangeNotifierProvider(create: (_) => UserDataNotifier(serviceLocator())..init()),
     ],
     child: const MyApp(),
   ));
