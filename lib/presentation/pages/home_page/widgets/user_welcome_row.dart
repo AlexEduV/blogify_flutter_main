@@ -2,8 +2,8 @@ import 'package:blogify_flutter_main/common/app_dimensions.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
+import '../../../../common/app_colors.dart';
 import '../../../../data/mock_storage/global_mock_user_provider.dart';
-import '../../../theme/app_colors.dart';
 import '../../../widgets/user_photo.dart';
 import '../../user_settings_page/user_settings_page.dart';
 
