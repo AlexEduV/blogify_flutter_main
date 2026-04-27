@@ -1,11 +1,15 @@
 import 'package:blogify_flutter_main/common/enums/post_category.dart';
-import 'package:blogify_flutter_main/data/data_sources/mock_posts_data_source_impl.dart';
+import 'package:blogify_flutter_main/domain/data_sources/posts_data_source.dart';
 import 'package:blogify_flutter_main/domain/entities/post_entity.dart';
 import 'package:flutter/material.dart';
 
 import '../../common/enums/post_filter.dart';
 
 class GlobalMockStorageProvider extends ChangeNotifier {
+  final PostsDataSource _postsDataSource;
+
+  GlobalMockStorageProvider(this._postsDataSource);
+
   List<PostEntity> _allPosts = [];
 
   List<PostEntity> get allPosts => _allPosts;
@@ -19,10 +23,7 @@ class GlobalMockStorageProvider extends ChangeNotifier {
   List<PostEntity> get postsFiltered => _postsFiltered;
 
   void initStorage() {
-    final mockDataSource = MockPostsDataSourceImpl();
-
-    mockDataSource.init();
-    _allPosts = mockDataSource.allPosts;
+    _allPosts = _postsDataSource.allPosts;
 
     _postsInCategory = _allPosts;
     _postsFiltered = _allPosts;
@@ -33,20 +34,23 @@ class GlobalMockStorageProvider extends ChangeNotifier {
   }
 
   void filter(String filter, String column) {
-    if (filter.isNotEmpty) {
-      if (column == PostFilter.title.label) {
-        _postsFiltered = _postsInCategory
-            .where((post) => post.title.toLowerCase().contains(filter.toLowerCase()))
-            .toList();
-      } else if (column == PostFilter.author.label) {
-        _postsFiltered = _postsInCategory
-            .where((post) => post.author.toLowerCase().contains(filter.toLowerCase()))
-            .toList();
-      } else {
-        throw Exception('Unexpected column');
-      }
-    } else {
+    if (filter.isEmpty) {
       _postsFiltered = _postsInCategory;
+      notifyListeners();
+
+      return;
+    }
+
+    if (column == PostFilter.title.label) {
+      _postsFiltered = _postsInCategory
+          .where((post) => post.title.toLowerCase().contains(filter.toLowerCase()))
+          .toList();
+    } else if (column == PostFilter.author.label) {
+      _postsFiltered = _postsInCategory
+          .where((post) => post.author.toLowerCase().contains(filter.toLowerCase()))
+          .toList();
+    } else {
+      throw Exception('Unexpected column');
     }
 
     notifyListeners();
@@ -70,6 +74,6 @@ class GlobalMockStorageProvider extends ChangeNotifier {
   }
 
   PostEntity getPostById(int id) {
-    return _allPosts.firstWhere((post) => post.id == id);
+    return _postsDataSource.getPostById(id);
   }
 }

@@ -1,9 +1,11 @@
 import 'package:blogify_flutter_main/domain/data_sources/posts_data_source.dart';
+import 'package:collection/collection.dart';
 
 import '../../common/enums/post_category.dart';
 import '../../domain/entities/post_entity.dart';
 
 class MockPostsDataSourceImpl implements PostsDataSource {
+  @override
   List<PostEntity> allPosts = [];
 
   @override
@@ -132,7 +134,13 @@ class MockPostsDataSourceImpl implements PostsDataSource {
     ];
   }
 
+  @override
   PostEntity getPostById(int id) {
-    return allPosts.firstWhereOrNull((post) => post.id == id);
+    final entity = allPosts.firstWhereOrNull((post) => post.id == id);
+    if (entity == null) {
+      return PostEntity.empty();
+    }
+
+    return entity;
   }
 }
