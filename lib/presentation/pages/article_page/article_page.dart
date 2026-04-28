@@ -1,5 +1,6 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:blogify_flutter_main/common/app_colors.dart';
+import 'package:blogify_flutter_main/common/app_constants.dart';
 import 'package:blogify_flutter_main/common/app_dimensions.dart';
 import 'package:blogify_flutter_main/common/app_text_styles.dart';
 import 'package:blogify_flutter_main/core/di/injection_container.dart';
@@ -134,8 +135,10 @@ class _ArticlePageState extends State<ArticlePage> {
 
   Future<void> onShareButtonPressed(PostEntity post) async {
     //todo: the content could be better and also better to call notifier -> use case here;
+
     final model = ShareParamsModel(
-        title: '${L10n.appName} | ${post.title}', text: 'Please, visit our article.');
+        title: '${L10n.appName} | ${post.title}',
+        text: 'Please, visit our article at ${AppConstants.webHost + post.url}');
 
     await serviceLocator<ShareLocalDataSource>().share(model);
   }
