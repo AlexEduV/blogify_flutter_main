@@ -16,8 +16,10 @@ class MockPostsDataSourceImpl implements PostsDataSource {
     final jsonString = await rootBundle.loadString(
       'assets/mocks/posts_mock_data.json',
     );
-    final jsonDecoded = json.decode(jsonString) as List<Map<String, dynamic>>;
-    final list = jsonDecoded.map((element) => PostEntity.fromJson(element)).toList();
+    final jsonDecoded = json.decode(jsonString) as Map<String, dynamic>;
+    final listRaw = jsonDecoded['results'] as List<dynamic>;
+
+    final list = listRaw.map((element) => PostEntity.fromJson(element)).toList();
 
     allPosts = list;
   }

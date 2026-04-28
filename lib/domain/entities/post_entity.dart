@@ -67,8 +67,8 @@ class PostEntity {
       author: json['author'] as String,
       daysAgoPublished: json['daysAgoPublished'] as int,
       minToRead: json['minToRead'] as int,
-      category: json['category'],
-      isLiked: json['isLiked'] as bool,
+      category: PostCategory.fromLabel(json['category'] as String),
+      isLiked: (json['isLiked'] ?? false) as bool,
       imageSrc: json['imageSrc'] as String,
       paragraphs: json['paragraphs'] as List<String>,
     );
