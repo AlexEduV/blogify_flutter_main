@@ -21,9 +21,6 @@ class GlobalMockStorageProvider extends ChangeNotifier {
   List<PostEntity> get postsFiltered => _postsFiltered;
 
   void initStorage() {
-    _postsInCategory = allPosts;
-    _postsFiltered = allPosts;
-
     loadAllInCategory(PostCategory.trending);
 
     notifyListeners();

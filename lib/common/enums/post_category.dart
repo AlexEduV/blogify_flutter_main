@@ -12,6 +12,6 @@ enum PostCategory {
   const PostCategory({this.tabIndex, this.label = ''});
 
   static PostCategory? fromLabel(String label) {
-    return PostCategory.values.where((element) => element.label == label).firstOrNull;
+    return PostCategory.values.where((element) => element.name == label).firstOrNull;
   }
 }
