@@ -25,4 +25,11 @@ class UserDataNotifier extends ChangeNotifier {
     user = userEntity;
     notifyListeners();
   }
+
+  Future<void> updateUser(UserEntity userEntity) async {
+    user = userEntity;
+    await _databaseManager.updateUser(user);
+
+    notifyListeners();
+  }
 }

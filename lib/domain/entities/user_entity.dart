@@ -39,4 +39,35 @@ class UserEntity {
       imageSrc: map['imageSrc'] as String,
     );
   }
+
+  UserEntity copyWith({
+    int? id,
+    String? firstName,
+    String? lastName,
+    String? email,
+    String? imageSrc,
+  }) {
+    return UserEntity(
+      id: id ?? this.id,
+      firstName: firstName ?? this.firstName,
+      lastName: lastName ?? this.lastName,
+      email: email ?? this.email,
+      imageSrc: imageSrc ?? this.imageSrc,
+    );
+  }
+
+  @override
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      other is UserEntity &&
+          runtimeType == other.runtimeType &&
+          id == other.id &&
+          firstName == other.firstName &&
+          lastName == other.lastName &&
+          email == other.email &&
+          imageSrc == other.imageSrc;
+
+  @override
+  int get hashCode =>
+      id.hashCode ^ firstName.hashCode ^ lastName.hashCode ^ email.hashCode ^ imageSrc.hashCode;
 }

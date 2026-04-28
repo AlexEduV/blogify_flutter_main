@@ -6,6 +6,7 @@ import 'package:blogify_flutter_main/presentation/pages/user_settings_page/widge
 import 'package:blogify_flutter_main/presentation/pages/user_settings_page/widgets/section_title.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:image_picker/image_picker.dart';
 import 'package:provider/provider.dart';
 
 import '../../widgets/user_photo.dart';
@@ -37,9 +38,9 @@ class UserSettingsPage extends StatelessWidget {
               children: [
                 const SizedBox(height: AppDimensions.normalM),
 
-                //todo: enable replacement (tier + 1)
                 UserPhoto(
                   imageSrc: userNotifier.user.imageSrc,
+                  onTap: () => onUserPhotoPressed(context),
                 ),
 
                 const SizedBox(height: AppDimensions.normalM),
@@ -102,5 +103,18 @@ class UserSettingsPage extends StatelessWidget {
         }),
       ],
     );
+  }
+
+  Future<void> onUserPhotoPressed(BuildContext context) async {
+    //todo: needs refactoring
+    final imagePicker = ImagePicker();
+
+    final result = await imagePicker.pickImage(source: ImageSource.gallery);
+    if (result == null || !context.mounted) return;
+
+    final userNotifier = context.read<UserDataNotifier>();
+    final imagePath = result.path;
+
+    userNotifier.updateUser(userNotifier.user.copyWith(imageSrc: imagePath));
   }
 }
