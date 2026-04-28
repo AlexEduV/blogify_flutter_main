@@ -9,7 +9,7 @@ import 'package:provider/provider.dart';
 
 import '../../../../common/app_colors.dart';
 import '../../../../data/providers/global_mock_storage_provider.dart';
-import '../../../notifiers/home_page/search_column_notifier.dart';
+import '../../../notifiers/home_page/search_filter_type_notifier.dart';
 import 'menu_item.dart';
 
 class HomeSearchBar extends StatelessWidget {
@@ -31,7 +31,7 @@ class HomeSearchBar extends StatelessWidget {
         size: AppDimensions.appBarIconSize,
       ),
       trailing: [
-        Consumer<SearchColumnNotifier>(builder: (context, notifier, child) {
+        Consumer<SearchFilterTypeNotifier>(builder: (context, notifier, child) {
           return RoundedButton(
             key: selectorKey,
             text: notifier.value.label,
@@ -63,31 +63,22 @@ class HomeSearchBar extends StatelessWidget {
       }),
       onChanged: (String filter) {
         final storageNotifier = context.read<GlobalMockStorageProvider>();
-        final searchColumnNotifier = context.read<SearchColumnNotifier>();
+        final searchColumnNotifier = context.read<SearchFilterTypeNotifier>();
         storageNotifier.filter(filter, searchColumnNotifier.value);
       },
     );
   }
 
   Future<void> showSearchFilterTypeSelector(BuildContext context) async {
-    final renderBox = selectorKey.currentContext!.findRenderObject() as RenderBox;
-    final offset = renderBox.localToGlobal(Offset.zero); // Button's global position
-    final size = renderBox.size;
-
-    final selectorNotifier = context.read<SearchColumnNotifier>();
-    selectorNotifier.updateSelectionOpenedState(true);
-
+    final menuNotifier = context.read<SearchFilterTypeNotifier>();
     final List<PostFilter> items = PostFilter.values;
+
+    menuNotifier.setIsMenuExpanded(true);
 
     await showMenu<String>(
       context: context,
-      initialValue: selectorNotifier.value.label,
-      position: RelativeRect.fromLTRB(
-        offset.dx - 10, // X Position (left and some space)
-        offset.dy + size.height + 10, // Y Position (below the button)
-        offset.dx + size.width, // Right boundary
-        offset.dy + size.height + 200, // Bottom boundary (just enough space)
-      ),
+      initialValue: menuNotifier.value.label,
+      position: getMenuPosition(),
       color: Colors.white,
       elevation: 50.0,
       shadowColor: Colors.grey,
@@ -96,16 +87,29 @@ class HomeSearchBar extends StatelessWidget {
         PopupMenuItem<String>(
           value: items[0].label,
           child: MenuItem(text: items[0].label),
-          onTap: () => selectorNotifier.updateFilterType(items[0]),
+          onTap: () => menuNotifier.updateFilterType(items[0]),
         ),
         PopupMenuItem<String>(
           value: items[1].label,
           child: MenuItem(text: items[1].label),
-          onTap: () => selectorNotifier.updateFilterType(items[1]),
+          onTap: () => menuNotifier.updateFilterType(items[1]),
         ),
       ],
     );
 
-    selectorNotifier.updateSelectionOpenedState(false);
+    menuNotifier.setIsMenuExpanded(false);
+  }
+
+  RelativeRect getMenuPosition() {
+    final renderBox = selectorKey.currentContext!.findRenderObject() as RenderBox;
+    final offset = renderBox.localToGlobal(Offset.zero); // Button's global position
+    final size = renderBox.size;
+
+    return RelativeRect.fromLTRB(
+      offset.dx - 10, // X Position (left and some space)
+      offset.dy + size.height + 10, // Y Position (below the button)
+      offset.dx + size.width, // Right boundary
+      offset.dy + size.height + 200, // Bottom boundary (just enough space)
+    );
   }
 }
