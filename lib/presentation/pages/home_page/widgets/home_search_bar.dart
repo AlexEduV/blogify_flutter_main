@@ -99,7 +99,9 @@ class HomeSearchBar extends StatelessWidget {
 
   RelativeRect? getMenuPosition() {
     final context = searchMenuKey.currentContext;
-    if (context == null) return null;
+    if (context == null) {
+      return null;
+    }
 
     final renderBox = context.findRenderObject() as RenderBox;
     final offset = renderBox.localToGlobal(Offset.zero); // Button's global position
