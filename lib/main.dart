@@ -27,15 +27,15 @@ void main() {
   ));
 }
 
-final appRouter = AppRouter();
-
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
 
   @override
   Widget build(BuildContext context) {
+    final routerConfig = AppRouter().config();
+
     return MaterialApp.router(
-      routerConfig: appRouter.config(),
+      routerConfig: routerConfig,
       title: L10n.appName,
       theme: ThemeData(
         scaffoldBackgroundColor: AppColors.scaffoldBackgroundColor,
