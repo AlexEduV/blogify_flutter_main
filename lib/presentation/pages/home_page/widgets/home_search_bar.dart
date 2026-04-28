@@ -70,6 +70,8 @@ class HomeSearchBar extends StatelessWidget {
   }
 
   Future<void> showSearchFilterTypeSelector(BuildContext context) async {
+    //todo: add an outward border radius, but first look at interaction design you might really like;
+
     final menuNotifier = context.read<SearchFilterTypeNotifier>();
     final List<PostFilter> items = PostFilter.values;
 
@@ -87,6 +89,7 @@ class HomeSearchBar extends StatelessWidget {
         final item = items[index];
 
         return PopupMenuItem<String>(
+          padding: EdgeInsets.zero,
           value: item.label,
           child: MenuItem(text: item.label),
           onTap: () => menuNotifier.updateFilterType(item),
@@ -108,7 +111,7 @@ class HomeSearchBar extends StatelessWidget {
     final size = renderBox.size;
 
     return RelativeRect.fromLTRB(
-      offset.dx - 10, // X Position (left and some space)
+      offset.dx - 5, // X Position (left and some space)
       offset.dy + size.height + 10, // Y Position (below the button)
       offset.dx + size.width, // Right boundary
       offset.dy + size.height + 200, // Bottom boundary (just enough space)
