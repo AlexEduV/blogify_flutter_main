@@ -38,12 +38,13 @@ class DatabaseManager {
 
   Future<void> insertUser(UserEntity user) async {
     final db = await database;
-    await db.insert('users', user.toMap(), conflictAlgorithm: ConflictAlgorithm.replace);
+    await db.insert(UserTable.tableName, user.toMap(),
+        conflictAlgorithm: ConflictAlgorithm.replace);
   }
 
   Future<UserEntity?> getUser() async {
     final db = await database;
-    final map = await db.query('users');
+    final map = await db.query(UserTable.tableName);
 
     if (map.isEmpty) {
       return null;
@@ -54,11 +55,11 @@ class DatabaseManager {
 
   Future<void> updateUser(UserEntity user) async {
     final db = await database;
-    await db.update('users', user.toMap(), where: 'id = ?', whereArgs: [user.id]);
+    await db.update(UserTable.tableName, user.toMap(), where: 'id = ?', whereArgs: [user.id]);
   }
 
   Future<void> deleteUser(int id) async {
     final db = await database;
-    await db.delete('users', where: 'id = ?', whereArgs: [id]);
+    await db.delete(UserTable.tableName, where: 'id = ?', whereArgs: [id]);
   }
 }
