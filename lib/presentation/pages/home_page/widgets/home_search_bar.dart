@@ -38,7 +38,7 @@ class HomeSearchBar extends StatelessWidget {
             expanded: notifier.isSelectionOpen,
             trailingIcon: Icons.keyboard_arrow_up_outlined,
             filled: true,
-            onTap: () => showSearchColumnSelector(context),
+            onTap: () => showSearchFilterTypeSelector(context),
           );
         }),
       ],
@@ -69,10 +69,10 @@ class HomeSearchBar extends StatelessWidget {
     );
   }
 
-  Future<void> showSearchColumnSelector(BuildContext context) async {
-    final RenderBox renderBox = selectorKey.currentContext!.findRenderObject() as RenderBox;
-    final Offset offset = renderBox.localToGlobal(Offset.zero); // Button's global position
-    final Size size = renderBox.size; // Button's size
+  Future<void> showSearchFilterTypeSelector(BuildContext context) async {
+    final renderBox = selectorKey.currentContext!.findRenderObject() as RenderBox;
+    final offset = renderBox.localToGlobal(Offset.zero); // Button's global position
+    final size = renderBox.size;
 
     final selectorNotifier = context.read<SearchColumnNotifier>();
     selectorNotifier.updateSelectionOpenedState(true);
@@ -94,13 +94,11 @@ class HomeSearchBar extends StatelessWidget {
       menuPadding: EdgeInsets.zero,
       items: [
         PopupMenuItem<String>(
-          padding: EdgeInsets.zero,
           value: items[0].label,
           child: MenuItem(text: items[0].label),
           onTap: () => selectorNotifier.updateFilterType(items[0]),
         ),
         PopupMenuItem<String>(
-          padding: EdgeInsets.zero,
           value: items[1].label,
           child: MenuItem(text: items[1].label),
           onTap: () => selectorNotifier.updateFilterType(items[1]),

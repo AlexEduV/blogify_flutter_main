@@ -16,10 +16,7 @@ class MenuItem extends StatelessWidget {
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(AppDimensions.majorS),
       ),
-      child: Padding(
-        padding: const EdgeInsets.only(left: AppDimensions.minorL),
-        child: Text(text),
-      ),
+      child: Text(text),
     );
   }
 }
