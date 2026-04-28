@@ -51,7 +51,7 @@ class UserPhoto extends StatelessWidget {
                   highlightColor: Colors.transparent,
                   onTap: onTap,
                   child: const CircleAvatar(
-                    backgroundColor: AppColors.emeraldGreen,
+                    backgroundColor: Colors.grey,
                     radius: 20,
                     child: Icon(Icons.edit, color: Colors.white, size: 20 * 1.2),
                   ),
