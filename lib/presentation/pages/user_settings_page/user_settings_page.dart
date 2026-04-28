@@ -35,11 +35,6 @@ class UserSettingsPage extends StatelessWidget {
           child: Consumer<UserDataNotifier>(builder: (context, userNotifier, child) {
             return Column(
               children: [
-                const Text(
-                  L10n.appSettingsTitle,
-                  style: AppTextStyles.sfPro16,
-                ),
-
                 const SizedBox(height: AppDimensions.normalM),
 
                 //todo: enable replacement (tier + 1)
@@ -58,7 +53,7 @@ class UserSettingsPage extends StatelessWidget {
 
                 Text(
                   userNotifier.user.email,
-                  style: AppTextStyles.sfPro12Dark,
+                  style: AppTextStyles.sfPro16Accent,
                 ),
 
                 const SizedBox(height: AppDimensions.majorL),
@@ -69,7 +64,7 @@ class UserSettingsPage extends StatelessWidget {
                 //app version footer
                 Text(
                   '${L10n.appName}, ${L10n.appVersion}',
-                  style: AppTextStyles.sfPro12Dark,
+                  style: AppTextStyles.sfPro14Accent,
                 ),
 
                 const SizedBox(height: AppDimensions.majorM),
