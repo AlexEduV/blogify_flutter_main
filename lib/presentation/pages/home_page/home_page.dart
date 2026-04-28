@@ -85,7 +85,8 @@ class _HomePageState extends State<HomePage> {
                         cardsCount: posts.length,
                         onSwipe: (_, __, direction) => true,
                         numberOfCardsDisplayed: limitedCount(posts.length),
-                        backCardOffset: const Offset(0, 40),
+                        backCardOffset: const Offset(0, 65),
+                        scale: 0.8,
                         padding: EdgeInsets.zero,
                         cardBuilder: (
                           context,
