@@ -141,9 +141,10 @@ class _ArticlePageState extends State<ArticlePage> {
     final previewFile = XFile.fromData(preview.bodyBytes, name: post.url, mimeType: 'image/png');
 
     final model = ShareParamsModel(
-        title: '${L10n.appName} | ${post.title}',
-        text: 'Please, visit our article at ${AppConstants.webHost + post.url}',
-        previewThumbnail: previewFile);
+      title: '${L10n.appName} | ${post.title}',
+      text: 'Please, visit our article at ${AppConstants.webHost + post.url}',
+      previewThumbnail: previewFile,
+    );
 
     await serviceLocator<ShareLocalDataSource>().share(model);
   }
