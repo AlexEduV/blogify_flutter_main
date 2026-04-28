@@ -134,7 +134,7 @@ class _ArticlePageState extends State<ArticlePage> {
   }
 
   Future<void> onShareButtonPressed(PostEntity post) async {
-    //todo: the content could be better and also better to call notifier -> use case here;
+    //todo: better to call notifier -> use case here;
 
     final model = ShareParamsModel(
         title: '${L10n.appName} | ${post.title}',
