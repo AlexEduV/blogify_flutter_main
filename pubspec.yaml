@@ -42,9 +42,16 @@ flutter:
   fonts:
     - family: SFPro
       fonts:
-        - asset: assets/fonts/SFPro-Regular.ttf
+        - asset: assets/fonts/SF-Pro-Regular.ttf
+        - asset: assets/fonts/SF-Pro-Ultralight.otf
+          weight: 200
+        - asset: assets/fonts/SF-Pro-Thin.otf
+          weight: 300
+        - asset: assets/fonts/SF-Pro-Light.otf
           weight: 400
-        - asset: assets/fonts/SFPro-Medium.otf
-          weight: 500
-        - asset: assets/fonts/SFPro-Semibold.otf
+        - asset: assets/fonts/SF-Pro-Medium.otf
           weight: 600
+        - asset: assets/fonts/SF-Pro-Semibold.otf
+          weight: 700
+        - asset: assets/fonts/SF-Pro-Bold.otf
+          weight: 800
