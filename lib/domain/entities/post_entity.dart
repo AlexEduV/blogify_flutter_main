@@ -70,7 +70,8 @@ class PostEntity {
       category: PostCategory.fromLabel(json['category'] as String),
       isLiked: (json['isLiked'] ?? false) as bool,
       imageSrc: json['imageSrc'] as String,
-      paragraphs: json['paragraphs'] as List<String>,
+      paragraphs:
+          (json['paragraphs'] as List<dynamic>).map((element) => element.toString()).toList(),
     );
   }
 }
