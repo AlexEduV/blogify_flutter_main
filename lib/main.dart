@@ -31,13 +31,18 @@ void main() async {
   ));
 }
 
-class MyApp extends StatelessWidget {
+class MyApp extends StatefulWidget {
   const MyApp({super.key});
 
   @override
-  Widget build(BuildContext context) {
-    final routerConfig = AppRouter().config();
+  State<MyApp> createState() => _MyAppState();
+}
 
+class _MyAppState extends State<MyApp> {
+  final routerConfig = AppRouter().config();
+
+  @override
+  Widget build(BuildContext context) {
     return MaterialApp.router(
       routerConfig: routerConfig,
       title: L10n.appName,
