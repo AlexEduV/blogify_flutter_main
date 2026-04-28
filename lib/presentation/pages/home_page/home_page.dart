@@ -65,7 +65,7 @@ class _HomePageState extends State<HomePage> {
 
                 //search bar
                 HomeSearchBar(
-                  selectorKey: _searchSelectorButtonKey,
+                  searchMenuKey: _searchSelectorButtonKey,
                   focusNode: searchFocusNode,
                 ),
 

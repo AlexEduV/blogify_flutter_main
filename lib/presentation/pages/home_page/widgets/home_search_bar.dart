@@ -14,9 +14,9 @@ import 'menu_item.dart';
 
 class HomeSearchBar extends StatelessWidget {
   final FocusNode focusNode;
-  final GlobalKey selectorKey;
+  final GlobalKey searchMenuKey;
 
-  const HomeSearchBar({required this.selectorKey, required this.focusNode, super.key});
+  const HomeSearchBar({required this.searchMenuKey, required this.focusNode, super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -33,7 +33,7 @@ class HomeSearchBar extends StatelessWidget {
       trailing: [
         Consumer<SearchFilterTypeNotifier>(builder: (context, notifier, child) {
           return RoundedButton(
-            key: selectorKey,
+            key: searchMenuKey,
             text: notifier.value.label,
             expanded: notifier.isSelectionOpen,
             trailingIcon: Icons.keyboard_arrow_up_outlined,
@@ -97,8 +97,11 @@ class HomeSearchBar extends StatelessWidget {
     menuNotifier.setIsMenuExpanded(false);
   }
 
-  RelativeRect getMenuPosition() {
-    final renderBox = selectorKey.currentContext!.findRenderObject() as RenderBox;
+  RelativeRect? getMenuPosition() {
+    final context = searchMenuKey.currentContext;
+    if (context == null) return null;
+
+    final renderBox = context.findRenderObject() as RenderBox;
     final offset = renderBox.localToGlobal(Offset.zero); // Button's global position
     final size = renderBox.size;
 
