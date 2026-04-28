@@ -1,7 +1,7 @@
 import 'package:blogify_flutter_main/common/enums/post_filter.dart';
 import 'package:flutter/material.dart';
 
-class SearchColumnNotifier extends ChangeNotifier {
+class SearchFilterTypeNotifier extends ChangeNotifier {
   PostFilter _value = PostFilter.author;
 
   PostFilter get value => _value;
@@ -15,7 +15,7 @@ class SearchColumnNotifier extends ChangeNotifier {
     notifyListeners();
   }
 
-  void updateSelectionOpenedState(bool newState) {
+  void setIsMenuExpanded(bool newState) {
     _isSelectionOpen = newState;
     notifyListeners();
   }
