@@ -1,6 +1,7 @@
 import 'package:blogify_flutter_main/data/data_sources/mock_comments_data_source_impl.dart';
 import 'package:blogify_flutter_main/data/data_sources/mock_posts_data_source_impl.dart';
 import 'package:blogify_flutter_main/data/data_sources/mock_users_data_source_impl.dart';
+import 'package:blogify_flutter_main/data/database/database_manager.dart';
 import 'package:blogify_flutter_main/domain/data_sources/comments_data_source.dart';
 import 'package:blogify_flutter_main/domain/data_sources/posts_data_source.dart';
 import 'package:blogify_flutter_main/domain/data_sources/users_data_source.dart';
@@ -17,4 +18,6 @@ Future<void> initDependenciesContainer() async {
   await postsDataSource.init();
 
   serviceLocator.registerLazySingleton<PostsDataSource>(() => postsDataSource);
+
+  serviceLocator.registerLazySingleton(() => DatabaseManager());
 }

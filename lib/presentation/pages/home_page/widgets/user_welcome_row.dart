@@ -1,12 +1,13 @@
+import 'package:auto_route/auto_route.dart';
 import 'package:blogify_flutter_main/common/app_dimensions.dart';
 import 'package:blogify_flutter_main/common/app_text_styles.dart';
 import 'package:blogify_flutter_main/l10n/l10n.dart';
 import 'package:blogify_flutter_main/presentation/notifiers/user/user_data_notifier.dart';
+import 'package:blogify_flutter_main/router/router.gr.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
 import '../../../widgets/user_photo.dart';
-import '../../user_settings_page/user_settings_page.dart';
 
 class UserWelcomeRow extends StatelessWidget {
   const UserWelcomeRow({super.key});
@@ -59,14 +60,9 @@ class UserWelcomeRow extends StatelessWidget {
     );
   }
 
-  void onUserSettingsButtonPressed(BuildContext context) {
-    showModalBottomSheet(
-        context: context,
-        backgroundColor: Colors.white,
-        showDragHandle: true,
-        isScrollControlled: true,
-        builder: (BuildContext context) {
-          return const UserSettingsPage();
-        });
+  Future<void> onUserSettingsButtonPressed(BuildContext context) async {
+    context.router.push(
+      const UserSettingsRoute(),
+    );
   }
 }

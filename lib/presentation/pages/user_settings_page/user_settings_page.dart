@@ -1,3 +1,4 @@
+import 'package:auto_route/annotations.dart';
 import 'package:blogify_flutter_main/common/app_dimensions.dart';
 import 'package:blogify_flutter_main/common/app_text_styles.dart';
 import 'package:blogify_flutter_main/l10n/l10n.dart';
@@ -6,10 +7,12 @@ import 'package:blogify_flutter_main/presentation/pages/user_settings_page/widge
 import 'package:blogify_flutter_main/presentation/pages/user_settings_page/widgets/section_title.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:image_picker/image_picker.dart';
 import 'package:provider/provider.dart';
 
 import '../../widgets/user_photo.dart';
 
+@RoutePage()
 class UserSettingsPage extends StatelessWidget {
   const UserSettingsPage({super.key});
 
@@ -27,55 +30,54 @@ class UserSettingsPage extends StatelessWidget {
       {'icon': FontAwesomeIcons.gear, 'title': L10n.settingsGeneralSettingsItemTitle},
     ];
 
-    return SizedBox(
-      width: double.infinity,
-      child: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: AppDimensions.majorS),
-        child: SingleChildScrollView(
-          child: Consumer<UserDataNotifier>(builder: (context, userNotifier, child) {
-            return Column(
-              children: [
-                const Text(
-                  L10n.appSettingsTitle,
-                  style: AppTextStyles.sfPro16,
-                ),
+    return Scaffold(
+      backgroundColor: Colors.white,
+      body: SafeArea(
+        child: Padding(
+          padding: const EdgeInsets.symmetric(horizontal: AppDimensions.majorL)
+              .copyWith(top: AppDimensions.majorS),
+          child: SingleChildScrollView(
+            child: Consumer<UserDataNotifier>(builder: (context, userNotifier, child) {
+              return Column(
+                children: [
+                  const SizedBox(height: AppDimensions.normalM),
 
-                const SizedBox(height: AppDimensions.normalM),
+                  UserPhoto(
+                    size: 120,
+                    imageSrc: userNotifier.user.imageSrc,
+                    onTap: () => onUserPhotoPressed(context),
+                  ),
 
-                //todo: enable replacement (tier + 1)
-                UserPhoto(
-                  imageSrc: userNotifier.user.imageSrc,
-                ),
+                  const SizedBox(height: AppDimensions.normalM),
 
-                const SizedBox(height: AppDimensions.normalM),
+                  Text(
+                    '${userNotifier.user.firstName} ${userNotifier.user.lastName}',
+                    style: AppTextStyles.sfPro20,
+                  ),
 
-                Text(
-                  '${userNotifier.user.firstName} ${userNotifier.user.lastName}',
-                  style: AppTextStyles.sfPro20,
-                ),
+                  const SizedBox(height: AppDimensions.minorS),
 
-                const SizedBox(height: AppDimensions.minorS),
+                  Text(
+                    userNotifier.user.email,
+                    style: AppTextStyles.sfPro16Accent,
+                  ),
 
-                Text(
-                  userNotifier.user.email,
-                  style: AppTextStyles.sfPro12Dark,
-                ),
+                  const SizedBox(height: AppDimensions.majorL),
 
-                const SizedBox(height: AppDimensions.majorL),
+                  buildSection(L10n.settingsSectionYourActivity, activityItems),
+                  buildSection(L10n.settingsSectionGeneral, generalItems),
 
-                buildSection(L10n.settingsSectionYourActivity, activityItems),
-                buildSection(L10n.settingsSectionGeneral, generalItems),
+                  //app version footer
+                  Text(
+                    '${L10n.appName}, ${L10n.appVersion}',
+                    style: AppTextStyles.sfPro14Accent,
+                  ),
 
-                //app version footer
-                Text(
-                  '${L10n.appName}, ${L10n.appVersion}',
-                  style: AppTextStyles.sfPro12Dark,
-                ),
-
-                const SizedBox(height: AppDimensions.majorM),
-              ],
-            );
-          }),
+                  const SizedBox(height: AppDimensions.majorM),
+                ],
+              );
+            }),
+          ),
         ),
       ),
     );
@@ -107,5 +109,18 @@ class UserSettingsPage extends StatelessWidget {
         }),
       ],
     );
+  }
+
+  Future<void> onUserPhotoPressed(BuildContext context) async {
+    //todo: needs refactoring
+    final imagePicker = ImagePicker();
+
+    final result = await imagePicker.pickImage(source: ImageSource.gallery);
+    if (result == null || !context.mounted) return;
+
+    final userNotifier = context.read<UserDataNotifier>();
+    final imagePath = result.path;
+
+    userNotifier.updateUser(userNotifier.user.copyWith(imageSrc: imagePath));
   }
 }

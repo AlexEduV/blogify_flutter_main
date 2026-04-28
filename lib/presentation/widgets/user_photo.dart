@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:blogify_flutter_main/common/app_colors.dart';
 import 'package:blogify_flutter_main/common/app_dimensions.dart';
 import 'package:flutter/material.dart';
@@ -5,27 +7,59 @@ import 'package:flutter/material.dart';
 class UserPhoto extends StatelessWidget {
   final String imageSrc;
   final double size;
+  final VoidCallback? onTap;
 
   const UserPhoto({
     required this.imageSrc,
     this.size = AppDimensions.userPhotoImageHeight,
+    this.onTap,
     super.key,
   });
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      height: size,
-      width: size,
-      decoration: BoxDecoration(
-        shape: BoxShape.circle,
-        image: imageSrc.isNotEmpty
-            ? DecorationImage(
-                image: AssetImage(imageSrc),
-                fit: BoxFit.cover,
-              )
-            : null,
-        color: imageSrc.isNotEmpty ? null : AppColors.lightGrey,
+    return Center(
+      child: Stack(
+        clipBehavior: Clip.none,
+        children: [
+          Container(
+            width: size,
+            height: size,
+            decoration: BoxDecoration(
+              shape: BoxShape.circle,
+              border: Border.all(
+                color: Colors.white, // Set your desired border color
+                width: 3.0, // Set your desired border width
+              ),
+            ),
+            child: CircleAvatar(
+              radius: size / 2,
+              backgroundImage: (imageSrc.isNotEmpty) ? FileImage(File(imageSrc)) : null,
+              backgroundColor: imageSrc.isEmpty ? AppColors.accentColor : null,
+            ),
+          ),
+          if (onTap != null) ...[
+            Positioned(
+              bottom: 0,
+              right: 0,
+              child: Material(
+                color: AppColors.accentColor,
+                shape: const CircleBorder(),
+                child: InkWell(
+                  customBorder: const CircleBorder(),
+                  splashColor: AppColors.accentColor.withAlpha(60),
+                  highlightColor: Colors.transparent,
+                  onTap: onTap,
+                  child: const CircleAvatar(
+                    backgroundColor: Colors.grey,
+                    radius: 20,
+                    child: Icon(Icons.edit, color: Colors.white, size: 20 * 1.2),
+                  ),
+                ),
+              ),
+            ),
+          ],
+        ],
       ),
     );
   }

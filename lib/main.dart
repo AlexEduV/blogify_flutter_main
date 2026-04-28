@@ -15,6 +15,9 @@ void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await initDependenciesContainer();
 
+  final userDataNotifier = UserDataNotifier(serviceLocator(), serviceLocator());
+  await userDataNotifier.init();
+
   runApp(MultiProvider(
     providers: [
       ChangeNotifierProvider(
@@ -22,19 +25,30 @@ void main() async {
       ChangeNotifierProvider(create: (_) => GlobalMockCommentProvider(serviceLocator())),
       ChangeNotifierProvider(create: (_) => CategoryIndexNotifier()),
       ChangeNotifierProvider(create: (_) => SearchFilterTypeNotifier()),
-      ChangeNotifierProvider(create: (_) => UserDataNotifier(serviceLocator())..init()),
+      ChangeNotifierProvider(create: (_) => userDataNotifier),
     ],
     child: const MyApp(),
   ));
 }
 
-class MyApp extends StatelessWidget {
+class MyApp extends StatefulWidget {
   const MyApp({super.key});
 
   @override
-  Widget build(BuildContext context) {
-    final routerConfig = AppRouter().config();
+  State<MyApp> createState() => _MyAppState();
+}
 
+class _MyAppState extends State<MyApp> {
+  late final RouterConfig<Object>? routerConfig;
+
+  @override
+  void initState() {
+    routerConfig = AppRouter().config();
+    super.initState();
+  }
+
+  @override
+  Widget build(BuildContext context) {
     return MaterialApp.router(
       routerConfig: routerConfig,
       title: L10n.appName,
