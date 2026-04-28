@@ -38,10 +38,11 @@ class MyApp extends StatelessWidget {
       routerConfig: appRouter.config(),
       title: L10n.appName,
       theme: ThemeData(
-          scaffoldBackgroundColor: AppColors.scaffoldBackgroundColor,
-          colorScheme: ColorScheme.fromSeed(seedColor: Colors.white),
-          useMaterial3: true,
-          fontFamily: 'SFPro'),
+        scaffoldBackgroundColor: AppColors.scaffoldBackgroundColor,
+        colorScheme: ColorScheme.fromSeed(seedColor: Colors.white),
+        useMaterial3: true,
+        fontFamily: 'SFPro',
+      ),
       debugShowCheckedModeBanner: false,
     );
   }
