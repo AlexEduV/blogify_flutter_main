@@ -12,5 +12,9 @@ Future<void> initDependenciesContainer() async {
   serviceLocator.registerLazySingleton<UsersDataSource>(() => MockUsersDataSourceImpl()..init());
   serviceLocator
       .registerLazySingleton<CommentsDataSource>(() => MockCommentsDataSourceImpl()..init());
-  serviceLocator.registerLazySingleton<PostsDataSource>(() => MockPostsDataSourceImpl()..init());
+
+  final postsDataSource = MockPostsDataSourceImpl();
+  await postsDataSource.init();
+
+  serviceLocator.registerLazySingleton<PostsDataSource>(() => postsDataSource);
 }

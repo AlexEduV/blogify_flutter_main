@@ -11,8 +11,9 @@ import 'package:provider/provider.dart';
 import 'data/providers/global_mock_comment_provider.dart';
 import 'data/providers/global_mock_storage_provider.dart';
 
-void main() {
-  initDependenciesContainer();
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await initDependenciesContainer();
 
   runApp(MultiProvider(
     providers: [

@@ -59,4 +59,19 @@ class PostEntity {
         daysAgoPublished: 7,
         minToRead: 15);
   }
+
+  static PostEntity fromJson(Map<String, dynamic> json) {
+    return PostEntity(
+      id: json['id'] as int,
+      title: json['title'] as String,
+      author: json['author'] as String,
+      daysAgoPublished: json['daysAgoPublished'] as int,
+      minToRead: json['minToRead'] as int,
+      category: PostCategory.fromLabel(json['category'] as String),
+      isLiked: (json['isLiked'] ?? false) as bool,
+      imageSrc: json['imageSrc'] as String,
+      paragraphs:
+          (json['paragraphs'] as List<dynamic>).map((element) => element.toString()).toList(),
+    );
+  }
 }

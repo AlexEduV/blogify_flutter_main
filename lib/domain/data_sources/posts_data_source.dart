@@ -2,7 +2,7 @@ import 'package:blogify_flutter_main/common/enums/post_category.dart';
 import 'package:blogify_flutter_main/domain/entities/post_entity.dart';
 
 abstract class PostsDataSource {
-  void init();
+  Future<void> init();
 
   PostEntity getPostById(int id);
 
