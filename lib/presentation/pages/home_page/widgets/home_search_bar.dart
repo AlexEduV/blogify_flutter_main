@@ -83,18 +83,15 @@ class HomeSearchBar extends StatelessWidget {
       elevation: 50.0,
       shadowColor: Colors.grey,
       menuPadding: EdgeInsets.zero,
-      items: [
-        PopupMenuItem<String>(
-          value: items[0].label,
-          child: MenuItem(text: items[0].label),
-          onTap: () => menuNotifier.updateFilterType(items[0]),
-        ),
-        PopupMenuItem<String>(
-          value: items[1].label,
-          child: MenuItem(text: items[1].label),
-          onTap: () => menuNotifier.updateFilterType(items[1]),
-        ),
-      ],
+      items: List.generate(items.length, (index) {
+        final item = items[index];
+
+        return PopupMenuItem<String>(
+          value: item.label,
+          child: MenuItem(text: item.label),
+          onTap: () => menuNotifier.updateFilterType(item),
+        );
+      }),
     );
 
     menuNotifier.setIsMenuExpanded(false);
