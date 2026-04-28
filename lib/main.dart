@@ -22,7 +22,8 @@ void main() async {
       ChangeNotifierProvider(create: (_) => GlobalMockCommentProvider(serviceLocator())),
       ChangeNotifierProvider(create: (_) => CategoryIndexNotifier()),
       ChangeNotifierProvider(create: (_) => SearchFilterTypeNotifier()),
-      ChangeNotifierProvider(create: (_) => UserDataNotifier(serviceLocator())..init()),
+      ChangeNotifierProvider(
+          create: (_) => UserDataNotifier(serviceLocator(), serviceLocator())..init()),
     ],
     child: const MyApp(),
   ));

@@ -41,9 +41,14 @@ class DatabaseManager {
     await db.insert('users', user.toMap(), conflictAlgorithm: ConflictAlgorithm.replace);
   }
 
-  Future<UserEntity> getUser() async {
+  Future<UserEntity?> getUser() async {
     final db = await database;
     final map = await db.query('users');
+
+    if (map.isEmpty) {
+      return null;
+    }
+
     return UserEntity.fromMap(map.first);
   }
 
