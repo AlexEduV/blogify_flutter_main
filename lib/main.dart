@@ -39,7 +39,13 @@ class MyApp extends StatefulWidget {
 }
 
 class _MyAppState extends State<MyApp> {
-  final routerConfig = AppRouter().config();
+  late final RouterConfig<Object>? routerConfig;
+
+  @override
+  void initState() {
+    routerConfig = AppRouter().config();
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
