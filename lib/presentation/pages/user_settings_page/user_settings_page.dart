@@ -32,49 +32,52 @@ class UserSettingsPage extends StatelessWidget {
 
     return Scaffold(
       backgroundColor: Colors.white,
-      body: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: AppDimensions.majorS),
-        child: SingleChildScrollView(
-          child: Consumer<UserDataNotifier>(builder: (context, userNotifier, child) {
-            return Column(
-              children: [
-                const SizedBox(height: AppDimensions.normalM),
+      body: SafeArea(
+        child: Padding(
+          padding: const EdgeInsets.symmetric(horizontal: AppDimensions.majorL)
+              .copyWith(top: AppDimensions.majorS),
+          child: SingleChildScrollView(
+            child: Consumer<UserDataNotifier>(builder: (context, userNotifier, child) {
+              return Column(
+                children: [
+                  const SizedBox(height: AppDimensions.normalM),
 
-                UserPhoto(
-                  size: 120,
-                  imageSrc: userNotifier.user.imageSrc,
-                  onTap: () => onUserPhotoPressed(context),
-                ),
+                  UserPhoto(
+                    size: 120,
+                    imageSrc: userNotifier.user.imageSrc,
+                    onTap: () => onUserPhotoPressed(context),
+                  ),
 
-                const SizedBox(height: AppDimensions.normalM),
+                  const SizedBox(height: AppDimensions.normalM),
 
-                Text(
-                  '${userNotifier.user.firstName} ${userNotifier.user.lastName}',
-                  style: AppTextStyles.sfPro20,
-                ),
+                  Text(
+                    '${userNotifier.user.firstName} ${userNotifier.user.lastName}',
+                    style: AppTextStyles.sfPro20,
+                  ),
 
-                const SizedBox(height: AppDimensions.minorS),
+                  const SizedBox(height: AppDimensions.minorS),
 
-                Text(
-                  userNotifier.user.email,
-                  style: AppTextStyles.sfPro16Accent,
-                ),
+                  Text(
+                    userNotifier.user.email,
+                    style: AppTextStyles.sfPro16Accent,
+                  ),
 
-                const SizedBox(height: AppDimensions.majorL),
+                  const SizedBox(height: AppDimensions.majorL),
 
-                buildSection(L10n.settingsSectionYourActivity, activityItems),
-                buildSection(L10n.settingsSectionGeneral, generalItems),
+                  buildSection(L10n.settingsSectionYourActivity, activityItems),
+                  buildSection(L10n.settingsSectionGeneral, generalItems),
 
-                //app version footer
-                Text(
-                  '${L10n.appName}, ${L10n.appVersion}',
-                  style: AppTextStyles.sfPro14Accent,
-                ),
+                  //app version footer
+                  Text(
+                    '${L10n.appName}, ${L10n.appVersion}',
+                    style: AppTextStyles.sfPro14Accent,
+                  ),
 
-                const SizedBox(height: AppDimensions.majorM),
-              ],
-            );
-          }),
+                  const SizedBox(height: AppDimensions.majorM),
+                ],
+              );
+            }),
+          ),
         ),
       ),
     );
