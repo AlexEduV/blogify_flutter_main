@@ -114,7 +114,6 @@ class _CommentsPageState extends State<CommentsPage> {
                 child: Consumer<GlobalMockCommentProvider>(
                   builder: (context, notifier, child) {
                     final comments = notifier.filteredComments;
-                    ;
 
                     //placeholder
                     if (comments.isEmpty) {
