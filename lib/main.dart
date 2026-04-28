@@ -15,6 +15,9 @@ void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await initDependenciesContainer();
 
+  final userDataNotifier = UserDataNotifier(serviceLocator(), serviceLocator());
+  await userDataNotifier.init();
+
   runApp(MultiProvider(
     providers: [
       ChangeNotifierProvider(
@@ -22,8 +25,7 @@ void main() async {
       ChangeNotifierProvider(create: (_) => GlobalMockCommentProvider(serviceLocator())),
       ChangeNotifierProvider(create: (_) => CategoryIndexNotifier()),
       ChangeNotifierProvider(create: (_) => SearchFilterTypeNotifier()),
-      ChangeNotifierProvider(
-          create: (_) => UserDataNotifier(serviceLocator(), serviceLocator())..init()),
+      ChangeNotifierProvider(create: (_) => userDataNotifier),
     ],
     child: const MyApp(),
   ));
