@@ -1,4 +1,4 @@
-import '../entities/user_entity.dart';
+import '../../entities/user_entity.dart';
 
 abstract class UsersDataSource {
   late List<UserEntity> users;

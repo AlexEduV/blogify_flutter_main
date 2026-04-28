@@ -1,7 +1,8 @@
 import 'package:blogify_flutter_main/data/database/database_manager.dart';
-import 'package:blogify_flutter_main/domain/data_sources/users_data_source.dart';
 import 'package:blogify_flutter_main/domain/entities/user_entity.dart';
 import 'package:flutter/cupertino.dart';
+
+import '../../../domain/data_sources/remote/users_data_source.dart';
 
 class UserDataNotifier extends ChangeNotifier {
   final UsersDataSource _usersDataSource;
