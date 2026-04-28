@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:blogify_flutter_main/common/app_colors.dart';
 import 'package:blogify_flutter_main/common/app_dimensions.dart';
 import 'package:flutter/material.dart';
@@ -29,7 +31,7 @@ class UserPhoto extends StatelessWidget {
             shape: BoxShape.circle,
             image: imageSrc.isNotEmpty
                 ? DecorationImage(
-                    image: AssetImage(imageSrc),
+                    image: FileImage(File(imageSrc)),
                     fit: BoxFit.cover,
                   )
                 : null,

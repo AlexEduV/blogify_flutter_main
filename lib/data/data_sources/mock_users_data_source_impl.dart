@@ -19,7 +19,7 @@ class MockUsersDataSourceImpl implements UsersDataSource {
         firstName: 'Jude',
         lastName: 'Adams',
         email: 'therealjude@gmail.com',
-        imageSrc: 'assets/images/profile-image.jpg',
+        imageSrc: '',
       )
     ];
   }
