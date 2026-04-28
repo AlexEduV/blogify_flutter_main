@@ -82,6 +82,7 @@ class HomeSearchBar extends StatelessWidget {
       initialValue: menuNotifier.value.label,
       position: getMenuPosition(),
       color: Colors.white,
+      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(AppDimensions.minorL)),
       elevation: 25.0,
       shadowColor: Colors.grey,
       menuPadding: EdgeInsets.zero,
