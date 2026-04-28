@@ -79,9 +79,9 @@ class HomeSearchBar extends StatelessWidget {
 
     final List<PostFilter> items = PostFilter.values;
 
-    await showMenu(
+    await showMenu<String>(
       context: context,
-      initialValue: selectorNotifier.value,
+      initialValue: selectorNotifier.value.label,
       position: RelativeRect.fromLTRB(
         offset.dx - 10, // X Position (left and some space)
         offset.dy + size.height + 10, // Y Position (below the button)
