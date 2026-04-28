@@ -39,6 +39,7 @@ class UserSettingsPage extends StatelessWidget {
                 const SizedBox(height: AppDimensions.normalM),
 
                 UserPhoto(
+                  size: 120,
                   imageSrc: userNotifier.user.imageSrc,
                   onTap: () => onUserPhotoPressed(context),
                 ),

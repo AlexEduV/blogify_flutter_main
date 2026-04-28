@@ -18,26 +18,48 @@ class UserPhoto extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Material(
-      color: Colors.transparent,
-      shape: const RoundedRectangleBorder(),
-      child: InkWell(
-        borderRadius: BorderRadius.circular(50.0),
-        onTap: onTap,
-        child: Container(
-          height: size,
-          width: size,
-          decoration: BoxDecoration(
-            shape: BoxShape.circle,
-            image: imageSrc.isNotEmpty
-                ? DecorationImage(
-                    image: FileImage(File(imageSrc)),
-                    fit: BoxFit.cover,
-                  )
-                : null,
-            color: imageSrc.isNotEmpty ? null : AppColors.lightGrey,
+    return Center(
+      child: Stack(
+        clipBehavior: Clip.none,
+        children: [
+          Container(
+            width: size,
+            height: size,
+            decoration: BoxDecoration(
+              shape: BoxShape.circle,
+              border: Border.all(
+                color: Colors.white, // Set your desired border color
+                width: 3.0, // Set your desired border width
+              ),
+            ),
+            child: CircleAvatar(
+              radius: size / 2,
+              backgroundImage: (imageSrc.isNotEmpty) ? FileImage(File(imageSrc)) : null,
+              backgroundColor: imageSrc.isEmpty ? AppColors.accentColor : null,
+            ),
           ),
-        ),
+          if (onTap != null) ...[
+            Positioned(
+              bottom: 0,
+              right: 0,
+              child: Material(
+                color: AppColors.accentColor,
+                shape: const CircleBorder(),
+                child: InkWell(
+                  customBorder: const CircleBorder(),
+                  splashColor: AppColors.accentColor.withAlpha(60),
+                  highlightColor: Colors.transparent,
+                  onTap: onTap,
+                  child: const CircleAvatar(
+                    backgroundColor: AppColors.emeraldGreen,
+                    radius: 20,
+                    child: Icon(Icons.edit, color: Colors.white, size: 20 * 1.2),
+                  ),
+                ),
+              ),
+            ),
+          ],
+        ],
       ),
     );
   }
