@@ -2,6 +2,10 @@ import 'package:auto_route/auto_route.dart';
 import 'package:blogify_flutter_main/common/app_colors.dart';
 import 'package:blogify_flutter_main/common/app_dimensions.dart';
 import 'package:blogify_flutter_main/common/app_text_styles.dart';
+import 'package:blogify_flutter_main/core/di/injection_container.dart';
+import 'package:blogify_flutter_main/domain/data_sources/local/share_local_data_source.dart';
+import 'package:blogify_flutter_main/domain/entities/post_entity.dart';
+import 'package:blogify_flutter_main/domain/models/share_params_model.dart';
 import 'package:blogify_flutter_main/l10n/l10n.dart';
 import 'package:blogify_flutter_main/router/router.gr.dart';
 import 'package:flutter/material.dart';
@@ -15,10 +19,10 @@ import '../../widgets/post_cover_photo.dart';
 
 @RoutePage()
 class ArticlePage extends StatefulWidget {
-  final int id;
+  final int articleId;
 
   const ArticlePage({
-    required this.id,
+    required this.articleId,
     super.key,
   });
 
@@ -37,7 +41,7 @@ class _ArticlePageState extends State<ArticlePage> {
               child: Padding(
                 padding: const EdgeInsets.all(AppDimensions.majorS),
                 child: Consumer<GlobalMockStorageProvider>(builder: (context, notifier, child) {
-                  final post = notifier.allPosts.firstWhere((post) => post.id == widget.id);
+                  final post = notifier.allPosts.firstWhere((post) => post.id == widget.articleId);
 
                   return Column(
                     spacing: AppDimensions.majorS,
@@ -64,17 +68,18 @@ class _ArticlePageState extends State<ArticlePage> {
                             children: [
                               CircledButtonOutlined(
                                 icon: FontAwesomeIcons.comment,
-                                onTap: () => context.router.push(CommentsRoute(id: widget.id)),
+                                onTap: () =>
+                                    context.router.push(CommentsRoute(id: widget.articleId)),
                               ),
                               CircledButtonOutlined(
                                 icon: post.isLiked
                                     ? FontAwesomeIcons.solidThumbsUp
                                     : FontAwesomeIcons.thumbsUp,
-                                onTap: () => notifier.likePost(widget.id),
+                                onTap: () => notifier.likePost(widget.articleId),
                               ),
                               CircledButtonOutlined(
                                 icon: FontAwesomeIcons.share,
-                                onTap: () {},
+                                onTap: () => onShareButtonPressed(post),
                               ),
                             ],
                           ),
@@ -125,5 +130,12 @@ class _ArticlePageState extends State<ArticlePage> {
       ),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
     );
+  }
+
+  Future<void> onShareButtonPressed(PostEntity post) async {
+    final model = ShareParamsModel(
+        title: '${L10n.appName} | ${post.title}', text: 'Please, visit our article.');
+
+    await serviceLocator<ShareLocalDataSource>().share(model);
   }
 }

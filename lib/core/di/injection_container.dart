@@ -1,7 +1,9 @@
+import 'package:blogify_flutter_main/data/data_sources/local/share_local_data_source_impl.dart';
 import 'package:blogify_flutter_main/data/data_sources/remote/mock_comments_data_source_impl.dart';
 import 'package:blogify_flutter_main/data/data_sources/remote/mock_posts_data_source_impl.dart';
 import 'package:blogify_flutter_main/data/data_sources/remote/mock_users_data_source_impl.dart';
 import 'package:blogify_flutter_main/data/database/database_manager.dart';
+import 'package:blogify_flutter_main/domain/data_sources/local/share_local_data_source.dart';
 import 'package:blogify_flutter_main/domain/data_sources/remote/comments_data_source.dart';
 import 'package:blogify_flutter_main/domain/data_sources/remote/posts_data_source.dart';
 import 'package:get_it/get_it.dart';
@@ -20,5 +22,7 @@ Future<void> initDependenciesContainer() async {
 
   serviceLocator.registerLazySingleton<PostsDataSource>(() => postsDataSource);
 
-  serviceLocator.registerLazySingleton(() => DatabaseManager());
+  serviceLocator.registerLazySingleton<DatabaseManager>(() => DatabaseManager());
+
+  serviceLocator.registerLazySingleton<ShareLocalDataSource>(() => ShareLocalDataSourceImpl());
 }
