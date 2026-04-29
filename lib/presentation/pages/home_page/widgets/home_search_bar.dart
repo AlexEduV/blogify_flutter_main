@@ -8,8 +8,8 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:provider/provider.dart';
 
 import '../../../../common/app_colors.dart';
-import '../../../../data/providers/global_mock_storage_provider.dart';
 import '../../../notifiers/home_page/search_filter_type_notifier.dart';
+import '../../../notifiers/posts/global_mock_storage_provider.dart';
 import 'menu_item.dart';
 
 class HomeSearchBar extends StatelessWidget {

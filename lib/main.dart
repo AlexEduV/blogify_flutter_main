@@ -3,13 +3,14 @@ import 'package:blogify_flutter_main/core/di/injection_container.dart';
 import 'package:blogify_flutter_main/l10n/l10n.dart';
 import 'package:blogify_flutter_main/presentation/notifiers/home_page/category_index_notifier.dart';
 import 'package:blogify_flutter_main/presentation/notifiers/home_page/search_filter_type_notifier.dart';
+import 'package:blogify_flutter_main/presentation/notifiers/settings_page/settings_page_notifier.dart';
 import 'package:blogify_flutter_main/presentation/notifiers/user/user_data_notifier.dart';
 import 'package:blogify_flutter_main/router/router.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
-import 'data/providers/global_mock_comment_provider.dart';
-import 'data/providers/global_mock_storage_provider.dart';
+import 'presentation/notifiers/comments_page/comments_page_notifier.dart';
+import 'presentation/notifiers/posts/global_mock_storage_provider.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -21,11 +22,15 @@ void main() async {
   runApp(MultiProvider(
     providers: [
       ChangeNotifierProvider(
-          create: (_) => GlobalMockStorageProvider(serviceLocator())..initStorage()),
-      ChangeNotifierProvider(create: (_) => GlobalMockCommentProvider(serviceLocator())),
+          create: (_) => GlobalMockStorageProvider(
+              serviceLocator(), serviceLocator(), serviceLocator(), serviceLocator())
+            ..initStorage()),
+      ChangeNotifierProvider(
+          create: (_) => CommentsPageProvider(serviceLocator(), serviceLocator())),
       ChangeNotifierProvider(create: (_) => CategoryIndexNotifier()),
       ChangeNotifierProvider(create: (_) => SearchFilterTypeNotifier()),
       ChangeNotifierProvider(create: (_) => userDataNotifier),
+      ChangeNotifierProvider(create: (_) => SettingsPageNotifier(serviceLocator())),
     ],
     child: const MyApp(),
   ));

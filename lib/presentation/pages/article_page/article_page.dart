@@ -4,20 +4,19 @@ import 'package:blogify_flutter_main/common/app_constants.dart';
 import 'package:blogify_flutter_main/common/app_dimensions.dart';
 import 'package:blogify_flutter_main/common/app_text_styles.dart';
 import 'package:blogify_flutter_main/core/di/injection_container.dart';
-import 'package:blogify_flutter_main/domain/data_sources/local/share_local_data_source.dart';
 import 'package:blogify_flutter_main/domain/entities/post_entity.dart';
 import 'package:blogify_flutter_main/domain/models/share_params_model.dart';
+import 'package:blogify_flutter_main/domain/usecases/share/share_use_case.dart';
 import 'package:blogify_flutter_main/l10n/l10n.dart';
 import 'package:blogify_flutter_main/router/router.gr.dart';
-import 'package:collection/collection.dart';
 import 'package:cross_file/cross_file.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:http/http.dart' as http;
 import 'package:provider/provider.dart';
 
-import '../../../data/providers/global_mock_storage_provider.dart';
 import '../../../utils/intl_formatter.dart';
+import '../../notifiers/posts/global_mock_storage_provider.dart';
 import '../../widgets/circled_button_outlined.dart';
 import '../../widgets/post_cover_photo.dart';
 
@@ -35,10 +34,17 @@ class ArticlePage extends StatefulWidget {
 }
 
 class _ArticlePageState extends State<ArticlePage> {
+  late PostEntity post;
+
+  @override
+  void initState() {
+    super.initState();
+
+    post = getUpdatedPostData();
+  }
+
   @override
   Widget build(BuildContext context) {
-    PostEntity post = getUpdatedPostData();
-
     return Scaffold(
       body: SafeArea(
         child: SingleChildScrollView(
@@ -133,17 +139,11 @@ class _ArticlePageState extends State<ArticlePage> {
       previewThumbnail: previewFile,
     );
 
-    //todo: better to call notifier -> use case here;
-    await serviceLocator<ShareLocalDataSource>().share(model);
+    await serviceLocator<ShareUseCase>().call(model);
   }
 
   PostEntity getUpdatedPostData() {
-    final post = context
-        .read<GlobalMockStorageProvider>()
-        .allPosts
-        .firstWhereOrNull((post) => post.id == widget.articleId);
-
-    return post ?? PostEntity.empty();
+    return context.read<GlobalMockStorageProvider>().getPostById(widget.articleId);
   }
 
   String getPostInfo(PostEntity post) {

@@ -2,12 +2,12 @@ import 'package:auto_route/annotations.dart';
 import 'package:blogify_flutter_main/common/app_dimensions.dart';
 import 'package:blogify_flutter_main/common/app_text_styles.dart';
 import 'package:blogify_flutter_main/l10n/l10n.dart';
+import 'package:blogify_flutter_main/presentation/notifiers/settings_page/settings_page_notifier.dart';
 import 'package:blogify_flutter_main/presentation/notifiers/user/user_data_notifier.dart';
 import 'package:blogify_flutter_main/presentation/pages/user_settings_page/widgets/list_item.dart';
 import 'package:blogify_flutter_main/presentation/pages/user_settings_page/widgets/section_title.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:image_picker/image_picker.dart';
 import 'package:provider/provider.dart';
 
 import '../../widgets/user_photo.dart';
@@ -112,15 +112,11 @@ class UserSettingsPage extends StatelessWidget {
   }
 
   Future<void> onUserPhotoPressed(BuildContext context) async {
-    //todo: needs refactoring
-    final imagePicker = ImagePicker();
+    final path = await context.read<SettingsPageNotifier>().getNewUserImageSrc();
 
-    final result = await imagePicker.pickImage(source: ImageSource.gallery);
-    if (result == null || !context.mounted) return;
+    if (!context.mounted) return;
 
     final userNotifier = context.read<UserDataNotifier>();
-    final imagePath = result.path;
-
-    userNotifier.updateUser(userNotifier.user.copyWith(imageSrc: imagePath));
+    userNotifier.updateUser(userNotifier.user.copyWith(imageSrc: path));
   }
 }
