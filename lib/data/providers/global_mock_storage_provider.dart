@@ -1,5 +1,5 @@
 import 'package:blogify_flutter_main/common/enums/post_category.dart';
-import 'package:blogify_flutter_main/domain/data_sources/posts_data_source.dart';
+import 'package:blogify_flutter_main/domain/data_sources/remote/posts_data_source.dart';
 import 'package:blogify_flutter_main/domain/entities/post_entity.dart';
 import 'package:flutter/material.dart';
 

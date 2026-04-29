@@ -3,7 +3,6 @@ import 'package:blogify_flutter_main/common/app_colors.dart';
 import 'package:blogify_flutter_main/common/app_dimensions.dart';
 import 'package:blogify_flutter_main/common/app_text_styles.dart';
 import 'package:blogify_flutter_main/core/di/injection_container.dart';
-import 'package:blogify_flutter_main/domain/data_sources/users_data_source.dart';
 import 'package:blogify_flutter_main/domain/entities/comment_entity.dart';
 import 'package:blogify_flutter_main/domain/entities/post_entity.dart';
 import 'package:blogify_flutter_main/l10n/l10n.dart';
@@ -17,6 +16,7 @@ import 'package:provider/provider.dart';
 
 import '../../../data/providers/global_mock_comment_provider.dart';
 import '../../../data/providers/global_mock_storage_provider.dart';
+import '../../../domain/data_sources/remote/users_data_source.dart';
 import '../../widgets/circled_button_outlined.dart';
 
 @RoutePage()

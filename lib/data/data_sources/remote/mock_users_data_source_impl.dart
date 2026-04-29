@@ -1,5 +1,6 @@
-import 'package:blogify_flutter_main/domain/data_sources/users_data_source.dart';
 import 'package:blogify_flutter_main/domain/entities/user_entity.dart';
+
+import '../../../domain/data_sources/remote/users_data_source.dart';
 
 class MockUsersDataSourceImpl implements UsersDataSource {
   @override

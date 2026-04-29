@@ -1,11 +1,11 @@
 import 'dart:convert';
 
-import 'package:blogify_flutter_main/domain/data_sources/posts_data_source.dart';
+import 'package:blogify_flutter_main/domain/data_sources/remote/posts_data_source.dart';
 import 'package:collection/collection.dart';
 import 'package:flutter/services.dart';
 
-import '../../common/enums/post_category.dart';
-import '../../domain/entities/post_entity.dart';
+import '../../../common/enums/post_category.dart';
+import '../../../domain/entities/post_entity.dart';
 
 class MockPostsDataSourceImpl implements PostsDataSource {
   @override

@@ -1,4 +1,4 @@
-import 'package:blogify_flutter_main/domain/data_sources/comments_data_source.dart';
+import 'package:blogify_flutter_main/domain/data_sources/remote/comments_data_source.dart';
 import 'package:blogify_flutter_main/domain/entities/comment_entity.dart';
 
 class MockCommentsDataSourceImpl implements CommentsDataSource {
