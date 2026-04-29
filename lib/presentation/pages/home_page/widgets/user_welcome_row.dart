@@ -45,6 +45,7 @@ class UserWelcomeRow extends StatelessWidget {
         //User Settings button
         //todo: no material effect is visible
         Material(
+          shape: const CircleBorder(),
           child: InkWell(
             customBorder: const CircleBorder(),
             onTap: () => onUserSettingsButtonPressed(context),
