@@ -21,21 +21,19 @@ class CircledButton extends StatelessWidget {
         shape: BoxShape.circle,
         boxShadow: [
           BoxShadow(
-            color: Colors.grey[200]!,
+            color: AppColors.offGrey,
             offset: const Offset(0, 2),
             blurRadius: 5.0,
             spreadRadius: 2.0,
           ),
         ],
       ),
-
-      //todo: use circle shape here
       child: Material(
         color: Colors.transparent,
-        borderRadius: BorderRadius.circular(50.0),
+        shape: const CircleBorder(),
         child: InkWell(
           onTap: onTap,
-          borderRadius: BorderRadius.circular(50.0),
+          customBorder: const CircleBorder(),
           child: Container(
             padding: const EdgeInsets.all(AppDimensions.normalM),
             decoration: BoxDecoration(
