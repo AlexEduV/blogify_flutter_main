@@ -34,10 +34,17 @@ class ArticlePage extends StatefulWidget {
 }
 
 class _ArticlePageState extends State<ArticlePage> {
+  late PostEntity post;
+
+  @override
+  void initState() {
+    super.initState();
+
+    post = getUpdatedPostData();
+  }
+
   @override
   Widget build(BuildContext context) {
-    PostEntity post = getUpdatedPostData();
-
     return Scaffold(
       body: SafeArea(
         child: SingleChildScrollView(
