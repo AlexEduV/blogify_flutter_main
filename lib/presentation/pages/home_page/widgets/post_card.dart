@@ -59,9 +59,10 @@ class PostCard extends StatelessWidget {
               ),
               const SizedBox(height: AppDimensions.majorS),
               Text(
-                post.title,
+                '${post.title} \n',
                 style: AppTextStyles.sfPro24,
                 textAlign: TextAlign.center,
+                maxLines: 2,
               ),
               const SizedBox(height: AppDimensions.majorS),
               Row(
