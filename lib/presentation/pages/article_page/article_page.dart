@@ -86,8 +86,7 @@ class _ArticlePageState extends State<ArticlePage> {
 
                 //post info row
                 Text(
-                  //todo: can be refactored into a formatter;
-                  '${post.author}  |  ${IntlFormatter.getFormattedDays(post.daysAgoPublished)}  |  ${L10n.articleReadTimeLabel} ${post.minToRead} ${L10n.articleReadTimeUnits}',
+                  getPostInfo(post),
                   style: AppTextStyles.sfPro14,
                 ),
 
@@ -142,5 +141,13 @@ class _ArticlePageState extends State<ArticlePage> {
         .read<GlobalMockStorageProvider>()
         .allPosts
         .firstWhere((post) => post.id == widget.articleId);
+  }
+
+  String getPostInfo(PostEntity post) {
+    final author = post.author;
+    final date = IntlFormatter.getFormattedDays(post.daysAgoPublished);
+    final readTime = '${L10n.articleReadTimeLabel} ${post.minToRead} ${L10n.articleReadTimeUnits}';
+
+    return '$author  |  $date  |  $readTime';
   }
 }
