@@ -1,5 +1,6 @@
-import 'package:blogify_flutter_main/domain/data_sources/local/image_picker_local_data_source.dart';
 import 'package:image_picker/image_picker.dart';
+
+import '../../../domain/data_sources/local/image_picker_local_data_source.dart';
 
 class ImagePickerLocalDataSourceImpl implements ImagePickerLocalDataSource {
   final ImagePicker _imagePicker;
