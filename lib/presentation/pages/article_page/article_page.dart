@@ -9,6 +9,7 @@ import 'package:blogify_flutter_main/domain/entities/post_entity.dart';
 import 'package:blogify_flutter_main/domain/models/share_params_model.dart';
 import 'package:blogify_flutter_main/l10n/l10n.dart';
 import 'package:blogify_flutter_main/router/router.gr.dart';
+import 'package:collection/collection.dart';
 import 'package:cross_file/cross_file.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
@@ -137,10 +138,12 @@ class _ArticlePageState extends State<ArticlePage> {
   }
 
   PostEntity getUpdatedPostData() {
-    return context
+    final post = context
         .read<GlobalMockStorageProvider>()
         .allPosts
-        .firstWhere((post) => post.id == widget.articleId);
+        .firstWhereOrNull((post) => post.id == widget.articleId);
+
+    return post ?? PostEntity.empty();
   }
 
   String getPostInfo(PostEntity post) {
