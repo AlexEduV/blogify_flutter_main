@@ -16,35 +16,38 @@ class CircledButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Material(
-      color: Colors.transparent,
+      color: Colors.white,
       shape: const CircleBorder(),
       child: InkWell(
         onTap: onTap,
+        splashColor: Colors.grey.withAlpha(50),
         customBorder: const CircleBorder(),
-        child: Container(
+        child: Padding(
           padding: const EdgeInsets.all(AppDimensions.normalM),
-          decoration: BoxDecoration(
-            shape: BoxShape.circle,
-            border: Border(
-              bottom: BorderSide(
-                color: AppColors.lightGrey,
-                width: 0.5,
+          child: DecoratedBox(
+            decoration: BoxDecoration(
+              shape: BoxShape.circle,
+              border: Border(
+                bottom: BorderSide(
+                  color: AppColors.lightGrey,
+                  width: 0.5,
+                ),
               ),
+              boxShadow: [
+                BoxShadow(
+                  color: AppColors.offGrey,
+                  offset: const Offset(0, 2),
+                  blurRadius: 5.0,
+                  spreadRadius: 2.0,
+                ),
+              ],
+              color: Colors.white,
             ),
-            boxShadow: [
-              BoxShadow(
-                color: AppColors.offGrey,
-                offset: const Offset(0, 2),
-                blurRadius: 5.0,
-                spreadRadius: 2.0,
-              ),
-            ],
-            color: Colors.white,
-          ),
-          child: FaIcon(
-            icon,
-            color: Colors.black54,
-            size: AppDimensions.appBarIconSize,
+            child: FaIcon(
+              icon,
+              color: Colors.black54,
+              size: AppDimensions.appBarIconSize,
+            ),
           ),
         ),
       ),
