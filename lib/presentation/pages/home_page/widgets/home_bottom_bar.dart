@@ -16,6 +16,7 @@ class HomeBottomBar extends StatelessWidget {
   Widget build(BuildContext context) {
     return Consumer<CategoryIndexNotifier>(builder: (context, notifier, child) {
       return Row(
+        crossAxisAlignment: CrossAxisAlignment.center,
         spacing: AppDimensions.normalS,
         children: [
           Expanded(

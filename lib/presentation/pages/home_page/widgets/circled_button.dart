@@ -18,35 +18,38 @@ class CircledButton extends StatelessWidget {
     return Material(
       color: Colors.white,
       shape: const CircleBorder(),
-      child: InkWell(
-        onTap: onTap,
-        splashColor: Colors.grey.withAlpha(40),
-        customBorder: const CircleBorder(),
-        child: Ink(
-          decoration: BoxDecoration(
-            color: Colors.white,
-            shape: BoxShape.circle,
-            border: Border(
-              bottom: BorderSide(
-                color: AppColors.lightGrey,
-                width: 0.5,
+      child: Padding(
+        padding: const EdgeInsets.all(AppDimensions.minorL).copyWith(right: AppDimensions.normalM),
+        child: InkWell(
+          onTap: onTap,
+          splashColor: Colors.grey.withAlpha(40),
+          customBorder: const CircleBorder(),
+          child: Ink(
+            decoration: BoxDecoration(
+              color: Colors.white,
+              shape: BoxShape.circle,
+              border: Border(
+                bottom: BorderSide(
+                  color: AppColors.lightGrey,
+                  width: 0.5,
+                ),
               ),
+              boxShadow: [
+                BoxShadow(
+                  color: AppColors.offGrey,
+                  offset: const Offset(0, 2),
+                  blurRadius: 5.0,
+                  spreadRadius: 2.0,
+                ),
+              ],
             ),
-            boxShadow: [
-              BoxShadow(
-                color: AppColors.offGrey,
-                offset: const Offset(0, 2),
-                blurRadius: 5.0,
-                spreadRadius: 2.0,
+            child: Padding(
+              padding: const EdgeInsets.all(AppDimensions.normalM),
+              child: FaIcon(
+                icon,
+                color: Colors.black54,
+                size: AppDimensions.appBarIconSize,
               ),
-            ],
-          ),
-          child: Padding(
-            padding: const EdgeInsets.all(AppDimensions.normalM),
-            child: FaIcon(
-              icon,
-              color: Colors.black54,
-              size: AppDimensions.appBarIconSize,
             ),
           ),
         ),
