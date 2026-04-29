@@ -21,7 +21,7 @@ class CircledButton extends StatelessWidget {
         onTap: onTap,
         splashColor: Colors.grey.withAlpha(40),
         customBorder: const CircleBorder(),
-        child: DecoratedBox(
+        child: Ink(
           decoration: BoxDecoration(
             color: Colors.white,
             shape: BoxShape.circle,
