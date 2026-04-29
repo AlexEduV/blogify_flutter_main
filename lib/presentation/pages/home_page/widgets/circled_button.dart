@@ -15,41 +15,36 @@ class CircledButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return DecoratedBox(
-      decoration: BoxDecoration(
-        color: Colors.white,
-        shape: BoxShape.circle,
-        boxShadow: [
-          BoxShadow(
-            color: AppColors.offGrey,
-            offset: const Offset(0, 2),
-            blurRadius: 5.0,
-            spreadRadius: 2.0,
-          ),
-        ],
-      ),
-      child: Material(
-        color: Colors.transparent,
-        shape: const CircleBorder(),
-        child: InkWell(
-          onTap: onTap,
-          customBorder: const CircleBorder(),
-          child: Container(
-            padding: const EdgeInsets.all(AppDimensions.normalM),
-            decoration: BoxDecoration(
-              shape: BoxShape.circle,
-              border: Border(
-                bottom: BorderSide(
-                  color: AppColors.lightGrey,
-                  width: 0.5,
-                ),
+    return Material(
+      color: Colors.transparent,
+      shape: const CircleBorder(),
+      child: InkWell(
+        onTap: onTap,
+        customBorder: const CircleBorder(),
+        child: Container(
+          padding: const EdgeInsets.all(AppDimensions.normalM),
+          decoration: BoxDecoration(
+            shape: BoxShape.circle,
+            border: Border(
+              bottom: BorderSide(
+                color: AppColors.lightGrey,
+                width: 0.5,
               ),
             ),
-            child: FaIcon(
-              icon,
-              color: Colors.black54,
-              size: AppDimensions.appBarIconSize,
-            ),
+            boxShadow: [
+              BoxShadow(
+                color: AppColors.offGrey,
+                offset: const Offset(0, 2),
+                blurRadius: 5.0,
+                spreadRadius: 2.0,
+              ),
+            ],
+            color: Colors.white,
+          ),
+          child: FaIcon(
+            icon,
+            color: Colors.black54,
+            size: AppDimensions.appBarIconSize,
           ),
         ),
       ),
