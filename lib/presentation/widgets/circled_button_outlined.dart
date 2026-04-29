@@ -21,7 +21,8 @@ class CircledButtonOutlined extends StatelessWidget {
       color: Colors.transparent,
       child: InkWell(
         onTap: onTap,
-        borderRadius: BorderRadius.circular(50),
+        customBorder: const CircleBorder(),
+        splashColor: Colors.grey.withAlpha(40),
         child: Container(
           width: boxSize,
           height: boxSize,
