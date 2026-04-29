@@ -6,6 +6,7 @@ import 'package:blogify_flutter_main/data/data_sources/remote/mock_users_data_so
 import 'package:blogify_flutter_main/data/database/database_manager.dart';
 import 'package:blogify_flutter_main/data/repositories/comments_repository_impl.dart';
 import 'package:blogify_flutter_main/data/repositories/image_picker_repository_impl.dart';
+import 'package:blogify_flutter_main/data/repositories/posts_repository_impl.dart';
 import 'package:blogify_flutter_main/data/repositories/share_repository_impl.dart';
 import 'package:blogify_flutter_main/data/repositories/users_repository_impl.dart';
 import 'package:blogify_flutter_main/domain/data_sources/local/image_picker_local_data_source.dart';
@@ -14,12 +15,18 @@ import 'package:blogify_flutter_main/domain/data_sources/remote/comments_data_so
 import 'package:blogify_flutter_main/domain/data_sources/remote/posts_data_source.dart';
 import 'package:blogify_flutter_main/domain/repositories/comments_repository.dart';
 import 'package:blogify_flutter_main/domain/repositories/image_picker_repository.dart';
+import 'package:blogify_flutter_main/domain/repositories/posts_repository.dart';
 import 'package:blogify_flutter_main/domain/repositories/share_repository.dart';
 import 'package:blogify_flutter_main/domain/repositories/users_repository.dart';
 import 'package:blogify_flutter_main/domain/usecases/comments/get_all_comments_use_case.dart';
 import 'package:blogify_flutter_main/domain/usecases/comments/get_comments_by_post_id_use_case.dart';
 import 'package:blogify_flutter_main/domain/usecases/comments/init_comments_use_case.dart';
 import 'package:blogify_flutter_main/domain/usecases/image_picker/pick_image_use_case.dart';
+import 'package:blogify_flutter_main/domain/usecases/posts/get_all_posts_use_case.dart';
+import 'package:blogify_flutter_main/domain/usecases/posts/get_post_by_id_use_case.dart';
+import 'package:blogify_flutter_main/domain/usecases/posts/get_posts_by_category_use_case.dart';
+import 'package:blogify_flutter_main/domain/usecases/posts/init_posts_use_case.dart';
+import 'package:blogify_flutter_main/domain/usecases/posts/like_post_by_id_use_case.dart';
 import 'package:blogify_flutter_main/domain/usecases/share/share_use_case.dart';
 import 'package:blogify_flutter_main/domain/usecases/users/get_all_users_use_case.dart';
 import 'package:blogify_flutter_main/domain/usecases/users/get_user_by_id_use_case.dart';
@@ -59,6 +66,18 @@ Future<void> initDependenciesContainer() async {
   await postsDataSource.init();
 
   serviceLocator.registerLazySingleton<PostsDataSource>(() => postsDataSource);
+
+  serviceLocator
+      .registerLazySingleton<PostsRepository>(() => PostsRepositoryImpl(serviceLocator()));
+  serviceLocator.registerLazySingleton<GetPostsByCategoryUseCase>(
+      () => GetPostsByCategoryUseCase(serviceLocator()));
+  serviceLocator
+      .registerLazySingleton<GetPostByIdUseCase>(() => GetPostByIdUseCase(serviceLocator()));
+  serviceLocator.registerLazySingleton<InitPostsUseCase>(() => InitPostsUseCase(serviceLocator()));
+  serviceLocator
+      .registerLazySingleton<LikePostByIdUseCase>(() => LikePostByIdUseCase(serviceLocator()));
+  serviceLocator
+      .registerLazySingleton<GetAllPostsUseCase>(() => GetAllPostsUseCase(serviceLocator()));
 
   serviceLocator.registerLazySingleton<DatabaseManager>(() => DatabaseManager());
 

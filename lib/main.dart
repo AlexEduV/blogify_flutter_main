@@ -22,7 +22,9 @@ void main() async {
   runApp(MultiProvider(
     providers: [
       ChangeNotifierProvider(
-          create: (_) => GlobalMockStorageProvider(serviceLocator())..initStorage()),
+          create: (_) => GlobalMockStorageProvider(
+              serviceLocator(), serviceLocator(), serviceLocator(), serviceLocator())
+            ..initStorage()),
       ChangeNotifierProvider(
           create: (_) => CommentsPageProvider(serviceLocator(), serviceLocator())),
       ChangeNotifierProvider(create: (_) => CategoryIndexNotifier()),
