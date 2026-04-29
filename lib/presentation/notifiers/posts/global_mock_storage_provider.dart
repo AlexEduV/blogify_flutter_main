@@ -3,7 +3,7 @@ import 'package:blogify_flutter_main/domain/data_sources/remote/posts_data_sourc
 import 'package:blogify_flutter_main/domain/entities/post_entity.dart';
 import 'package:flutter/material.dart';
 
-import '../../common/enums/post_filter.dart';
+import '../../../common/enums/post_filter.dart';
 
 class GlobalMockStorageProvider extends ChangeNotifier {
   final PostsDataSource _postsDataSource;

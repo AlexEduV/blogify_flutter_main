@@ -15,8 +15,8 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:http/http.dart' as http;
 import 'package:provider/provider.dart';
 
-import '../../../data/providers/global_mock_storage_provider.dart';
 import '../../../utils/intl_formatter.dart';
+import '../../notifiers/posts/global_mock_storage_provider.dart';
 import '../../widgets/circled_button_outlined.dart';
 import '../../widgets/post_cover_photo.dart';
 

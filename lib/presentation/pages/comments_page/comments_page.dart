@@ -14,9 +14,9 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:intl/intl.dart';
 import 'package:provider/provider.dart';
 
-import '../../../data/providers/global_mock_comment_provider.dart';
-import '../../../data/providers/global_mock_storage_provider.dart';
 import '../../../domain/data_sources/remote/users_data_source.dart';
+import '../../notifiers/comments_page/comments_page_notifier.dart';
+import '../../notifiers/posts/global_mock_storage_provider.dart';
 import '../../widgets/circled_button_outlined.dart';
 
 @RoutePage()
@@ -42,7 +42,7 @@ class _CommentsPageState extends State<CommentsPage> {
   void initState() {
     super.initState();
 
-    final commentNotifier = context.read<GlobalMockCommentProvider>();
+    final commentNotifier = context.read<CommentsPageProvider>();
     final storageNotifier = context.read<GlobalMockStorageProvider>();
     currentPost = storageNotifier.getPostById(widget.id);
 
@@ -111,7 +111,7 @@ class _CommentsPageState extends State<CommentsPage> {
 
               //comments or a placeholder
               Expanded(
-                child: Consumer<GlobalMockCommentProvider>(
+                child: Consumer<CommentsPageProvider>(
                   builder: (context, notifier, child) {
                     final comments = notifier.filteredComments;
 
@@ -163,7 +163,7 @@ class _CommentsPageState extends State<CommentsPage> {
     final userId = serviceLocator<UsersDataSource>().getUserEntityById(1).id;
 
     //update notifier
-    final commentsProvider = context.read<GlobalMockCommentProvider>();
+    final commentsProvider = context.read<CommentsPageProvider>();
     commentsProvider.addComment(
       CommentEntity(
         postId: widget.id,

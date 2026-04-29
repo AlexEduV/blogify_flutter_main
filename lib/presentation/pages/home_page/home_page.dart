@@ -14,7 +14,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_card_swiper/flutter_card_swiper.dart';
 import 'package:provider/provider.dart';
 
-import '../../../data/providers/global_mock_storage_provider.dart';
+import '../../notifiers/posts/global_mock_storage_provider.dart';
 
 @RoutePage()
 class HomePage extends StatefulWidget {

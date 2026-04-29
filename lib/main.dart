@@ -9,8 +9,8 @@ import 'package:blogify_flutter_main/router/router.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
-import 'data/providers/global_mock_comment_provider.dart';
-import 'data/providers/global_mock_storage_provider.dart';
+import 'presentation/notifiers/comments_page/comments_page_notifier.dart';
+import 'presentation/notifiers/posts/global_mock_storage_provider.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -23,7 +23,7 @@ void main() async {
     providers: [
       ChangeNotifierProvider(
           create: (_) => GlobalMockStorageProvider(serviceLocator())..initStorage()),
-      ChangeNotifierProvider(create: (_) => GlobalMockCommentProvider(serviceLocator())),
+      ChangeNotifierProvider(create: (_) => CommentsPageProvider(serviceLocator())),
       ChangeNotifierProvider(create: (_) => CategoryIndexNotifier()),
       ChangeNotifierProvider(create: (_) => SearchFilterTypeNotifier()),
       ChangeNotifierProvider(create: (_) => userDataNotifier),
