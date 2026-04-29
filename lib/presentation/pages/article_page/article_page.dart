@@ -38,88 +38,82 @@ class _ArticlePageState extends State<ArticlePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: SafeArea(
-        child: Stack(
-          children: [
-            SingleChildScrollView(
-              child: Padding(
-                padding: const EdgeInsets.all(AppDimensions.majorS),
-                child: Consumer<GlobalMockStorageProvider>(builder: (context, notifier, child) {
-                  final post = notifier.allPosts.firstWhere((post) => post.id == widget.articleId);
+        child: SingleChildScrollView(
+          child: Padding(
+            padding: const EdgeInsets.all(AppDimensions.majorS),
+            child: Consumer<GlobalMockStorageProvider>(builder: (context, notifier, child) {
+              final post = notifier.allPosts.firstWhere((post) => post.id == widget.articleId);
 
-                  return Column(
-                    spacing: AppDimensions.majorS,
-                    crossAxisAlignment: CrossAxisAlignment.start,
+              return Column(
+                spacing: AppDimensions.majorS,
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
+                      CircledButtonOutlined(
+                        icon: FontAwesomeIcons.chevronLeft,
+                        onTap: () => context.router.popForced(),
+                      ),
                       Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        spacing: AppDimensions.normalM,
                         children: [
                           CircledButtonOutlined(
-                            icon: FontAwesomeIcons.chevronLeft,
-                            onTap: () => context.router.popForced(),
+                            icon: FontAwesomeIcons.comment,
+                            onTap: () => context.router.push(CommentsRoute(id: widget.articleId)),
                           ),
-                          Row(
-                            spacing: AppDimensions.normalM,
-                            children: [
-                              CircledButtonOutlined(
-                                icon: FontAwesomeIcons.comment,
-                                onTap: () =>
-                                    context.router.push(CommentsRoute(id: widget.articleId)),
-                              ),
-                              CircledButtonOutlined(
-                                icon: post.isLiked
-                                    ? FontAwesomeIcons.solidHeart
-                                    : FontAwesomeIcons.heart,
-                                onTap: () => notifier.likePost(widget.articleId),
-                              ),
-                              CircledButtonOutlined(
-                                icon: FontAwesomeIcons.shareFromSquare,
-                                onTap: () => onShareButtonPressed(post),
-                              ),
-                            ],
+                          CircledButtonOutlined(
+                            icon:
+                                post.isLiked ? FontAwesomeIcons.solidHeart : FontAwesomeIcons.heart,
+                            onTap: () => notifier.likePost(widget.articleId),
+                          ),
+                          CircledButtonOutlined(
+                            icon: FontAwesomeIcons.shareFromSquare,
+                            onTap: () => onShareButtonPressed(post),
                           ),
                         ],
                       ),
-
-                      Text(
-                        post.title,
-                        style: AppTextStyles.sfPro24,
-                      ),
-
-                      //post info row
-                      Text(
-                        //todo: can be refactored into a formatter;
-                        '${post.author}  |  ${IntlFormatter.getFormattedDays(post.daysAgoPublished)}  |  ${L10n.articleReadTimeLabel} ${post.minToRead} ${L10n.articleReadTimeUnits}',
-                        style: AppTextStyles.sfPro14,
-                      ),
-
-                      //photo cover
-                      PostCoverPhoto(
-                        imageSrc: post.imageSrc,
-                        placeholderColor: AppColors.lightGrey,
-                        height: AppDimensions.articleImageHeight,
-                      ),
-
-                      //post content
-                      ListView.separated(
-                        itemBuilder: (context, index) {
-                          return Text(
-                            post.paragraphs[index],
-                            style: AppTextStyles.sfPro14,
-                          );
-                        },
-                        separatorBuilder: (context, index) {
-                          return const SizedBox(height: AppDimensions.normalS);
-                        },
-                        itemCount: post.paragraphs.length,
-                        shrinkWrap: true,
-                        physics: const NeverScrollableScrollPhysics(),
-                      ),
                     ],
-                  );
-                }),
-              ),
-            ),
-          ],
+                  ),
+
+                  Text(
+                    post.title,
+                    style: AppTextStyles.sfPro24,
+                  ),
+
+                  //post info row
+                  Text(
+                    //todo: can be refactored into a formatter;
+                    '${post.author}  |  ${IntlFormatter.getFormattedDays(post.daysAgoPublished)}  |  ${L10n.articleReadTimeLabel} ${post.minToRead} ${L10n.articleReadTimeUnits}',
+                    style: AppTextStyles.sfPro14,
+                  ),
+
+                  //photo cover
+                  PostCoverPhoto(
+                    imageSrc: post.imageSrc,
+                    placeholderColor: AppColors.lightGrey,
+                    height: AppDimensions.articleImageHeight,
+                  ),
+
+                  //post content
+                  ListView.separated(
+                    itemBuilder: (context, index) {
+                      return Text(
+                        post.paragraphs[index],
+                        style: AppTextStyles.sfPro14,
+                      );
+                    },
+                    separatorBuilder: (context, index) {
+                      return const SizedBox(height: AppDimensions.normalS);
+                    },
+                    itemCount: post.paragraphs.length,
+                    shrinkWrap: true,
+                    physics: const NeverScrollableScrollPhysics(),
+                  ),
+                ],
+              );
+            }),
+          ),
         ),
       ),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
