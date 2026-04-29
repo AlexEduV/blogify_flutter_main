@@ -46,7 +46,7 @@ class UserWelcomeRow extends StatelessWidget {
         //todo: no material effect is visible
         Material(
           child: InkWell(
-            borderRadius: BorderRadius.circular(50.0),
+            customBorder: const CircleBorder(),
             onTap: () => onUserSettingsButtonPressed(context),
             child: Consumer<UserDataNotifier>(builder: (context, notifier, child) {
               return UserPhoto(
