@@ -5,6 +5,7 @@ import 'package:blogify_flutter_main/common/app_text_styles.dart';
 import 'package:blogify_flutter_main/core/di/injection_container.dart';
 import 'package:blogify_flutter_main/domain/entities/comment_entity.dart';
 import 'package:blogify_flutter_main/domain/entities/post_entity.dart';
+import 'package:blogify_flutter_main/domain/usecases/users/get_user_by_id_use_case.dart';
 import 'package:blogify_flutter_main/l10n/l10n.dart';
 import 'package:blogify_flutter_main/presentation/pages/comments_page/widgets/comment_field.dart';
 import 'package:blogify_flutter_main/presentation/pages/comments_page/widgets/comments_list_tile.dart';
@@ -14,7 +15,6 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:intl/intl.dart';
 import 'package:provider/provider.dart';
 
-import '../../../domain/data_sources/remote/users_data_source.dart';
 import '../../notifiers/comments_page/comments_page_notifier.dart';
 import '../../notifiers/posts/global_mock_storage_provider.dart';
 import '../../widgets/circled_button_outlined.dart';
@@ -129,9 +129,8 @@ class _CommentsPageState extends State<CommentsPage> {
                     return ListView.separated(
                       itemCount: comments.length,
                       itemBuilder: (context, index) {
-                        final user = serviceLocator<UsersDataSource>()
-                            .getUserEntityById(comments[index].userId);
-
+                        final user =
+                            serviceLocator<GetUserByIdUseCase>().call(comments[index].userId);
                         return CommentsListTile(user: user, comment: comments[index]);
                       },
                       separatorBuilder: (context, index) {
@@ -159,8 +158,7 @@ class _CommentsPageState extends State<CommentsPage> {
     //todo: move to date formatter
     final date = DateFormat('MM/dd/yy').format(DateTime.now());
 
-    //
-    final userId = serviceLocator<UsersDataSource>().getUserEntityById(1).id;
+    final userId = 1;
 
     //update notifier
     final commentsProvider = context.read<CommentsPageProvider>();
