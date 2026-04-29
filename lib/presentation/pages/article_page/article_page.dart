@@ -36,7 +36,7 @@ class ArticlePage extends StatefulWidget {
 class _ArticlePageState extends State<ArticlePage> {
   @override
   Widget build(BuildContext context) {
-    PostEntity post = getPostData();
+    PostEntity post = getUpdatedPostData();
 
     return Scaffold(
       body: SafeArea(
@@ -55,7 +55,7 @@ class _ArticlePageState extends State<ArticlePage> {
                       onTap: () => context.router.popForced(),
                     ),
                     Consumer<GlobalMockStorageProvider>(builder: (context, notifier, child) {
-                      post = getPostData();
+                      post = getUpdatedPostData();
 
                       return Row(
                         spacing: AppDimensions.normalM,
@@ -136,7 +136,7 @@ class _ArticlePageState extends State<ArticlePage> {
     await serviceLocator<ShareLocalDataSource>().share(model);
   }
 
-  PostEntity getPostData() {
+  PostEntity getUpdatedPostData() {
     return context
         .read<GlobalMockStorageProvider>()
         .allPosts
@@ -148,6 +148,6 @@ class _ArticlePageState extends State<ArticlePage> {
     final date = IntlFormatter.getFormattedDays(post.daysAgoPublished);
     final readTime = '${L10n.articleReadTimeLabel} ${post.minToRead} ${L10n.articleReadTimeUnits}';
 
-    return '$author  |  $date  |  $readTime';
+    return [author, date, readTime].join('  |  ');
   }
 }
