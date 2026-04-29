@@ -23,7 +23,8 @@ void main() async {
     providers: [
       ChangeNotifierProvider(
           create: (_) => GlobalMockStorageProvider(serviceLocator())..initStorage()),
-      ChangeNotifierProvider(create: (_) => CommentsPageProvider(serviceLocator())),
+      ChangeNotifierProvider(
+          create: (_) => CommentsPageProvider(serviceLocator(), serviceLocator())),
       ChangeNotifierProvider(create: (_) => CategoryIndexNotifier()),
       ChangeNotifierProvider(create: (_) => SearchFilterTypeNotifier()),
       ChangeNotifierProvider(create: (_) => userDataNotifier),

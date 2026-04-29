@@ -1,20 +1,22 @@
-import 'package:blogify_flutter_main/domain/data_sources/remote/comments_data_source.dart';
 import 'package:blogify_flutter_main/domain/entities/comment_entity.dart';
+import 'package:blogify_flutter_main/domain/usecases/comments/get_all_comments_use_case.dart';
+import 'package:blogify_flutter_main/domain/usecases/comments/get_comments_by_post_id_use_case.dart';
 import 'package:flutter/cupertino.dart';
 
 class CommentsPageProvider extends ChangeNotifier {
-  final CommentsDataSource _commentsDataSource;
+  final GetCommentsByPostIdUseCase _getCommentsByPostIdUseCase;
+  final GetAllCommentsUseCase _getAllCommentsUseCase;
 
-  CommentsPageProvider(this._commentsDataSource);
+  CommentsPageProvider(this._getCommentsByPostIdUseCase, this._getAllCommentsUseCase);
 
-  List<CommentEntity> get allComments => _commentsDataSource.allComments;
+  List<CommentEntity> get allComments => _getAllCommentsUseCase.call();
 
   List<CommentEntity> _filteredComments = [];
 
   List<CommentEntity> get filteredComments => _filteredComments;
 
   void fetchCommentsByPostId(int id) {
-    _filteredComments = _commentsDataSource.getCommentsByPostId(id);
+    _filteredComments = _getCommentsByPostIdUseCase.call(id);
     notifyListeners();
   }
 

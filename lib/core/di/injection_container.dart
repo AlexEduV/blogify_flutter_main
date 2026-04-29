@@ -4,14 +4,19 @@ import 'package:blogify_flutter_main/data/data_sources/remote/mock_comments_data
 import 'package:blogify_flutter_main/data/data_sources/remote/mock_posts_data_source_impl.dart';
 import 'package:blogify_flutter_main/data/data_sources/remote/mock_users_data_source_impl.dart';
 import 'package:blogify_flutter_main/data/database/database_manager.dart';
+import 'package:blogify_flutter_main/data/repositories/comments_repository_impl.dart';
 import 'package:blogify_flutter_main/data/repositories/image_picker_repository_impl.dart';
 import 'package:blogify_flutter_main/data/repositories/share_repository_impl.dart';
 import 'package:blogify_flutter_main/domain/data_sources/local/image_picker_local_data_source.dart';
 import 'package:blogify_flutter_main/domain/data_sources/local/share_local_data_source.dart';
 import 'package:blogify_flutter_main/domain/data_sources/remote/comments_data_source.dart';
 import 'package:blogify_flutter_main/domain/data_sources/remote/posts_data_source.dart';
+import 'package:blogify_flutter_main/domain/repositories/comments_repository.dart';
 import 'package:blogify_flutter_main/domain/repositories/image_picker_repository.dart';
 import 'package:blogify_flutter_main/domain/repositories/share_repository.dart';
+import 'package:blogify_flutter_main/domain/usecases/comments/get_all_comments_use_case.dart';
+import 'package:blogify_flutter_main/domain/usecases/comments/get_comments_by_post_id_use_case.dart';
+import 'package:blogify_flutter_main/domain/usecases/comments/init_comments_use_case.dart';
 import 'package:blogify_flutter_main/domain/usecases/image_picker/pick_image_use_case.dart';
 import 'package:blogify_flutter_main/domain/usecases/share/share_use_case.dart';
 import 'package:get_it/get_it.dart';
@@ -23,8 +28,19 @@ final serviceLocator = GetIt.instance;
 
 Future<void> initDependenciesContainer() async {
   serviceLocator.registerLazySingleton<UsersDataSource>(() => MockUsersDataSourceImpl()..init());
+
   serviceLocator
       .registerLazySingleton<CommentsDataSource>(() => MockCommentsDataSourceImpl()..init());
+
+  serviceLocator
+      .registerLazySingleton<CommentsRepository>(() => CommentsRepositoryImpl(serviceLocator()));
+
+  serviceLocator
+      .registerLazySingleton<InitCommentsUseCase>(() => InitCommentsUseCase(serviceLocator()));
+  serviceLocator
+      .registerLazySingleton<GetAllCommentsUseCase>(() => GetAllCommentsUseCase(serviceLocator()));
+  serviceLocator.registerLazySingleton<GetCommentsByPostIdUseCase>(
+      () => GetCommentsByPostIdUseCase(serviceLocator()));
 
   final postsDataSource = MockPostsDataSourceImpl();
   await postsDataSource.init();
