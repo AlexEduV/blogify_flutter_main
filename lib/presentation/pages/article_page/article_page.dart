@@ -53,14 +53,9 @@ class _ArticlePageState extends State<ArticlePage> {
                       Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
-                          Row(
-                            spacing: AppDimensions.normalM,
-                            children: [
-                              CircledButtonOutlined(
-                                icon: FontAwesomeIcons.chevronLeft,
-                                onTap: () => context.router.popUntilRouteWithName(HomeRoute.name),
-                              ),
-                            ],
+                          CircledButtonOutlined(
+                            icon: FontAwesomeIcons.chevronLeft,
+                            onTap: () => context.router.popForced(),
                           ),
                           Row(
                             spacing: AppDimensions.normalM,
