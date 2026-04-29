@@ -52,6 +52,7 @@ class _HomePageState extends State<HomePage> {
       backgroundColor: Colors.white,
       resizeToAvoidBottomInset: false,
       body: Stack(
+        clipBehavior: Clip.none,
         children: [
           GestureDetector(
             onTap: () => searchFocusNode.unfocus(),
@@ -108,10 +109,11 @@ class _HomePageState extends State<HomePage> {
               ),
             ),
           ),
+          //todo: the clipping is caused here, but padding did not help
           const Positioned(
             left: AppDimensions.normalM,
             right: AppDimensions.normalM,
-            bottom: 0,
+            bottom: AppDimensions.normalM * 2,
             child: HomeBottomBar(),
           )
         ],
