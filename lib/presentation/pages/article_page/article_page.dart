@@ -36,10 +36,7 @@ class ArticlePage extends StatefulWidget {
 class _ArticlePageState extends State<ArticlePage> {
   @override
   Widget build(BuildContext context) {
-    PostEntity post = context
-        .read<GlobalMockStorageProvider>()
-        .allPosts
-        .firstWhere((post) => post.id == widget.articleId);
+    PostEntity post = getPostData();
 
     return Scaffold(
       body: SafeArea(
@@ -58,7 +55,7 @@ class _ArticlePageState extends State<ArticlePage> {
                       onTap: () => context.router.popForced(),
                     ),
                     Consumer<GlobalMockStorageProvider>(builder: (context, notifier, child) {
-                      post = notifier.allPosts.firstWhere((post) => post.id == widget.articleId);
+                      post = getPostData();
 
                       return Row(
                         spacing: AppDimensions.normalM,
@@ -138,5 +135,12 @@ class _ArticlePageState extends State<ArticlePage> {
 
     //todo: better to call notifier -> use case here;
     await serviceLocator<ShareLocalDataSource>().share(model);
+  }
+
+  PostEntity getPostData() {
+    return context
+        .read<GlobalMockStorageProvider>()
+        .allPosts
+        .firstWhere((post) => post.id == widget.articleId);
   }
 }
