@@ -15,7 +15,7 @@ class CircledButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
+    return DecoratedBox(
       decoration: BoxDecoration(
         color: Colors.white,
         shape: BoxShape.circle,
