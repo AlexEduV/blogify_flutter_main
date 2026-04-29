@@ -109,7 +109,6 @@ class _HomePageState extends State<HomePage> {
               ),
             ),
           ),
-          //todo: the clipping is caused here, but padding did not help
           const Positioned(
             left: AppDimensions.normalM,
             bottom: AppDimensions.majorM,
