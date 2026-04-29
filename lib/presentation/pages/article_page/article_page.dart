@@ -136,7 +136,7 @@ class _ArticlePageState extends State<ArticlePage> {
   }
 
   Future<void> onShareButtonPressed(PostEntity post) async {
-    //todo: better to call notifier -> use case here;
+    //NOTE: preview thumbnail is visible on iOS only;
     final preview = await http.get(Uri.parse(post.imageSrc));
     final previewFile = XFile.fromData(preview.bodyBytes, name: post.url, mimeType: 'image/png');
 
@@ -146,6 +146,7 @@ class _ArticlePageState extends State<ArticlePage> {
       previewThumbnail: previewFile,
     );
 
+    //todo: better to call notifier -> use case here;
     await serviceLocator<ShareLocalDataSource>().share(model);
   }
 }
