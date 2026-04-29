@@ -15,7 +15,7 @@ class CircledButtonOutlined extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final boxSize = AppDimensions.appBarIconSize + (AppDimensions.normalS * 2);
+    final containerSize = AppDimensions.appBarIconSize + (AppDimensions.normalS * 2);
 
     return Material(
       child: InkWell(
@@ -23,8 +23,8 @@ class CircledButtonOutlined extends StatelessWidget {
         customBorder: const CircleBorder(),
         splashColor: Colors.grey.withAlpha(40),
         child: Container(
-          width: boxSize,
-          height: boxSize,
+          width: containerSize,
+          height: containerSize,
           decoration: BoxDecoration(
             shape: BoxShape.circle,
             border: Border.all(color: AppColors.lightGrey),
