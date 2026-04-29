@@ -51,61 +51,70 @@ class _HomePageState extends State<HomePage> {
     return Scaffold(
       backgroundColor: Colors.white,
       resizeToAvoidBottomInset: false,
-      body: GestureDetector(
-        onTap: () => searchFocusNode.unfocus(),
-        behavior: HitTestBehavior.translucent,
-        child: SafeArea(
-          child: Padding(
-            padding:
-                const EdgeInsets.all(AppDimensions.majorS).copyWith(bottom: AppDimensions.normalM),
-            child: Column(
-              spacing: AppDimensions.majorS,
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: <Widget>[
-                const UserWelcomeRow(),
+      body: Stack(
+        children: [
+          GestureDetector(
+            onTap: () => searchFocusNode.unfocus(),
+            behavior: HitTestBehavior.translucent,
+            child: SafeArea(
+              child: Padding(
+                padding: const EdgeInsets.all(AppDimensions.majorS)
+                    .copyWith(bottom: AppDimensions.normalM),
+                child: Column(
+                  spacing: AppDimensions.majorS,
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: <Widget>[
+                    const UserWelcomeRow(),
 
-                //search bar
-                HomeSearchBar(
-                  searchMenuKey: _searchSelectorButtonKey,
-                  focusNode: searchFocusNode,
+                    //search bar
+                    HomeSearchBar(
+                      searchMenuKey: _searchSelectorButtonKey,
+                      focusNode: searchFocusNode,
+                    ),
+
+                    //card stack
+                    Expanded(
+                      child:
+                          Consumer<GlobalMockStorageProvider>(builder: (context, notifier, child) {
+                        final posts = notifier.postsFiltered;
+                        if (posts.isEmpty) {
+                          return const EmptyPostsPlaceholder();
+                        }
+
+                        //post stack
+                        return Consumer<CategoryIndexNotifier>(
+                            builder: (_, categoryIndexNotifier, child) {
+                          return CardSwiper(
+                            controller: controller,
+                            cardsCount: posts.length,
+                            onSwipe: (_, __, direction) => true,
+                            numberOfCardsDisplayed: limitedCount(posts.length),
+                            backCardOffset: const Offset(0, 65),
+                            scale: 0.8,
+                            padding: EdgeInsets.zero,
+                            cardBuilder: (
+                              context,
+                              index,
+                              horizontalThresholdPercentage,
+                              verticalThresholdPercentage,
+                            ) =>
+                                PostCard(post: posts[index], onTap: openArticlePage),
+                          );
+                        });
+                      }),
+                    ),
+                  ],
                 ),
-
-                //card stack
-                Expanded(
-                  child: Consumer<GlobalMockStorageProvider>(builder: (context, notifier, child) {
-                    final posts = notifier.postsFiltered;
-                    if (posts.isEmpty) {
-                      return const EmptyPostsPlaceholder();
-                    }
-
-                    //post stack
-                    return Consumer<CategoryIndexNotifier>(
-                        builder: (_, categoryIndexNotifier, child) {
-                      return CardSwiper(
-                        controller: controller,
-                        cardsCount: posts.length,
-                        onSwipe: (_, __, direction) => true,
-                        numberOfCardsDisplayed: limitedCount(posts.length),
-                        backCardOffset: const Offset(0, 65),
-                        scale: 0.8,
-                        padding: EdgeInsets.zero,
-                        cardBuilder: (
-                          context,
-                          index,
-                          horizontalThresholdPercentage,
-                          verticalThresholdPercentage,
-                        ) =>
-                            PostCard(post: posts[index], onTap: openArticlePage),
-                      );
-                    });
-                  }),
-                ),
-
-                const HomeBottomBar(),
-              ],
+              ),
             ),
           ),
-        ),
+          const Positioned(
+            left: AppDimensions.normalM,
+            right: AppDimensions.normalM,
+            bottom: 0,
+            child: HomeBottomBar(),
+          )
+        ],
       ),
     );
   }

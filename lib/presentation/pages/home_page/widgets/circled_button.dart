@@ -17,6 +17,7 @@ class CircledButton extends StatelessWidget {
   Widget build(BuildContext context) {
     return Material(
       color: Colors.white,
+      shape: const CircleBorder(),
       child: InkWell(
         onTap: onTap,
         splashColor: Colors.grey.withAlpha(40),
