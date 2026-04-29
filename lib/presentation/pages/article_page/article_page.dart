@@ -81,7 +81,7 @@ class _ArticlePageState extends State<ArticlePage> {
                                 onTap: () => notifier.likePost(widget.articleId),
                               ),
                               CircledButtonOutlined(
-                                icon: FontAwesomeIcons.share,
+                                icon: FontAwesomeIcons.shareFromSquare,
                                 onTap: () => onShareButtonPressed(post),
                               ),
                             ],
