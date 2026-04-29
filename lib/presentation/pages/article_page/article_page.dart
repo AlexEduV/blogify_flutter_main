@@ -4,9 +4,9 @@ import 'package:blogify_flutter_main/common/app_constants.dart';
 import 'package:blogify_flutter_main/common/app_dimensions.dart';
 import 'package:blogify_flutter_main/common/app_text_styles.dart';
 import 'package:blogify_flutter_main/core/di/injection_container.dart';
-import 'package:blogify_flutter_main/domain/data_sources/local/share_local_data_source.dart';
 import 'package:blogify_flutter_main/domain/entities/post_entity.dart';
 import 'package:blogify_flutter_main/domain/models/share_params_model.dart';
+import 'package:blogify_flutter_main/domain/usecases/share/share_use_case.dart';
 import 'package:blogify_flutter_main/l10n/l10n.dart';
 import 'package:blogify_flutter_main/router/router.gr.dart';
 import 'package:collection/collection.dart';
@@ -133,8 +133,7 @@ class _ArticlePageState extends State<ArticlePage> {
       previewThumbnail: previewFile,
     );
 
-    //todo: better to call notifier -> use case here;
-    await serviceLocator<ShareLocalDataSource>().share(model);
+    await serviceLocator<ShareUseCase>().call(model);
   }
 
   PostEntity getUpdatedPostData() {
