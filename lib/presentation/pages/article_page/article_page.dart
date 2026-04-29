@@ -36,26 +36,31 @@ class ArticlePage extends StatefulWidget {
 class _ArticlePageState extends State<ArticlePage> {
   @override
   Widget build(BuildContext context) {
+    PostEntity post = context
+        .read<GlobalMockStorageProvider>()
+        .allPosts
+        .firstWhere((post) => post.id == widget.articleId);
+
     return Scaffold(
       body: SafeArea(
         child: SingleChildScrollView(
           child: Padding(
             padding: const EdgeInsets.all(AppDimensions.majorS),
-            child: Consumer<GlobalMockStorageProvider>(builder: (context, notifier, child) {
-              final post = notifier.allPosts.firstWhere((post) => post.id == widget.articleId);
+            child: Column(
+              spacing: AppDimensions.majorS,
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    CircledButtonOutlined(
+                      icon: FontAwesomeIcons.chevronLeft,
+                      onTap: () => context.router.popForced(),
+                    ),
+                    Consumer<GlobalMockStorageProvider>(builder: (context, notifier, child) {
+                      post = notifier.allPosts.firstWhere((post) => post.id == widget.articleId);
 
-              return Column(
-                spacing: AppDimensions.majorS,
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      CircledButtonOutlined(
-                        icon: FontAwesomeIcons.chevronLeft,
-                        onTap: () => context.router.popForced(),
-                      ),
-                      Row(
+                      return Row(
                         spacing: AppDimensions.normalM,
                         children: [
                           CircledButtonOutlined(
@@ -72,47 +77,47 @@ class _ArticlePageState extends State<ArticlePage> {
                             onTap: () => onShareButtonPressed(post),
                           ),
                         ],
-                      ),
-                    ],
-                  ),
-
-                  Text(
-                    post.title,
-                    style: AppTextStyles.sfPro24,
-                  ),
-
-                  //post info row
-                  Text(
-                    //todo: can be refactored into a formatter;
-                    '${post.author}  |  ${IntlFormatter.getFormattedDays(post.daysAgoPublished)}  |  ${L10n.articleReadTimeLabel} ${post.minToRead} ${L10n.articleReadTimeUnits}',
-                    style: AppTextStyles.sfPro14,
-                  ),
-
-                  //photo cover
-                  PostCoverPhoto(
-                    imageSrc: post.imageSrc,
-                    placeholderColor: AppColors.lightGrey,
-                    height: AppDimensions.articleImageHeight,
-                  ),
-
-                  //post content
-                  ListView.separated(
-                    itemBuilder: (context, index) {
-                      return Text(
-                        post.paragraphs[index],
-                        style: AppTextStyles.sfPro14,
                       );
-                    },
-                    separatorBuilder: (context, index) {
-                      return const SizedBox(height: AppDimensions.normalS);
-                    },
-                    itemCount: post.paragraphs.length,
-                    shrinkWrap: true,
-                    physics: const NeverScrollableScrollPhysics(),
-                  ),
-                ],
-              );
-            }),
+                    }),
+                  ],
+                ),
+
+                Text(
+                  post.title,
+                  style: AppTextStyles.sfPro24,
+                ),
+
+                //post info row
+                Text(
+                  //todo: can be refactored into a formatter;
+                  '${post.author}  |  ${IntlFormatter.getFormattedDays(post.daysAgoPublished)}  |  ${L10n.articleReadTimeLabel} ${post.minToRead} ${L10n.articleReadTimeUnits}',
+                  style: AppTextStyles.sfPro14,
+                ),
+
+                //photo cover
+                PostCoverPhoto(
+                  imageSrc: post.imageSrc,
+                  placeholderColor: AppColors.lightGrey,
+                  height: AppDimensions.articleImageHeight,
+                ),
+
+                //post content
+                ListView.separated(
+                  itemBuilder: (context, index) {
+                    return Text(
+                      post.paragraphs[index],
+                      style: AppTextStyles.sfPro14,
+                    );
+                  },
+                  separatorBuilder: (context, index) {
+                    return const SizedBox(height: AppDimensions.normalS);
+                  },
+                  itemCount: post.paragraphs.length,
+                  shrinkWrap: true,
+                  physics: const NeverScrollableScrollPhysics(),
+                ),
+              ],
+            ),
           ),
         ),
       ),
