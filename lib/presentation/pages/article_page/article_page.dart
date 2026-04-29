@@ -98,7 +98,7 @@ class _ArticlePageState extends State<ArticlePage> {
                       Text(
                         //todo: can be refactored into a formatter;
                         '${post.author}  |  ${IntlFormatter.getFormattedDays(post.daysAgoPublished)}  |  ${L10n.articleReadTimeLabel} ${post.minToRead} ${L10n.articleReadTimeUnits}',
-                        style: AppTextStyles.sfPro13Dark,
+                        style: AppTextStyles.sfPro14,
                       ),
 
                       //photo cover
