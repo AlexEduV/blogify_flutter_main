@@ -20,13 +20,14 @@ class CircledButton extends StatelessWidget {
       shape: const CircleBorder(),
       child: InkWell(
         onTap: onTap,
-        splashColor: Colors.grey.withAlpha(50),
+        splashColor: Colors.grey.withAlpha(40),
         customBorder: const CircleBorder(),
         child: Padding(
           padding: const EdgeInsets.all(AppDimensions.normalM),
           child: DecoratedBox(
             decoration: BoxDecoration(
               shape: BoxShape.circle,
+              color: Colors.white,
               border: Border(
                 bottom: BorderSide(
                   color: AppColors.lightGrey,
@@ -41,7 +42,6 @@ class CircledButton extends StatelessWidget {
                   spreadRadius: 2.0,
                 ),
               ],
-              color: Colors.white,
             ),
             child: FaIcon(
               icon,
