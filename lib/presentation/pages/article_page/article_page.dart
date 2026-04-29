@@ -76,8 +76,8 @@ class _ArticlePageState extends State<ArticlePage> {
                               ),
                               CircledButtonOutlined(
                                 icon: post.isLiked
-                                    ? FontAwesomeIcons.solidThumbsUp
-                                    : FontAwesomeIcons.thumbsUp,
+                                    ? FontAwesomeIcons.solidHeart
+                                    : FontAwesomeIcons.heart,
                                 onTap: () => notifier.likePost(widget.articleId),
                               ),
                               CircledButtonOutlined(
