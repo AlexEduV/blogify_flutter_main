@@ -60,10 +60,6 @@ class _ArticlePageState extends State<ArticlePage> {
                                 icon: FontAwesomeIcons.chevronLeft,
                                 onTap: () => context.router.popUntilRouteWithName(HomeRoute.name),
                               ),
-                              const Text(
-                                L10n.backButtonTitle,
-                                style: AppTextStyles.sfPro16,
-                              ),
                             ],
                           ),
                           Row(
