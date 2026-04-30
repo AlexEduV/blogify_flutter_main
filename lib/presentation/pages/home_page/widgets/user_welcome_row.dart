@@ -39,21 +39,14 @@ class UserWelcomeRow extends StatelessWidget {
         ),
 
         //User Settings button
-        //todo: no material effect is visible
-        Material(
-          shape: const CircleBorder(),
-          child: InkWell(
-            customBorder: const CircleBorder(),
-            onTap: () => onUserSettingsButtonPressed(context),
-            child: Consumer<UserDataNotifier>(
-              builder: (context, notifier, child) {
-                return UserPhoto(
-                  imageSrc: notifier.user.imageSrc,
-                  size: AppDimensions.appBarUserAvatarImageSize,
-                );
-              },
-            ),
-          ),
+        Consumer<UserDataNotifier>(
+          builder: (context, notifier, child) {
+            return UserPhoto(
+              onTap: () => onUserSettingsButtonPressed(context),
+              imageSrc: notifier.user.imageSrc,
+              size: AppDimensions.appBarUserAvatarImageSize,
+            );
+          },
         ),
       ],
     );
