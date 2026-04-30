@@ -66,7 +66,7 @@ class UserPhoto extends StatelessWidget {
                     height: photoButtonSize,
                     width: photoButtonSize,
                     decoration: const BoxDecoration(
-                      color: AppColors.beige,
+                      color: AppColors.emeraldGreen,
                       shape: BoxShape.circle,
                       boxShadow: [
                         BoxShadow(
