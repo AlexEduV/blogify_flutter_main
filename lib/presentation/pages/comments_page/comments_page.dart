@@ -23,10 +23,7 @@ import '../../widgets/circled_button_outlined.dart';
 class CommentsPage extends StatefulWidget {
   final int id;
 
-  const CommentsPage({
-    required this.id,
-    super.key,
-  });
+  const CommentsPage({required this.id, super.key});
 
   @override
   State<CommentsPage> createState() => _CommentsPageState();
@@ -87,10 +84,7 @@ class _CommentsPageState extends State<CommentsPage> {
 
               const SizedBox(height: AppDimensions.majorS),
 
-              CommentField(
-                focusNode: commentFieldFocusNode,
-                textController: commentTextController,
-              ),
+              CommentField(focusNode: commentFieldFocusNode, textController: commentTextController),
 
               const SizedBox(height: AppDimensions.normalS),
 
@@ -99,9 +93,9 @@ class _CommentsPageState extends State<CommentsPage> {
                 children: [
                   RoundedButton(
                     text: L10n.commentsRespondButtonTitle,
-                    filled: true,
+                    selected: true,
                     onTap: () => validateCommentInput(commentTextController.text),
-                    backgroundColor: AppColors.emeraldGreen,
+                    selectedColor: AppColors.emeraldGreen,
                     tintColor: Colors.white,
                   ),
                 ],
@@ -129,8 +123,9 @@ class _CommentsPageState extends State<CommentsPage> {
                     return ListView.separated(
                       itemCount: comments.length,
                       itemBuilder: (context, index) {
-                        final user =
-                            serviceLocator<GetUserByIdUseCase>().call(comments[index].userId);
+                        final user = serviceLocator<GetUserByIdUseCase>().call(
+                          comments[index].userId,
+                        );
                         return CommentsListTile(user: user, comment: comments[index]);
                       },
                       separatorBuilder: (context, index) {
@@ -163,12 +158,7 @@ class _CommentsPageState extends State<CommentsPage> {
     //update notifier
     final commentsProvider = context.read<CommentsPageProvider>();
     commentsProvider.addComment(
-      CommentEntity(
-        postId: widget.id,
-        content: input,
-        date: date,
-        userId: userId,
-      ),
+      CommentEntity(postId: widget.id, content: input, date: date, userId: userId),
     );
 
     //clear the text field

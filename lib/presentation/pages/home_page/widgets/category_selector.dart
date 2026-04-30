@@ -8,12 +8,7 @@ class CategorySelector extends StatefulWidget {
   final List<String> items;
   final Function(int)? onItemTapped;
 
-  const CategorySelector({
-    required this.items,
-    this.selectedIndex,
-    this.onItemTapped,
-    super.key,
-  });
+  const CategorySelector({required this.items, this.selectedIndex, this.onItemTapped, super.key});
 
   @override
   State<CategorySelector> createState() => _CategorySelectorState();
@@ -26,12 +21,7 @@ class _CategorySelectorState extends State<CategorySelector> {
       decoration: BoxDecoration(
         color: Colors.white,
         borderRadius: BorderRadius.circular(AppDimensions.majorS),
-        border: Border(
-          bottom: BorderSide(
-            color: AppColors.lightGrey,
-            width: 0.5,
-          ),
-        ),
+        border: Border(bottom: BorderSide(color: AppColors.lightGrey, width: 0.5)),
         boxShadow: [
           BoxShadow(
             color: AppColors.offGrey,
@@ -41,16 +31,19 @@ class _CategorySelectorState extends State<CategorySelector> {
           ),
         ],
       ),
-      padding: const EdgeInsets.all(AppDimensions.minorL),
+      padding: const EdgeInsets.all(AppDimensions.minorM),
       child: Row(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: List.generate(widget.items.length, (index) {
-            return RoundedButton(
-              text: widget.items[index],
-              filled: widget.selectedIndex == index,
-              onTap: () => widget.onItemTapped != null ? widget.onItemTapped!(index) : () {},
-            );
-          })),
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        children: List.generate(widget.items.length, (index) {
+          return RoundedButton(
+            selectedColor: AppColors.dark,
+            tintColor: Colors.white,
+            text: widget.items[index],
+            selected: widget.selectedIndex == index,
+            onTap: () => widget.onItemTapped != null ? widget.onItemTapped!(index) : () {},
+          );
+        }),
+      ),
     );
   }
 }

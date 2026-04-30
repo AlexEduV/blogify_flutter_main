@@ -5,14 +5,15 @@ import 'package:blogify_flutter_main/common/extensions/num_extension.dart';
 import 'package:flutter/material.dart';
 
 class RoundedButton extends StatelessWidget {
-  final bool filled;
+  final bool selected;
   final IconData? trailingIcon;
   final IconData? leadingIcon;
   final double horizontalPadding;
   final String text;
   final double borderRadius;
   final Function()? onTap;
-  final Color backgroundColor;
+  final Color selectedColor;
+  final Color unselectedColor;
   final Color tintColor;
   final bool? expanded;
 
@@ -20,10 +21,11 @@ class RoundedButton extends StatelessWidget {
     required this.text,
     this.leadingIcon,
     this.trailingIcon,
-    this.filled = false,
+    this.selected = false,
     this.horizontalPadding = AppDimensions.normalM,
     this.borderRadius = AppDimensions.majorS,
-    this.backgroundColor = AppColors.primaryColor,
+    this.selectedColor = AppColors.primaryColor,
+    this.unselectedColor = Colors.transparent,
     this.tintColor = Colors.black,
     this.onTap,
     this.expanded = false,
@@ -33,41 +35,35 @@ class RoundedButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Material(
-      color: filled ? backgroundColor : Colors.transparent,
+      color: selected ? selectedColor : unselectedColor,
       borderRadius: BorderRadius.circular(borderRadius),
       child: InkWell(
         onTap: onTap,
         borderRadius: BorderRadius.circular(borderRadius),
         child: Padding(
-          padding:
-              EdgeInsets.symmetric(vertical: AppDimensions.minorL, horizontal: horizontalPadding),
+          padding: EdgeInsets.symmetric(
+            vertical: AppDimensions.minorL,
+            horizontal: horizontalPadding,
+          ),
           child: Row(
             mainAxisSize: MainAxisSize.min,
             spacing: AppDimensions.minorL,
             children: [
               if (leadingIcon != null) ...[
-                Icon(
-                  leadingIcon,
-                  color: tintColor,
-                  size: AppDimensions.appBarIconSize,
-                ),
+                Icon(leadingIcon, color: tintColor, size: AppDimensions.appBarIconSize),
               ],
               Text(
                 text,
                 style: AppTextStyles.sfPro14.copyWith(
-                  color: filled ? tintColor : AppColors.accentColor,
-                  fontWeight: FontWeight.w500,
+                  color: selected ? tintColor : AppColors.accentColor,
+                  fontWeight: selected ? FontWeight.w600 : FontWeight.w500,
                 ),
               ),
               if (trailingIcon != null) ...[
                 AnimatedRotation(
                   duration: const Duration(milliseconds: 250),
                   turns: (expanded ?? false) ? -360.toTurns : -180.toTurns,
-                  child: Icon(
-                    trailingIcon,
-                    color: tintColor,
-                    size: AppDimensions.appBarIconSize,
-                  ),
+                  child: Icon(trailingIcon, color: tintColor, size: AppDimensions.appBarIconSize),
                 ),
               ],
             ],
