@@ -34,7 +34,7 @@ class UserPhoto extends StatelessWidget {
             ),
             child: CircleAvatar(
               radius: size / 2,
-              backgroundImage: (imageSrc.isNotEmpty) ? FileImage(File(imageSrc)) : null,
+              backgroundImage: getUserImage(),
               backgroundColor: imageSrc.isEmpty ? AppColors.accentColor : null,
             ),
           ),
@@ -62,5 +62,15 @@ class UserPhoto extends StatelessWidget {
         ],
       ),
     );
+  }
+
+  ImageProvider<Object>? getUserImage() {
+    if (imageSrc.isEmpty) return null;
+
+    if (imageSrc.startsWith('https://')) {
+      return NetworkImage(imageSrc);
+    }
+
+    return FileImage(File(imageSrc));
   }
 }
