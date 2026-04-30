@@ -72,10 +72,11 @@ class SegmentedSwitch extends StatelessWidget {
                         height: buttonHeight,
                         alignment: Alignment.center,
                         child: AnimatedDefaultTextStyle(
+                          curve: Curves.easeInOut,
                           duration: const Duration(milliseconds: animationDuration),
                           style: TextStyle(
                             color: isSelected ? Colors.white : AppColors.dark,
-                            fontWeight: FontWeight.w600,
+                            fontWeight: isSelected ? FontWeight.w600 : FontWeight.w500,
                           ),
                           child: Text(options[index]),
                         ),
