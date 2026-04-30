@@ -68,6 +68,7 @@ class UserSettingsPage extends StatelessWidget {
                             title: L10n.settingsSectionYourActivity,
                             items: activityItems,
                           ),
+
                           AccountSection(title: L10n.settingsSectionGeneral, items: generalItems),
                         ],
                       ),
