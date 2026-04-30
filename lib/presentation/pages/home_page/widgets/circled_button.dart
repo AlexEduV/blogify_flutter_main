@@ -7,16 +7,12 @@ class CircledButton extends StatelessWidget {
   final IconData icon;
   final VoidCallback onTap;
 
-  const CircledButton({
-    required this.icon,
-    required this.onTap,
-    super.key,
-  });
+  const CircledButton({required this.icon, required this.onTap, super.key});
 
   @override
   Widget build(BuildContext context) {
     return Material(
-      color: Colors.white,
+      color: Colors.transparent,
       shape: const CircleBorder(),
       child: Padding(
         padding: const EdgeInsets.all(AppDimensions.minorL).copyWith(right: AppDimensions.normalM),
@@ -28,12 +24,7 @@ class CircledButton extends StatelessWidget {
             decoration: BoxDecoration(
               color: Colors.white,
               shape: BoxShape.circle,
-              border: Border(
-                bottom: BorderSide(
-                  color: AppColors.lightGrey,
-                  width: 0.5,
-                ),
-              ),
+              border: Border(bottom: BorderSide(color: AppColors.lightGrey, width: 0.5)),
               boxShadow: [
                 BoxShadow(
                   color: AppColors.offGrey,
@@ -45,11 +36,7 @@ class CircledButton extends StatelessWidget {
             ),
             child: Padding(
               padding: const EdgeInsets.all(AppDimensions.normalM),
-              child: FaIcon(
-                icon,
-                color: Colors.black54,
-                size: AppDimensions.appBarIconSize,
-              ),
+              child: FaIcon(icon, color: Colors.black54, size: AppDimensions.appBarIconSize),
             ),
           ),
         ),
