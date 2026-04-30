@@ -18,6 +18,8 @@ class UserPhoto extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final image = getUserImage();
+
     return Center(
       child: Stack(
         clipBehavior: Clip.none,
@@ -31,11 +33,9 @@ class UserPhoto extends StatelessWidget {
                 color: Colors.white, // Set your desired border color
                 width: 3.0, // Set your desired border width
               ),
-            ),
-            child: CircleAvatar(
-              radius: size / 2,
-              backgroundImage: getUserImage(),
-              backgroundColor: imageSrc.isEmpty ? AppColors.accentColor : null,
+              image: image != null
+                  ? DecorationImage(image: image, fit: BoxFit.cover, alignment: Alignment.topCenter)
+                  : null,
             ),
           ),
           if (onTap != null) ...[
