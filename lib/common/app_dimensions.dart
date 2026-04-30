@@ -21,4 +21,6 @@ class AppDimensions {
   static const userPhotoImageHeight = 80.0;
 
   static const accountUserAvatarSize = 120.0;
+
+  static const placeholderPageIconSize = 48.0;
 }

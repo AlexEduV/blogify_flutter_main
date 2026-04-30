@@ -18,9 +18,7 @@ import '../../notifiers/posts/global_mock_storage_provider.dart';
 
 @RoutePage()
 class HomePage extends StatefulWidget {
-  const HomePage({
-    super.key,
-  });
+  const HomePage({super.key});
 
   @override
   State<HomePage> createState() => _HomePageState();
@@ -59,8 +57,9 @@ class _HomePageState extends State<HomePage> {
             behavior: HitTestBehavior.translucent,
             child: SafeArea(
               child: Padding(
-                padding: const EdgeInsets.all(AppDimensions.majorS)
-                    .copyWith(bottom: AppDimensions.normalM),
+                padding: const EdgeInsets.all(
+                  AppDimensions.majorS,
+                ).copyWith(bottom: AppDimensions.normalM),
                 child: Column(
                   spacing: AppDimensions.majorS,
                   crossAxisAlignment: CrossAxisAlignment.start,
@@ -75,34 +74,36 @@ class _HomePageState extends State<HomePage> {
 
                     //card stack
                     Expanded(
-                      child:
-                          Consumer<GlobalMockStorageProvider>(builder: (context, notifier, child) {
-                        final posts = notifier.postsFiltered;
-                        if (posts.isEmpty) {
-                          return const EmptyPostsPlaceholder();
-                        }
+                      child: Consumer<GlobalMockStorageProvider>(
+                        builder: (context, notifier, child) {
+                          final posts = notifier.postsFiltered;
+                          if (posts.isEmpty) {
+                            return const EmptyPostsPlaceholder();
+                          }
 
-                        //post stack
-                        return Consumer<CategoryIndexNotifier>(
+                          //post stack
+                          return Consumer<CategoryIndexNotifier>(
                             builder: (_, categoryIndexNotifier, child) {
-                          return CardSwiper(
-                            controller: controller,
-                            cardsCount: posts.length,
-                            onSwipe: (_, __, direction) => true,
-                            numberOfCardsDisplayed: limitedCount(posts.length),
-                            backCardOffset: const Offset(0, 65),
-                            scale: 0.8,
-                            padding: EdgeInsets.zero,
-                            cardBuilder: (
-                              context,
-                              index,
-                              horizontalThresholdPercentage,
-                              verticalThresholdPercentage,
-                            ) =>
-                                PostCard(post: posts[index], onTap: openArticlePage),
+                              return CardSwiper(
+                                controller: controller,
+                                cardsCount: posts.length,
+                                onSwipe: (_, __, direction) => true,
+                                numberOfCardsDisplayed: limitedCount(posts.length),
+                                backCardOffset: const Offset(0, 65),
+                                scale: 0.8,
+                                padding: EdgeInsets.zero,
+                                cardBuilder:
+                                    (
+                                      context,
+                                      index,
+                                      horizontalThresholdPercentage,
+                                      verticalThresholdPercentage,
+                                    ) => PostCard(post: posts[index], onTap: openArticlePage),
+                              );
+                            },
                           );
-                        });
-                      }),
+                        },
+                      ),
                     ),
                   ],
                 ),
@@ -114,14 +115,14 @@ class _HomePageState extends State<HomePage> {
             bottom: AppDimensions.majorM,
             right: 0,
             child: HomeBottomBar(),
-          )
+          ),
         ],
       ),
     );
   }
 
   void openArticlePage(int id) {
-    context.router.push(ArticleRoute(id: id));
+    context.router.push(ArticleRoute(articleId: id));
   }
 
   int limitedCount(int length, [int max = AppConstants.homePagePostsVisibleCount]) =>
