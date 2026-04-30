@@ -29,7 +29,7 @@ class UserPhoto extends StatelessWidget {
       alignment: AlignmentGeometry.center,
       children: [
         Padding(
-          padding: const EdgeInsets.only(bottom: AppDimensions.minorL),
+          padding: const EdgeInsets.only(bottom: AppDimensions.normalM),
           child: Material(
             shape: const CircleBorder(),
             clipBehavior: Clip.antiAlias,
@@ -57,7 +57,7 @@ class UserPhoto extends StatelessWidget {
               color: Colors.transparent,
               shape: const CircleBorder(),
               child: Padding(
-                padding: const EdgeInsets.all(AppDimensions.minorM),
+                padding: const EdgeInsets.all(AppDimensions.normalS),
                 child: InkWell(
                   customBorder: const CircleBorder(),
                   splashColor: Colors.white.withAlpha(120),
@@ -65,13 +65,13 @@ class UserPhoto extends StatelessWidget {
                   child: Ink(
                     height: photoButtonSize,
                     width: photoButtonSize,
-                    decoration: BoxDecoration(
+                    decoration: const BoxDecoration(
                       color: AppColors.dark,
                       shape: BoxShape.circle,
                       boxShadow: [
                         BoxShadow(
-                          color: AppColors.offGrey,
-                          offset: const Offset(0, 2),
+                          color: Colors.black54,
+                          offset: Offset(0, 2),
                           blurRadius: 5.0,
                           spreadRadius: 2.0,
                         ),
