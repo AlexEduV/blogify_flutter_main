@@ -71,9 +71,10 @@ class PostEntity {
       minToRead: json['minToRead'] as int,
       category: PostCategory.fromLabel(json['category'] as String),
       isLiked: (json['isLiked'] ?? false) as bool,
-      imageSrc: json['imageSrc'] as String,
-      paragraphs:
-          (json['paragraphs'] as List<dynamic>).map((element) => element.toString()).toList(),
+      imageSrc: (json['imageSrc'] ?? '') as String,
+      paragraphs: (json['paragraphs'] as List<dynamic>)
+          .map((element) => element.toString())
+          .toList(),
       url: json['url'] as String,
     );
   }
