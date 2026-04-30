@@ -3,6 +3,8 @@ import 'dart:io';
 import 'package:blogify_flutter_main/common/app_dimensions.dart';
 import 'package:flutter/material.dart';
 
+import '../../common/app_colors.dart';
+
 class UserPhoto extends StatelessWidget {
   final String imageSrc;
   final double size;
@@ -21,6 +23,7 @@ class UserPhoto extends StatelessWidget {
     final photoButtonSize = 40.0;
 
     return Stack(
+      clipBehavior: Clip.none,
       alignment: AlignmentGeometry.center,
       children: [
         Container(
@@ -51,7 +54,18 @@ class UserPhoto extends StatelessWidget {
                 child: Ink(
                   height: photoButtonSize,
                   width: photoButtonSize,
-                  decoration: const BoxDecoration(color: Colors.grey, shape: BoxShape.circle),
+                  decoration: BoxDecoration(
+                    color: Colors.blue,
+                    shape: BoxShape.circle,
+                    boxShadow: [
+                      BoxShadow(
+                        color: AppColors.offGrey,
+                        offset: const Offset(0, 2),
+                        blurRadius: 5.0,
+                        spreadRadius: 2.0,
+                      ),
+                    ],
+                  ),
                   child: const Icon(Icons.edit, color: Colors.white, size: 24),
                 ),
               ),
