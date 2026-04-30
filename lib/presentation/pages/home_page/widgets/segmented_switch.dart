@@ -7,18 +7,21 @@ class SegmentedSwitch extends StatelessWidget {
   final int selectedIndex;
   final List<String> options;
   final ValueChanged<int> onChanged;
+  final double buttonHeight;
 
   const SegmentedSwitch({
     required this.selectedIndex,
     required this.options,
     required this.onChanged,
+    this.buttonHeight = 40.0,
     super.key,
   });
 
   @override
   Widget build(BuildContext context) {
     final double segmentWidth = 1 / options.length;
-    const buttonHeight = 40.0;
+
+    //todo: calculate animation duration based on index delta;
     const animationDuration = 200;
 
     return Container(
