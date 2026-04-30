@@ -63,7 +63,7 @@ class UserSettingsPage extends StatelessWidget {
 
                           Text(userNotifier.user.email, style: AppTextStyles.sfPro16Accent),
 
-                          const SizedBox(height: AppDimensions.majorL),
+                          const SizedBox(height: AppDimensions.minorS),
 
                           buildSection(L10n.settingsSectionYourActivity, activityItems),
                           buildSection(L10n.settingsSectionGeneral, generalItems),
