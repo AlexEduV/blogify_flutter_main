@@ -22,6 +22,7 @@ class HomeBottomBar extends StatelessWidget {
           children: [
             Expanded(
               child: SegmentedSwitch(
+                previousIndex: notifier.previousIndex,
                 selectedIndex: notifier.categoryIndex,
                 options: [
                   PostCategory.trending.label,

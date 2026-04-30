@@ -4,6 +4,7 @@ import '../../../../common/app_colors.dart';
 import '../../../../common/app_dimensions.dart';
 
 class SegmentedSwitch extends StatelessWidget {
+  final int? previousIndex;
   final int selectedIndex;
   final List<String> options;
   final ValueChanged<int> onChanged;
@@ -11,6 +12,7 @@ class SegmentedSwitch extends StatelessWidget {
 
   const SegmentedSwitch({
     required this.selectedIndex,
+    required this.previousIndex,
     required this.options,
     required this.onChanged,
     this.buttonHeight = 40.0,
@@ -21,8 +23,8 @@ class SegmentedSwitch extends StatelessWidget {
   Widget build(BuildContext context) {
     final double segmentWidth = 1 / options.length;
 
-    //todo: calculate animation duration based on index delta;
-    const animationDuration = 200;
+    final indexDelta = (selectedIndex - (previousIndex ?? 0)).abs();
+    final animationDuration = 200 * indexDelta;
 
     return Container(
       decoration: BoxDecoration(
@@ -43,7 +45,7 @@ class SegmentedSwitch extends StatelessWidget {
         children: [
           // Slider
           AnimatedAlign(
-            duration: const Duration(milliseconds: animationDuration),
+            duration: Duration(milliseconds: animationDuration),
             curve: Curves.easeInOut,
             // Calculate alignment: -1.0 is far left, 1.0 is far right
             alignment: Alignment(-1.0 + (selectedIndex * (2.0 / (options.length - 1))), 0.0),
@@ -76,7 +78,7 @@ class SegmentedSwitch extends StatelessWidget {
                         alignment: Alignment.center,
                         child: AnimatedDefaultTextStyle(
                           curve: Curves.easeInOut,
-                          duration: const Duration(milliseconds: animationDuration),
+                          duration: Duration(milliseconds: animationDuration),
                           style: TextStyle(
                             color: isSelected ? Colors.white : AppColors.dark,
                             fontWeight: isSelected ? FontWeight.w600 : FontWeight.w500,
