@@ -36,7 +36,7 @@ class UserPhoto extends StatelessWidget {
             child: InkWell(
               onTap: onTap,
               customBorder: const CircleBorder(),
-              splashColor: Colors.white.withAlpha(120),
+              highlightColor: Colors.white.withAlpha(120),
               child: image != null
                   ? Ink.image(
                       image: image,
