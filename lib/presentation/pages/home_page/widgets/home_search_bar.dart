@@ -31,6 +31,9 @@ class HomeSearchBar extends StatelessWidget {
         size: AppDimensions.appBarIconSize,
       ),
       trailing: [
+        //todo: the element has clickable effect only on open, but not for close;
+        //because the focus on opened menu is on the menu, and everything outside it just
+        // closes the menu, but does not register the onTap;
         Consumer<SearchFilterTypeNotifier>(
           builder: (context, notifier, child) {
             return RoundedButton(
