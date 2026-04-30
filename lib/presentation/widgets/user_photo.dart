@@ -26,18 +26,21 @@ class UserPhoto extends StatelessWidget {
       clipBehavior: Clip.none,
       alignment: AlignmentGeometry.center,
       children: [
-        Container(
-          width: size,
-          height: size,
-          decoration: BoxDecoration(
-            shape: BoxShape.circle,
-            border: Border.all(
-              color: Colors.white, // Set your desired border color
-              width: 3.0, // Set your desired border width
+        Padding(
+          padding: const EdgeInsets.only(bottom: AppDimensions.minorL),
+          child: Container(
+            width: size,
+            height: size,
+            decoration: BoxDecoration(
+              shape: BoxShape.circle,
+              border: Border.all(
+                color: Colors.white, // Set your desired border color
+                width: 3.0, // Set your desired border width
+              ),
+              image: image != null
+                  ? DecorationImage(image: image, fit: BoxFit.cover, alignment: Alignment.topCenter)
+                  : null,
             ),
-            image: image != null
-                ? DecorationImage(image: image, fit: BoxFit.cover, alignment: Alignment.topCenter)
-                : null,
           ),
         ),
         if (onTap != null) ...[
@@ -47,26 +50,29 @@ class UserPhoto extends StatelessWidget {
             child: Material(
               color: Colors.transparent,
               shape: const CircleBorder(),
-              child: InkWell(
-                customBorder: const CircleBorder(),
-                splashColor: Colors.white.withAlpha(120),
-                onTap: onTap,
-                child: Ink(
-                  height: photoButtonSize,
-                  width: photoButtonSize,
-                  decoration: BoxDecoration(
-                    color: Colors.blue,
-                    shape: BoxShape.circle,
-                    boxShadow: [
-                      BoxShadow(
-                        color: AppColors.offGrey,
-                        offset: const Offset(0, 2),
-                        blurRadius: 5.0,
-                        spreadRadius: 2.0,
-                      ),
-                    ],
+              child: Padding(
+                padding: const EdgeInsets.all(AppDimensions.minorM),
+                child: InkWell(
+                  customBorder: const CircleBorder(),
+                  splashColor: Colors.white.withAlpha(120),
+                  onTap: onTap,
+                  child: Ink(
+                    height: photoButtonSize,
+                    width: photoButtonSize,
+                    decoration: BoxDecoration(
+                      color: Colors.blue,
+                      shape: BoxShape.circle,
+                      boxShadow: [
+                        BoxShadow(
+                          color: AppColors.offGrey,
+                          offset: const Offset(0, 2),
+                          blurRadius: 5.0,
+                          spreadRadius: 2.0,
+                        ),
+                      ],
+                    ),
+                    child: const Icon(Icons.edit, color: Colors.white, size: 24),
                   ),
-                  child: const Icon(Icons.edit, color: Colors.white, size: 24),
                 ),
               ),
             ),
