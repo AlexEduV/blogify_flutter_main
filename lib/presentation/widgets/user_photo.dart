@@ -72,8 +72,8 @@ class UserPhoto extends StatelessWidget {
                         BoxShadow(
                           color: Colors.black54,
                           offset: Offset(0, 2),
-                          blurRadius: 5.0,
-                          spreadRadius: 2.0,
+                          blurRadius: 2.0,
+                          spreadRadius: 1.0,
                         ),
                       ],
                     ),
