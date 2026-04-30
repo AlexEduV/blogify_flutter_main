@@ -4,8 +4,8 @@ import 'package:blogify_flutter_main/common/app_text_styles.dart';
 import 'package:blogify_flutter_main/l10n/l10n.dart';
 import 'package:blogify_flutter_main/presentation/notifiers/settings_page/settings_page_notifier.dart';
 import 'package:blogify_flutter_main/presentation/notifiers/user/user_data_notifier.dart';
-import 'package:blogify_flutter_main/presentation/pages/user_settings_page/widgets/list_item.dart';
-import 'package:blogify_flutter_main/presentation/pages/user_settings_page/widgets/section_title.dart';
+import 'package:blogify_flutter_main/presentation/pages/account_page/widgets/account_list_item.dart';
+import 'package:blogify_flutter_main/presentation/pages/account_page/widgets/section_title.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:provider/provider.dart';
@@ -34,49 +34,46 @@ class UserSettingsPage extends StatelessWidget {
       backgroundColor: Colors.white,
       body: SafeArea(
         child: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: AppDimensions.majorL)
-              .copyWith(top: AppDimensions.majorS),
+          padding: const EdgeInsets.symmetric(
+            horizontal: AppDimensions.majorL,
+          ).copyWith(top: AppDimensions.majorS),
           child: SingleChildScrollView(
-            child: Consumer<UserDataNotifier>(builder: (context, userNotifier, child) {
-              return Column(
-                children: [
-                  const SizedBox(height: AppDimensions.normalM),
+            child: Consumer<UserDataNotifier>(
+              builder: (context, userNotifier, child) {
+                return Column(
+                  children: [
+                    const SizedBox(height: AppDimensions.normalM),
 
-                  UserPhoto(
-                    size: 120,
-                    imageSrc: userNotifier.user.imageSrc,
-                    onTap: () => onUserPhotoPressed(context),
-                  ),
+                    UserPhoto(
+                      size: 120,
+                      imageSrc: userNotifier.user.imageSrc,
+                      onTap: () => onUserPhotoPressed(context),
+                    ),
 
-                  const SizedBox(height: AppDimensions.normalM),
+                    const SizedBox(height: AppDimensions.normalM),
 
-                  Text(
-                    '${userNotifier.user.firstName} ${userNotifier.user.lastName}',
-                    style: AppTextStyles.sfPro20,
-                  ),
+                    Text(
+                      '${userNotifier.user.firstName} ${userNotifier.user.lastName}',
+                      style: AppTextStyles.sfPro20,
+                    ),
 
-                  const SizedBox(height: AppDimensions.minorS),
+                    const SizedBox(height: AppDimensions.minorS),
 
-                  Text(
-                    userNotifier.user.email,
-                    style: AppTextStyles.sfPro16Accent,
-                  ),
+                    Text(userNotifier.user.email, style: AppTextStyles.sfPro16Accent),
 
-                  const SizedBox(height: AppDimensions.majorL),
+                    const SizedBox(height: AppDimensions.majorL),
 
-                  buildSection(L10n.settingsSectionYourActivity, activityItems),
-                  buildSection(L10n.settingsSectionGeneral, generalItems),
+                    buildSection(L10n.settingsSectionYourActivity, activityItems),
+                    buildSection(L10n.settingsSectionGeneral, generalItems),
 
-                  //app version footer
-                  Text(
-                    '${L10n.appName}, ${L10n.appVersion}',
-                    style: AppTextStyles.sfPro14Accent,
-                  ),
+                    //app version footer
+                    Text('${L10n.appName}, ${L10n.appVersion}', style: AppTextStyles.sfPro14Accent),
 
-                  const SizedBox(height: AppDimensions.majorM),
-                ],
-              );
-            }),
+                    const SizedBox(height: AppDimensions.majorM),
+                  ],
+                );
+              },
+            ),
           ),
         ),
       ),
@@ -97,7 +94,7 @@ class UserSettingsPage extends StatelessWidget {
         ...items.map((item) {
           return Column(
             children: [
-              ListItem(
+              AccountListItem(
                 //todo: onTap has to lead somewhere
                 onTap: () {},
                 icon: item['icon'],
