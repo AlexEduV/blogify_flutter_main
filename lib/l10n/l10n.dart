@@ -32,4 +32,7 @@ class L10n {
   static const settingsPersonalDataItemTitle = 'Personal data';
   static const settingsPushNotificationsItemTitle = 'Push notifications';
   static const settingsGeneralSettingsItemTitle = 'Settings';
+
+  static const placeholderPageTitle = 'Coming soon';
+  static const placeholderPageSubtitle = 'This feature is still under development.';
 }

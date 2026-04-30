@@ -1,4 +1,5 @@
 import 'package:auto_route/annotations.dart';
+import 'package:blogify_flutter_main/l10n/l10n.dart';
 import 'package:flutter/material.dart';
 
 import '../../common/app_colors.dart';
@@ -25,12 +26,12 @@ class PlaceholderPage extends StatelessWidget {
 
             const SizedBox(height: AppDimensions.normalM),
 
-            const Text('Coming soon', style: AppTextStyles.sfPro24),
+            const Text(L10n.placeholderPageTitle, style: AppTextStyles.sfPro24),
 
             const SizedBox(height: AppDimensions.minorL),
 
             Text(
-              'This feature is still under development.',
+              L10n.placeholderPageSubtitle,
               style: AppTextStyles.sfPro16.copyWith(color: Colors.grey),
               textAlign: TextAlign.center,
             ),
