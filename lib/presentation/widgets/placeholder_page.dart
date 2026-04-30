@@ -1,6 +1,7 @@
 import 'package:auto_route/annotations.dart';
 import 'package:blogify_flutter_main/l10n/l10n.dart';
 import 'package:flutter/material.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 import '../../common/app_colors.dart';
 import '../../common/app_dimensions.dart';
@@ -19,7 +20,7 @@ class PlaceholderPage extends StatelessWidget {
           mainAxisSize: MainAxisSize.min,
           children: [
             const Icon(
-              Icons.hourglass_empty,
+              FontAwesomeIcons.hourglassStart,
               size: AppDimensions.placeholderPageIconSize,
               color: Colors.grey,
             ),
