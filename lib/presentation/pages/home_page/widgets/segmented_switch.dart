@@ -76,7 +76,7 @@ class SegmentedSwitch extends StatelessWidget {
                       color: Colors.transparent,
                       borderRadius: borderRadius,
                       child: InkWell(
-                        splashColor: AppColors.dark.withAlpha(50),
+                        splashColor: AppColors.dark.withAlpha(100),
                         borderRadius: borderRadius,
                         onTap: () => onChanged(index),
                         child: Container(
