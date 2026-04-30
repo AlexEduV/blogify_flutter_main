@@ -26,10 +26,12 @@ class SegmentedSwitch extends StatelessWidget {
     final indexDelta = (selectedIndex - (previousIndex ?? 0)).abs();
     final animationDuration = 200 * indexDelta;
 
+    final borderRadius = BorderRadius.circular(AppDimensions.majorS);
+
     return Container(
       decoration: BoxDecoration(
         color: Colors.white,
-        borderRadius: BorderRadius.circular(AppDimensions.majorS),
+        borderRadius: borderRadius,
         border: Border(bottom: BorderSide(color: AppColors.lightGrey, width: 0.5)),
         boxShadow: [
           BoxShadow(
@@ -70,20 +72,24 @@ class SegmentedSwitch extends StatelessWidget {
                   child: Semantics(
                     button: true,
                     selected: isSelected,
-                    child: GestureDetector(
-                      onTap: () => onChanged(index),
-                      behavior: HitTestBehavior.opaque,
-                      child: Container(
-                        height: buttonHeight,
-                        alignment: Alignment.center,
-                        child: AnimatedDefaultTextStyle(
-                          curve: Curves.easeInOut,
-                          duration: Duration(milliseconds: animationDuration),
-                          style: TextStyle(
-                            color: isSelected ? Colors.white : AppColors.dark,
-                            fontWeight: isSelected ? FontWeight.w600 : FontWeight.w500,
+                    child: Material(
+                      color: Colors.transparent,
+                      borderRadius: borderRadius,
+                      child: InkWell(
+                        borderRadius: borderRadius,
+                        onTap: () => onChanged(index),
+                        child: Container(
+                          height: buttonHeight,
+                          alignment: Alignment.center,
+                          child: AnimatedDefaultTextStyle(
+                            curve: Curves.easeInOut,
+                            duration: Duration(milliseconds: animationDuration),
+                            style: TextStyle(
+                              color: isSelected ? Colors.white : AppColors.dark,
+                              fontWeight: isSelected ? FontWeight.w600 : FontWeight.w500,
+                            ),
+                            child: Text(options[index]),
                           ),
-                          child: Text(options[index]),
                         ),
                       ),
                     ),
