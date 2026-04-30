@@ -27,18 +27,14 @@ class UserWelcomeRow extends StatelessWidget {
                   L10n.welcomeScreenLabel,
                   style: AppTextStyles.sfPro24.copyWith(fontWeight: FontWeight.w500),
                 ),
-                Consumer<UserDataNotifier>(builder: (context, notifier, child) {
-                  return Text(
-                    notifier.user.firstName,
-                    style: AppTextStyles.sfPro24,
-                  );
-                })
+                Consumer<UserDataNotifier>(
+                  builder: (context, notifier, child) {
+                    return Text(notifier.user.firstName, style: AppTextStyles.sfPro24);
+                  },
+                ),
               ],
             ),
-            Text(
-              L10n.welcomeScreenSubtitle,
-              style: AppTextStyles.sfPro14Accent,
-            ),
+            Text(L10n.welcomeScreenSubtitle, style: AppTextStyles.sfPro14Accent),
           ],
         ),
 
@@ -49,12 +45,14 @@ class UserWelcomeRow extends StatelessWidget {
           child: InkWell(
             customBorder: const CircleBorder(),
             onTap: () => onUserSettingsButtonPressed(context),
-            child: Consumer<UserDataNotifier>(builder: (context, notifier, child) {
-              return UserPhoto(
-                imageSrc: notifier.user.imageSrc,
-                size: AppDimensions.appBarUserAvatarImageSize,
-              );
-            }),
+            child: Consumer<UserDataNotifier>(
+              builder: (context, notifier, child) {
+                return UserPhoto(
+                  imageSrc: notifier.user.imageSrc,
+                  size: AppDimensions.appBarUserAvatarImageSize,
+                );
+              },
+            ),
           ),
         ),
       ],
@@ -62,8 +60,6 @@ class UserWelcomeRow extends StatelessWidget {
   }
 
   Future<void> onUserSettingsButtonPressed(BuildContext context) async {
-    context.router.push(
-      const UserSettingsRoute(),
-    );
+    context.router.push(const UserSettingsRoute());
   }
 }
