@@ -4,9 +4,8 @@ import 'package:blogify_flutter_main/common/app_text_styles.dart';
 import 'package:blogify_flutter_main/l10n/l10n.dart';
 import 'package:blogify_flutter_main/presentation/notifiers/settings_page/settings_page_notifier.dart';
 import 'package:blogify_flutter_main/presentation/notifiers/user/user_data_notifier.dart';
-import 'package:blogify_flutter_main/presentation/pages/account_page/widgets/account_list_item.dart';
+import 'package:blogify_flutter_main/presentation/pages/account_page/widgets/account_section.dart';
 import 'package:blogify_flutter_main/presentation/pages/account_page/widgets/app_version_footer.dart';
-import 'package:blogify_flutter_main/presentation/pages/account_page/widgets/section_title.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:provider/provider.dart';
@@ -65,8 +64,11 @@ class UserSettingsPage extends StatelessWidget {
 
                           const SizedBox(height: AppDimensions.minorS),
 
-                          buildSection(L10n.settingsSectionYourActivity, activityItems),
-                          buildSection(L10n.settingsSectionGeneral, generalItems),
+                          AccountSection(
+                            title: L10n.settingsSectionYourActivity,
+                            items: activityItems,
+                          ),
+                          AccountSection(title: L10n.settingsSectionGeneral, items: generalItems),
                         ],
                       ),
                     ),
@@ -79,34 +81,6 @@ class UserSettingsPage extends StatelessWidget {
           ),
         ),
       ),
-    );
-  }
-
-  // Helper method to build sections
-  Widget buildSection(String title, List<Map<String, dynamic>> items) {
-    return Column(
-      children: [
-        const SizedBox(height: AppDimensions.majorL),
-
-        SectionTitle(title: title),
-
-        const SizedBox(height: AppDimensions.normalM),
-
-        //todo: can be refactored to 'spacing: '
-        ...items.map((item) {
-          return Column(
-            children: [
-              AccountListItem(
-                //todo: onTap has to lead somewhere
-                onTap: () {},
-                icon: item['icon'],
-                title: item['title'],
-              ),
-              const SizedBox(height: AppDimensions.normalM),
-            ],
-          );
-        }),
-      ],
     );
   }
 
