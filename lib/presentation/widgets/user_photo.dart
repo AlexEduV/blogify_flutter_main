@@ -1,8 +1,9 @@
 import 'dart:io';
 
-import 'package:blogify_flutter_main/common/app_colors.dart';
 import 'package:blogify_flutter_main/common/app_dimensions.dart';
 import 'package:flutter/material.dart';
+
+import '../../common/app_colors.dart';
 
 class UserPhoto extends StatelessWidget {
   final String imageSrc;
@@ -18,11 +19,16 @@ class UserPhoto extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Center(
-      child: Stack(
-        clipBehavior: Clip.none,
-        children: [
-          Container(
+    final image = getUserImage();
+    final photoButtonSize = 40.0;
+
+    return Stack(
+      clipBehavior: Clip.none,
+      alignment: AlignmentGeometry.center,
+      children: [
+        Padding(
+          padding: const EdgeInsets.only(bottom: AppDimensions.minorL),
+          child: Container(
             width: size,
             height: size,
             decoration: BoxDecoration(
@@ -31,36 +37,58 @@ class UserPhoto extends StatelessWidget {
                 color: Colors.white, // Set your desired border color
                 width: 3.0, // Set your desired border width
               ),
-            ),
-            child: CircleAvatar(
-              radius: size / 2,
-              backgroundImage: (imageSrc.isNotEmpty) ? FileImage(File(imageSrc)) : null,
-              backgroundColor: imageSrc.isEmpty ? AppColors.accentColor : null,
+              image: image != null
+                  ? DecorationImage(image: image, fit: BoxFit.cover, alignment: Alignment.topCenter)
+                  : null,
             ),
           ),
-          if (onTap != null) ...[
-            Positioned(
-              bottom: 0,
-              right: 0,
-              child: Material(
-                color: AppColors.accentColor,
-                shape: const CircleBorder(),
+        ),
+        if (onTap != null) ...[
+          Positioned(
+            bottom: 0,
+            right: 0,
+            child: Material(
+              color: Colors.transparent,
+              shape: const CircleBorder(),
+              child: Padding(
+                padding: const EdgeInsets.all(AppDimensions.minorM),
                 child: InkWell(
                   customBorder: const CircleBorder(),
-                  splashColor: AppColors.accentColor.withAlpha(60),
-                  highlightColor: Colors.transparent,
+                  splashColor: Colors.white.withAlpha(120),
                   onTap: onTap,
-                  child: const CircleAvatar(
-                    backgroundColor: Colors.grey,
-                    radius: 20,
-                    child: Icon(Icons.edit, color: Colors.white, size: 20 * 1.2),
+                  child: Ink(
+                    height: photoButtonSize,
+                    width: photoButtonSize,
+                    decoration: BoxDecoration(
+                      color: AppColors.beige,
+                      shape: BoxShape.circle,
+                      boxShadow: [
+                        BoxShadow(
+                          color: AppColors.offGrey,
+                          offset: const Offset(0, 2),
+                          blurRadius: 5.0,
+                          spreadRadius: 2.0,
+                        ),
+                      ],
+                    ),
+                    child: const Icon(Icons.edit, color: Colors.white, size: 24),
                   ),
                 ),
               ),
             ),
-          ],
+          ),
         ],
-      ),
+      ],
     );
+  }
+
+  ImageProvider<Object>? getUserImage() {
+    if (imageSrc.isEmpty) return null;
+
+    if (imageSrc.startsWith('https://')) {
+      return NetworkImage(imageSrc);
+    }
+
+    return FileImage(File(imageSrc));
   }
 }
