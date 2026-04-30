@@ -1,6 +1,5 @@
 import 'dart:io';
 
-import 'package:blogify_flutter_main/common/app_colors.dart';
 import 'package:blogify_flutter_main/common/app_dimensions.dart';
 import 'package:flutter/material.dart';
 
@@ -19,6 +18,7 @@ class UserPhoto extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final image = getUserImage();
+    final photoButtonSize = 40.0;
 
     return Stack(
       alignment: AlignmentGeometry.center,
@@ -38,22 +38,21 @@ class UserPhoto extends StatelessWidget {
           ),
         ),
         if (onTap != null) ...[
-          //todo: the button does not show the splash effect;
           Positioned(
             bottom: 0,
             right: 0,
             child: Material(
-              color: AppColors.accentColor,
+              color: Colors.transparent,
               shape: const CircleBorder(),
               child: InkWell(
                 customBorder: const CircleBorder(),
-                splashColor: AppColors.accentColor.withAlpha(60),
-                highlightColor: Colors.transparent,
+                splashColor: Colors.white.withAlpha(120),
                 onTap: onTap,
-                child: const CircleAvatar(
-                  backgroundColor: Colors.grey,
-                  radius: 20,
-                  child: Icon(Icons.edit, color: Colors.white, size: 20 * 1.2),
+                child: Ink(
+                  height: photoButtonSize,
+                  width: photoButtonSize,
+                  decoration: const BoxDecoration(color: Colors.grey, shape: BoxShape.circle),
+                  child: const Icon(Icons.edit, color: Colors.white, size: 24),
                 ),
               ),
             ),
