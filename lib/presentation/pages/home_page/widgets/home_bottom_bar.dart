@@ -1,5 +1,7 @@
+import 'package:auto_route/auto_route.dart';
 import 'package:blogify_flutter_main/common/app_dimensions.dart';
 import 'package:blogify_flutter_main/presentation/pages/home_page/widgets/segmented_switch.dart';
+import 'package:blogify_flutter_main/router/router.gr.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:provider/provider.dart';
@@ -34,10 +36,7 @@ class HomeBottomBar extends StatelessWidget {
             ),
             CircledButton(
               icon: FontAwesomeIcons.penToSquare,
-              onTap: () {
-                //todo: new publication screen
-                //todo: create a dummy feature screen
-              },
+              onTap: () => context.router.push(const PlaceholderRoute()),
             ),
           ],
         );
