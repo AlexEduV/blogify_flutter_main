@@ -51,7 +51,7 @@ class UserSettingsPage extends StatelessWidget {
                             onTap: () => onUserPhotoPressed(context),
                           ),
 
-                          const SizedBox(height: AppDimensions.normalM),
+                          const SizedBox(height: AppDimensions.minorS),
 
                           Text(
                             '${userNotifier.user.firstName} ${userNotifier.user.lastName}',
