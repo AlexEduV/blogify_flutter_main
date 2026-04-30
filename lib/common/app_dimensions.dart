@@ -19,4 +19,6 @@ class AppDimensions {
   static const postCoverImageHeight = 250.0;
   static const articleImageHeight = 220.0;
   static const userPhotoImageHeight = 80.0;
+
+  static const accountUserAvatarSize = 120.0;
 }

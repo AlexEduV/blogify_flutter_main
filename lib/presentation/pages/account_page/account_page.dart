@@ -47,7 +47,7 @@ class UserSettingsPage extends StatelessWidget {
                       child: Column(
                         children: [
                           UserPhoto(
-                            size: 120,
+                            size: AppDimensions.accountUserAvatarSize,
                             imageSrc: userNotifier.user.imageSrc,
                             onTap: () => onUserPhotoPressed(context),
                           ),
@@ -72,7 +72,6 @@ class UserSettingsPage extends StatelessWidget {
                     ),
                   ),
 
-                  //app version footer
                   const AppVersionFooter(),
                 ],
               );
