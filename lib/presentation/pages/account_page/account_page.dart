@@ -5,6 +5,7 @@ import 'package:blogify_flutter_main/l10n/l10n.dart';
 import 'package:blogify_flutter_main/presentation/notifiers/settings_page/settings_page_notifier.dart';
 import 'package:blogify_flutter_main/presentation/notifiers/user/user_data_notifier.dart';
 import 'package:blogify_flutter_main/presentation/pages/account_page/widgets/account_list_item.dart';
+import 'package:blogify_flutter_main/presentation/pages/account_page/widgets/app_version_footer.dart';
 import 'package:blogify_flutter_main/presentation/pages/account_page/widgets/section_title.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
@@ -36,44 +37,46 @@ class UserSettingsPage extends StatelessWidget {
         child: Padding(
           padding: const EdgeInsets.symmetric(
             horizontal: AppDimensions.majorL,
-          ).copyWith(top: AppDimensions.majorS),
-          child: SingleChildScrollView(
-            child: Consumer<UserDataNotifier>(
-              builder: (context, userNotifier, child) {
-                return Column(
-                  children: [
-                    const SizedBox(height: AppDimensions.normalM),
+          ).copyWith(top: AppDimensions.majorS, bottom: AppDimensions.normalM),
+          child: Consumer<UserDataNotifier>(
+            builder: (context, userNotifier, child) {
+              return Column(
+                children: [
+                  Expanded(
+                    child: SingleChildScrollView(
+                      child: Column(
+                        children: [
+                          UserPhoto(
+                            size: 120,
+                            imageSrc: userNotifier.user.imageSrc,
+                            onTap: () => onUserPhotoPressed(context),
+                          ),
 
-                    UserPhoto(
-                      size: 120,
-                      imageSrc: userNotifier.user.imageSrc,
-                      onTap: () => onUserPhotoPressed(context),
+                          const SizedBox(height: AppDimensions.normalM),
+
+                          Text(
+                            '${userNotifier.user.firstName} ${userNotifier.user.lastName}',
+                            style: AppTextStyles.sfPro20,
+                          ),
+
+                          const SizedBox(height: AppDimensions.minorS),
+
+                          Text(userNotifier.user.email, style: AppTextStyles.sfPro16Accent),
+
+                          const SizedBox(height: AppDimensions.majorL),
+
+                          buildSection(L10n.settingsSectionYourActivity, activityItems),
+                          buildSection(L10n.settingsSectionGeneral, generalItems),
+                        ],
+                      ),
                     ),
+                  ),
 
-                    const SizedBox(height: AppDimensions.normalM),
-
-                    Text(
-                      '${userNotifier.user.firstName} ${userNotifier.user.lastName}',
-                      style: AppTextStyles.sfPro20,
-                    ),
-
-                    const SizedBox(height: AppDimensions.minorS),
-
-                    Text(userNotifier.user.email, style: AppTextStyles.sfPro16Accent),
-
-                    const SizedBox(height: AppDimensions.majorL),
-
-                    buildSection(L10n.settingsSectionYourActivity, activityItems),
-                    buildSection(L10n.settingsSectionGeneral, generalItems),
-
-                    //app version footer
-                    Text('${L10n.appName}, ${L10n.appVersion}', style: AppTextStyles.sfPro14Accent),
-
-                    const SizedBox(height: AppDimensions.majorM),
-                  ],
-                );
-              },
-            ),
+                  //app version footer
+                  const AppVersionFooter(),
+                ],
+              );
+            },
           ),
         ),
       ),

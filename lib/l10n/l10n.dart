@@ -1,6 +1,6 @@
 class L10n {
   static const appName = 'Blogify';
-  static const appVersion = 'V1.2';
+  static const appVersion = 'v1.2';
 
   static const articleReadTimeLabel = 'Read time:';
   static const articleReadTimeUnits = 'min';
