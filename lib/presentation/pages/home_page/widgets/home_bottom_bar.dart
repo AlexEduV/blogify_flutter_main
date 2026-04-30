@@ -1,4 +1,5 @@
 import 'package:blogify_flutter_main/common/app_dimensions.dart';
+import 'package:blogify_flutter_main/presentation/pages/home_page/widgets/segmented_switch.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:provider/provider.dart';
@@ -6,7 +7,6 @@ import 'package:provider/provider.dart';
 import '../../../../common/enums/post_category.dart';
 import '../../../notifiers/home_page/category_index_notifier.dart';
 import '../../../notifiers/posts/global_mock_storage_provider.dart';
-import 'category_selector.dart';
 import 'circled_button.dart';
 
 class HomeBottomBar extends StatelessWidget {
@@ -14,32 +14,35 @@ class HomeBottomBar extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Consumer<CategoryIndexNotifier>(builder: (context, notifier, child) {
-      return Row(
-        crossAxisAlignment: CrossAxisAlignment.center,
-        spacing: AppDimensions.normalS,
-        children: [
-          Expanded(
-            child: CategorySelector(
-              selectedIndex: notifier.categoryIndex,
-              items: [
-                PostCategory.trending.label,
-                PostCategory.design.label,
-                PostCategory.tech.label,
-              ],
-              onItemTapped: (index) => onCategoryItemTapped(context, index),
+    return Consumer<CategoryIndexNotifier>(
+      builder: (context, notifier, child) {
+        return Row(
+          crossAxisAlignment: CrossAxisAlignment.center,
+          spacing: AppDimensions.normalS,
+          children: [
+            Expanded(
+              child: SegmentedSwitch(
+                previousIndex: notifier.previousIndex,
+                selectedIndex: notifier.categoryIndex,
+                options: [
+                  PostCategory.trending.label,
+                  PostCategory.design.label,
+                  PostCategory.tech.label,
+                ],
+                onChanged: (index) => onCategoryItemTapped(context, index),
+              ),
             ),
-          ),
-          CircledButton(
-            icon: FontAwesomeIcons.penToSquare,
-            onTap: () {
-              //todo: new publication screen
-              //todo: create a dummy feature screen
-            },
-          ),
-        ],
-      );
-    });
+            CircledButton(
+              icon: FontAwesomeIcons.penToSquare,
+              onTap: () {
+                //todo: new publication screen
+                //todo: create a dummy feature screen
+              },
+            ),
+          ],
+        );
+      },
+    );
   }
 
   void onCategoryItemTapped(BuildContext context, int index) {

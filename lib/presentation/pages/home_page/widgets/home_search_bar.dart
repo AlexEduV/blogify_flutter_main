@@ -31,16 +31,18 @@ class HomeSearchBar extends StatelessWidget {
         size: AppDimensions.appBarIconSize,
       ),
       trailing: [
-        Consumer<SearchFilterTypeNotifier>(builder: (context, notifier, child) {
-          return RoundedButton(
-            key: searchMenuKey,
-            text: notifier.value.label,
-            expanded: notifier.isSelectionOpen,
-            trailingIcon: Icons.keyboard_arrow_up_outlined,
-            filled: true,
-            onTap: () => showSearchFilterTypeSelector(context),
-          );
-        }),
+        Consumer<SearchFilterTypeNotifier>(
+          builder: (context, notifier, child) {
+            return RoundedButton(
+              key: searchMenuKey,
+              text: notifier.value.label,
+              expanded: notifier.isSelectionOpen,
+              trailingIcon: Icons.keyboard_arrow_up_outlined,
+              selected: true,
+              onTap: () => showSearchFilterTypeSelector(context),
+            );
+          },
+        ),
       ],
       hintText: L10n.searchBarHint,
       hintStyle: WidgetStatePropertyAll(AppTextStyles.sfPro16Accent),
