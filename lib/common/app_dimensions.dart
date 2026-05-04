@@ -26,4 +26,7 @@ class AppDimensions {
 
   static const publishedArticleImageSize = 50.0;
   static const publishedArticlePlaceholderIconSize = 50.0;
+
+  static const userPhotoEditButtonSize = 40.0;
+  static const userPhotoEditButtonIconSize = 24.0;
 }

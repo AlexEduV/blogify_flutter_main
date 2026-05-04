@@ -20,8 +20,7 @@ class UserPhoto extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final image = getUserImage();
-    final photoButtonSize = 40.0;
+    final image = getUserImageProvider();
 
     return Stack(
       clipBehavior: Clip.none,
@@ -62,8 +61,8 @@ class UserPhoto extends StatelessWidget {
                   splashColor: Colors.grey.withAlpha(120),
                   onTap: onSecondaryTap,
                   child: Ink(
-                    height: photoButtonSize,
-                    width: photoButtonSize,
+                    height: AppDimensions.userPhotoEditButtonSize,
+                    width: AppDimensions.userPhotoEditButtonSize,
                     decoration: const BoxDecoration(
                       color: Colors.white,
                       shape: BoxShape.circle,
@@ -76,7 +75,11 @@ class UserPhoto extends StatelessWidget {
                         ),
                       ],
                     ),
-                    child: const Icon(Icons.edit, color: AppColors.emeraldGreen, size: 24),
+                    child: const Icon(
+                      Icons.edit,
+                      color: AppColors.emeraldGreen,
+                      size: AppDimensions.userPhotoEditButtonIconSize,
+                    ),
                   ),
                 ),
               ),
@@ -87,7 +90,7 @@ class UserPhoto extends StatelessWidget {
     );
   }
 
-  ImageProvider<Object>? getUserImage() {
+  ImageProvider<Object>? getUserImageProvider() {
     if (imageSrc.isEmpty) return null;
 
     if (imageSrc.startsWith('https://')) {
