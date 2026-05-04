@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 class UserEntity {
   final int id;
   final String firstName;
@@ -48,8 +50,8 @@ class UserEntity {
       lastName: map['lastName'] as String,
       email: map['email'] as String,
       imageSrc: map['imageSrc'] as String,
-      likedArticles: map['likedArticles'] as List<String>,
-      publishedArticles: map['publishedArticles'] as List<String>,
+      likedArticles: List<String>.from(jsonDecode(map['likedArticles'] ?? '[]')),
+      publishedArticles: List<String>.from(jsonDecode(map['publishedArticles'] ?? '[]')),
     );
   }
 

@@ -29,12 +29,22 @@ class DatabaseManager {
           '${UserTable.colLastName} TEXT, '
           '${UserTable.colEmail} TEXT, '
           '${UserTable.colImageSrc} TEXT, '
-          '${UserTable.colPublishedArticles} TEXT, '
-          '${UserTable.colLikedArticles} TEXT'
+          '${UserTable.colPublishedArticles} TEXT DEFAULT \'[]\', '
+          '${UserTable.colLikedArticles} TEXT DEFAULT \'[]\''
           ')',
         );
       },
-      version: 2,
+      version: 3,
+      onUpgrade: (db, oldVersion, newVersion) async {
+        if (newVersion < 3) {
+          await db.execute(
+            'ALTER TABLE ${UserTable.tableName} ADD COLUMN ${UserTable.colPublishedArticles} TEXT;',
+          );
+          await db.execute(
+            'ALTER TABLE ${UserTable.tableName} ADD COLUMN ${UserTable.colLikedArticles} TEXT;',
+          );
+        }
+      },
     );
   }
 
