@@ -6,20 +6,20 @@ import 'package:blogify_flutter_main/router/router.gr.dart';
 class AppRouter extends RootStackRouter {
   @override
   List<AutoRoute> get routes => [
-    AutoRoute(page: HomeRoute.page, path: AppRoutes.homeRoute),
-    AutoRoute(page: ArticleRoute.page, path: '${AppRoutes.homeRoute}${AppRoutes.articleRoute}:id'),
     AutoRoute(
-      page: CommentsRoute.page,
-      path: '${AppRoutes.homeRoute}${AppRoutes.articleRoute}${AppRoutes.commentRoute}:id',
-    ),
-    AutoRoute(
-      page: PlaceholderRoute.page,
-      path: '${AppRoutes.homeRoute}${AppRoutes.addArticleRoute}',
-    ),
-    AutoRoute(
-      page: UserSettingsRoute.page,
-      path: '${AppRoutes.homeRoute}${AppRoutes.userRoute}',
-      fullscreenDialog: true,
+      page: HomeRoute.page,
+      path: AppRoutes.homeRoute,
+      children: [
+        AutoRoute(
+          page: ArticleRoute.page,
+          path: '${AppRoutes.articleRoute}:id',
+          children: [AutoRoute(page: CommentsRoute.page, path: '${AppRoutes.commentRoute}:id')],
+        ),
+
+        AutoRoute(page: PlaceholderRoute.page, path: AppRoutes.addArticleRoute),
+
+        AutoRoute(page: AccountRoute.page, path: AppRoutes.userRoute),
+      ],
     ),
   ];
 }

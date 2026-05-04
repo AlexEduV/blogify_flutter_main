@@ -11,19 +11,35 @@
 // ignore_for_file: no_leading_underscores_for_library_prefixes
 import 'package:auto_route/auto_route.dart' as _i6;
 import 'package:blogify_flutter_main/presentation/pages/account_page/account_page.dart'
-    as _i5;
-import 'package:blogify_flutter_main/presentation/pages/article_page/article_page.dart'
     as _i1;
-import 'package:blogify_flutter_main/presentation/pages/comments_page/comments_page.dart'
+import 'package:blogify_flutter_main/presentation/pages/article_page/article_page.dart'
     as _i2;
-import 'package:blogify_flutter_main/presentation/pages/home_page/home_page.dart'
+import 'package:blogify_flutter_main/presentation/pages/comments_page/comments_page.dart'
     as _i3;
-import 'package:blogify_flutter_main/presentation/widgets/placeholder_page.dart'
+import 'package:blogify_flutter_main/presentation/pages/home_page/home_page.dart'
     as _i4;
+import 'package:blogify_flutter_main/presentation/widgets/placeholder_page.dart'
+    as _i5;
 import 'package:flutter/material.dart' as _i7;
 
 /// generated route for
-/// [_i1.ArticlePage]
+/// [_i1.AccountPage]
+class AccountRoute extends _i6.PageRouteInfo<void> {
+  const AccountRoute({List<_i6.PageRouteInfo>? children})
+    : super(AccountRoute.name, initialChildren: children);
+
+  static const String name = 'AccountRoute';
+
+  static _i6.PageInfo page = _i6.PageInfo(
+    name,
+    builder: (data) {
+      return const _i1.AccountPage();
+    },
+  );
+}
+
+/// generated route for
+/// [_i2.ArticlePage]
 class ArticleRoute extends _i6.PageRouteInfo<ArticleRouteArgs> {
   ArticleRoute({
     required int articleId,
@@ -41,7 +57,7 @@ class ArticleRoute extends _i6.PageRouteInfo<ArticleRouteArgs> {
     name,
     builder: (data) {
       final args = data.argsAs<ArticleRouteArgs>();
-      return _i1.ArticlePage(articleId: args.articleId, key: args.key);
+      return _i2.ArticlePage(articleId: args.articleId, key: args.key);
     },
   );
 }
@@ -60,7 +76,7 @@ class ArticleRouteArgs {
 }
 
 /// generated route for
-/// [_i2.CommentsPage]
+/// [_i3.CommentsPage]
 class CommentsRoute extends _i6.PageRouteInfo<CommentsRouteArgs> {
   CommentsRoute({
     required int id,
@@ -78,7 +94,7 @@ class CommentsRoute extends _i6.PageRouteInfo<CommentsRouteArgs> {
     name,
     builder: (data) {
       final args = data.argsAs<CommentsRouteArgs>();
-      return _i2.CommentsPage(id: args.id, key: args.key);
+      return _i3.CommentsPage(id: args.id, key: args.key);
     },
   );
 }
@@ -97,7 +113,7 @@ class CommentsRouteArgs {
 }
 
 /// generated route for
-/// [_i3.HomePage]
+/// [_i4.HomePage]
 class HomeRoute extends _i6.PageRouteInfo<void> {
   const HomeRoute({List<_i6.PageRouteInfo>? children})
     : super(HomeRoute.name, initialChildren: children);
@@ -107,13 +123,13 @@ class HomeRoute extends _i6.PageRouteInfo<void> {
   static _i6.PageInfo page = _i6.PageInfo(
     name,
     builder: (data) {
-      return const _i3.HomePage();
+      return const _i4.HomePage();
     },
   );
 }
 
 /// generated route for
-/// [_i4.PlaceholderPage]
+/// [_i5.PlaceholderPage]
 class PlaceholderRoute extends _i6.PageRouteInfo<void> {
   const PlaceholderRoute({List<_i6.PageRouteInfo>? children})
     : super(PlaceholderRoute.name, initialChildren: children);
@@ -123,23 +139,7 @@ class PlaceholderRoute extends _i6.PageRouteInfo<void> {
   static _i6.PageInfo page = _i6.PageInfo(
     name,
     builder: (data) {
-      return const _i4.PlaceholderPage();
-    },
-  );
-}
-
-/// generated route for
-/// [_i5.UserSettingsPage]
-class UserSettingsRoute extends _i6.PageRouteInfo<void> {
-  const UserSettingsRoute({List<_i6.PageRouteInfo>? children})
-    : super(UserSettingsRoute.name, initialChildren: children);
-
-  static const String name = 'UserSettingsRoute';
-
-  static _i6.PageInfo page = _i6.PageInfo(
-    name,
-    builder: (data) {
-      return const _i5.UserSettingsPage();
+      return const _i5.PlaceholderPage();
     },
   );
 }

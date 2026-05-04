@@ -13,8 +13,8 @@ import 'package:provider/provider.dart';
 import '../../widgets/user_photo.dart';
 
 @RoutePage()
-class UserSettingsPage extends StatelessWidget {
-  const UserSettingsPage({super.key});
+class AccountPage extends StatelessWidget {
+  const AccountPage({super.key});
 
   @override
   Widget build(BuildContext context) {
