@@ -1,5 +1,7 @@
 import 'package:auto_route/annotations.dart';
+import 'package:blogify_flutter_main/presentation/notifiers/user/user_data_notifier.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 @RoutePage()
 class PublishedArticlesPage extends StatelessWidget {
@@ -7,6 +9,23 @@ class PublishedArticlesPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const Placeholder();
+    return Scaffold(
+      appBar: AppBar(title: const Text('Published articles'), centerTitle: true),
+      body: Consumer<UserDataNotifier>(
+        builder: (context, notifier, child) {
+          final list = notifier.user.publishedArticles;
+
+          if (list.isEmpty) {
+            return const Text('The list is empty');
+          }
+
+          return ListView.builder(
+            itemBuilder: (context, index) {
+              return Text('some article with id: ${list[index]}');
+            },
+          );
+        },
+      ),
+    );
   }
 }

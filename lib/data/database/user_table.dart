@@ -5,4 +5,6 @@ class UserTable {
   static const String colLastName = 'lastName';
   static const String colEmail = 'email';
   static const String colImageSrc = 'imageSrc';
+  static const String colPublishedArticles = 'publishedArticles';
+  static const String colLikedArticles = 'likedArticles';
 }

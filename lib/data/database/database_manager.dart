@@ -28,18 +28,23 @@ class DatabaseManager {
           '${UserTable.colFirstName} TEXT, '
           '${UserTable.colLastName} TEXT, '
           '${UserTable.colEmail} TEXT, '
-          '${UserTable.colImageSrc} TEXT'
+          '${UserTable.colImageSrc} TEXT, '
+          '${UserTable.colPublishedArticles} TEXT, '
+          '${UserTable.colLikedArticles} TEXT'
           ')',
         );
       },
-      version: 1,
+      version: 2,
     );
   }
 
   Future<void> insertUser(UserEntity user) async {
     final db = await database;
-    await db.insert(UserTable.tableName, user.toMap(),
-        conflictAlgorithm: ConflictAlgorithm.replace);
+    await db.insert(
+      UserTable.tableName,
+      user.toMap(),
+      conflictAlgorithm: ConflictAlgorithm.replace,
+    );
   }
 
   Future<UserEntity?> getUser() async {

@@ -1,11 +1,11 @@
 class UserEntity {
   final int id;
-
   final String firstName;
   final String lastName;
-
   final String email;
   final String imageSrc;
+  final List<String> likedArticles;
+  final List<String> publishedArticles;
 
   const UserEntity({
     required this.id,
@@ -13,11 +13,20 @@ class UserEntity {
     required this.lastName,
     required this.email,
     required this.imageSrc,
+    this.likedArticles = const [],
+    this.publishedArticles = const [],
   });
 
   factory UserEntity.empty() {
     return const UserEntity(
-        id: 0, firstName: 'Test', lastName: 'User', email: 'test@test.com', imageSrc: '');
+      id: 0,
+      firstName: 'Test',
+      lastName: 'User',
+      email: 'test@test.com',
+      imageSrc: '',
+      likedArticles: [],
+      publishedArticles: [],
+    );
   }
 
   Map<String, dynamic> toMap() {
@@ -27,6 +36,8 @@ class UserEntity {
       'lastName': lastName,
       'email': email,
       'imageSrc': imageSrc,
+      'likedArticles': [],
+      'publishedArticles': [],
     };
   }
 
@@ -37,6 +48,8 @@ class UserEntity {
       lastName: map['lastName'] as String,
       email: map['email'] as String,
       imageSrc: map['imageSrc'] as String,
+      likedArticles: map['likedArticles'] as List<String>,
+      publishedArticles: map['publishedArticles'] as List<String>,
     );
   }
 
@@ -46,6 +59,8 @@ class UserEntity {
     String? lastName,
     String? email,
     String? imageSrc,
+    List<String>? likedArticles,
+    List<String>? publishedArticles,
   }) {
     return UserEntity(
       id: id ?? this.id,
@@ -53,6 +68,8 @@ class UserEntity {
       lastName: lastName ?? this.lastName,
       email: email ?? this.email,
       imageSrc: imageSrc ?? this.imageSrc,
+      likedArticles: likedArticles ?? this.likedArticles,
+      publishedArticles: publishedArticles ?? this.publishedArticles,
     );
   }
 
@@ -65,9 +82,17 @@ class UserEntity {
           firstName == other.firstName &&
           lastName == other.lastName &&
           email == other.email &&
-          imageSrc == other.imageSrc;
+          imageSrc == other.imageSrc &&
+          likedArticles == other.likedArticles &&
+          publishedArticles == other.publishedArticles;
 
   @override
   int get hashCode =>
-      id.hashCode ^ firstName.hashCode ^ lastName.hashCode ^ email.hashCode ^ imageSrc.hashCode;
+      id.hashCode ^
+      firstName.hashCode ^
+      lastName.hashCode ^
+      email.hashCode ^
+      imageSrc.hashCode ^
+      likedArticles.hashCode ^
+      publishedArticles.hashCode;
 }
