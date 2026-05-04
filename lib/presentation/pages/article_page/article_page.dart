@@ -15,7 +15,7 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:http/http.dart' as http;
 import 'package:provider/provider.dart';
 
-import '../../../utils/intl_formatter.dart';
+import '../../../utils/intl_day_formatter.dart';
 import '../../notifiers/posts/global_mock_storage_provider.dart';
 import '../../widgets/circled_button_outlined.dart';
 import '../../widgets/post_cover_photo.dart';
@@ -24,10 +24,7 @@ import '../../widgets/post_cover_photo.dart';
 class ArticlePage extends StatefulWidget {
   final int articleId;
 
-  const ArticlePage({
-    required this.articleId,
-    super.key,
-  });
+  const ArticlePage({required this.articleId, super.key});
 
   @override
   State<ArticlePage> createState() => _ArticlePageState();
@@ -61,41 +58,38 @@ class _ArticlePageState extends State<ArticlePage> {
                       icon: FontAwesomeIcons.chevronLeft,
                       onTap: () => context.router.popForced(),
                     ),
-                    Consumer<GlobalMockStorageProvider>(builder: (context, notifier, child) {
-                      post = getUpdatedPostData();
+                    Consumer<GlobalMockStorageProvider>(
+                      builder: (context, notifier, child) {
+                        post = getUpdatedPostData();
 
-                      return Row(
-                        spacing: AppDimensions.normalM,
-                        children: [
-                          CircledButtonOutlined(
-                            icon: FontAwesomeIcons.comment,
-                            onTap: () => context.router.push(CommentsRoute(id: widget.articleId)),
-                          ),
-                          CircledButtonOutlined(
-                            icon:
-                                post.isLiked ? FontAwesomeIcons.solidHeart : FontAwesomeIcons.heart,
-                            onTap: () => notifier.likePost(widget.articleId),
-                          ),
-                          CircledButtonOutlined(
-                            icon: FontAwesomeIcons.shareFromSquare,
-                            onTap: () => onShareButtonPressed(post),
-                          ),
-                        ],
-                      );
-                    }),
+                        return Row(
+                          spacing: AppDimensions.normalM,
+                          children: [
+                            CircledButtonOutlined(
+                              icon: FontAwesomeIcons.comment,
+                              onTap: () => context.router.push(CommentsRoute(id: widget.articleId)),
+                            ),
+                            CircledButtonOutlined(
+                              icon: post.isLiked
+                                  ? FontAwesomeIcons.solidHeart
+                                  : FontAwesomeIcons.heart,
+                              onTap: () => notifier.likePost(widget.articleId),
+                            ),
+                            CircledButtonOutlined(
+                              icon: FontAwesomeIcons.shareFromSquare,
+                              onTap: () => onShareButtonPressed(post),
+                            ),
+                          ],
+                        );
+                      },
+                    ),
                   ],
                 ),
 
-                Text(
-                  post.title,
-                  style: AppTextStyles.sfPro24,
-                ),
+                Text(post.title, style: AppTextStyles.sfPro24),
 
                 //post info row
-                Text(
-                  getPostInfo(post),
-                  style: AppTextStyles.sfPro14,
-                ),
+                Text(getPostInfo(post), style: AppTextStyles.sfPro14),
 
                 //photo cover
                 PostCoverPhoto(
@@ -107,10 +101,7 @@ class _ArticlePageState extends State<ArticlePage> {
                 //post content
                 ListView.separated(
                   itemBuilder: (context, index) {
-                    return Text(
-                      post.paragraphs[index],
-                      style: AppTextStyles.sfPro14,
-                    );
+                    return Text(post.paragraphs[index], style: AppTextStyles.sfPro14);
                   },
                   separatorBuilder: (context, index) {
                     return const SizedBox(height: AppDimensions.normalS);
@@ -148,7 +139,7 @@ class _ArticlePageState extends State<ArticlePage> {
 
   String getPostInfo(PostEntity post) {
     final author = post.author;
-    final date = IntlFormatter.getFormattedDays(post.daysAgoPublished);
+    final date = IntlDayFormatter.getFormattedDays(post.daysAgoPublished);
     final readTime = '${L10n.articleReadTimeLabel} ${post.minToRead} ${L10n.articleReadTimeUnits}';
 
     return [author, date, readTime].join('  |  ');

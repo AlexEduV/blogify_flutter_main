@@ -1,7 +1,6 @@
 import 'package:intl/intl.dart';
 
-class RelativeDateHelper {
-
+class RelativeDateUtil {
   static String getRelativeDate(String dateString) {
     // Define the input format
     DateFormat inputFormat = DateFormat('MM/dd/yy');
