@@ -23,4 +23,6 @@ class AppDimensions {
   static const accountUserAvatarSize = 120.0;
 
   static const placeholderPageIconSize = 48.0;
+
+  static const publishedArticleImageSize = 50.0;
 }

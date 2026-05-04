@@ -1,6 +1,8 @@
 import 'package:auto_route/annotations.dart';
 import 'package:blogify_flutter_main/common/app_dimensions.dart';
 import 'package:blogify_flutter_main/common/app_text_styles.dart';
+import 'package:blogify_flutter_main/core/di/injection_container.dart';
+import 'package:blogify_flutter_main/domain/usecases/posts/get_post_by_id_use_case.dart';
 import 'package:blogify_flutter_main/presentation/notifiers/user/user_data_notifier.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -28,7 +30,41 @@ class PublishedArticlesPage extends StatelessWidget {
 
             return ListView.builder(
               itemBuilder: (context, index) {
-                return Text('some article with id: ${list[index]}');
+                final articleId = int.parse(list[index]);
+                final article = serviceLocator<GetPostByIdUseCase>().call(articleId);
+
+                return Container(
+                  padding: const EdgeInsets.all(AppDimensions.minorL),
+                  decoration: BoxDecoration(
+                    color: Colors.white,
+                    borderRadius: BorderRadius.circular(AppDimensions.normalS),
+                  ),
+                  child: Row(
+                    spacing: AppDimensions.normalS,
+                    children: [
+                      Container(
+                        decoration: BoxDecoration(
+                          image: DecorationImage(
+                            image: NetworkImage(article.imageSrc),
+                            fit: BoxFit.cover,
+                          ),
+                          borderRadius: BorderRadius.circular(AppDimensions.minorS),
+                        ),
+                        height: AppDimensions.publishedArticleImageSize,
+                        width: AppDimensions.publishedArticleImageSize,
+                      ),
+
+                      Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        spacing: AppDimensions.minorXS,
+                        children: [
+                          Text(article.title, style: AppTextStyles.sfPro16),
+                          Text(article.author),
+                        ],
+                      ),
+                    ],
+                  ),
+                );
               },
               itemCount: list.length,
             );
