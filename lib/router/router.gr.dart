@@ -12,7 +12,7 @@
 import 'package:auto_route/auto_route.dart' as _i7;
 import 'package:blogify_flutter_main/presentation/pages/account_page/account_page.dart'
     as _i1;
-import 'package:blogify_flutter_main/presentation/pages/account_page/sub_pages/published_articles_page.dart'
+import 'package:blogify_flutter_main/presentation/pages/account_page/sub_pages/published_articles_page/published_articles_page.dart'
     as _i6;
 import 'package:blogify_flutter_main/presentation/pages/article_page/article_page.dart'
     as _i2;

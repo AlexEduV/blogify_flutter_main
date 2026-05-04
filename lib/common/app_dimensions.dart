@@ -25,4 +25,5 @@ class AppDimensions {
   static const placeholderPageIconSize = 48.0;
 
   static const publishedArticleImageSize = 50.0;
+  static const publishedArticlePlaceholderIconSize = 50.0;
 }
