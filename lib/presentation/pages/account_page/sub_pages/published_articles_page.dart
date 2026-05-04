@@ -3,6 +3,7 @@ import 'package:blogify_flutter_main/common/app_dimensions.dart';
 import 'package:blogify_flutter_main/common/app_text_styles.dart';
 import 'package:blogify_flutter_main/core/di/injection_container.dart';
 import 'package:blogify_flutter_main/domain/usecases/posts/get_post_by_id_use_case.dart';
+import 'package:blogify_flutter_main/l10n/l10n.dart';
 import 'package:blogify_flutter_main/presentation/notifiers/user/user_data_notifier.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -14,7 +15,7 @@ class PublishedArticlesPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: const Text('Published articles'), centerTitle: true),
+      appBar: AppBar(title: const Text(L10n.publishedArticlesPageTitle), centerTitle: true),
       body: Padding(
         padding: const EdgeInsets.symmetric(
           vertical: AppDimensions.normalS,
@@ -25,7 +26,7 @@ class PublishedArticlesPage extends StatelessWidget {
             final list = notifier.user.publishedArticles;
 
             if (list.isEmpty) {
-              return const Text('The list is empty.', style: AppTextStyles.sfPro16);
+              return const Text(L10n.publishedArticlesPageEmptyList, style: AppTextStyles.sfPro16);
             }
 
             return ListView.builder(
