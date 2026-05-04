@@ -33,43 +33,47 @@ class PublishedArticlesPage extends StatelessWidget {
                 final articleId = int.parse(list[index]);
                 final article = serviceLocator<GetPostByIdUseCase>().call(articleId);
 
-                return Container(
+                return Padding(
                   padding: const EdgeInsets.all(AppDimensions.minorL),
-                  decoration: BoxDecoration(
-                    color: Colors.white,
-                    borderRadius: BorderRadius.circular(AppDimensions.normalS),
-                  ),
-                  child: Row(
-                    spacing: AppDimensions.normalS,
-                    children: [
-                      Container(
-                        decoration: BoxDecoration(
-                          image: DecorationImage(
-                            image: NetworkImage(article.imageSrc),
-                            fit: BoxFit.cover,
-                          ),
-                          borderRadius: BorderRadius.circular(AppDimensions.minorS),
-                        ),
-                        height: AppDimensions.publishedArticleImageSize,
-                        width: AppDimensions.publishedArticleImageSize,
-                      ),
-
-                      Expanded(
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          spacing: AppDimensions.minorXS,
-                          children: [
-                            Text(
-                              article.title,
-                              style: AppTextStyles.sfPro16,
-                              maxLines: 1,
-                              overflow: TextOverflow.ellipsis,
+                  child: DecoratedBox(
+                    decoration: BoxDecoration(
+                      color: Colors.white,
+                      borderRadius: BorderRadius.circular(AppDimensions.normalS),
+                    ),
+                    child: Row(
+                      spacing: AppDimensions.normalS,
+                      children: [
+                        SizedBox(
+                          height: AppDimensions.publishedArticleImageSize,
+                          width: AppDimensions.publishedArticleImageSize,
+                          child: DecoratedBox(
+                            decoration: BoxDecoration(
+                              image: DecorationImage(
+                                image: NetworkImage(article.imageSrc),
+                                fit: BoxFit.cover,
+                              ),
+                              borderRadius: BorderRadius.circular(AppDimensions.minorS),
                             ),
-                            Text(article.author, maxLines: 1, overflow: TextOverflow.ellipsis),
-                          ],
+                          ),
                         ),
-                      ),
-                    ],
+
+                        Expanded(
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            spacing: AppDimensions.minorXS,
+                            children: [
+                              Text(
+                                article.title,
+                                style: AppTextStyles.sfPro16,
+                                maxLines: 1,
+                                overflow: TextOverflow.ellipsis,
+                              ),
+                              Text(article.author, maxLines: 1, overflow: TextOverflow.ellipsis),
+                            ],
+                          ),
+                        ),
+                      ],
+                    ),
                   ),
                 );
               },
