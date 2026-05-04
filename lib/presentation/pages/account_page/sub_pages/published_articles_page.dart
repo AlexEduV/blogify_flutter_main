@@ -54,13 +54,20 @@ class PublishedArticlesPage extends StatelessWidget {
                         width: AppDimensions.publishedArticleImageSize,
                       ),
 
-                      Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        spacing: AppDimensions.minorXS,
-                        children: [
-                          Text(article.title, style: AppTextStyles.sfPro16),
-                          Text(article.author),
-                        ],
+                      Expanded(
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          spacing: AppDimensions.minorXS,
+                          children: [
+                            Text(
+                              article.title,
+                              style: AppTextStyles.sfPro16,
+                              maxLines: 1,
+                              overflow: TextOverflow.ellipsis,
+                            ),
+                            Text(article.author, maxLines: 1, overflow: TextOverflow.ellipsis),
+                          ],
+                        ),
                       ),
                     ],
                   ),
