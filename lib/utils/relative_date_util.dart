@@ -25,7 +25,7 @@ class RelativeDateUtil {
     } else if (difference >= 30) {
       return '${(difference / 30).floor()} month${difference >= 60 ? 's' : ''} ago';
     } else if (difference >= 14) {
-      return '${(difference / 7).floor()} week${difference >= 21 ? 's' : ''} ago';
+      return '${(difference / 7).floor()} week${difference >= 14 ? 's' : ''} ago';
     }
 
     return '$difference days ago';
