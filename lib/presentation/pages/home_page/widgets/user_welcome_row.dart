@@ -53,6 +53,6 @@ class UserWelcomeRow extends StatelessWidget {
   }
 
   Future<void> onUserSettingsButtonPressed(BuildContext context) async {
-    context.router.push(const UserSettingsRoute());
+    context.router.push(const AccountRoute());
   }
 }

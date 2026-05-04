@@ -10,7 +10,7 @@ void main() {
       expect(AppColors.primaryColor, const Color(0xfff5f5f5));
       expect(AppColors.secondaryColor, Colors.white);
       expect(AppColors.settingsItemColor, const Color(0xfff8f8f8));
-      expect(AppColors.emeraldGreen, const Color(0xff2e7d32));
+      expect(AppColors.emeraldGreen, const Color(0xff009688));
       expect(AppColors.beige, const Color(0xffdfae94));
       expect(AppColors.dark, const Color(0xff013500));
     });

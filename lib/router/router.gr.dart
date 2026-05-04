@@ -9,26 +9,44 @@
 // coverage:ignore-file
 
 // ignore_for_file: no_leading_underscores_for_library_prefixes
-import 'package:auto_route/auto_route.dart' as _i6;
+import 'package:auto_route/auto_route.dart' as _i7;
 import 'package:blogify_flutter_main/presentation/pages/account_page/account_page.dart'
-    as _i5;
-import 'package:blogify_flutter_main/presentation/pages/article_page/article_page.dart'
     as _i1;
-import 'package:blogify_flutter_main/presentation/pages/comments_page/comments_page.dart'
+import 'package:blogify_flutter_main/presentation/pages/account_page/sub_pages/published_articles_page/published_articles_page.dart'
+    as _i6;
+import 'package:blogify_flutter_main/presentation/pages/article_page/article_page.dart'
     as _i2;
-import 'package:blogify_flutter_main/presentation/pages/home_page/home_page.dart'
+import 'package:blogify_flutter_main/presentation/pages/comments_page/comments_page.dart'
     as _i3;
-import 'package:blogify_flutter_main/presentation/widgets/placeholder_page.dart'
+import 'package:blogify_flutter_main/presentation/pages/home_page/home_page.dart'
     as _i4;
-import 'package:flutter/material.dart' as _i7;
+import 'package:blogify_flutter_main/presentation/widgets/placeholder_page.dart'
+    as _i5;
+import 'package:flutter/material.dart' as _i8;
 
 /// generated route for
-/// [_i1.ArticlePage]
-class ArticleRoute extends _i6.PageRouteInfo<ArticleRouteArgs> {
+/// [_i1.AccountPage]
+class AccountRoute extends _i7.PageRouteInfo<void> {
+  const AccountRoute({List<_i7.PageRouteInfo>? children})
+    : super(AccountRoute.name, initialChildren: children);
+
+  static const String name = 'AccountRoute';
+
+  static _i7.PageInfo page = _i7.PageInfo(
+    name,
+    builder: (data) {
+      return const _i1.AccountPage();
+    },
+  );
+}
+
+/// generated route for
+/// [_i2.ArticlePage]
+class ArticleRoute extends _i7.PageRouteInfo<ArticleRouteArgs> {
   ArticleRoute({
     required int articleId,
-    _i7.Key? key,
-    List<_i6.PageRouteInfo>? children,
+    _i8.Key? key,
+    List<_i7.PageRouteInfo>? children,
   }) : super(
          ArticleRoute.name,
          args: ArticleRouteArgs(articleId: articleId, key: key),
@@ -37,11 +55,11 @@ class ArticleRoute extends _i6.PageRouteInfo<ArticleRouteArgs> {
 
   static const String name = 'ArticleRoute';
 
-  static _i6.PageInfo page = _i6.PageInfo(
+  static _i7.PageInfo page = _i7.PageInfo(
     name,
     builder: (data) {
       final args = data.argsAs<ArticleRouteArgs>();
-      return _i1.ArticlePage(articleId: args.articleId, key: args.key);
+      return _i2.ArticlePage(articleId: args.articleId, key: args.key);
     },
   );
 }
@@ -51,7 +69,7 @@ class ArticleRouteArgs {
 
   final int articleId;
 
-  final _i7.Key? key;
+  final _i8.Key? key;
 
   @override
   String toString() {
@@ -60,12 +78,12 @@ class ArticleRouteArgs {
 }
 
 /// generated route for
-/// [_i2.CommentsPage]
-class CommentsRoute extends _i6.PageRouteInfo<CommentsRouteArgs> {
+/// [_i3.CommentsPage]
+class CommentsRoute extends _i7.PageRouteInfo<CommentsRouteArgs> {
   CommentsRoute({
     required int id,
-    _i7.Key? key,
-    List<_i6.PageRouteInfo>? children,
+    _i8.Key? key,
+    List<_i7.PageRouteInfo>? children,
   }) : super(
          CommentsRoute.name,
          args: CommentsRouteArgs(id: id, key: key),
@@ -74,11 +92,11 @@ class CommentsRoute extends _i6.PageRouteInfo<CommentsRouteArgs> {
 
   static const String name = 'CommentsRoute';
 
-  static _i6.PageInfo page = _i6.PageInfo(
+  static _i7.PageInfo page = _i7.PageInfo(
     name,
     builder: (data) {
       final args = data.argsAs<CommentsRouteArgs>();
-      return _i2.CommentsPage(id: args.id, key: args.key);
+      return _i3.CommentsPage(id: args.id, key: args.key);
     },
   );
 }
@@ -88,7 +106,7 @@ class CommentsRouteArgs {
 
   final int id;
 
-  final _i7.Key? key;
+  final _i8.Key? key;
 
   @override
   String toString() {
@@ -97,49 +115,49 @@ class CommentsRouteArgs {
 }
 
 /// generated route for
-/// [_i3.HomePage]
-class HomeRoute extends _i6.PageRouteInfo<void> {
-  const HomeRoute({List<_i6.PageRouteInfo>? children})
+/// [_i4.HomePage]
+class HomeRoute extends _i7.PageRouteInfo<void> {
+  const HomeRoute({List<_i7.PageRouteInfo>? children})
     : super(HomeRoute.name, initialChildren: children);
 
   static const String name = 'HomeRoute';
 
-  static _i6.PageInfo page = _i6.PageInfo(
+  static _i7.PageInfo page = _i7.PageInfo(
     name,
     builder: (data) {
-      return const _i3.HomePage();
+      return const _i4.HomePage();
     },
   );
 }
 
 /// generated route for
-/// [_i4.PlaceholderPage]
-class PlaceholderRoute extends _i6.PageRouteInfo<void> {
-  const PlaceholderRoute({List<_i6.PageRouteInfo>? children})
+/// [_i5.PlaceholderPage]
+class PlaceholderRoute extends _i7.PageRouteInfo<void> {
+  const PlaceholderRoute({List<_i7.PageRouteInfo>? children})
     : super(PlaceholderRoute.name, initialChildren: children);
 
   static const String name = 'PlaceholderRoute';
 
-  static _i6.PageInfo page = _i6.PageInfo(
+  static _i7.PageInfo page = _i7.PageInfo(
     name,
     builder: (data) {
-      return const _i4.PlaceholderPage();
+      return const _i5.PlaceholderPage();
     },
   );
 }
 
 /// generated route for
-/// [_i5.UserSettingsPage]
-class UserSettingsRoute extends _i6.PageRouteInfo<void> {
-  const UserSettingsRoute({List<_i6.PageRouteInfo>? children})
-    : super(UserSettingsRoute.name, initialChildren: children);
+/// [_i6.PublishedArticlesPage]
+class PublishedArticlesRoute extends _i7.PageRouteInfo<void> {
+  const PublishedArticlesRoute({List<_i7.PageRouteInfo>? children})
+    : super(PublishedArticlesRoute.name, initialChildren: children);
 
-  static const String name = 'UserSettingsRoute';
+  static const String name = 'PublishedArticlesRoute';
 
-  static _i6.PageInfo page = _i6.PageInfo(
+  static _i7.PageInfo page = _i7.PageInfo(
     name,
     builder: (data) {
-      return const _i5.UserSettingsPage();
+      return const _i6.PublishedArticlesPage();
     },
   );
 }

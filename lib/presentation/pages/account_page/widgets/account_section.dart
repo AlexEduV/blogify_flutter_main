@@ -20,20 +20,12 @@ class AccountSection extends StatelessWidget {
 
         const SizedBox(height: AppDimensions.normalM),
 
-        //todo: can be refactored to 'spacing: '
-        ...items.map((item) {
-          return Column(
-            children: [
-              AccountListItem(
-                //todo: onTap has to lead somewhere
-                onTap: () {},
-                icon: item['icon'],
-                title: item['title'],
-              ),
-              const SizedBox(height: AppDimensions.normalM),
-            ],
-          );
-        }),
+        Column(
+          spacing: AppDimensions.normalM,
+          children: items.map((item) {
+            return AccountListItem(onTap: item['onTap'], icon: item['icon'], title: item['title']);
+          }).toList(),
+        ),
       ],
     );
   }

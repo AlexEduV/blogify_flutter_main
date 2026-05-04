@@ -44,6 +44,8 @@ void main() {
         'lastName': 'Smith',
         'email': 'alice@example.com',
         'imageSrc': 'alice.png',
+        'publishedArticles': '[]',
+        'likedArticles': '[]',
       });
     });
 

@@ -28,18 +28,34 @@ class DatabaseManager {
           '${UserTable.colFirstName} TEXT, '
           '${UserTable.colLastName} TEXT, '
           '${UserTable.colEmail} TEXT, '
-          '${UserTable.colImageSrc} TEXT'
+          '${UserTable.colImageSrc} TEXT, '
+          '${UserTable.colPublishedArticles} TEXT DEFAULT \'[]\', '
+          '${UserTable.colLikedArticles} TEXT DEFAULT \'[]\''
           ')',
         );
       },
-      version: 1,
+      version: 4,
+      onUpgrade: (db, oldVersion, newVersion) async {
+        if (oldVersion < 4) {
+          await addColumnIfNotExists(
+            db,
+            UserTable.tableName,
+            UserTable.colPublishedArticles,
+            'TEXT',
+          );
+          await addColumnIfNotExists(db, UserTable.tableName, UserTable.colLikedArticles, 'TEXT');
+        }
+      },
     );
   }
 
   Future<void> insertUser(UserEntity user) async {
     final db = await database;
-    await db.insert(UserTable.tableName, user.toMap(),
-        conflictAlgorithm: ConflictAlgorithm.replace);
+    await db.insert(
+      UserTable.tableName,
+      user.toMap(),
+      conflictAlgorithm: ConflictAlgorithm.replace,
+    );
   }
 
   Future<UserEntity?> getUser() async {
@@ -61,5 +77,15 @@ class DatabaseManager {
   Future<void> deleteUser(int id) async {
     final db = await database;
     await db.delete(UserTable.tableName, where: 'id = ?', whereArgs: [id]);
+  }
+
+  Future<void> addColumnIfNotExists(Database db, String table, String column, String type) async {
+    // Query the table info
+    final result = await db.rawQuery('PRAGMA table_info($table)');
+    final columnExists = result.any((row) => row['name'] == column);
+
+    if (!columnExists) {
+      await db.execute('ALTER TABLE $table ADD COLUMN $column $type;');
+    }
   }
 }

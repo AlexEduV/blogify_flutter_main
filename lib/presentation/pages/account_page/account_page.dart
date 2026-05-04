@@ -1,33 +1,52 @@
-import 'package:auto_route/annotations.dart';
+import 'package:auto_route/auto_route.dart';
 import 'package:blogify_flutter_main/common/app_dimensions.dart';
 import 'package:blogify_flutter_main/common/app_text_styles.dart';
 import 'package:blogify_flutter_main/l10n/l10n.dart';
-import 'package:blogify_flutter_main/presentation/notifiers/settings_page/settings_page_notifier.dart';
 import 'package:blogify_flutter_main/presentation/notifiers/user/user_data_notifier.dart';
 import 'package:blogify_flutter_main/presentation/pages/account_page/widgets/account_section.dart';
 import 'package:blogify_flutter_main/presentation/pages/account_page/widgets/app_version_footer.dart';
+import 'package:blogify_flutter_main/router/router.gr.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:provider/provider.dart';
 
+import '../../notifiers/account_page/account_page_notifier.dart';
 import '../../widgets/user_photo.dart';
 
 @RoutePage()
-class UserSettingsPage extends StatelessWidget {
-  const UserSettingsPage({super.key});
+class AccountPage extends StatelessWidget {
+  const AccountPage({super.key});
 
   @override
   Widget build(BuildContext context) {
     //todo: move to a repository or data source with toJson and fromJson methods
     final activityItems = [
-      {'icon': FontAwesomeIcons.fileLines, 'title': L10n.settingsPublishedArticlesItemTitle},
-      {'icon': FontAwesomeIcons.thumbsUp, 'title': L10n.settingsLikedArticlesItemTitle},
+      {
+        'icon': FontAwesomeIcons.fileLines,
+        'title': L10n.settingsPublishedArticlesItemTitle,
+        'onTap': () {
+          context.router.push(const PublishedArticlesRoute());
+        },
+      },
+      {
+        'icon': FontAwesomeIcons.thumbsUp,
+        'title': L10n.settingsLikedArticlesItemTitle,
+        'onTap': null,
+      },
     ];
 
     final generalItems = [
-      {'icon': FontAwesomeIcons.user, 'title': L10n.settingsPersonalDataItemTitle},
-      {'icon': FontAwesomeIcons.bell, 'title': L10n.settingsPushNotificationsItemTitle},
-      {'icon': FontAwesomeIcons.gear, 'title': L10n.settingsGeneralSettingsItemTitle},
+      {'icon': FontAwesomeIcons.user, 'title': L10n.settingsPersonalDataItemTitle, 'onTap': null},
+      {
+        'icon': FontAwesomeIcons.bell,
+        'title': L10n.settingsPushNotificationsItemTitle,
+        'onTap': null,
+      },
+      {
+        'icon': FontAwesomeIcons.gear,
+        'title': L10n.settingsGeneralSettingsItemTitle,
+        'onTap': null,
+      },
     ];
 
     return Scaffold(
@@ -86,7 +105,7 @@ class UserSettingsPage extends StatelessWidget {
   }
 
   Future<void> onUserPhotoPressed(BuildContext context) async {
-    final path = await context.read<SettingsPageNotifier>().getNewUserImageSrc();
+    final path = await context.read<AccountPageNotifier>().getNewUserImageSrc();
 
     if (!context.mounted) return;
 

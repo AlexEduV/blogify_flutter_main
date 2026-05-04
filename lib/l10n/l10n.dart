@@ -35,4 +35,8 @@ class L10n {
 
   static const placeholderPageTitle = 'Coming soon';
   static const placeholderPageSubtitle = 'This feature is still under development.';
+
+  static const publishedArticlesPageTitle = 'Published articles';
+  static const publishedArticlesPageEmptyListTitle = 'No published articles.';
+  static const publishedArticlesPageEmptyListSubtitle = 'You can add an article in the home page.';
 }

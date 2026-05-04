@@ -9,7 +9,7 @@ class AppColors {
   static const Color secondaryColor = Colors.white;
   static const Color settingsItemColor = Color(0xfff8f8f8);
 
-  static const Color emeraldGreen = Color(0xff2e7d32);
+  static const Color emeraldGreen = Color(0xff009688);
   static const Color beige = Color(0xffdfae94);
 
   static final offGrey = Colors.grey.shade200;
