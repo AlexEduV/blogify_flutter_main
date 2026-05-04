@@ -4,21 +4,13 @@ import 'package:flutter/material.dart';
 class SectionTitle extends StatelessWidget {
   final String title;
 
-  const SectionTitle({
-    required this.title,
-    super.key,
-  });
+  const SectionTitle({required this.title, super.key});
 
   @override
   Widget build(BuildContext context) {
     return Row(
       children: [
-        Text(
-          title,
-          style: AppTextStyles.sfPro13Dark.copyWith(
-            fontWeight: FontWeight.w600,
-          ),
-        ),
+        Text(title, style: AppTextStyles.sfPro14Dark.copyWith(fontWeight: FontWeight.w600)),
       ],
     );
   }

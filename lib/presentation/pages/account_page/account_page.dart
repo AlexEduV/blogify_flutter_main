@@ -64,10 +64,10 @@ class AccountPage extends StatelessWidget {
 
                           Text(
                             '${userNotifier.user.firstName} ${userNotifier.user.lastName}',
-                            style: AppTextStyles.sfPro20,
+                            style: AppTextStyles.sfPro20.copyWith(fontWeight: FontWeight.w600),
                           ),
 
-                          const SizedBox(height: AppDimensions.minorS),
+                          const SizedBox(height: AppDimensions.minorXS),
 
                           Text(userNotifier.user.email, style: AppTextStyles.sfPro16Accent),
 
