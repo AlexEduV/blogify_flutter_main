@@ -5,18 +5,14 @@ import 'package:blogify_flutter_main/domain/entities/post_entity.dart';
 import 'package:blogify_flutter_main/l10n/l10n.dart';
 import 'package:flutter/material.dart';
 
-import '../../../../utils/intl_formatter.dart';
+import '../../../../utils/intl_day_formatter.dart';
 import '../../../widgets/post_cover_photo.dart';
 
 class PostCard extends StatelessWidget {
   final PostEntity post;
   final Function(int) onTap;
 
-  const PostCard({
-    required this.post,
-    required this.onTap,
-    super.key,
-  });
+  const PostCard({required this.post, required this.onTap, super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -29,10 +25,7 @@ class PostCard extends StatelessWidget {
           decoration: BoxDecoration(
             color: AppColors.primaryColor,
             borderRadius: BorderRadius.circular(AppDimensions.normalL),
-            border: Border.all(
-              width: AppDimensions.minorS,
-              color: Colors.white,
-            ),
+            border: Border.all(width: AppDimensions.minorS, color: Colors.white),
             boxShadow: [
               BoxShadow(
                 color: Colors.black.withValues(alpha: 0.17),
@@ -45,16 +38,11 @@ class PostCard extends StatelessWidget {
           padding: const EdgeInsets.all(AppDimensions.minorS),
           child: Column(
             children: [
-              PostCoverPhoto(
-                imageSrc: post.imageSrc,
-              ),
+              PostCoverPhoto(imageSrc: post.imageSrc),
               const SizedBox(height: AppDimensions.normalM),
+              Text(post.author, style: AppTextStyles.sfPro16),
               Text(
-                post.author,
-                style: AppTextStyles.sfPro16,
-              ),
-              Text(
-                IntlFormatter.getFormattedDays(post.daysAgoPublished),
+                IntlDayFormatter.getFormattedDays(post.daysAgoPublished),
                 style: AppTextStyles.sfPro14Accent,
               ),
               const SizedBox(height: AppDimensions.majorS),
