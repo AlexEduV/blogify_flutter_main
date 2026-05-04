@@ -21,6 +21,7 @@ class UserPhoto extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final image = getUserImageProvider();
+    final outlineBorderWidth = size / 40;
 
     return Stack(
       clipBehavior: Clip.none,
@@ -28,22 +29,30 @@ class UserPhoto extends StatelessWidget {
       children: [
         Padding(
           padding: const EdgeInsets.only(bottom: AppDimensions.normalM),
-          child: Material(
-            shape: const CircleBorder(),
-            clipBehavior: Clip.antiAlias,
-            child: InkWell(
-              onTap: onTap,
-              customBorder: const CircleBorder(),
-              highlightColor: Colors.grey.withAlpha(120),
-              child: image != null
-                  ? Ink.image(
-                      image: image,
-                      width: size,
-                      height: size,
-                      fit: BoxFit.cover,
-                      alignment: Alignment.topCenter,
-                    )
-                  : null,
+          child: Container(
+            width: size + (outlineBorderWidth * 2),
+            height: size + (outlineBorderWidth * 2),
+            decoration: BoxDecoration(
+              shape: BoxShape.circle,
+              border: Border.all(color: Colors.grey, width: outlineBorderWidth),
+            ),
+            child: Material(
+              shape: const CircleBorder(),
+              clipBehavior: Clip.antiAlias,
+              child: InkWell(
+                onTap: onTap,
+                customBorder: const CircleBorder(),
+                highlightColor: Colors.grey.withAlpha(120),
+                child: image != null
+                    ? Ink.image(
+                        image: image,
+                        width: size,
+                        height: size,
+                        fit: BoxFit.cover,
+                        alignment: Alignment.topCenter,
+                      )
+                    : null,
+              ),
             ),
           ),
         ),
