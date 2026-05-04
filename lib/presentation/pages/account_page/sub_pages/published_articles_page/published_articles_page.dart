@@ -30,12 +30,15 @@ class PublishedArticlesPage extends StatelessWidget {
               return const EmptyArticlesPage();
             }
 
-            return ListView.builder(
+            return ListView.separated(
               itemBuilder: (context, index) {
                 final postId = int.parse(articleList[index]);
                 final post = serviceLocator<GetPostByIdUseCase>().call(postId);
 
                 return ArticleListItemSmall(postEntity: post);
+              },
+              separatorBuilder: (context, index) {
+                return const SizedBox(height: AppDimensions.normalS);
               },
               itemCount: articleList.length,
             );
