@@ -27,7 +27,7 @@ class AccountPage extends StatelessWidget {
         'onTap': () => context.router.push(const PublishedArticlesRoute()),
       },
       {
-        'icon': FontAwesomeIcons.thumbsUp,
+        'icon': Icons.favorite_outline_rounded,
         'title': L10n.accountItemLikedArticlesTitle,
         'onTap': () => context.router.push(const LikedArticlesRoute()),
       },
