@@ -28,7 +28,7 @@ class LikedArticlesPage extends StatelessWidget {
 
             if (articleList.isEmpty) {
               return const EmptyArticleListPlaceholderPage(
-                icon: Icons.article,
+                icon: Icons.favorite,
                 title: L10n.likedArticlesPageEmptyListTitle,
                 subtitle: L10n.likedArticlesPageEmptyListSubtitle,
               );

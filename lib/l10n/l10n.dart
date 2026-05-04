@@ -39,7 +39,6 @@ class L10n {
   static const publishedArticlesPageEmptyListTitle = 'No published articles.';
   static const publishedArticlesPageEmptyListSubtitle = 'You can add an article in the home page.';
 
-  static const likedArticlesPageEmptyListTitle = 'No favorite articles yet.';
-  static const likedArticlesPageEmptyListSubtitle =
-      'Add any article to favorites in the article page';
+  static const likedArticlesPageEmptyListTitle = 'No liked articles yet.';
+  static const likedArticlesPageEmptyListSubtitle = 'Add any article to liked in the article page.';
 }
