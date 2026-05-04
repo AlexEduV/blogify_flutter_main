@@ -10,13 +10,13 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
 @RoutePage()
-class PublishedArticlesPage extends StatelessWidget {
-  const PublishedArticlesPage({super.key});
+class LikedArticlesPage extends StatelessWidget {
+  const LikedArticlesPage({super.key});
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: const Text(L10n.accountItemPublishedArticlesTitle), centerTitle: true),
+      appBar: AppBar(title: const Text(L10n.accountItemLikedArticlesTitle), centerTitle: true),
       body: Padding(
         padding: const EdgeInsets.symmetric(
           vertical: AppDimensions.normalS,
@@ -24,13 +24,13 @@ class PublishedArticlesPage extends StatelessWidget {
         ),
         child: Consumer<UserDataNotifier>(
           builder: (context, notifier, child) {
-            final articleList = notifier.user.publishedArticles;
+            final articleList = notifier.user.likedArticles;
 
             if (articleList.isEmpty) {
               return const EmptyArticleListPlaceholderPage(
                 icon: Icons.favorite,
-                title: L10n.publishedArticlesPageEmptyListTitle,
-                subtitle: L10n.publishedArticlesPageEmptyListSubtitle,
+                title: L10n.likedArticlesPageEmptyListTitle,
+                subtitle: L10n.likedArticlesPageEmptyListSubtitle,
               );
             }
 

@@ -1,6 +1,7 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:blogify_flutter_main/common/app_routes.dart';
-import 'package:blogify_flutter_main/router/router.gr.dart';
+
+import 'app_router.gr.dart';
 
 @AutoRouterConfig()
 class AppRouter extends RootStackRouter {
@@ -25,6 +26,11 @@ class AppRouter extends RootStackRouter {
     AutoRoute(
       page: PublishedArticlesRoute.page,
       path: '${AppRoutes.homeRoute}${AppRoutes.userRoute}${AppRoutes.publishedArticles}',
+    ),
+
+    AutoRoute(
+      page: LikedArticlesRoute.page,
+      path: '${AppRoutes.homeRoute}${AppRoutes.userRoute}${AppRoutes.likedArticles}',
     ),
   ];
 }

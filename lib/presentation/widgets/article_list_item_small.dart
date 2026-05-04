@@ -1,10 +1,10 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:blogify_flutter_main/domain/entities/post_entity.dart';
-import 'package:blogify_flutter_main/router/router.gr.dart';
 import 'package:flutter/material.dart';
 
 import '../../common/app_dimensions.dart';
 import '../../common/app_text_styles.dart';
+import '../../router/app_router.gr.dart';
 
 class ArticleListItemSmall extends StatelessWidget {
   final PostEntity postEntity;

@@ -3,18 +3,20 @@ import 'package:blogify_flutter_main/common/app_colors.dart';
 import 'package:blogify_flutter_main/common/app_constants.dart';
 import 'package:blogify_flutter_main/common/app_dimensions.dart';
 import 'package:blogify_flutter_main/common/app_text_styles.dart';
+import 'package:blogify_flutter_main/common/extensions/list_extension.dart';
 import 'package:blogify_flutter_main/core/di/injection_container.dart';
 import 'package:blogify_flutter_main/domain/entities/post_entity.dart';
 import 'package:blogify_flutter_main/domain/models/share_params_model.dart';
 import 'package:blogify_flutter_main/domain/usecases/share/share_use_case.dart';
 import 'package:blogify_flutter_main/l10n/l10n.dart';
-import 'package:blogify_flutter_main/router/router.gr.dart';
+import 'package:blogify_flutter_main/presentation/notifiers/user/user_data_notifier.dart';
 import 'package:cross_file/cross_file.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:http/http.dart' as http;
 import 'package:provider/provider.dart';
 
+import '../../../router/app_router.gr.dart';
 import '../../../utils/intl_day_formatter.dart';
 import '../../notifiers/posts/global_mock_storage_provider.dart';
 import '../../widgets/circled_button_outlined.dart';
@@ -73,7 +75,7 @@ class _ArticlePageState extends State<ArticlePage> {
                               icon: post.isLiked
                                   ? FontAwesomeIcons.solidHeart
                                   : FontAwesomeIcons.heart,
-                              onTap: () => notifier.likePost(widget.articleId),
+                              onTap: onLikeButtonPressed,
                             ),
                             CircledButtonOutlined(
                               icon: FontAwesomeIcons.shareFromSquare,
@@ -117,6 +119,18 @@ class _ArticlePageState extends State<ArticlePage> {
       ),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
     );
+  }
+
+  void onLikeButtonPressed() {
+    final notifier = context.read<GlobalMockStorageProvider>();
+    notifier.likePost(widget.articleId);
+
+    final userNotifier = context.read<UserDataNotifier>();
+    final user = userNotifier.user;
+    final likedPosts = user.likedArticles;
+    likedPosts.addOrRemoveIfContains(widget.articleId.toString());
+
+    userNotifier.updateUser(user.copyWith(likedArticles: likedPosts));
   }
 
   Future<void> onShareButtonPressed(PostEntity post) async {
