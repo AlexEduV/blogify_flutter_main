@@ -24,14 +24,12 @@ class AccountPage extends StatelessWidget {
       {
         'icon': FontAwesomeIcons.fileLines,
         'title': L10n.accountItemPublishedArticlesTitle,
-        'onTap': () {
-          context.router.push(const PublishedArticlesRoute());
-        },
+        'onTap': () => context.router.push(const PublishedArticlesRoute()),
       },
       {
         'icon': FontAwesomeIcons.thumbsUp,
         'title': L10n.accountItemLikedArticlesTitle,
-        'onTap': null,
+        'onTap': () => context.router.push(const LikedArticlesRoute()),
       },
     ];
 
