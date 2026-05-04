@@ -30,6 +30,7 @@ class PublishedArticlesPage extends StatelessWidget {
               itemBuilder: (context, index) {
                 return Text('some article with id: ${list[index]}');
               },
+              itemCount: list.length,
             );
           },
         ),
