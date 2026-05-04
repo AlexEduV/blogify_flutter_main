@@ -1,4 +1,5 @@
 import 'package:blogify_flutter_main/common/app_dimensions.dart';
+import 'package:blogify_flutter_main/common/extensions/list_extension.dart';
 import 'package:blogify_flutter_main/presentation/notifiers/user/user_data_notifier.dart';
 import 'package:blogify_flutter_main/presentation/pages/home_page/widgets/segmented_switch.dart';
 import 'package:flutter/material.dart';
@@ -59,7 +60,12 @@ class HomeBottomBar extends StatelessWidget {
     final userNotifier = context.read<UserDataNotifier>();
 
     final user = userNotifier.user;
-    context.read<UserDataNotifier>().updateUser(user.copyWith(publishedArticles: ['2']));
+    final publishedArticles = user.publishedArticles;
+    publishedArticles.addIfNotContains('2');
+
+    context.read<UserDataNotifier>().updateUser(
+      user.copyWith(publishedArticles: publishedArticles),
+    );
 
     //end of testing
 
