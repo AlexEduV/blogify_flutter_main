@@ -13,13 +13,16 @@ class ArticleListItemSmall extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final outerBorderRadius = BorderRadius.circular(AppDimensions.normalS);
+
     return Material(
       color: Colors.white,
+      borderRadius: outerBorderRadius,
       child: InkWell(
-        borderRadius: BorderRadius.circular(AppDimensions.normalS),
+        borderRadius: outerBorderRadius,
         onTap: () => context.router.push(ArticleRoute(articleId: postEntity.id)),
         child: DecoratedBox(
-          decoration: BoxDecoration(borderRadius: BorderRadius.circular(AppDimensions.normalS)),
+          decoration: BoxDecoration(borderRadius: outerBorderRadius),
           child: Padding(
             padding: const EdgeInsets.all(AppDimensions.minorL),
             child: Row(
