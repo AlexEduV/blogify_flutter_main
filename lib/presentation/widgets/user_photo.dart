@@ -1,9 +1,8 @@
 import 'dart:io';
 
+import 'package:blogify_flutter_main/common/app_colors.dart';
 import 'package:blogify_flutter_main/common/app_dimensions.dart';
 import 'package:flutter/material.dart';
-
-import '../../common/app_colors.dart';
 
 class UserPhoto extends StatelessWidget {
   final String imageSrc;
@@ -21,8 +20,8 @@ class UserPhoto extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final image = getUserImage();
-    final photoButtonSize = 40.0;
+    final image = getUserImageProvider();
+    final outlineBorderWidth = size / 40;
 
     return Stack(
       clipBehavior: Clip.none,
@@ -30,22 +29,30 @@ class UserPhoto extends StatelessWidget {
       children: [
         Padding(
           padding: const EdgeInsets.only(bottom: AppDimensions.normalM),
-          child: Material(
-            shape: const CircleBorder(),
-            clipBehavior: Clip.antiAlias,
-            child: InkWell(
-              onTap: onTap,
-              customBorder: const CircleBorder(),
-              highlightColor: Colors.white.withAlpha(120),
-              child: image != null
-                  ? Ink.image(
-                      image: image,
-                      width: size,
-                      height: size,
-                      fit: BoxFit.cover,
-                      alignment: Alignment.topCenter,
-                    )
-                  : null,
+          child: Container(
+            width: size + (outlineBorderWidth * 2),
+            height: size + (outlineBorderWidth * 2),
+            decoration: BoxDecoration(
+              shape: BoxShape.circle,
+              border: Border.all(color: Colors.grey.withAlpha(120), width: outlineBorderWidth),
+            ),
+            child: Material(
+              shape: const CircleBorder(),
+              clipBehavior: Clip.antiAlias,
+              child: InkWell(
+                onTap: onTap,
+                customBorder: const CircleBorder(),
+                highlightColor: Colors.grey.withAlpha(120),
+                child: image != null
+                    ? Ink.image(
+                        image: image,
+                        width: size,
+                        height: size,
+                        fit: BoxFit.cover,
+                        alignment: Alignment.topCenter,
+                      )
+                    : null,
+              ),
             ),
           ),
         ),
@@ -57,27 +64,31 @@ class UserPhoto extends StatelessWidget {
               color: Colors.transparent,
               shape: const CircleBorder(),
               child: Padding(
-                padding: const EdgeInsets.all(AppDimensions.normalS),
+                padding: const EdgeInsets.all(AppDimensions.minorM),
                 child: InkWell(
                   customBorder: const CircleBorder(),
-                  splashColor: Colors.white.withAlpha(120),
+                  splashColor: Colors.grey.withAlpha(120),
                   onTap: onSecondaryTap,
                   child: Ink(
-                    height: photoButtonSize,
-                    width: photoButtonSize,
+                    height: AppDimensions.userPhotoEditButtonSize,
+                    width: AppDimensions.userPhotoEditButtonSize,
                     decoration: const BoxDecoration(
-                      color: AppColors.emeraldGreen,
+                      color: Colors.white,
                       shape: BoxShape.circle,
                       boxShadow: [
                         BoxShadow(
-                          color: Colors.black54,
+                          color: Colors.black26,
                           offset: Offset(0, 2),
                           blurRadius: 2.0,
                           spreadRadius: 1.0,
                         ),
                       ],
                     ),
-                    child: const Icon(Icons.edit, color: Colors.white, size: 24),
+                    child: const Icon(
+                      Icons.edit,
+                      color: AppColors.emeraldGreen,
+                      size: AppDimensions.userPhotoEditButtonIconSize,
+                    ),
                   ),
                 ),
               ),
@@ -88,7 +99,7 @@ class UserPhoto extends StatelessWidget {
     );
   }
 
-  ImageProvider<Object>? getUserImage() {
+  ImageProvider<Object>? getUserImageProvider() {
     if (imageSrc.isEmpty) return null;
 
     if (imageSrc.startsWith('https://')) {
