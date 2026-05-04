@@ -2,32 +2,28 @@ import 'package:intl/intl.dart';
 
 class RelativeDateUtil {
   static String getRelativeDate(String dateString) {
-    // Define the input format
-    DateFormat inputFormat = DateFormat('MM/dd/yy');
+    final inputFormat = DateFormat('MM/dd/yy');
+    final parsedDate = inputFormat.parse(dateString);
+    final now = DateTime.now();
 
-    // Parse the date string into a DateTime object
-    DateTime parsedDate = inputFormat.parse(dateString);
-    DateTime now = DateTime.now();
+    final difference = now.difference(parsedDate);
+    final days = difference.inDays;
+    final years = (days / 365).floor();
+    final months = (days / 30).floor();
+    final weeks = (days / 7).floor();
 
-    // Normalize times to midnight to compare only dates
-    DateTime today = DateTime(now.year, now.month, now.day);
-    DateTime givenDate = DateTime(parsedDate.year, parsedDate.month, parsedDate.day);
-
-    // Calculate the difference in days
-    int difference = today.difference(givenDate).inDays;
-
-    if (difference == 0) {
+    if (days == 0) {
       return 'today';
-    } else if (difference == 1) {
+    } else if (days == 1) {
       return 'yesterday';
-    } else if (difference >= 365) {
-      return '${(difference / 365).floor()} year${difference >= 730 ? 's' : ''} ago';
-    } else if (difference >= 30) {
-      return '${(difference / 30).floor()} month${difference >= 60 ? 's' : ''} ago';
-    } else if (difference >= 14) {
-      return '${(difference / 7).floor()} week${difference >= 14 ? 's' : ''} ago';
+    } else if (years >= 1) {
+      return '$years year${years > 1 ? 's' : ''} ago';
+    } else if (months >= 1) {
+      return '$months month${months > 1 ? 's' : ''} ago';
+    } else if (weeks >= 1) {
+      return '$weeks week${weeks > 1 ? 's' : ''} ago';
+    } else {
+      return '$days days ago';
     }
-
-    return '$difference days ago';
   }
 }

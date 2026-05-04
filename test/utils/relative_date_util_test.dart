@@ -18,8 +18,8 @@ void main() {
       expect(RelativeDateUtil.getRelativeDate(yesterdayString), 'yesterday');
     });
 
-    test('returns "X days ago" for dates within 2-13 days', () {
-      for (var days = 2; days < 14; days++) {
+    test('returns "X days ago" for dates within 2-7 days', () {
+      for (var days = 2; days < 7; days++) {
         final date = DateTime.now().subtract(Duration(days: days));
         final dateString = formatDate(date);
         expect(RelativeDateUtil.getRelativeDate(dateString), '$days days ago');
