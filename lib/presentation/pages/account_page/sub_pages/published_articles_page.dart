@@ -24,20 +24,20 @@ class PublishedArticlesPage extends StatelessWidget {
         ),
         child: Consumer<UserDataNotifier>(
           builder: (context, notifier, child) {
-            final list = notifier.user.publishedArticles;
+            final articleList = notifier.user.publishedArticles;
 
-            if (list.isEmpty) {
+            if (articleList.isEmpty) {
               return const Text(L10n.publishedArticlesPageEmptyList, style: AppTextStyles.sfPro16);
             }
 
             return ListView.builder(
               itemBuilder: (context, index) {
-                final postId = int.parse(list[index]);
+                final postId = int.parse(articleList[index]);
                 final post = serviceLocator<GetPostByIdUseCase>().call(postId);
 
                 return ArticleListItemSmall(postEntity: post);
               },
-              itemCount: list.length,
+              itemCount: articleList.length,
             );
           },
         ),
