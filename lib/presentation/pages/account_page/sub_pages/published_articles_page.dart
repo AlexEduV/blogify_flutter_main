@@ -34,13 +34,13 @@ class PublishedArticlesPage extends StatelessWidget {
                 final articleId = int.parse(list[index]);
                 final article = serviceLocator<GetPostByIdUseCase>().call(articleId);
 
-                return Padding(
-                  padding: const EdgeInsets.all(AppDimensions.minorL),
-                  child: DecoratedBox(
-                    decoration: BoxDecoration(
-                      color: Colors.white,
-                      borderRadius: BorderRadius.circular(AppDimensions.normalS),
-                    ),
+                return DecoratedBox(
+                  decoration: BoxDecoration(
+                    color: Colors.white,
+                    borderRadius: BorderRadius.circular(AppDimensions.normalS),
+                  ),
+                  child: Padding(
+                    padding: const EdgeInsets.all(AppDimensions.minorL),
                     child: Row(
                       spacing: AppDimensions.normalS,
                       children: [
