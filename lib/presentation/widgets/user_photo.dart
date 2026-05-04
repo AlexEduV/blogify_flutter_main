@@ -1,9 +1,8 @@
 import 'dart:io';
 
+import 'package:blogify_flutter_main/common/app_colors.dart';
 import 'package:blogify_flutter_main/common/app_dimensions.dart';
 import 'package:flutter/material.dart';
-
-import '../../common/app_colors.dart';
 
 class UserPhoto extends StatelessWidget {
   final String imageSrc;
@@ -36,7 +35,7 @@ class UserPhoto extends StatelessWidget {
             child: InkWell(
               onTap: onTap,
               customBorder: const CircleBorder(),
-              highlightColor: Colors.white.withAlpha(120),
+              highlightColor: Colors.grey.withAlpha(120),
               child: image != null
                   ? Ink.image(
                       image: image,
@@ -57,27 +56,27 @@ class UserPhoto extends StatelessWidget {
               color: Colors.transparent,
               shape: const CircleBorder(),
               child: Padding(
-                padding: const EdgeInsets.all(AppDimensions.normalS),
+                padding: const EdgeInsets.all(AppDimensions.minorM),
                 child: InkWell(
                   customBorder: const CircleBorder(),
-                  splashColor: Colors.white.withAlpha(120),
+                  splashColor: Colors.grey.withAlpha(120),
                   onTap: onSecondaryTap,
                   child: Ink(
                     height: photoButtonSize,
                     width: photoButtonSize,
                     decoration: const BoxDecoration(
-                      color: AppColors.emeraldGreen,
+                      color: Colors.white,
                       shape: BoxShape.circle,
                       boxShadow: [
                         BoxShadow(
-                          color: Colors.black54,
+                          color: Colors.black26,
                           offset: Offset(0, 2),
                           blurRadius: 2.0,
                           spreadRadius: 1.0,
                         ),
                       ],
                     ),
-                    child: const Icon(Icons.edit, color: Colors.white, size: 24),
+                    child: const Icon(Icons.edit, color: AppColors.emeraldGreen, size: 24),
                   ),
                 ),
               ),
