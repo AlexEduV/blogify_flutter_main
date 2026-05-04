@@ -1,12 +1,12 @@
+import 'package:auto_route/auto_route.dart';
 import 'package:blogify_flutter_main/common/app_dimensions.dart';
-import 'package:blogify_flutter_main/common/extensions/list_extension.dart';
-import 'package:blogify_flutter_main/presentation/notifiers/user/user_data_notifier.dart';
 import 'package:blogify_flutter_main/presentation/pages/home_page/widgets/segmented_switch.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:provider/provider.dart';
 
 import '../../../../common/enums/post_category.dart';
+import '../../../../router/router.gr.dart';
 import '../../../notifiers/home_page/category_index_notifier.dart';
 import '../../../notifiers/posts/global_mock_storage_provider.dart';
 import 'circled_button.dart';
@@ -57,18 +57,18 @@ class HomeBottomBar extends StatelessWidget {
 
   void onAddArticleButtonPressed(BuildContext context) {
     //testing
-    final userNotifier = context.read<UserDataNotifier>();
-
-    final user = userNotifier.user;
-    final publishedArticles = user.publishedArticles;
-    publishedArticles.addIfNotContains('2');
-
-    context.read<UserDataNotifier>().updateUser(
-      user.copyWith(publishedArticles: publishedArticles),
-    );
+    // final userNotifier = context.read<UserDataNotifier>();
+    //
+    // final user = userNotifier.user;
+    // final publishedArticles = user.publishedArticles;
+    // publishedArticles.addIfNotContains('2');
+    //
+    // context.read<UserDataNotifier>().updateUser(
+    //   user.copyWith(publishedArticles: publishedArticles),
+    // );
 
     //end of testing
 
-    //context.router.push(const PlaceholderRoute());
+    context.router.push(const PlaceholderRoute());
   }
 }
