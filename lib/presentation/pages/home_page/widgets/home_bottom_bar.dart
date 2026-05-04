@@ -6,7 +6,7 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:provider/provider.dart';
 
 import '../../../../common/enums/post_category.dart';
-import '../../../../router/router.gr.dart';
+import '../../../../router/app_router.gr.dart';
 import '../../../notifiers/home_page/category_index_notifier.dart';
 import '../../../notifiers/posts/global_mock_storage_provider.dart';
 import 'circled_button.dart';

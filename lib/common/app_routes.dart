@@ -4,5 +4,6 @@ class AppRoutes {
   static const commentRoute = 'comments/';
   static const userRoute = 'user/';
   static const publishedArticles = 'publishedArticles/';
+  static const likedArticles = 'likedArticles/';
   static const addArticleRoute = 'addArticle/';
 }

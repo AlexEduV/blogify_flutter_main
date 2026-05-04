@@ -8,13 +8,13 @@ import 'package:blogify_flutter_main/domain/entities/post_entity.dart';
 import 'package:blogify_flutter_main/domain/models/share_params_model.dart';
 import 'package:blogify_flutter_main/domain/usecases/share/share_use_case.dart';
 import 'package:blogify_flutter_main/l10n/l10n.dart';
-import 'package:blogify_flutter_main/router/router.gr.dart';
 import 'package:cross_file/cross_file.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:http/http.dart' as http;
 import 'package:provider/provider.dart';
 
+import '../../../router/app_router.gr.dart';
 import '../../../utils/intl_day_formatter.dart';
 import '../../notifiers/posts/global_mock_storage_provider.dart';
 import '../../widgets/circled_button_outlined.dart';

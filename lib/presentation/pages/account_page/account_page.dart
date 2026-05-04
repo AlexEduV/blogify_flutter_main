@@ -5,11 +5,11 @@ import 'package:blogify_flutter_main/l10n/l10n.dart';
 import 'package:blogify_flutter_main/presentation/notifiers/user/user_data_notifier.dart';
 import 'package:blogify_flutter_main/presentation/pages/account_page/widgets/account_section.dart';
 import 'package:blogify_flutter_main/presentation/pages/account_page/widgets/app_version_footer.dart';
-import 'package:blogify_flutter_main/router/router.gr.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:provider/provider.dart';
 
+import '../../../router/app_router.gr.dart';
 import '../../notifiers/account_page/account_page_notifier.dart';
 import '../../widgets/user_photo.dart';
 
@@ -23,30 +23,22 @@ class AccountPage extends StatelessWidget {
     final activityItems = [
       {
         'icon': FontAwesomeIcons.fileLines,
-        'title': L10n.settingsPublishedArticlesItemTitle,
+        'title': L10n.accountItemPublishedArticlesTitle,
         'onTap': () {
           context.router.push(const PublishedArticlesRoute());
         },
       },
       {
         'icon': FontAwesomeIcons.thumbsUp,
-        'title': L10n.settingsLikedArticlesItemTitle,
+        'title': L10n.accountItemLikedArticlesTitle,
         'onTap': null,
       },
     ];
 
     final generalItems = [
-      {'icon': FontAwesomeIcons.user, 'title': L10n.settingsPersonalDataItemTitle, 'onTap': null},
-      {
-        'icon': FontAwesomeIcons.bell,
-        'title': L10n.settingsPushNotificationsItemTitle,
-        'onTap': null,
-      },
-      {
-        'icon': FontAwesomeIcons.gear,
-        'title': L10n.settingsGeneralSettingsItemTitle,
-        'onTap': null,
-      },
+      {'icon': FontAwesomeIcons.user, 'title': L10n.accountItemPersonalDataTitle, 'onTap': null},
+      {'icon': FontAwesomeIcons.bell, 'title': L10n.accountPushNotificationsTitle, 'onTap': null},
+      {'icon': FontAwesomeIcons.gear, 'title': L10n.accountItemGeneralSettingsTitle, 'onTap': null},
     ];
 
     return Scaffold(
@@ -84,11 +76,11 @@ class AccountPage extends StatelessWidget {
                           const SizedBox(height: AppDimensions.minorS),
 
                           AccountSection(
-                            title: L10n.settingsSectionYourActivity,
+                            title: L10n.accountSectionYourActivity,
                             items: activityItems,
                           ),
 
-                          AccountSection(title: L10n.settingsSectionGeneral, items: generalItems),
+                          AccountSection(title: L10n.accountSectionGeneral, items: generalItems),
                         ],
                       ),
                     ),

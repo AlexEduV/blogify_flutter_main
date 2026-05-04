@@ -5,7 +5,7 @@ import 'package:blogify_flutter_main/presentation/notifiers/account_page/account
 import 'package:blogify_flutter_main/presentation/notifiers/home_page/category_index_notifier.dart';
 import 'package:blogify_flutter_main/presentation/notifiers/home_page/search_filter_type_notifier.dart';
 import 'package:blogify_flutter_main/presentation/notifiers/user/user_data_notifier.dart';
-import 'package:blogify_flutter_main/router/router.dart';
+import 'package:blogify_flutter_main/router/app_router.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
