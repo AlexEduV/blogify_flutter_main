@@ -1,9 +1,9 @@
 import 'package:blogify_flutter_main/common/app_colors.dart';
 import 'package:blogify_flutter_main/core/di/injection_container.dart';
 import 'package:blogify_flutter_main/l10n/l10n.dart';
+import 'package:blogify_flutter_main/presentation/notifiers/account_page/account_page_notifier.dart';
 import 'package:blogify_flutter_main/presentation/notifiers/home_page/category_index_notifier.dart';
 import 'package:blogify_flutter_main/presentation/notifiers/home_page/search_filter_type_notifier.dart';
-import 'package:blogify_flutter_main/presentation/notifiers/settings_page/settings_page_notifier.dart';
 import 'package:blogify_flutter_main/presentation/notifiers/user/user_data_notifier.dart';
 import 'package:blogify_flutter_main/router/router.dart';
 import 'package:flutter/material.dart';
@@ -19,21 +19,28 @@ void main() async {
   final userDataNotifier = UserDataNotifier(serviceLocator(), serviceLocator());
   await userDataNotifier.init();
 
-  runApp(MultiProvider(
-    providers: [
-      ChangeNotifierProvider(
+  runApp(
+    MultiProvider(
+      providers: [
+        ChangeNotifierProvider(
           create: (_) => GlobalMockStorageProvider(
-              serviceLocator(), serviceLocator(), serviceLocator(), serviceLocator())
-            ..initStorage()),
-      ChangeNotifierProvider(
-          create: (_) => CommentsPageProvider(serviceLocator(), serviceLocator())),
-      ChangeNotifierProvider(create: (_) => CategoryIndexNotifier()),
-      ChangeNotifierProvider(create: (_) => SearchFilterTypeNotifier()),
-      ChangeNotifierProvider(create: (_) => userDataNotifier),
-      ChangeNotifierProvider(create: (_) => SettingsPageNotifier(serviceLocator())),
-    ],
-    child: const MyApp(),
-  ));
+            serviceLocator(),
+            serviceLocator(),
+            serviceLocator(),
+            serviceLocator(),
+          )..initStorage(),
+        ),
+        ChangeNotifierProvider(
+          create: (_) => CommentsPageProvider(serviceLocator(), serviceLocator()),
+        ),
+        ChangeNotifierProvider(create: (_) => CategoryIndexNotifier()),
+        ChangeNotifierProvider(create: (_) => SearchFilterTypeNotifier()),
+        ChangeNotifierProvider(create: (_) => userDataNotifier),
+        ChangeNotifierProvider(create: (_) => AccountPageNotifier(serviceLocator())),
+      ],
+      child: const MyApp(),
+    ),
+  );
 }
 
 class MyApp extends StatefulWidget {
