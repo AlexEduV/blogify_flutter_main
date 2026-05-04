@@ -1,7 +1,6 @@
-import 'package:auto_route/auto_route.dart';
 import 'package:blogify_flutter_main/common/app_dimensions.dart';
+import 'package:blogify_flutter_main/presentation/notifiers/user/user_data_notifier.dart';
 import 'package:blogify_flutter_main/presentation/pages/home_page/widgets/segmented_switch.dart';
-import 'package:blogify_flutter_main/router/router.gr.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:provider/provider.dart';
@@ -36,7 +35,7 @@ class HomeBottomBar extends StatelessWidget {
             ),
             CircledButton(
               icon: FontAwesomeIcons.penToSquare,
-              onTap: () => context.router.push(const PlaceholderRoute()),
+              onTap: () => onAddArticleButtonPressed(context),
             ),
           ],
         );
@@ -53,5 +52,17 @@ class HomeBottomBar extends StatelessWidget {
 
     final storageNotifier = context.read<GlobalMockStorageProvider>();
     storageNotifier.loadAllInCategory(category);
+  }
+
+  void onAddArticleButtonPressed(BuildContext context) {
+    //testing
+    final userNotifier = context.read<UserDataNotifier>();
+
+    final user = userNotifier.user;
+    context.read<UserDataNotifier>().updateUser(user.copyWith(publishedArticles: ['1']));
+
+    //end of testing
+
+    //context.router.push(const PlaceholderRoute());
   }
 }

@@ -32,15 +32,17 @@ class UserEntity {
   }
 
   Map<String, dynamic> toMap() {
-    return {
+    final map = {
       'id': id,
       'firstName': firstName,
       'lastName': lastName,
       'email': email,
       'imageSrc': imageSrc,
-      'likedArticles': [],
-      'publishedArticles': [],
+      'likedArticles': jsonEncode(likedArticles),
+      'publishedArticles': jsonEncode(publishedArticles),
     };
+
+    return map;
   }
 
   static UserEntity fromMap(Map<String, dynamic> map) {
