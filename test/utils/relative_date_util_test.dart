@@ -1,8 +1,13 @@
 import 'package:blogify_flutter_main/utils/relative_date_util.dart';
 import 'package:flutter_test/flutter_test.dart';
+import 'package:intl/date_symbol_data_local.dart';
 import 'package:intl/intl.dart';
 
 void main() {
+  setUpAll(() async {
+    await initializeDateFormatting('en', null);
+  });
+
   group('RelativeDateUtil.getRelativeDate', () {
     String formatDate(DateTime date) => DateFormat('MM/dd/yy').format(date);
 
