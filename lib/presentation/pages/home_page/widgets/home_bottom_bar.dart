@@ -59,7 +59,7 @@ class HomeBottomBar extends StatelessWidget {
     final userNotifier = context.read<UserDataNotifier>();
 
     final user = userNotifier.user;
-    context.read<UserDataNotifier>().updateUser(user.copyWith(publishedArticles: ['1']));
+    context.read<UserDataNotifier>().updateUser(user.copyWith(publishedArticles: ['2']));
 
     //end of testing
 

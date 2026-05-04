@@ -34,15 +34,16 @@ class DatabaseManager {
           ')',
         );
       },
-      version: 3,
+      version: 4,
       onUpgrade: (db, oldVersion, newVersion) async {
-        if (newVersion < 3) {
-          await db.execute(
-            'ALTER TABLE ${UserTable.tableName} ADD COLUMN ${UserTable.colPublishedArticles} TEXT;',
+        if (oldVersion < 4) {
+          await addColumnIfNotExists(
+            db,
+            UserTable.tableName,
+            UserTable.colPublishedArticles,
+            'TEXT',
           );
-          await db.execute(
-            'ALTER TABLE ${UserTable.tableName} ADD COLUMN ${UserTable.colLikedArticles} TEXT;',
-          );
+          await addColumnIfNotExists(db, UserTable.tableName, UserTable.colLikedArticles, 'TEXT');
         }
       },
     );
@@ -76,5 +77,15 @@ class DatabaseManager {
   Future<void> deleteUser(int id) async {
     final db = await database;
     await db.delete(UserTable.tableName, where: 'id = ?', whereArgs: [id]);
+  }
+
+  Future<void> addColumnIfNotExists(Database db, String table, String column, String type) async {
+    // Query the table info
+    final result = await db.rawQuery('PRAGMA table_info($table)');
+    final columnExists = result.any((row) => row['name'] == column);
+
+    if (!columnExists) {
+      await db.execute('ALTER TABLE $table ADD COLUMN $column $type;');
+    }
   }
 }
