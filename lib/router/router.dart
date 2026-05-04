@@ -21,5 +21,10 @@ class AppRouter extends RootStackRouter {
     ),
 
     AutoRoute(page: AccountRoute.page, path: '${AppRoutes.homeRoute}${AppRoutes.userRoute}'),
+
+    AutoRoute(
+      page: PublishedArticlesRoute.page,
+      path: '${AppRoutes.homeRoute}${AppRoutes.userRoute}${AppRoutes.publishedArticles}',
+    ),
   ];
 }
