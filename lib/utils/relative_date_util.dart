@@ -1,8 +1,9 @@
 import 'package:intl/intl.dart';
 
 class RelativeDateUtil {
+  static final inputFormat = DateFormat('MM/dd/yy');
+
   static String getRelativeDate(String dateString) {
-    final inputFormat = DateFormat('MM/dd/yy');
     final parsedDate = inputFormat.parse(dateString);
     final now = DateTime.now();
 
