@@ -7,5 +7,5 @@ class AppConstants {
 
   static const webHost = 'https://blogify.co.uk/';
 
-  static const isSemanticsShown = true;
+  static const isSemanticsShown = false;
 }
