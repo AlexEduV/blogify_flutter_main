@@ -1,6 +1,8 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:blogify_flutter_main/common/app_dimensions.dart';
+import 'package:blogify_flutter_main/common/semantics_labels.dart';
 import 'package:blogify_flutter_main/presentation/pages/home_page/widgets/segmented_switch.dart';
+import 'package:blogify_flutter_main/presentation/widgets/app_semantics.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:provider/provider.dart';
@@ -34,9 +36,13 @@ class HomeBottomBar extends StatelessWidget {
                 onChanged: (index) => onCategoryItemTapped(context, index),
               ),
             ),
-            CircledButton(
-              icon: FontAwesomeIcons.penToSquare,
-              onTap: () => onAddArticleButtonPressed(context),
+            AppSemantics(
+              button: true,
+              label: SemanticsLabels.addArticleButton,
+              child: CircledButton(
+                icon: FontAwesomeIcons.penToSquare,
+                onTap: () => onAddArticleButtonPressed(context),
+              ),
             ),
           ],
         );

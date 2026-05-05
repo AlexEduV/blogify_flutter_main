@@ -1,5 +1,7 @@
 import 'package:blogify_flutter_main/common/app_colors.dart';
 import 'package:blogify_flutter_main/common/app_dimensions.dart';
+import 'package:blogify_flutter_main/common/semantics_labels.dart';
+import 'package:blogify_flutter_main/presentation/widgets/app_semantics.dart';
 import 'package:blogify_flutter_main/utils/image_provider_util.dart';
 import 'package:flutter/material.dart';
 
@@ -35,22 +37,27 @@ class UserPhoto extends StatelessWidget {
               shape: BoxShape.circle,
               border: Border.all(color: Colors.grey.withAlpha(120), width: outlineBorderWidth),
             ),
-            child: Material(
-              shape: const CircleBorder(),
-              clipBehavior: Clip.antiAlias,
-              child: InkWell(
-                onTap: onTap,
-                customBorder: const CircleBorder(),
-                highlightColor: Colors.grey.withAlpha(120),
-                child: image != null
-                    ? Ink.image(
-                        image: image,
-                        width: size,
-                        height: size,
-                        fit: BoxFit.cover,
-                        alignment: Alignment.topCenter,
-                      )
-                    : null,
+            child: AppSemantics(
+              button: true,
+              enabled: onTap != null,
+              label: SemanticsLabels.userPhotoButton,
+              child: Material(
+                shape: const CircleBorder(),
+                clipBehavior: Clip.antiAlias,
+                child: InkWell(
+                  onTap: onTap,
+                  customBorder: const CircleBorder(),
+                  highlightColor: Colors.grey.withAlpha(120),
+                  child: image != null
+                      ? Ink.image(
+                          image: image,
+                          width: size,
+                          height: size,
+                          fit: BoxFit.cover,
+                          alignment: Alignment.topCenter,
+                        )
+                      : null,
+                ),
               ),
             ),
           ),
