@@ -8,7 +8,7 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:provider/provider.dart';
 
 import '../../../../common/app_colors.dart';
-import '../../../notifiers/home_page/search_filter_type_notifier.dart';
+import '../../../notifiers/home_page/search_bar_notifier.dart';
 import '../../../notifiers/posts/global_mock_storage_provider.dart';
 import 'menu_item.dart';
 
@@ -34,11 +34,11 @@ class HomeSearchBar extends StatelessWidget {
         //todo: the element has clickable effect only on open, but not for close;
         //because the focus on opened menu is on the menu, and everything outside it just
         // closes the menu, but does not register the onTap;
-        Consumer<SearchFilterTypeNotifier>(
+        Consumer<SearchBarNotifier>(
           builder: (context, notifier, child) {
             return RoundedButton(
               key: searchMenuKey,
-              text: notifier.value.label,
+              text: notifier.selectedFilterType.label,
               expanded: notifier.isSelectionOpen,
               trailingIcon: Icons.keyboard_arrow_up_outlined,
               selected: true,
@@ -68,8 +68,10 @@ class HomeSearchBar extends StatelessWidget {
       }),
       onChanged: (String filter) {
         final storageNotifier = context.read<GlobalMockStorageProvider>();
-        final searchColumnNotifier = context.read<SearchFilterTypeNotifier>();
-        storageNotifier.filter(filter, searchColumnNotifier.value);
+        final searchColumnNotifier = context.read<SearchBarNotifier>();
+
+        searchColumnNotifier.updateSearchControllerValue(filter);
+        storageNotifier.filter(filter, searchColumnNotifier.selectedFilterType);
       },
     );
   }
@@ -77,14 +79,14 @@ class HomeSearchBar extends StatelessWidget {
   Future<void> showSearchFilterTypeSelector(BuildContext context) async {
     //todo: add an outward border radius, but first look at interaction design you might really like;
 
-    final menuNotifier = context.read<SearchFilterTypeNotifier>();
+    final menuNotifier = context.read<SearchBarNotifier>();
     final List<PostFilter> items = PostFilter.values;
 
     menuNotifier.setIsMenuExpanded(true);
 
     await showMenu<String>(
       context: context,
-      initialValue: menuNotifier.value.label,
+      initialValue: menuNotifier.selectedFilterType.label,
       position: getMenuPosition(),
       color: Colors.white,
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(AppDimensions.minorL)),

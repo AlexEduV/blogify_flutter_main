@@ -3,7 +3,7 @@ import 'package:blogify_flutter_main/core/di/injection_container.dart';
 import 'package:blogify_flutter_main/l10n/l10n.dart';
 import 'package:blogify_flutter_main/presentation/notifiers/account_page/account_page_notifier.dart';
 import 'package:blogify_flutter_main/presentation/notifiers/home_page/category_index_notifier.dart';
-import 'package:blogify_flutter_main/presentation/notifiers/home_page/search_filter_type_notifier.dart';
+import 'package:blogify_flutter_main/presentation/notifiers/home_page/search_bar_notifier.dart';
 import 'package:blogify_flutter_main/presentation/notifiers/user/user_data_notifier.dart';
 import 'package:blogify_flutter_main/router/app_router.dart';
 import 'package:flutter/material.dart';
@@ -34,7 +34,7 @@ void main() async {
           create: (_) => CommentsPageProvider(serviceLocator(), serviceLocator()),
         ),
         ChangeNotifierProvider(create: (_) => CategoryIndexNotifier()),
-        ChangeNotifierProvider(create: (_) => SearchFilterTypeNotifier()),
+        ChangeNotifierProvider(create: (_) => SearchBarNotifier()),
         ChangeNotifierProvider(create: (_) => userDataNotifier),
         ChangeNotifierProvider(create: (_) => AccountPageNotifier(serviceLocator())),
       ],
