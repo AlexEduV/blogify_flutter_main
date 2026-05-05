@@ -94,10 +94,13 @@ class _ArticlePageState extends State<ArticlePage> {
                 Text(getPostInfo(post), style: AppTextStyles.sfPro14),
 
                 //photo cover
-                PostCoverPhoto(
-                  imageSrc: post.imageSrc,
-                  placeholderColor: AppColors.lightGrey,
-                  height: AppDimensions.articleImageHeight,
+                Hero(
+                  tag: 'post-cover-image-${post.imageSrc}',
+                  child: PostCoverPhoto(
+                    imageSrc: post.imageSrc,
+                    placeholderColor: AppColors.lightGrey,
+                    height: AppDimensions.articleImageHeight,
+                  ),
                 ),
 
                 //post content
@@ -140,6 +143,7 @@ class _ArticlePageState extends State<ArticlePage> {
 
     final model = ShareParamsModel(
       title: '${L10n.appName} | ${post.title}',
+      //todo: localise
       text: 'Please, visit our article at ${AppConstants.webHost + post.url}',
       previewThumbnail: previewFile,
     );
