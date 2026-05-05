@@ -92,13 +92,9 @@ class _HomePageState extends State<HomePage> {
                                 backCardOffset: const Offset(0, 65),
                                 scale: 0.8,
                                 padding: EdgeInsets.zero,
-                                cardBuilder:
-                                    (
-                                      context,
-                                      index,
-                                      horizontalThresholdPercentage,
-                                      verticalThresholdPercentage,
-                                    ) => PostCard(post: posts[index], onTap: openArticlePage),
+                                cardBuilder: (context, index, _, _) {
+                                  return PostCard(post: posts[index], onTap: openArticlePage);
+                                },
                               );
                             },
                           );

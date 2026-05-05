@@ -42,7 +42,10 @@ class PostCard extends StatelessWidget {
           padding: const EdgeInsets.all(AppDimensions.minorS),
           child: Column(
             children: [
-              PostCoverPhoto(imageSrc: post.imageSrc),
+              Hero(
+                tag: 'post-cover-image-${post.imageSrc}',
+                child: PostCoverPhoto(imageSrc: post.imageSrc),
+              ),
 
               const SizedBox(height: AppDimensions.normalM),
 
