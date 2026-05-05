@@ -23,7 +23,7 @@ class AccountListItem extends StatelessWidget {
         borderRadius: BorderRadius.circular(borderRadius),
         child: InkWell(
           borderRadius: BorderRadius.circular(borderRadius),
-          onTap: model.onTap,
+          onTap: () => model.onTap?.call(context),
           child: Padding(
             padding: const EdgeInsets.symmetric(
               vertical: AppDimensions.normalS,

@@ -18,41 +18,39 @@ import '../../widgets/user_photo.dart';
 class AccountPage extends StatelessWidget {
   const AccountPage({super.key});
 
+  static List<AccountSectionItemModel> get activityItems => [
+    AccountSectionItemModel(
+      icon: FontAwesomeIcons.fileLines,
+      title: L10n.accountItemPublishedArticlesTitle,
+      onTap: (BuildContext context) => context.router.push(const PublishedArticlesRoute()),
+    ),
+    AccountSectionItemModel(
+      icon: Icons.favorite_outline_rounded,
+      title: L10n.accountItemLikedArticlesTitle,
+      onTap: (BuildContext context) => context.router.push(const LikedArticlesRoute()),
+    ),
+  ];
+
+  static List<AccountSectionItemModel> get generalItems => [
+    AccountSectionItemModel(
+      icon: FontAwesomeIcons.user,
+      title: L10n.accountItemPersonalDataTitle,
+      onTap: null,
+    ),
+    AccountSectionItemModel(
+      icon: FontAwesomeIcons.bell,
+      title: L10n.accountPushNotificationsTitle,
+      onTap: null,
+    ),
+    AccountSectionItemModel(
+      icon: FontAwesomeIcons.gear,
+      title: L10n.accountItemGeneralSettingsTitle,
+      onTap: null,
+    ),
+  ];
+
   @override
   Widget build(BuildContext context) {
-    final activityItems = [
-      AccountSectionItemModel(
-        icon: FontAwesomeIcons.fileLines,
-        title: L10n.accountItemPublishedArticlesTitle,
-        onTap: () => context.router.push(const PublishedArticlesRoute()),
-      ),
-      AccountSectionItemModel(
-        icon: Icons.favorite_outline_rounded,
-        title: L10n.accountItemLikedArticlesTitle,
-        onTap: () => context.router.push(const LikedArticlesRoute()),
-      ),
-    ];
-
-    final generalItems = [
-      AccountSectionItemModel(
-        icon: FontAwesomeIcons.user,
-        title: L10n.accountItemPersonalDataTitle,
-        onTap: null,
-      ),
-
-      AccountSectionItemModel(
-        icon: FontAwesomeIcons.bell,
-        title: L10n.accountPushNotificationsTitle,
-        onTap: null,
-      ),
-
-      AccountSectionItemModel(
-        icon: FontAwesomeIcons.gear,
-        title: L10n.accountItemGeneralSettingsTitle,
-        onTap: null,
-      ),
-    ];
-
     return Scaffold(
       backgroundColor: Colors.white,
       body: SafeArea(
