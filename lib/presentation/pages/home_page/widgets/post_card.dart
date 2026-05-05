@@ -56,7 +56,7 @@ class PostCard extends StatelessWidget {
                           notifier.searchControllerValue: HighlightedWord(
                             padding: const EdgeInsets.only(bottom: baselineOffset),
                             textStyle: AppTextStyles.sfPro16.copyWith(
-                              backgroundColor: Colors.amber,
+                              backgroundColor: AppColors.postHighlightColor,
                             ),
                           ),
                         }
@@ -94,7 +94,7 @@ class PostCard extends StatelessWidget {
                           notifier.searchControllerValue: HighlightedWord(
                             padding: const EdgeInsets.only(bottom: baselineOffset),
                             textStyle: AppTextStyles.sfPro24.copyWith(
-                              backgroundColor: Colors.amber,
+                              backgroundColor: AppColors.postHighlightColor,
                             ),
                           ),
                         }

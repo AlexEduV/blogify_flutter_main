@@ -17,4 +17,6 @@ class AppColors {
   static final darkGrey = Colors.grey.shade600;
 
   static const Color dark = Color(0xff013500);
+
+  static final Color postHighlightColor = darkGrey;
 }
