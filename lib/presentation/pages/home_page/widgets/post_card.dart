@@ -100,12 +100,19 @@ class PostCard extends StatelessWidget {
                         }
                       : {};
 
-                  return TextHighlight(
-                    words: wordsToHighlight,
-                    text: '${post.title} \n',
-                    textStyle: AppTextStyles.sfPro24,
-                    textAlign: TextAlign.center,
-                    maxLines: 2,
+                  final textContainsHighlight =
+                      notifier.searchControllerValue.isNotEmpty &&
+                      notifier.selectedFilterType == PostFilter.title;
+
+                  return Padding(
+                    padding: EdgeInsets.only(bottom: textContainsHighlight ? 0 : baselineOffset),
+                    child: TextHighlight(
+                      words: wordsToHighlight,
+                      text: '${post.title} \n',
+                      textStyle: AppTextStyles.sfPro24,
+                      textAlign: TextAlign.center,
+                      maxLines: 2,
+                    ),
                   );
                 },
               ),
