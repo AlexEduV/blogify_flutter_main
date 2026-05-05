@@ -8,6 +8,7 @@ import 'package:blogify_flutter_main/domain/entities/comment_entity.dart';
 import 'package:blogify_flutter_main/domain/entities/post_entity.dart';
 import 'package:blogify_flutter_main/domain/usecases/users/get_user_by_id_use_case.dart';
 import 'package:blogify_flutter_main/l10n/l10n.dart';
+import 'package:blogify_flutter_main/presentation/notifiers/user/user_data_notifier.dart';
 import 'package:blogify_flutter_main/presentation/pages/comments_page/widgets/comment_field.dart';
 import 'package:blogify_flutter_main/presentation/pages/comments_page/widgets/comments_list_tile.dart';
 import 'package:blogify_flutter_main/presentation/pages/home_page/widgets/rounded_button.dart';
@@ -52,9 +53,6 @@ class _CommentsPageState extends State<CommentsPage> {
 
   @override
   Widget build(BuildContext context) {
-    //todo: when I scroll, I should be able to hide the keyboard.
-    // - Declined. It's pretty good enough already
-
     //todo: sorting by most recent and most relevant
 
     return Scaffold(
@@ -159,7 +157,7 @@ class _CommentsPageState extends State<CommentsPage> {
     //todo: move to date formatter
     final date = DateFormat('MM/dd/yy').format(DateTime.now());
 
-    final userId = 1;
+    final userId = context.read<UserDataNotifier>().user.id;
 
     //update notifier
     final commentsProvider = context.read<CommentsPageProvider>();
