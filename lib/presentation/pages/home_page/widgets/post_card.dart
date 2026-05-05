@@ -1,9 +1,13 @@
 import 'package:blogify_flutter_main/common/app_colors.dart';
 import 'package:blogify_flutter_main/common/app_dimensions.dart';
 import 'package:blogify_flutter_main/common/app_text_styles.dart';
+import 'package:blogify_flutter_main/common/enums/post_filter.dart';
 import 'package:blogify_flutter_main/domain/entities/post_entity.dart';
 import 'package:blogify_flutter_main/l10n/l10n.dart';
+import 'package:blogify_flutter_main/presentation/notifiers/home_page/search_bar_notifier.dart';
 import 'package:flutter/material.dart';
+import 'package:highlight_text/highlight_text.dart';
+import 'package:provider/provider.dart';
 
 import '../../../../utils/intl_day_formatter.dart';
 import '../../../widgets/post_cover_photo.dart';
@@ -39,20 +43,56 @@ class PostCard extends StatelessWidget {
           child: Column(
             children: [
               PostCoverPhoto(imageSrc: post.imageSrc),
+
               const SizedBox(height: AppDimensions.normalM),
-              Text(post.author, style: AppTextStyles.sfPro16),
+
+              Consumer<SearchBarNotifier>(
+                builder: (context, notifier, child) {
+                  final Map<String, HighlightedWord> wordsToHighlight =
+                      notifier.selectedFilterType == PostFilter.author
+                      ? {
+                          notifier.searchControllerValue: HighlightedWord(
+                            padding: const EdgeInsets.only(bottom: 1),
+                            textStyle: AppTextStyles.sfPro16.copyWith(
+                              backgroundColor: Colors.amber,
+                            ),
+                          ),
+                        }
+                      : {};
+
+                  final textContainsHighlight =
+                      notifier.searchControllerValue.isNotEmpty &&
+                      notifier.selectedFilterType == PostFilter.author;
+
+                  return Padding(
+                    padding: EdgeInsets.only(bottom: textContainsHighlight ? 0 : 1),
+                    child: TextHighlight(
+                      text: post.author,
+                      textStyle: AppTextStyles.sfPro16,
+                      words: wordsToHighlight,
+                      spanAlignment: PlaceholderAlignment.middle,
+                    ),
+                  );
+                },
+              ),
+
               Text(
                 IntlDayFormatter.getFormattedDays(post.daysAgoPublished),
                 style: AppTextStyles.sfPro14Accent,
               ),
+
               const SizedBox(height: AppDimensions.majorS),
+
+              //todo: highlight
               Text(
                 '${post.title} \n',
                 style: AppTextStyles.sfPro24,
                 textAlign: TextAlign.center,
                 maxLines: 2,
               ),
+
               const SizedBox(height: AppDimensions.majorS),
+
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
@@ -66,6 +106,7 @@ class PostCard extends StatelessWidget {
                   ),
                 ],
               ),
+
               const SizedBox(height: AppDimensions.normalS),
             ],
           ),
