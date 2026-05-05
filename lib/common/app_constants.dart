@@ -6,4 +6,6 @@ class AppConstants {
   static const homeTabTechIndex = 2;
 
   static const webHost = 'https://blogify.co.uk/';
+
+  static const isSemanticsShown = true;
 }
