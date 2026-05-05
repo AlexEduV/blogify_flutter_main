@@ -11,6 +11,7 @@ import 'package:blogify_flutter_main/l10n/l10n.dart';
 import 'package:blogify_flutter_main/presentation/notifiers/user/user_data_notifier.dart';
 import 'package:blogify_flutter_main/presentation/pages/comments_page/widgets/comment_field.dart';
 import 'package:blogify_flutter_main/presentation/pages/comments_page/widgets/comments_list_tile.dart';
+import 'package:blogify_flutter_main/presentation/pages/home_page/widgets/empty_posts_placeholder.dart';
 import 'package:blogify_flutter_main/presentation/pages/home_page/widgets/rounded_button.dart';
 import 'package:blogify_flutter_main/presentation/widgets/app_semantics.dart';
 import 'package:blogify_flutter_main/utils/relative_date_util.dart';
@@ -124,10 +125,7 @@ class _CommentsPageState extends State<CommentsPage> {
                     if (comments.isEmpty) {
                       return const Padding(
                         padding: EdgeInsets.symmetric(horizontal: AppDimensions.minorL),
-                        child: Text(
-                          L10n.emptyCommentSectionPlaceholder,
-                          style: AppTextStyles.sfPro16,
-                        ),
+                        child: EmptyListPlaceholder(text: L10n.emptyCommentSectionPlaceholder),
                       );
                     }
 

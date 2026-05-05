@@ -13,6 +13,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_card_swiper/flutter_card_swiper.dart';
 import 'package:provider/provider.dart';
 
+import '../../../l10n/l10n.dart';
 import '../../../router/app_router.gr.dart';
 import '../../notifiers/posts/global_mock_storage_provider.dart';
 
@@ -78,7 +79,7 @@ class _HomePageState extends State<HomePage> {
                         builder: (context, notifier, child) {
                           final posts = notifier.postsFiltered;
                           if (posts.isEmpty) {
-                            return const EmptyPostsPlaceholder();
+                            return const EmptyListPlaceholder(text: L10n.noPostsPlaceholder);
                           }
 
                           //post stack
