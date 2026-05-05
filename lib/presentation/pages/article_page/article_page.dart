@@ -80,6 +80,7 @@ class _ArticlePageState extends State<ArticlePage> {
                                   : FontAwesomeIcons.heart,
                               onTap: onLikeButtonPressed,
                               semanticsLabel: SemanticsLabels.likeButton,
+                              isSelected: post.isLiked,
                             ),
                             CircledButtonOutlined(
                               icon: FontAwesomeIcons.shareFromSquare,

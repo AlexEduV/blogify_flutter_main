@@ -16,4 +16,6 @@ class SemanticsLabels {
   static const commentsButton = 'commentsButton';
   static const likeButton = 'likeButton';
   static const shareButton = 'shareButton';
+
+  static const addCommentButton = 'addCommentButton';
 }

@@ -8,11 +8,13 @@ class CircledButtonOutlined extends StatelessWidget {
   final IconData icon;
   final VoidCallback onTap;
   final String? semanticsLabel;
+  final bool isSelected;
 
   const CircledButtonOutlined({
     required this.icon,
     required this.onTap,
     this.semanticsLabel = '',
+    this.isSelected = false,
     super.key,
   });
 
@@ -23,6 +25,7 @@ class CircledButtonOutlined extends StatelessWidget {
     return AppSemantics(
       button: true,
       label: semanticsLabel ?? '',
+      isSelected: isSelected,
       child: Material(
         child: InkWell(
           onTap: onTap,
