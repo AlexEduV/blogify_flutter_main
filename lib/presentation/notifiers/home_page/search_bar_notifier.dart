@@ -2,7 +2,7 @@ import 'package:blogify_flutter_main/common/enums/post_filter.dart';
 import 'package:flutter/material.dart';
 
 class SearchBarNotifier extends ChangeNotifier {
-  PostFilter _selectedFilterType = PostFilter.author;
+  PostFilter _selectedFilterType = PostFilter.title;
 
   PostFilter get selectedFilterType => _selectedFilterType;
 

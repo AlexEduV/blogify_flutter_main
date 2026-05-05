@@ -18,5 +18,5 @@ class AppColors {
 
   static const Color dark = Color(0xff013500);
 
-  static final Color postHighlightColor = darkGrey;
+  static final Color postHighlightColor = emeraldGreen.withAlpha(120);
 }
