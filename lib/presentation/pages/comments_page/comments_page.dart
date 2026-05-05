@@ -13,9 +13,9 @@ import 'package:blogify_flutter_main/presentation/pages/comments_page/widgets/co
 import 'package:blogify_flutter_main/presentation/pages/comments_page/widgets/comments_list_tile.dart';
 import 'package:blogify_flutter_main/presentation/pages/home_page/widgets/rounded_button.dart';
 import 'package:blogify_flutter_main/presentation/widgets/app_semantics.dart';
+import 'package:blogify_flutter_main/utils/relative_date_util.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:intl/intl.dart';
 import 'package:provider/provider.dart';
 
 import '../../notifiers/comments_page/comments_page_notifier.dart';
@@ -24,9 +24,9 @@ import '../../widgets/circled_button_outlined.dart';
 
 @RoutePage()
 class CommentsPage extends StatefulWidget {
-  final int id;
+  final int postId;
 
-  const CommentsPage({required this.id, super.key});
+  const CommentsPage({required this.postId, super.key});
 
   @override
   State<CommentsPage> createState() => _CommentsPageState();
@@ -42,13 +42,20 @@ class _CommentsPageState extends State<CommentsPage> {
   void initState() {
     super.initState();
 
-    final commentNotifier = context.read<CommentsPageProvider>();
+    final commentNotifier = context.read<CommentsPageNotifier>();
     final storageNotifier = context.read<GlobalMockStorageProvider>();
-    currentPost = storageNotifier.getPostById(widget.id);
+    currentPost = storageNotifier.getPostById(widget.postId);
 
     WidgetsBinding.instance.addPostFrameCallback((_) {
-      commentNotifier.fetchCommentsByPostId(widget.id);
+      commentNotifier.fetchCommentsByPostId(widget.postId);
     });
+  }
+
+  @override
+  void dispose() {
+    commentFieldFocusNode.dispose();
+    commentTextController.dispose();
+    super.dispose();
   }
 
   @override
@@ -97,7 +104,7 @@ class _CommentsPageState extends State<CommentsPage> {
                     child: RoundedButton(
                       text: L10n.commentsRespondButtonTitle,
                       selected: true,
-                      onTap: () => validateCommentInput(commentTextController.text),
+                      onTap: () => addComment(commentTextController.text),
                       selectedColor: AppColors.emeraldGreen,
                       tintColor: Colors.white,
                     ),
@@ -109,7 +116,7 @@ class _CommentsPageState extends State<CommentsPage> {
 
               //comments or a placeholder
               Expanded(
-                child: Consumer<CommentsPageProvider>(
+                child: Consumer<CommentsPageNotifier>(
                   builder: (context, notifier, child) {
                     final comments = notifier.filteredComments;
 
@@ -147,28 +154,24 @@ class _CommentsPageState extends State<CommentsPage> {
     );
   }
 
-  //todo: move to the notifier;
-  void validateCommentInput(String input) {
-    if (input.isEmpty) {
-      return;
-    }
+  void addComment(String input) {
+    final commentsProvider = context.read<CommentsPageNotifier>();
+    final isValid = commentsProvider.validateComment(input);
+
+    if (!isValid) return;
 
     //prepare data
-    //todo: move to date formatter
-    final date = DateFormat('MM/dd/yy').format(DateTime.now());
+    final now = DateTime.now();
+    final date = RelativeDateUtil.inputFormat.format(now);
 
     final userId = context.read<UserDataNotifier>().user.id;
 
     //update notifier
-    final commentsProvider = context.read<CommentsPageProvider>();
     commentsProvider.addComment(
-      CommentEntity(postId: widget.id, content: input, date: date, userId: userId),
+      CommentEntity(postId: widget.postId, content: input, date: date, userId: userId),
     );
 
-    //clear the text field
     commentTextController.clear();
-
-    //clear the focus
     commentFieldFocusNode.unfocus();
   }
 }

@@ -20,7 +20,6 @@ class UserWelcomeRow extends StatelessWidget {
         Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            //todo: replace with text span
             Row(
               children: [
                 Text(

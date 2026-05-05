@@ -1,3 +1,4 @@
+import 'package:blogify_flutter_main/domain/models/account_section_item_model.dart';
 import 'package:blogify_flutter_main/presentation/pages/account_page/widgets/section_title.dart';
 import 'package:flutter/material.dart';
 
@@ -6,7 +7,7 @@ import 'account_list_item.dart';
 
 class AccountSection extends StatelessWidget {
   final String title;
-  final List<Map<String, dynamic>> items;
+  final List<AccountSectionItemModel> items;
 
   const AccountSection({required this.title, required this.items, super.key});
 
@@ -23,7 +24,7 @@ class AccountSection extends StatelessWidget {
         Column(
           spacing: AppDimensions.normalM,
           children: items.map((item) {
-            return AccountListItem(onTap: item['onTap'], icon: item['icon'], title: item['title']);
+            return AccountListItem(model: item);
           }).toList(),
         ),
       ],

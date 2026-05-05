@@ -41,4 +41,6 @@ class L10n {
 
   static const likedArticlesPageEmptyListTitle = 'No liked articles yet.';
   static const likedArticlesPageEmptyListSubtitle = 'Add any article to liked in the article page.';
+
+  static const articleShareText = 'Please, visit our article at ';
 }

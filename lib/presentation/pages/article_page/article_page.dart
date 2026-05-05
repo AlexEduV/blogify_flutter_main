@@ -149,8 +149,7 @@ class _ArticlePageState extends State<ArticlePage> {
 
     final model = ShareParamsModel(
       title: '${L10n.appName} | ${post.title}',
-      //todo: localise
-      text: 'Please, visit our article at ${AppConstants.webHost + post.url}',
+      text: '${L10n.articleShareText}${AppConstants.webHost + post.url}',
       previewThumbnail: previewFile,
     );
 

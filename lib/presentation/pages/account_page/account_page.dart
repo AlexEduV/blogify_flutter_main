@@ -1,6 +1,7 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:blogify_flutter_main/common/app_dimensions.dart';
 import 'package:blogify_flutter_main/common/app_text_styles.dart';
+import 'package:blogify_flutter_main/domain/models/account_section_item_model.dart';
 import 'package:blogify_flutter_main/l10n/l10n.dart';
 import 'package:blogify_flutter_main/presentation/notifiers/user/user_data_notifier.dart';
 import 'package:blogify_flutter_main/presentation/pages/account_page/widgets/account_section.dart';
@@ -19,26 +20,6 @@ class AccountPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    //todo: move to a repository or data source with toJson and fromJson methods
-    final activityItems = [
-      {
-        'icon': FontAwesomeIcons.fileLines,
-        'title': L10n.accountItemPublishedArticlesTitle,
-        'onTap': () => context.router.push(const PublishedArticlesRoute()),
-      },
-      {
-        'icon': Icons.favorite_outline_rounded,
-        'title': L10n.accountItemLikedArticlesTitle,
-        'onTap': () => context.router.push(const LikedArticlesRoute()),
-      },
-    ];
-
-    final generalItems = [
-      {'icon': FontAwesomeIcons.user, 'title': L10n.accountItemPersonalDataTitle, 'onTap': null},
-      {'icon': FontAwesomeIcons.bell, 'title': L10n.accountPushNotificationsTitle, 'onTap': null},
-      {'icon': FontAwesomeIcons.gear, 'title': L10n.accountItemGeneralSettingsTitle, 'onTap': null},
-    ];
-
     return Scaffold(
       backgroundColor: Colors.white,
       body: SafeArea(
@@ -93,6 +74,37 @@ class AccountPage extends StatelessWidget {
       ),
     );
   }
+
+  static List<AccountSectionItemModel> get activityItems => [
+    AccountSectionItemModel(
+      icon: FontAwesomeIcons.fileLines,
+      title: L10n.accountItemPublishedArticlesTitle,
+      onTap: (BuildContext context) => context.router.push(const PublishedArticlesRoute()),
+    ),
+    AccountSectionItemModel(
+      icon: Icons.favorite_outline_rounded,
+      title: L10n.accountItemLikedArticlesTitle,
+      onTap: (BuildContext context) => context.router.push(const LikedArticlesRoute()),
+    ),
+  ];
+
+  static List<AccountSectionItemModel> get generalItems => [
+    AccountSectionItemModel(
+      icon: FontAwesomeIcons.user,
+      title: L10n.accountItemPersonalDataTitle,
+      onTap: null,
+    ),
+    AccountSectionItemModel(
+      icon: FontAwesomeIcons.bell,
+      title: L10n.accountPushNotificationsTitle,
+      onTap: null,
+    ),
+    AccountSectionItemModel(
+      icon: FontAwesomeIcons.gear,
+      title: L10n.accountItemGeneralSettingsTitle,
+      onTap: null,
+    ),
+  ];
 
   Future<void> onUserPhotoPressed(BuildContext context) async {
     final path = await context.read<AccountPageNotifier>().getNewUserImageSrc();

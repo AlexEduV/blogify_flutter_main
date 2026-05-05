@@ -98,7 +98,7 @@ class CommentsRoute extends _i8.PageRouteInfo<CommentsRouteArgs> {
     name,
     builder: (data) {
       final args = data.argsAs<CommentsRouteArgs>();
-      return _i3.CommentsPage(id: args.id, key: args.key);
+      return _i3.CommentsPage(postId: args.id, key: args.key);
     },
   );
 }
