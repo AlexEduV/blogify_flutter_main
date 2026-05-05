@@ -106,7 +106,13 @@ class HomeSearchBar extends StatelessWidget {
           padding: EdgeInsets.zero,
           value: item.label,
           child: MenuItem(text: item.label),
-          onTap: () => menuNotifier.updateFilterType(item),
+          onTap: () {
+            menuNotifier.updateFilterType(item);
+            context.read<GlobalMockStorageProvider>().filter(
+              menuNotifier.searchControllerValue,
+              item,
+            );
+          },
         );
       }),
     );
