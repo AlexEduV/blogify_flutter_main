@@ -15,21 +15,19 @@ class PostCoverPhoto extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      decoration: BoxDecoration(
-        color: imageSrc.isEmpty ? placeholderColor : null,
-        image: (imageSrc.isNotEmpty)
-            ? DecorationImage(
-                image: NetworkImage(
-                  imageSrc,
-                ),
-                fit: BoxFit.cover,
-              )
-            : null,
-        borderRadius: BorderRadius.circular(AppDimensions.normalM),
+    return SingleChildScrollView(
+      physics: const NeverScrollableScrollPhysics(),
+      child: Container(
+        decoration: BoxDecoration(
+          color: imageSrc.isEmpty ? placeholderColor : null,
+          image: (imageSrc.isNotEmpty)
+              ? DecorationImage(image: NetworkImage(imageSrc), fit: BoxFit.cover)
+              : null,
+          borderRadius: BorderRadius.circular(AppDimensions.normalM),
+        ),
+        height: height,
+        padding: const EdgeInsets.all(AppDimensions.minorS),
       ),
-      height: height,
-      padding: const EdgeInsets.all(AppDimensions.minorS),
     );
   }
 }

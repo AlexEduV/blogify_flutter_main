@@ -11,4 +11,9 @@ class SemanticsLabels {
   static const accountPageItem = 'accountPageItem';
 
   static const articleListItem = 'articleListItem';
+
+  static const backButton = 'backButton';
+  static const commentsButton = 'commentsButton';
+  static const likeButton = 'likeButton';
+  static const shareButton = 'shareButton';
 }

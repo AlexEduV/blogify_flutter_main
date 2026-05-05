@@ -4,6 +4,7 @@ import 'package:blogify_flutter_main/common/app_constants.dart';
 import 'package:blogify_flutter_main/common/app_dimensions.dart';
 import 'package:blogify_flutter_main/common/app_text_styles.dart';
 import 'package:blogify_flutter_main/common/extensions/list_extension.dart';
+import 'package:blogify_flutter_main/common/semantics_labels.dart';
 import 'package:blogify_flutter_main/core/di/injection_container.dart';
 import 'package:blogify_flutter_main/domain/entities/post_entity.dart';
 import 'package:blogify_flutter_main/domain/models/share_params_model.dart';
@@ -59,6 +60,7 @@ class _ArticlePageState extends State<ArticlePage> {
                     CircledButtonOutlined(
                       icon: FontAwesomeIcons.chevronLeft,
                       onTap: () => context.router.popForced(),
+                      semanticsLabel: SemanticsLabels.backButton,
                     ),
                     Consumer<GlobalMockStorageProvider>(
                       builder: (context, notifier, child) {
@@ -70,16 +72,19 @@ class _ArticlePageState extends State<ArticlePage> {
                             CircledButtonOutlined(
                               icon: FontAwesomeIcons.comment,
                               onTap: () => context.router.push(CommentsRoute(id: widget.articleId)),
+                              semanticsLabel: SemanticsLabels.commentsButton,
                             ),
                             CircledButtonOutlined(
                               icon: post.isLiked
                                   ? FontAwesomeIcons.solidHeart
                                   : FontAwesomeIcons.heart,
                               onTap: onLikeButtonPressed,
+                              semanticsLabel: SemanticsLabels.likeButton,
                             ),
                             CircledButtonOutlined(
                               icon: FontAwesomeIcons.shareFromSquare,
                               onTap: () => onShareButtonPressed(post),
+                              semanticsLabel: SemanticsLabels.shareButton,
                             ),
                           ],
                         );
