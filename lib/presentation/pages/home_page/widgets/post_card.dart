@@ -48,11 +48,13 @@ class PostCard extends StatelessWidget {
 
               Consumer<SearchBarNotifier>(
                 builder: (context, notifier, child) {
+                  const baselineOffset = 1.0;
+
                   final Map<String, HighlightedWord> wordsToHighlight =
                       notifier.selectedFilterType == PostFilter.author
                       ? {
                           notifier.searchControllerValue: HighlightedWord(
-                            padding: const EdgeInsets.only(bottom: 1),
+                            padding: const EdgeInsets.only(bottom: baselineOffset),
                             textStyle: AppTextStyles.sfPro16.copyWith(
                               backgroundColor: Colors.amber,
                             ),
@@ -65,12 +67,11 @@ class PostCard extends StatelessWidget {
                       notifier.selectedFilterType == PostFilter.author;
 
                   return Padding(
-                    padding: EdgeInsets.only(bottom: textContainsHighlight ? 0 : 1),
+                    padding: EdgeInsets.only(bottom: textContainsHighlight ? 0 : baselineOffset),
                     child: TextHighlight(
                       text: post.author,
                       textStyle: AppTextStyles.sfPro16,
                       words: wordsToHighlight,
-                      spanAlignment: PlaceholderAlignment.middle,
                     ),
                   );
                 },
@@ -83,12 +84,30 @@ class PostCard extends StatelessWidget {
 
               const SizedBox(height: AppDimensions.majorS),
 
-              //todo: highlight
-              Text(
-                '${post.title} \n',
-                style: AppTextStyles.sfPro24,
-                textAlign: TextAlign.center,
-                maxLines: 2,
+              Consumer<SearchBarNotifier>(
+                builder: (context, notifier, child) {
+                  const baselineOffset = 6.0;
+
+                  final Map<String, HighlightedWord> wordsToHighlight =
+                      notifier.selectedFilterType == PostFilter.title
+                      ? {
+                          notifier.searchControllerValue: HighlightedWord(
+                            padding: const EdgeInsets.only(bottom: baselineOffset),
+                            textStyle: AppTextStyles.sfPro24.copyWith(
+                              backgroundColor: Colors.amber,
+                            ),
+                          ),
+                        }
+                      : {};
+
+                  return TextHighlight(
+                    words: wordsToHighlight,
+                    text: '${post.title} \n',
+                    textStyle: AppTextStyles.sfPro24,
+                    textAlign: TextAlign.center,
+                    maxLines: 2,
+                  );
+                },
               ),
 
               const SizedBox(height: AppDimensions.majorS),
