@@ -32,7 +32,7 @@ void main() async {
           )..initStorage(),
         ),
         ChangeNotifierProvider(
-          create: (_) => CommentsPageProvider(serviceLocator(), serviceLocator()),
+          create: (_) => CommentsPageNotifier(serviceLocator(), serviceLocator()),
         ),
         ChangeNotifierProvider(create: (_) => CategoryIndexNotifier()),
         ChangeNotifierProvider(create: (_) => SearchBarNotifier()),

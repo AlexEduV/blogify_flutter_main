@@ -13,12 +13,12 @@ void main() {
   group('CommentsPageProvider', () {
     late MockGetAllCommentsUseCase mockAllCommentsUseCase;
     late MockGetCommentsByPostIdUseCase mockByPostIdUseCase;
-    late CommentsPageProvider provider;
+    late CommentsPageNotifier provider;
 
     setUp(() {
       mockAllCommentsUseCase = MockGetAllCommentsUseCase();
       mockByPostIdUseCase = MockGetCommentsByPostIdUseCase();
-      provider = CommentsPageProvider(mockByPostIdUseCase, mockAllCommentsUseCase);
+      provider = CommentsPageNotifier(mockByPostIdUseCase, mockAllCommentsUseCase);
     });
 
     test('allComments returns from GetAllCommentsUseCase', () {

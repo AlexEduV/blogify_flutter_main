@@ -3,11 +3,11 @@ import 'package:blogify_flutter_main/domain/usecases/comments/get_all_comments_u
 import 'package:blogify_flutter_main/domain/usecases/comments/get_comments_by_post_id_use_case.dart';
 import 'package:flutter/cupertino.dart';
 
-class CommentsPageProvider extends ChangeNotifier {
+class CommentsPageNotifier extends ChangeNotifier {
   final GetCommentsByPostIdUseCase _getCommentsByPostIdUseCase;
   final GetAllCommentsUseCase _getAllCommentsUseCase;
 
-  CommentsPageProvider(this._getCommentsByPostIdUseCase, this._getAllCommentsUseCase);
+  CommentsPageNotifier(this._getCommentsByPostIdUseCase, this._getAllCommentsUseCase);
 
   List<CommentEntity> get allComments => _getAllCommentsUseCase.call();
 
@@ -23,5 +23,13 @@ class CommentsPageProvider extends ChangeNotifier {
   void addComment(CommentEntity comment) {
     allComments.add(comment);
     fetchCommentsByPostId(comment.postId);
+  }
+
+  bool validateComment(String value) {
+    if (value.isEmpty) {
+      return false;
+    }
+
+    return true;
   }
 }
