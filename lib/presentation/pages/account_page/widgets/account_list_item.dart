@@ -1,6 +1,8 @@
 import 'package:blogify_flutter_main/common/app_colors.dart';
 import 'package:blogify_flutter_main/common/app_dimensions.dart';
+import 'package:blogify_flutter_main/common/semantics_labels.dart';
 import 'package:blogify_flutter_main/presentation/pages/account_page/widgets/section_title.dart';
+import 'package:blogify_flutter_main/presentation/widgets/app_semantics.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
@@ -20,23 +22,27 @@ class AccountListItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Material(
-      color: AppColors.settingsItemColor,
-      borderRadius: BorderRadius.circular(borderRadius),
-      child: InkWell(
+    return AppSemantics(
+      button: true,
+      label: SemanticsLabels.accountPageItem,
+      child: Material(
+        color: AppColors.settingsItemColor,
         borderRadius: BorderRadius.circular(borderRadius),
-        onTap: onTap,
-        child: Padding(
-          padding: const EdgeInsets.symmetric(
-            vertical: AppDimensions.normalS,
-            horizontal: AppDimensions.normalM,
-          ),
-          child: Row(
-            spacing: AppDimensions.minorL,
-            children: [
-              FaIcon(icon, size: AppDimensions.appBarIconSize, color: Colors.black87),
-              SectionTitle(title: title),
-            ],
+        child: InkWell(
+          borderRadius: BorderRadius.circular(borderRadius),
+          onTap: onTap,
+          child: Padding(
+            padding: const EdgeInsets.symmetric(
+              vertical: AppDimensions.normalS,
+              horizontal: AppDimensions.normalM,
+            ),
+            child: Row(
+              spacing: AppDimensions.minorL,
+              children: [
+                FaIcon(icon, size: AppDimensions.appBarIconSize, color: Colors.black87),
+                SectionTitle(title: title),
+              ],
+            ),
           ),
         ),
       ),

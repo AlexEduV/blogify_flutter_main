@@ -2,14 +2,17 @@ import 'package:auto_route/auto_route.dart';
 import 'package:blogify_flutter_main/common/app_colors.dart';
 import 'package:blogify_flutter_main/common/app_dimensions.dart';
 import 'package:blogify_flutter_main/common/app_text_styles.dart';
+import 'package:blogify_flutter_main/common/semantics_labels.dart';
 import 'package:blogify_flutter_main/core/di/injection_container.dart';
 import 'package:blogify_flutter_main/domain/entities/comment_entity.dart';
 import 'package:blogify_flutter_main/domain/entities/post_entity.dart';
 import 'package:blogify_flutter_main/domain/usecases/users/get_user_by_id_use_case.dart';
 import 'package:blogify_flutter_main/l10n/l10n.dart';
+import 'package:blogify_flutter_main/presentation/notifiers/user/user_data_notifier.dart';
 import 'package:blogify_flutter_main/presentation/pages/comments_page/widgets/comment_field.dart';
 import 'package:blogify_flutter_main/presentation/pages/comments_page/widgets/comments_list_tile.dart';
 import 'package:blogify_flutter_main/presentation/pages/home_page/widgets/rounded_button.dart';
+import 'package:blogify_flutter_main/presentation/widgets/app_semantics.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:intl/intl.dart';
@@ -50,9 +53,6 @@ class _CommentsPageState extends State<CommentsPage> {
 
   @override
   Widget build(BuildContext context) {
-    //todo: when I scroll, I should be able to hide the keyboard.
-    // - Declined. It's pretty good enough already
-
     //todo: sorting by most recent and most relevant
 
     return Scaffold(
@@ -70,6 +70,7 @@ class _CommentsPageState extends State<CommentsPage> {
                   CircledButtonOutlined(
                     icon: FontAwesomeIcons.chevronLeft,
                     onTap: () => context.router.popForced(),
+                    semanticsLabel: SemanticsLabels.backButton,
                   ),
                   Expanded(
                     child: Text(
@@ -91,12 +92,15 @@ class _CommentsPageState extends State<CommentsPage> {
               Row(
                 mainAxisAlignment: MainAxisAlignment.end,
                 children: [
-                  RoundedButton(
-                    text: L10n.commentsRespondButtonTitle,
-                    selected: true,
-                    onTap: () => validateCommentInput(commentTextController.text),
-                    selectedColor: AppColors.emeraldGreen,
-                    tintColor: Colors.white,
+                  AppSemantics(
+                    label: SemanticsLabels.addCommentButton,
+                    child: RoundedButton(
+                      text: L10n.commentsRespondButtonTitle,
+                      selected: true,
+                      onTap: () => validateCommentInput(commentTextController.text),
+                      selectedColor: AppColors.emeraldGreen,
+                      tintColor: Colors.white,
+                    ),
                   ),
                 ],
               ),
@@ -153,7 +157,7 @@ class _CommentsPageState extends State<CommentsPage> {
     //todo: move to date formatter
     final date = DateFormat('MM/dd/yy').format(DateTime.now());
 
-    final userId = 1;
+    final userId = context.read<UserDataNotifier>().user.id;
 
     //update notifier
     final commentsProvider = context.read<CommentsPageProvider>();

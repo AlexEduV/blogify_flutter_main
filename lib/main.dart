@@ -1,4 +1,5 @@
 import 'package:blogify_flutter_main/common/app_colors.dart';
+import 'package:blogify_flutter_main/common/app_constants.dart';
 import 'package:blogify_flutter_main/core/di/injection_container.dart';
 import 'package:blogify_flutter_main/l10n/l10n.dart';
 import 'package:blogify_flutter_main/presentation/notifiers/account_page/account_page_notifier.dart';
@@ -71,6 +72,7 @@ class _MyAppState extends State<MyApp> {
         fontFamily: 'SFPro',
       ),
       debugShowCheckedModeBanner: false,
+      showSemanticsDebugger: AppConstants.isSemanticsShown,
     );
   }
 }

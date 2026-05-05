@@ -1,8 +1,10 @@
 import 'package:blogify_flutter_main/common/app_dimensions.dart';
 import 'package:blogify_flutter_main/common/app_text_styles.dart';
 import 'package:blogify_flutter_main/common/enums/post_filter.dart';
+import 'package:blogify_flutter_main/common/semantics_labels.dart';
 import 'package:blogify_flutter_main/l10n/l10n.dart';
 import 'package:blogify_flutter_main/presentation/pages/home_page/widgets/rounded_button.dart';
+import 'package:blogify_flutter_main/presentation/widgets/app_semantics.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:provider/provider.dart';
@@ -36,13 +38,17 @@ class HomeSearchBar extends StatelessWidget {
         // closes the menu, but does not register the onTap;
         Consumer<SearchBarNotifier>(
           builder: (context, notifier, child) {
-            return RoundedButton(
-              key: searchMenuKey,
-              text: notifier.selectedFilterType.label,
-              expanded: notifier.isSelectionOpen,
-              trailingIcon: Icons.keyboard_arrow_up_outlined,
-              selected: true,
-              onTap: () => showSearchFilterTypeSelector(context),
+            return AppSemantics(
+              button: true,
+              label: SemanticsLabels.homeSearchBarSelector,
+              child: RoundedButton(
+                key: searchMenuKey,
+                text: notifier.selectedFilterType.label,
+                expanded: notifier.isSelectionOpen,
+                trailingIcon: Icons.keyboard_arrow_up_outlined,
+                selected: true,
+                onTap: () => showSearchFilterTypeSelector(context),
+              ),
             );
           },
         ),

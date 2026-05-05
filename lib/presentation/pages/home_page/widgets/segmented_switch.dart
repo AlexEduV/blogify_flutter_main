@@ -1,3 +1,5 @@
+import 'package:blogify_flutter_main/common/semantics_labels.dart';
+import 'package:blogify_flutter_main/presentation/widgets/app_semantics.dart';
 import 'package:flutter/material.dart';
 
 import '../../../../common/app_colors.dart';
@@ -64,40 +66,39 @@ class SegmentedSwitch extends StatelessWidget {
           ),
 
           //Buttons
-          Semantics(
-            child: Row(
-              children: List.generate(options.length, (index) {
-                final isSelected = index == selectedIndex;
-                return Expanded(
-                  child: Semantics(
-                    button: true,
-                    selected: isSelected,
-                    child: Material(
-                      color: Colors.transparent,
+          Row(
+            children: List.generate(options.length, (index) {
+              final isSelected = index == selectedIndex;
+              return Expanded(
+                child: AppSemantics(
+                  label: SemanticsLabels.homeBottomBarItem,
+                  button: true,
+                  isSelected: isSelected,
+                  child: Material(
+                    color: Colors.transparent,
+                    borderRadius: borderRadius,
+                    child: InkWell(
+                      splashColor: AppColors.dark.withAlpha(100),
                       borderRadius: borderRadius,
-                      child: InkWell(
-                        splashColor: AppColors.dark.withAlpha(100),
-                        borderRadius: borderRadius,
-                        onTap: () => onChanged(index),
-                        child: Container(
-                          height: buttonHeight,
-                          alignment: Alignment.center,
-                          child: AnimatedDefaultTextStyle(
-                            curve: Curves.easeInOut,
-                            duration: Duration(milliseconds: animationDuration),
-                            style: TextStyle(
-                              color: isSelected ? Colors.white : AppColors.dark,
-                              fontWeight: isSelected ? FontWeight.w600 : FontWeight.w500,
-                            ),
-                            child: Text(options[index]),
+                      onTap: () => onChanged(index),
+                      child: Container(
+                        height: buttonHeight,
+                        alignment: Alignment.center,
+                        child: AnimatedDefaultTextStyle(
+                          curve: Curves.easeInOut,
+                          duration: Duration(milliseconds: animationDuration),
+                          style: TextStyle(
+                            color: isSelected ? Colors.white : AppColors.dark,
+                            fontWeight: isSelected ? FontWeight.w600 : FontWeight.w500,
                           ),
+                          child: Text(options[index]),
                         ),
                       ),
                     ),
                   ),
-                );
-              }),
-            ),
+                ),
+              );
+            }),
           ),
         ],
       ),
