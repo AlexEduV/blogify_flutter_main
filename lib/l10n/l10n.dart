@@ -9,8 +9,8 @@ class L10n {
   static const commentsRespondButtonTitle = 'Respond';
   static const emptyCommentSectionPlaceholder = 'No comments yet.';
 
-  static const searchFilterAuthor = 'Author';
-  static const searchFilterTitle = 'Title';
+  static const searchFilterAuthor = 'by Author';
+  static const searchFilterTitle = 'by Title';
 
   static const noPostsPlaceholder = 'No posts available at the moment.';
   static const postsCategoryTrending = 'Trending';
