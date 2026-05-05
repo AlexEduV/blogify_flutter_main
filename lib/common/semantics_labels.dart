@@ -6,4 +6,9 @@ class SemanticsLabels {
   static const homeSearchBarSelector = 'homeSearchBarSelector';
 
   static const userPhotoButton = 'UserPhotoButton';
+  static const userPhotoSecondaryButton = 'UserPhotoSecondaryButton';
+
+  static const accountPageItem = 'accountPageItem';
+
+  static const articleListItem = 'articleListItem';
 }

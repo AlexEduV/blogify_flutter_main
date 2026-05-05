@@ -66,34 +66,38 @@ class UserPhoto extends StatelessWidget {
           Positioned(
             bottom: 0,
             right: 0,
-            child: Material(
-              color: Colors.transparent,
-              shape: const CircleBorder(),
-              child: Padding(
-                padding: const EdgeInsets.all(AppDimensions.minorM),
-                child: InkWell(
-                  customBorder: const CircleBorder(),
-                  splashColor: Colors.grey.withAlpha(120),
-                  onTap: onSecondaryTap,
-                  child: Ink(
-                    height: AppDimensions.userPhotoEditButtonSize,
-                    width: AppDimensions.userPhotoEditButtonSize,
-                    decoration: const BoxDecoration(
-                      color: Colors.white,
-                      shape: BoxShape.circle,
-                      boxShadow: [
-                        BoxShadow(
-                          color: Colors.black26,
-                          offset: Offset(0, 2),
-                          blurRadius: 2.0,
-                          spreadRadius: 1.0,
-                        ),
-                      ],
-                    ),
-                    child: const Icon(
-                      Icons.edit,
-                      color: AppColors.emeraldGreen,
-                      size: AppDimensions.userPhotoEditButtonIconSize,
+            child: AppSemantics(
+              label: SemanticsLabels.userPhotoSecondaryButton,
+              button: true,
+              child: Material(
+                color: Colors.transparent,
+                shape: const CircleBorder(),
+                child: Padding(
+                  padding: const EdgeInsets.all(AppDimensions.minorM),
+                  child: InkWell(
+                    customBorder: const CircleBorder(),
+                    splashColor: Colors.grey.withAlpha(120),
+                    onTap: onSecondaryTap,
+                    child: Ink(
+                      height: AppDimensions.userPhotoEditButtonSize,
+                      width: AppDimensions.userPhotoEditButtonSize,
+                      decoration: const BoxDecoration(
+                        color: Colors.white,
+                        shape: BoxShape.circle,
+                        boxShadow: [
+                          BoxShadow(
+                            color: Colors.black26,
+                            offset: Offset(0, 2),
+                            blurRadius: 2.0,
+                            spreadRadius: 1.0,
+                          ),
+                        ],
+                      ),
+                      child: const Icon(
+                        Icons.edit,
+                        color: AppColors.emeraldGreen,
+                        size: AppDimensions.userPhotoEditButtonIconSize,
+                      ),
                     ),
                   ),
                 ),
