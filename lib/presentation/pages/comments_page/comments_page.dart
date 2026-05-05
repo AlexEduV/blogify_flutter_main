@@ -52,6 +52,13 @@ class _CommentsPageState extends State<CommentsPage> {
   }
 
   @override
+  void dispose() {
+    commentFieldFocusNode.dispose();
+    commentTextController.dispose();
+    super.dispose();
+  }
+
+  @override
   Widget build(BuildContext context) {
     //todo: sorting by most recent and most relevant
 
