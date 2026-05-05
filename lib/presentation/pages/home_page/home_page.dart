@@ -5,9 +5,9 @@ import 'package:blogify_flutter_main/common/app_constants.dart';
 import 'package:blogify_flutter_main/common/app_dimensions.dart';
 import 'package:blogify_flutter_main/presentation/notifiers/home_page/category_index_notifier.dart';
 import 'package:blogify_flutter_main/presentation/pages/home_page/widgets/empty_posts_placeholder.dart';
+import 'package:blogify_flutter_main/presentation/pages/home_page/widgets/home_article_card_item.dart';
 import 'package:blogify_flutter_main/presentation/pages/home_page/widgets/home_bottom_bar.dart';
 import 'package:blogify_flutter_main/presentation/pages/home_page/widgets/home_search_bar.dart';
-import 'package:blogify_flutter_main/presentation/pages/home_page/widgets/post_card.dart';
 import 'package:blogify_flutter_main/presentation/pages/home_page/widgets/user_welcome_row.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_card_swiper/flutter_card_swiper.dart';
@@ -93,7 +93,10 @@ class _HomePageState extends State<HomePage> {
                                 scale: 0.8,
                                 padding: EdgeInsets.zero,
                                 cardBuilder: (context, index, _, _) {
-                                  return PostCard(post: posts[index], onTap: openArticlePage);
+                                  return HomeArticleCardItem(
+                                    post: posts[index],
+                                    onTap: openArticlePage,
+                                  );
                                 },
                               );
                             },

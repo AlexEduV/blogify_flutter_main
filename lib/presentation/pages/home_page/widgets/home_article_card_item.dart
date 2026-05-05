@@ -12,11 +12,11 @@ import 'package:provider/provider.dart';
 import '../../../../utils/intl_day_formatter.dart';
 import '../../../widgets/post_cover_photo.dart';
 
-class PostCard extends StatelessWidget {
+class HomeArticleCardItem extends StatelessWidget {
   final PostEntity post;
   final Function(int) onTap;
 
-  const PostCard({required this.post, required this.onTap, super.key});
+  const HomeArticleCardItem({required this.post, required this.onTap, super.key});
 
   @override
   Widget build(BuildContext context) {
