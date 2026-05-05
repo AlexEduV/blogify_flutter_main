@@ -1,7 +1,6 @@
-import 'dart:io';
-
 import 'package:blogify_flutter_main/common/app_colors.dart';
 import 'package:blogify_flutter_main/common/app_dimensions.dart';
+import 'package:blogify_flutter_main/utils/image_provider_util.dart';
 import 'package:flutter/material.dart';
 
 class UserPhoto extends StatelessWidget {
@@ -20,7 +19,7 @@ class UserPhoto extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final image = getUserImageProvider();
+    final image = ImageProviderUtil.getUserImageProvider(imageSrc);
     final outlineBorderWidth = size / 40;
 
     return Stack(
@@ -97,15 +96,5 @@ class UserPhoto extends StatelessWidget {
         ],
       ],
     );
-  }
-
-  ImageProvider<Object>? getUserImageProvider() {
-    if (imageSrc.isEmpty) return null;
-
-    if (imageSrc.startsWith('https://')) {
-      return NetworkImage(imageSrc);
-    }
-
-    return FileImage(File(imageSrc));
   }
 }
