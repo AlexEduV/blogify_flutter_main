@@ -73,17 +73,14 @@ class _ArticlePageState extends State<ArticlePage> {
                           onTap: () => context.router.push(CommentsRoute(id: widget.articleId)),
                           semanticsLabel: SemanticsLabels.commentsButton,
                         ),
-                        Consumer<GlobalMockStorageProvider>(
-                          builder: (context, notifier, child) {
-                            post = getUpdatedPostData();
-
+                        Selector<GlobalMockStorageProvider, bool>(
+                          selector: (context, model) => getUpdatedPostData().isLiked,
+                          builder: (context, isLiked, child) {
                             return CircledButtonOutlined(
-                              icon: post.isLiked
-                                  ? FontAwesomeIcons.solidHeart
-                                  : FontAwesomeIcons.heart,
+                              icon: isLiked ? FontAwesomeIcons.solidHeart : FontAwesomeIcons.heart,
                               onTap: onLikeButtonPressed,
                               semanticsLabel: SemanticsLabels.likeButton,
-                              isSelected: post.isLiked,
+                              isSelected: isLiked,
                             );
                           },
                         ),
