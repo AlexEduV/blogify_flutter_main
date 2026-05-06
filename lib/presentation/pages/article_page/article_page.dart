@@ -35,18 +35,21 @@ class ArticlePage extends StatefulWidget {
 
 class _ArticlePageState extends State<ArticlePage> {
   late PostEntity post;
+  late String postInfo;
 
   @override
   void initState() {
     super.initState();
 
     post = getUpdatedPostData();
+    postInfo = getPostInfo(post);
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       body: SafeArea(
+        bottom: false,
         child: SingleChildScrollView(
           child: Padding(
             padding: const EdgeInsets.all(AppDimensions.majorS),
@@ -97,7 +100,7 @@ class _ArticlePageState extends State<ArticlePage> {
                 Text(post.title, style: AppTextStyles.sfPro24),
 
                 //post info row
-                Text(getPostInfo(post), style: AppTextStyles.sfPro14),
+                Text(postInfo, style: AppTextStyles.sfPro14),
 
                 //photo cover
                 Hero(
