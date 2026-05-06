@@ -87,13 +87,14 @@ class HomeSearchBar extends StatelessWidget {
 
     final menuNotifier = context.read<SearchBarNotifier>();
     final List<PostFilter> items = PostFilter.values;
+    final position = getMenuPosition();
 
     menuNotifier.setIsMenuExpanded(true);
 
     await showMenu<String>(
       context: context,
       initialValue: menuNotifier.selectedFilterType.label,
-      position: getMenuPosition(),
+      position: position,
       color: Colors.white,
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(AppDimensions.minorL)),
       elevation: 25.0,
