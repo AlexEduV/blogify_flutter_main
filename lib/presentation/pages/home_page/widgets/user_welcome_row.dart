@@ -26,9 +26,10 @@ class UserWelcomeRow extends StatelessWidget {
                   L10n.welcomeScreenLabel,
                   style: AppTextStyles.sfPro24.copyWith(fontWeight: FontWeight.w500),
                 ),
-                Consumer<UserDataNotifier>(
-                  builder: (context, notifier, child) {
-                    return Text(notifier.user.firstName, style: AppTextStyles.sfPro24);
+                Selector<UserDataNotifier, String>(
+                  selector: (context, model) => model.user.firstName,
+                  builder: (context, firstName, child) {
+                    return Text(firstName, style: AppTextStyles.sfPro24);
                   },
                 ),
               ],
@@ -38,11 +39,12 @@ class UserWelcomeRow extends StatelessWidget {
         ),
 
         //User Settings button
-        Consumer<UserDataNotifier>(
-          builder: (context, notifier, child) {
+        Selector<UserDataNotifier, String>(
+          selector: (context, model) => model.user.imageSrc,
+          builder: (context, userImageSrc, child) {
             return UserPhoto(
               onTap: () => onUserSettingsButtonPressed(context),
-              imageSrc: notifier.user.imageSrc,
+              imageSrc: userImageSrc,
               size: AppDimensions.appBarUserAvatarImageSize,
             );
           },
