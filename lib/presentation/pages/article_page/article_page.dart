@@ -70,7 +70,7 @@ class _ArticlePageState extends State<ArticlePage> {
                       children: [
                         CircledButtonOutlined(
                           icon: FontAwesomeIcons.comment,
-                          onTap: () => context.router.push(CommentsRoute(id: widget.articleId)),
+                          onTap: () => context.router.push(CommentsRoute(id: post.id)),
                           semanticsLabel: SemanticsLabels.commentsButton,
                         ),
                         Selector<GlobalMockStorageProvider, bool>(
@@ -78,7 +78,7 @@ class _ArticlePageState extends State<ArticlePage> {
                           builder: (context, isLiked, child) {
                             return CircledButtonOutlined(
                               icon: isLiked ? FontAwesomeIcons.solidHeart : FontAwesomeIcons.heart,
-                              onTap: onLikeButtonPressed,
+                              onTap: () => onLikeButtonPressed(post.id),
                               semanticsLabel: SemanticsLabels.likeButton,
                               isSelected: isLiked,
                             );
@@ -130,14 +130,14 @@ class _ArticlePageState extends State<ArticlePage> {
     );
   }
 
-  void onLikeButtonPressed() {
+  void onLikeButtonPressed(int postId) {
     final notifier = context.read<GlobalMockStorageProvider>();
-    notifier.likePost(widget.articleId);
+    notifier.likePost(postId);
 
     final userNotifier = context.read<UserDataNotifier>();
     final user = userNotifier.user;
     final likedPosts = user.likedArticles;
-    likedPosts.addOrRemoveIfContains(widget.articleId.toString());
+    likedPosts.addOrRemoveIfContains(postId.toString());
 
     userNotifier.updateUser(user.copyWith(likedArticles: likedPosts));
   }
