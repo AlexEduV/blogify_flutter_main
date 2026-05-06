@@ -65,34 +65,34 @@ class _ArticlePageState extends State<ArticlePage> {
                       onTap: () => context.router.popForced(),
                       semanticsLabel: SemanticsLabels.backButton,
                     ),
-                    Consumer<GlobalMockStorageProvider>(
-                      builder: (context, notifier, child) {
-                        post = getUpdatedPostData();
+                    Row(
+                      spacing: AppDimensions.normalM,
+                      children: [
+                        CircledButtonOutlined(
+                          icon: FontAwesomeIcons.comment,
+                          onTap: () => context.router.push(CommentsRoute(id: widget.articleId)),
+                          semanticsLabel: SemanticsLabels.commentsButton,
+                        ),
+                        Consumer<GlobalMockStorageProvider>(
+                          builder: (context, notifier, child) {
+                            post = getUpdatedPostData();
 
-                        return Row(
-                          spacing: AppDimensions.normalM,
-                          children: [
-                            CircledButtonOutlined(
-                              icon: FontAwesomeIcons.comment,
-                              onTap: () => context.router.push(CommentsRoute(id: widget.articleId)),
-                              semanticsLabel: SemanticsLabels.commentsButton,
-                            ),
-                            CircledButtonOutlined(
+                            return CircledButtonOutlined(
                               icon: post.isLiked
                                   ? FontAwesomeIcons.solidHeart
                                   : FontAwesomeIcons.heart,
                               onTap: onLikeButtonPressed,
                               semanticsLabel: SemanticsLabels.likeButton,
                               isSelected: post.isLiked,
-                            ),
-                            CircledButtonOutlined(
-                              icon: FontAwesomeIcons.shareFromSquare,
-                              onTap: () => onShareButtonPressed(post),
-                              semanticsLabel: SemanticsLabels.shareButton,
-                            ),
-                          ],
-                        );
-                      },
+                            );
+                          },
+                        ),
+                        CircledButtonOutlined(
+                          icon: FontAwesomeIcons.shareFromSquare,
+                          onTap: () => onShareButtonPressed(post),
+                          semanticsLabel: SemanticsLabels.shareButton,
+                        ),
+                      ],
                     ),
                   ],
                 ),
