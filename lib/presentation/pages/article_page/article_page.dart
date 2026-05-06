@@ -136,7 +136,8 @@ class _ArticlePageState extends State<ArticlePage> {
 
     final userNotifier = context.read<UserDataNotifier>();
     final user = userNotifier.user;
-    final likedPosts = user.likedArticles;
+
+    final likedPosts = List<String>.from(user.likedArticles);
     likedPosts.addOrRemoveIfContains(postId.toString());
 
     userNotifier.updateUser(user.copyWith(likedArticles: likedPosts));
