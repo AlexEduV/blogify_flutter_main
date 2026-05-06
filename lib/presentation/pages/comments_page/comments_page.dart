@@ -117,10 +117,9 @@ class _CommentsPageState extends State<CommentsPage> {
 
               //comments or a placeholder
               Expanded(
-                child: Consumer<CommentsPageNotifier>(
-                  builder: (context, notifier, child) {
-                    final comments = notifier.filteredComments;
-
+                child: Selector<CommentsPageNotifier, List<CommentEntity>>(
+                  selector: (context, model) => model.filteredComments,
+                  builder: (context, comments, child) {
                     //placeholder
                     if (comments.isEmpty) {
                       return const Padding(

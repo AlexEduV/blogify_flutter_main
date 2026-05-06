@@ -3,7 +3,6 @@ import 'dart:math';
 import 'package:auto_route/auto_route.dart';
 import 'package:blogify_flutter_main/common/app_constants.dart';
 import 'package:blogify_flutter_main/common/app_dimensions.dart';
-import 'package:blogify_flutter_main/presentation/notifiers/home_page/category_index_notifier.dart';
 import 'package:blogify_flutter_main/presentation/pages/home_page/widgets/home_article_card_item.dart';
 import 'package:blogify_flutter_main/presentation/pages/home_page/widgets/home_bottom_bar.dart';
 import 'package:blogify_flutter_main/presentation/pages/home_page/widgets/home_search_bar.dart';
@@ -83,22 +82,18 @@ class _HomePageState extends State<HomePage> {
                           }
 
                           //post stack
-                          return Consumer<CategoryIndexNotifier>(
-                            builder: (_, categoryIndexNotifier, child) {
-                              return CardSwiper(
-                                controller: controller,
-                                cardsCount: posts.length,
-                                onSwipe: (_, _, direction) => true,
-                                numberOfCardsDisplayed: limitedCount(posts.length),
-                                backCardOffset: const Offset(0, 65),
-                                scale: 0.8,
-                                padding: EdgeInsets.zero,
-                                cardBuilder: (context, index, _, _) {
-                                  return HomeArticleCardItem(
-                                    post: posts[index],
-                                    onTap: openArticlePage,
-                                  );
-                                },
+                          return CardSwiper(
+                            controller: controller,
+                            cardsCount: posts.length,
+                            onSwipe: (_, _, direction) => true,
+                            numberOfCardsDisplayed: limitedCount(posts.length),
+                            backCardOffset: const Offset(0, 65),
+                            scale: 0.8,
+                            padding: EdgeInsets.zero,
+                            cardBuilder: (context, index, _, _) {
+                              return HomeArticleCardItem(
+                                post: posts[index],
+                                onTap: openArticlePage,
                               );
                             },
                           );
