@@ -4,10 +4,13 @@ import 'package:blogify_flutter_main/domain/entities/post_entity.dart';
 import 'package:blogify_flutter_main/domain/entities/user_entity.dart';
 import 'package:blogify_flutter_main/domain/models/share_params_model.dart';
 import 'package:blogify_flutter_main/domain/usecases/share/share_use_case.dart';
+import 'package:blogify_flutter_main/l10n/l10n.dart';
 import 'package:blogify_flutter_main/presentation/notifiers/posts/global_mock_storage_provider.dart';
 import 'package:blogify_flutter_main/presentation/notifiers/user/user_data_notifier.dart';
 import 'package:blogify_flutter_main/presentation/pages/article_page/article_page.dart';
 import 'package:blogify_flutter_main/presentation/widgets/circled_button_outlined.dart';
+import 'package:blogify_flutter_main/presentation/widgets/post_cover_photo.dart';
+import 'package:blogify_flutter_main/utils/intl_day_formatter.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
@@ -105,40 +108,36 @@ void main() {
     );
   }
 
-  // testWidgets('displays post title, info, cover image, and paragraphs', (tester) async {
-  //   when(() => getPostByIdUseCase.call(1)).thenReturn(
-  //     PostEntity.empty().copyWith(
-  //       title: 'Test Article',
-  //       paragraphs: ['Paragraph 1', 'Paragraph 2'],
-  //       daysAgoPublished: 5,
-  //       minToRead: 15,
-  //     ),
-  //   );
-  //
-  //   await tester.pumpWidget(await buildTestable(child: const ArticlePage(articleId: 1)));
-  //
-  //   expect(find.text('Test Article'), findsOneWidget);
-  //   expect(find.byType(PostCoverPhoto), findsOneWidget);
-  //   expect(find.text('Paragraph 1'), findsOneWidget);
-  //   expect(find.text('Paragraph 2'), findsOneWidget);
-  //
-  //   // Info row
-  //   final info = [
-  //     post.author,
-  //     // Adjust if your formatter returns a different string
-  //     contains(IntlDayFormatter.getFormattedDays(post.daysAgoPublished)),
-  //     contains('${L10n.articleReadTimeLabel} ${post.minToRead} ${L10n.articleReadTimeUnits}'),
-  //   ];
-  //   for (final part in info) {
-  //     expect(
-  //       find.byWidgetPredicate(
-  //         (w) => w is Text && w.data != null && w.data!.contains(part is String ? part : ''),
-  //       ),
-  //       findsWidgets,
-  //     );
-  //   }
-  // });
-  //
+  testWidgets('displays post title, info, cover image, and paragraphs', (tester) async {
+    final mockPost = PostEntity.empty().copyWith(
+      title: 'Test Article',
+      author: 'John Doe',
+      paragraphs: ['Paragraph 1', 'Paragraph 2'],
+      daysAgoPublished: 5,
+      minToRead: 15,
+    );
+
+    when(() => getPostByIdUseCase.call(1)).thenReturn(mockPost);
+
+    await tester.pumpWidget(await buildTestable(child: const ArticlePage(articleId: 1)));
+
+    expect(find.text('Test Article'), findsOneWidget);
+    expect(find.byType(PostCoverPhoto), findsOneWidget);
+    expect(find.text('Paragraph 1'), findsOneWidget);
+    expect(find.text('Paragraph 2'), findsOneWidget);
+
+    // Info row
+    final info = [
+      mockPost.author,
+      // Adjust if your formatter returns a different string
+      IntlDayFormatter.getFormattedDays(mockPost.daysAgoPublished),
+      '${L10n.articleReadTimeLabel} ${mockPost.minToRead} ${L10n.articleReadTimeUnits}',
+    ];
+
+    expect(find.textContaining(info[0]), findsOneWidget);
+  });
+
+  //todo: router is not connected
   // testWidgets('back button pops the route', (tester) async {
   //   bool popped = false;
   //   await tester.pumpWidget(
@@ -155,13 +154,16 @@ void main() {
   //   await tester.tap(find.byIcon(Icons.chevron_left));
   //   // You would verify navigation with a mock router in a real test.
   // });
-  //
+
   // testWidgets('comments button navigates to comments', (tester) async {
   //   await tester.pumpWidget(await buildTestable(child: const ArticlePage(articleId: 1)));
-  //   await tester.tap(find.byIcon(Icons.comment));
+  //   final commentsIconFinder = find.byWidgetPredicate(
+  //     (widget) => widget is FaIcon && widget.icon == FontAwesomeIcons.comment,
+  //   );
+  //
+  //   await tester.tap(commentsIconFinder);
   //   // You would verify navigation with a mock router in a real test.
   // });
-  //
 
   testWidgets('like button toggles like state and updates user', (tester) async {
     when(() => likePostByIdUseCase.call(1)).thenReturn(true);
