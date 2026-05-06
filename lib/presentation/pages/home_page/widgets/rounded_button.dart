@@ -5,6 +5,7 @@ import 'package:blogify_flutter_main/common/extensions/num_extension.dart';
 import 'package:flutter/material.dart';
 
 class RoundedButton extends StatelessWidget {
+  /// Affects the fill color. Defaults to [false]
   final bool selected;
   final IconData? trailingIcon;
   final IconData? leadingIcon;

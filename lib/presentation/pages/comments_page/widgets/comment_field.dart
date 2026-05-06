@@ -8,11 +8,7 @@ class CommentField extends StatelessWidget {
   final FocusNode focusNode;
   final TextEditingController textController;
 
-  const CommentField({
-    required this.focusNode,
-    required this.textController,
-    super.key,
-  });
+  const CommentField({required this.focusNode, required this.textController, super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -32,10 +28,7 @@ class CommentField extends StatelessWidget {
           // Default border
           enabledBorder: OutlineInputBorder(
             borderRadius: BorderRadius.circular(AppDimensions.majorS),
-            borderSide: BorderSide(
-              color: AppColors.offGrey,
-              width: 1.5,
-            ),
+            borderSide: BorderSide(color: AppColors.offGrey, width: 1.5),
           ),
 
           // Focused border (when tapped)
@@ -49,7 +42,9 @@ class CommentField extends StatelessWidget {
 
           // Remove default padding around input
           contentPadding: const EdgeInsets.symmetric(
-              horizontal: AppDimensions.normalM, vertical: AppDimensions.normalS),
+            horizontal: AppDimensions.normalM,
+            vertical: AppDimensions.normalS,
+          ),
         ),
       ),
     );
