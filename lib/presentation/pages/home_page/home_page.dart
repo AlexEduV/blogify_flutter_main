@@ -88,7 +88,7 @@ class _HomePageState extends State<HomePage> {
                               return CardSwiper(
                                 controller: controller,
                                 cardsCount: posts.length,
-                                onSwipe: (_, __, direction) => true,
+                                onSwipe: (_, _, direction) => true,
                                 numberOfCardsDisplayed: limitedCount(posts.length),
                                 backCardOffset: const Offset(0, 65),
                                 scale: 0.8,
